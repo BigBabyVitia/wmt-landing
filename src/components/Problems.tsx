@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { AnimatedCard, CardBody, CardTitle, CardDescription, CardVisual, Visual1, Visual2, VisualTeam, Visual3 } from "@/components/ui/animated-card-chart"
 
 const C = "#ff5331"
-const P = "format-svg-path"
+// const P = "format-svg-path"
 
 /* ── Вариант A: UI-компоненты ── */
 const uiIllustrations = [
@@ -189,7 +189,7 @@ const svgIllustrations = [
 export function Problems() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
-  const [variant, setVariant] = useState<"ui" | "svg">("ui")
+  const [variant] = useState<"ui" | "svg">("ui")
 
   useEffect(() => {
     const el = sectionRef.current

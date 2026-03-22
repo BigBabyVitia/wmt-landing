@@ -426,7 +426,7 @@ interface VisualBaseProps {
 
 export function Visual1({
   mainColor = "#ff5331",
-  secondaryColor = "#f54900",
+  secondaryColor: _secondaryColor = "#f54900",
   gridColor = "#80808015",
 }: VisualBaseProps) {
   const [hovered, setHovered] = useState(false);
@@ -526,7 +526,7 @@ export function Visual1({
 
 export function Visual2({
   mainColor = "#ff5331",
-  secondaryColor = "#f54900",
+  secondaryColor: _secondaryColor = "#f54900",
   gridColor = "#80808015",
 }: VisualBaseProps) {
   const [hovered, setHovered] = useState(false);
@@ -655,7 +655,7 @@ function rectEdgePoint(
 
 export function VisualWorkspace({
   mainColor = "#ff5331",
-  secondaryColor = "#f54900",
+  secondaryColor: _secondaryColor = "#f54900",
   gridColor = "#80808015",
 }: VisualBaseProps) {
   const [hovered, setHovered] = useState(false);
@@ -765,7 +765,7 @@ export function VisualWorkspace({
 
 export function VisualAgent({
   mainColor = "#ff5331",
-  secondaryColor = "#f54900",
+  secondaryColor: _secondaryColor = "#f54900",
   gridColor = "#80808015",
 }: VisualBaseProps) {
   const [hovered, setHovered] = useState(false);
@@ -878,7 +878,7 @@ export function VisualAgent({
 
 export function VisualCase({
   mainColor = "#ff5331",
-  secondaryColor = "#f54900",
+  secondaryColor: _secondaryColor = "#f54900",
   gridColor = "#80808015",
 }: VisualBaseProps) {
   const [hovered, setHovered] = useState(false);
@@ -1006,7 +1006,7 @@ export function VisualCase({
 
 export function VisualTeam({
   mainColor = "#ff5331",
-  secondaryColor = "#f54900",
+  secondaryColor: _secondaryColor = "#f54900",
   gridColor = "#80808015",
 }: VisualBaseProps) {
   const [hovered, setHovered] = useState(false);
