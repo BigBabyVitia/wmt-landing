@@ -1,0 +1,80 @@
+import { ShieldCheck, Building2, Lock } from "lucide-react"
+import { LogoCloud } from "@/components/ui/logo-cloud"
+
+const clients = [
+  { name: "Газпром Медиа", src: "/logos/газпром.svg", invert: true },
+  { name: "Wildberries", src: "/logos/wb-full-black.svg" },
+  { name: "ЕвроХим", src: "/logos/logo-ru-white.svg", invert: true },
+  { name: "Renaissance", src: "/logos/cropped-logo_new-2048x1406.png" },
+  { name: "Согласие", src: "/logos/Логотип_согласие.png" },
+  { name: "Нацпроектстрой", src: "/logos/NPS_Logo_NEW_L_White_RU.svg", invert: true },
+  { name: "R1" },
+  { name: "T1", src: "/logos/T1_Logo-Description.svg" },
+  { name: "Центральный банк Армении", src: "/logos/logo_en.svg", invert: true },
+]
+
+export function Trust() {
+  const blocks = [
+    {
+      title: "50+ внедрений ИИ в 2024-2026 годах.",
+      desc: "Это не учебные кейсы и не внешняя витрина. Команда работает с корпоративными сценариями, где нужно связать управленческое решение, пилот и внедрение.",
+      icon: <ShieldCheck className="w-10 h-10 text-brand mb-6" />
+    },
+    {
+      title: "Опыт в сложных корпоративных средах.",
+      desc: "Работаем с компаниями, где решения проходят через комплаенс, ИБ и сложные процессы согласования. Знаем, как довести пилот до продакшена в таких условиях.",
+      icon: <Building2 className="w-10 h-10 text-brand mb-6" />
+    },
+    {
+      title: "Предметный разговор про безопасность и данные.",
+      desc: "Если у компании чувствительный контур, отдельно разбираются роли доступа, маскирование данных, аудит действий и безопасная схема работы.",
+      icon: <Lock className="w-10 h-10 text-brand mb-6" />
+    }
+  ]
+
+  return (
+    <section id="trust" className="py-24 px-6 md:px-12 bg-gray-50 border-t border-gray-100">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-16">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-6 max-w-4xl">
+            Почему нам доверяют
+          </h2>
+          <p className="text-lg md:text-xl text-gray-500 max-w-3xl">
+            Работаем с корпоративными сценариями, где важна не презентация, а результат.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {blocks.map((b, idx) => (
+            <div key={idx} className="flex flex-col bg-white p-8 rounded-3xl">
+              {b.icon}
+              <h3 className="text-2xl font-semibold text-gray-900 mb-4 leading-tight min-h-[4.5rem]">{b.title}</h3>
+              <p className="text-gray-600 leading-relaxed text-base">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-20">
+          <div className="mx-auto max-w-3xl text-center mb-6">
+            <h3 className="text-xl md:text-3xl font-medium tracking-tight">
+              <span className="text-gray-400">Проверено на практике.</span>
+              <br />
+              <span className="font-semibold text-gray-900">Работаем с лидерами рынка.</span>
+            </h3>
+          </div>
+          <div className="mx-auto max-w-3xl">
+            <div className="my-5 h-px bg-gray-200 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+            <LogoCloud logos={clients} />
+            <div className="mt-5 h-px bg-gray-200 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+          </div>
+        </div>
+
+        <div className="mt-12 flex justify-center">
+          <a href="#apply" className="bg-brand text-white hover:bg-[#e64627] transition-colors rounded-full px-8 py-4 font-medium text-lg inline-block">
+            Обсудить задачу
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
