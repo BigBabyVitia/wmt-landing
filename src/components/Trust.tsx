@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react"
 import { ShieldCheck, Building2, Lock } from "lucide-react"
 import { LogoCloud } from "@/components/ui/logo-cloud"
 
@@ -14,6 +15,20 @@ const clients = [
 ]
 
 export function Trust() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
+      { threshold: 0.15 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   const blocks = [
     {
       title: "50+ внедрений ИИ в 2024-2026 годах.",
@@ -33,9 +48,9 @@ export function Trust() {
   ]
 
   return (
-    <section id="trust" className="py-24 px-6 md:px-12 bg-gray-50 border-t border-gray-100">
+    <section id="trust" ref={sectionRef} className="py-24 px-6 md:px-12 bg-gray-50 border-t border-gray-100">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
+        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-6 max-w-4xl">
             Почему нам доверяют
           </h2>
@@ -46,7 +61,11 @@ export function Trust() {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {blocks.map((b, idx) => (
-            <div key={idx} className="flex flex-col bg-white p-8 rounded-3xl">
+            <div
+              key={idx}
+              className={`flex flex-col bg-white p-8 rounded-3xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: visible ? `${200 + idx * 150}ms` : "0ms" }}
+            >
               {b.icon}
               <h3 className="text-2xl font-semibold text-gray-900 mb-4 leading-tight min-h-[4.5rem]">{b.title}</h3>
               <p className="text-gray-600 leading-relaxed text-base">{b.desc}</p>
@@ -54,7 +73,7 @@ export function Trust() {
           ))}
         </div>
 
-        <div className="mt-20">
+        <div className={`mt-20 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? "700ms" : "0ms" }}>
           <div className="mx-auto max-w-3xl text-center mb-6">
             <h3 className="text-xl md:text-3xl font-medium tracking-tight">
               <span className="text-gray-400">Проверено на практике.</span>
@@ -69,7 +88,7 @@ export function Trust() {
           </div>
         </div>
 
-        <div className="mt-12 flex justify-center">
+        <div className={`mt-12 flex justify-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? "900ms" : "0ms" }}>
           <a href="#apply" className="bg-brand text-white hover:bg-[#e64627] transition-colors rounded-full px-8 py-4 font-medium text-lg inline-block">
             Обсудить задачу
           </a>

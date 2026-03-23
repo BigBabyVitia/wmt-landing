@@ -1,4 +1,20 @@
+import { useEffect, useRef, useState } from "react"
+
 export function Experts() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+
+  useEffect(() => {
+    const el = sectionRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
+      { threshold: 0.1 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
   const experts = [
     {
       name: "Игорь Никитин",
@@ -28,16 +44,20 @@ export function Experts() {
   ]
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white">
+    <section ref={sectionRef} className="py-24 px-6 md:px-12 bg-white">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-semibold text-center mb-16 text-gray-900">
+        <h2 className={`text-4xl md:text-5xl font-semibold text-center mb-16 text-gray-900 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           Наши <span className="text-brand">эксперты</span>
         </h2>
-        
+
         {/* Row 1: 3 experts */}
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-16 lg:gap-x-12 mb-16">
           {experts.slice(0, 3).map((expert, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center w-full sm:w-[calc(50%-2rem)] md:w-[calc(33.33%-2rem)] max-w-sm">
+            <div
+              key={idx}
+              className={`flex flex-col items-center text-center w-full sm:w-[calc(50%-2rem)] md:w-[calc(33.33%-2rem)] max-w-sm transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: visible ? `${200 + idx * 150}ms` : "0ms" }}
+            >
               <div className="w-56 h-56 md:w-64 md:h-64 mb-6 transition-transform duration-500 hover:scale-105">
                 <img src={expert.imgUrl} alt={expert.name} className="w-full h-full object-contain pointer-events-none" />
               </div>
@@ -52,7 +72,11 @@ export function Experts() {
         {/* Row 2: 2 experts (centered) */}
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-16 lg:gap-x-16">
           {experts.slice(3, 5).map((expert, idx) => (
-            <div key={idx} className="flex flex-col items-center text-center w-full sm:w-[calc(50%-2rem)] md:w-[calc(40%-2rem)] max-w-sm">
+            <div
+              key={idx}
+              className={`flex flex-col items-center text-center w-full sm:w-[calc(50%-2rem)] md:w-[calc(40%-2rem)] max-w-sm transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: visible ? `${650 + idx * 150}ms` : "0ms" }}
+            >
               <div className="w-56 h-56 md:w-64 md:h-64 mb-6 transition-transform duration-500 hover:scale-105">
                 <img src={expert.imgUrl} alt={expert.name} className="w-full h-full object-contain pointer-events-none" />
               </div>
