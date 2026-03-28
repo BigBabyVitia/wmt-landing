@@ -366,7 +366,7 @@ function ChallengesSection() {
   )
 }
 
-function LevelsSection() {
+export function LevelsSection() {
   const { ref, visible } = useScrollVisible()
   const [activeLevel, setActiveLevel] = useState<number | null>(null)
 
@@ -480,7 +480,7 @@ const teaserData = [
   }
 ];
 
-function DirectionTeasersCards() {
+export function DirectionTeasersCards() {
   return (
     <section className="py-24 px-6 md:px-12 bg-gray-50/50 relative overflow-hidden border-t border-gray-100">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand/5 blur-[120px] rounded-full pointer-events-none" />

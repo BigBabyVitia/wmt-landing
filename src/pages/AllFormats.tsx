@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react"
 import { ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom"
 import { NavbarV2 } from "@/components/NavbarV2"
-import { TrustStrip } from "@/components/TrustStrip"
+
 import { MainCta } from "@/components/MainCta"
 
 function useScrollVisible(threshold = 0.15) {
