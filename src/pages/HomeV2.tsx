@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState, lazy, Suspense } from "react"
-import { ArrowRight, Check } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom"
 import { NavbarV2 } from "@/components/NavbarV2"
 import { useVersion } from "@/context/VersionContext"
@@ -8,7 +8,7 @@ const UnicornScene = lazy(() => import("unicornstudio-react"))
 import { TrustStrip } from "@/components/TrustStrip"
 import { FreePlatform } from "@/components/FreePlatform"
 import { MainCta } from "@/components/MainCta"
-import { motion, useMotionTemplate, useMotionValue, AnimatePresence } from "framer-motion"
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 
 function useScrollVisible(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null)
