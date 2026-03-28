@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
+import { useVersion } from "@/context/VersionContext"
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
+  const { version, toggleVersion } = useVersion()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > window.innerHeight - 80)
@@ -31,13 +33,34 @@ export function Navbar() {
           <a href="#formats" className={`transition-colors ${scrolled ? "hover:text-gray-900" : "hover:text-white"}`}>Форматы</a>
           <a href="#trust" className={`transition-colors ${scrolled ? "hover:text-gray-900" : "hover:text-white"}`}>Команда</a>
         </div>
-        <a href="#apply" className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 hover:scale-[1.03] inline-block ${
-          scrolled
-            ? "bg-brand text-white hover:bg-[#e64627]"
-            : "liquid-glass text-white"
-        }`}>
-          Начать
-        </a>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={toggleVersion}
+            className={`hidden md:flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
+              scrolled
+                ? "border-gray-200 text-gray-500 hover:border-brand hover:text-brand"
+                : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
+            }`}
+          >
+            <span className={version === "new" ? "opacity-100" : "opacity-50"}>v2</span>
+            <span className={`w-6 h-3.5 rounded-full relative transition-colors ${
+              version === "new" ? "bg-brand" : scrolled ? "bg-gray-300" : "bg-white/30"
+            }`}>
+              <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform ${
+                version === "new" ? "left-3" : "left-0.5"
+              }`} />
+            </span>
+            <span className={version === "classic" ? "opacity-100" : "opacity-50"}>classic</span>
+          </button>
+
+          <a href="#apply" className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 hover:scale-[1.03] inline-block ${
+            scrolled
+              ? "bg-brand text-white hover:bg-[#e64627]"
+              : "liquid-glass text-white"
+          }`}>
+            Начать
+          </a>
+        </div>
       </div>
     </nav>
   )
