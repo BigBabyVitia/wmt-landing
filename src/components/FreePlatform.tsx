@@ -36,14 +36,7 @@ export function FreePlatform() {
               <p className="text-lg md:text-xl text-gray-500 leading-relaxed font-light mb-8">
                 Библиотека уроков, практические модули и рабочая среда. На платформе WMT AI уже открыты 4 базовых модуля, которые дадут вам реальную практику и понимание технологий до того, как вы решите двигаться дальше.
               </p>
-              <a
-                href="https://transformation.wmtunnel.ru"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gray-900 shadow-lg shadow-gray-300/50 text-white hover:bg-brand hover:-translate-y-0.5 transition-all duration-300 rounded-full px-8 py-4 font-medium text-lg inline-block"
-              >
-                Получить доступ
-              </a>
+
             </div>
           </div>
         </div>
@@ -65,6 +58,17 @@ export function FreePlatform() {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className={`mt-16 flex justify-start transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "600ms" }}>
+          <a
+            href="https://transformation.wmtunnel.ru"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-brand shadow-lg shadow-brand/50 text-white hover:bg-[#e64627] hover:-translate-y-0.5 transition-all duration-300 rounded-full px-12 py-4 font-medium text-lg inline-block"
+          >
+            Получить доступ
+          </a>
         </div>
       </div>
     </section>

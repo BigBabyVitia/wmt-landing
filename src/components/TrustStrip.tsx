@@ -105,7 +105,7 @@ export function TrustStrip() {
           <div className={`mt-12 flex justify-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? "500ms" : "0ms" }}>
             <Link
               to="/proof"
-              className="inline-flex items-center gap-2 bg-gray-900 text-white hover:bg-brand transition-colors rounded-full px-8 pt-[14px] pb-[16px] font-medium hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 transition-all rounded-full px-8 pt-[14px] pb-[16px] font-medium hover:-translate-y-0.5"
             >
               Больше фактов и публикаций в СМИ <ArrowRight className="w-4 h-4 ml-1 mt-0.5" />
             </Link>
