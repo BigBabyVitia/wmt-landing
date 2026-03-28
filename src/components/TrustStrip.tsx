@@ -1,0 +1,139 @@
+import { useEffect, useRef, useState } from "react"
+import { ArrowRight, X, CheckCircle2 } from "lucide-react"
+import { Link } from "react-router-dom"
+import { LogoCloud } from "@/components/ui/logo-cloud"
+import { clients } from "@/data/clients"
+
+export function TrustStrip() {
+  const ref = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
+  const [isCertModalOpen, setIsCertModalOpen] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
+      { threshold: 0.15 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <>
+      <section ref={ref} className="py-24 px-6 md:px-12 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto">
+          <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-12 text-center md:text-left">
+              Почему нам доверяют трансформацию
+            </h2>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-10">
+              {/* Founder Card */}
+              <div className="lg:col-span-8 bg-gray-50 rounded-[2.5rem] p-8 md:p-12 border border-gray-100 relative overflow-hidden flex flex-col md:flex-row gap-8 lg:gap-12 items-center md:items-start group">
+                <div className="w-48 h-48 md:w-56 md:h-56 shrink-0 rounded-[2.5rem] overflow-hidden shadow-xl shadow-gray-200/50">
+                  <img src="/experts/nikitin-large.webp" alt="Игорь Никитин" className="w-full h-full object-cover object-top filter brightness-105 group-hover:scale-105 transition-transform duration-700" />
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h3 className="text-2xl md:text-3xl font-bold text-gray-900">Игорь Никитин</h3>
+                  <p className="text-brand font-medium mb-4 text-sm uppercase tracking-wider">Основатель & CEO WMT AI</p>
+                  <p className="text-gray-600 text-[17px] leading-relaxed mb-8 italic">
+                    «Моя цель — бизнес, в котором собственник по-настоящему получает удовольствие от управления AI-Native компанией.»
+                  </p>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-4 text-sm text-gray-700 text-left">
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-0.5" />
+                      <span><b>400+ сотрудников</b> в глобальной команде</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-0.5" />
+                      <span><b>50+ ИИ-внедрений</b> за 2024–2026 годы</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-0.5" />
+                      <span><b>~$1M грант</b> от топ-40 университета мира</span>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-0.5" />
+                      <span><b>Патент</b> и платформа IIGOR</span>
+                    </div>
+                    <div className="flex items-start gap-2 sm:col-span-2">
+                      <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-0.5" />
+                      <span>Эксклюзивное право на <b>обучение 100+ специалистов</b> напрямую у создателей нейросети Claude (победа в конкурсе Anthropic).</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Stanford Card */}
+              <div className="lg:col-span-4 bg-white rounded-[2.5rem] p-8 md:p-10 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col group relative">
+                <span className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-6 text-center lg:text-left">Академическое признание</span>
+                <div className="flex-1 flex flex-col justify-center items-center text-center">
+                  <div className="relative group/cert cursor-pointer" onClick={() => setIsCertModalOpen(true)}>
+                    <img src="/brand/certificate.jpg" alt="Stanford Certificate" className="w-full max-w-[280px] rounded-lg shadow-md mb-6 transition-all duration-300 border border-gray-100 group-hover/cert:shadow-xl group-hover/cert:-translate-y-1" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/cert:opacity-100 transition-opacity duration-300">
+                      <span className="bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-medium px-4 py-2 rounded-full shadow-lg absolute -bottom-2 -translate-y-[20px]">Увеличить</span>
+                    </div>
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-2 leading-tight">Stanford Global Studies</h4>
+                  <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                    Наш фреймворк «AI Transformation» официально получил академическое признание и статус Executive программы.
+                  </p>
+                  <div className="mt-auto flex flex-wrap justify-center items-center gap-2 text-xs font-semibold">
+                    <span className="bg-gray-50 text-gray-600 px-3 py-1.5 rounded-full whitespace-nowrap">Ученая валидация</span>
+                    <span className="bg-gray-50 text-gray-600 px-3 py-1.5 rounded-full whitespace-nowrap">Март 2026</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Clients Marquee */}
+          <div className={`mt-24 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? "300ms" : "0ms" }}>
+            <div className="text-center mb-8">
+              <h3 className="text-[13px] font-bold uppercase tracking-widest text-gray-400">Нам доверяют лидеры рынка</h3>
+            </div>
+            <div className="mx-auto max-w-6xl">
+              <div className="my-5 h-px bg-gray-200 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+              <LogoCloud logos={clients} />
+              <div className="mt-5 h-px bg-gray-200 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+            </div>
+          </div>
+
+          <div className={`mt-12 flex justify-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? "500ms" : "0ms" }}>
+            <Link
+              to="/proof"
+              className="inline-flex items-center gap-2 bg-gray-900 text-white hover:bg-brand transition-colors rounded-full px-8 pt-[14px] pb-[16px] font-medium hover:-translate-y-0.5"
+            >
+              Больше фактов и публикаций в СМИ <ArrowRight className="w-4 h-4 ml-1 mt-0.5" />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Certificate Modal */}
+      {isCertModalOpen && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-in fade-in duration-300"
+          onClick={() => setIsCertModalOpen(false)}
+        >
+          <div className="relative max-w-4xl w-full flex justify-center items-center" onClick={(e) => e.stopPropagation()}>
+            <button 
+              onClick={() => setIsCertModalOpen(false)}
+              className="absolute -top-12 right-0 md:-right-12 p-2 text-white/70 hover:text-white transition-colors"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <img 
+              src="/brand/certificate.jpg" 
+              alt="Stanford Certificate" 
+              className="max-h-[85vh] w-auto max-w-full rounded-sm shadow-2xl ring-1 ring-white/10" 
+            />
+          </div>
+        </div>
+      )}
+    </>
+  )
+}
