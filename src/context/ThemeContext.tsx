@@ -9,9 +9,9 @@ interface ThemeContextValue {
 }
 
 const ThemeContext = createContext<ThemeContextValue>({
-  theme: "light",
+  theme: "dark",
   toggleTheme: () => {},
-  isDark: false,
+  isDark: true,
 })
 
 export function useTheme() {
@@ -22,9 +22,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>(() => {
     const stored = localStorage.getItem("wmt-theme")
     if (stored === "dark" || stored === "light") return stored
-    // Respect system preference
-    if (window.matchMedia("(prefers-color-scheme: dark)").matches) return "dark"
-    return "light"
+    return "dark"
   })
 
   useEffect(() => {

@@ -132,7 +132,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
                   : "liquid-glass text-white"
               }`}
             >
-              Войти
+              Начать бесплатно
             </a>
 
             {/* Mobile menu button */}
@@ -188,7 +188,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
               className="bg-brand text-white rounded-full px-8 py-4 font-medium text-center text-lg mt-4"
               onClick={() => setMobileOpen(false)}
             >
-              Войти
+              Начать бесплатно
             </a>
           </div>
         </div>

@@ -234,10 +234,10 @@ function HeroVideo() {
       <div className="absolute bottom-6 md:bottom-10 left-0 right-0 w-full z-20 animate-fade-rise-delay-2 pointer-events-none">
         <div className="w-full max-w-6xl mx-auto px-4">
           <div className="text-center mb-5">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">Нам доверяют трансформацию</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/50">Нам доверяют трансформацию</span>
           </div>
           <div className="relative [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] pointer-events-auto">
-            <div className="grayscale brightness-0 mix-blend-multiply opacity-90">
+            <div className="opacity-90">
               <LogoCloud logos={clients} />
             </div>
           </div>
@@ -299,10 +299,10 @@ function HeroWebGL() {
       <div className="absolute bottom-6 md:bottom-10 left-0 right-0 w-full z-20 animate-fade-rise-delay-2 pointer-events-none">
         <div className="w-full max-w-6xl mx-auto px-4">
           <div className="text-center mb-5">
-            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">Нам доверяют трансформацию</span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-white/50">Нам доверяют трансформацию</span>
           </div>
           <div className="relative [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] pointer-events-auto">
-            <div className="grayscale brightness-0 mix-blend-multiply opacity-90">
+            <div className="opacity-90">
               <LogoCloud logos={clients} />
             </div>
           </div>
@@ -443,22 +443,22 @@ const teaserData = [
       {
         title: "Системный ИИ",
         desc: "когда нужно выровнять руководство и получить план на 90 дней.",
-        tags: { format: "Офлайн / Онлайн", duration: "План на 90 дней" }
+        tags: { format: "Офлайн / Онлайн", duration: "1,5–2 часа", people: "до 15 человек", result: "План на 90 дней" }
       },
       {
         title: "Бизнес 2.0",
         desc: "когда нужен глубокий пересмотр стратегии и операционной модели под ИИ.",
-        tags: { format: "Офлайн", duration: "Рабочие сессии" }
+        tags: { format: "Офлайн", duration: "2 дня", people: "до 15 человек", result: "Рабочие сессии" }
       },
       {
         title: "ИИ-марафон для топ-менеджеров",
         desc: "когда руководители должны не только понять тему, а пройти месяц практики.",
-        tags: { format: "Онлайн", duration: "1 месяц (8 модулей)" }
+        tags: { format: "Онлайн", duration: "1 месяц", people: "8–20 человек", result: "8 модулей" }
       },
       {
         title: "Цифровой каркас",
         desc: "построение архитектуры ИИ-перехода и запуск первого пилота.",
-        tags: { format: "Офлайн", duration: "1–2 дня" }
+        tags: { format: "Офлайн", duration: "1–2 дня", people: "до 30 человек", result: "Первый пилот" }
       }
     ],
     link: "/executive",
@@ -618,12 +618,24 @@ function TeaserCard({ id, title, desc, items, personalSteps, link, linkText, ind
                     {item.desc && <span className="text-gray-600 dark:text-gray-400 text-xs sm:text-[13px] leading-relaxed mb-3">{item.desc}</span>}
                     
                     {item.tags && (
-                      <div className="flex flex-wrap items-center gap-2 mt-auto">
+                      <div className="flex flex-nowrap items-center gap-2 mt-auto overflow-x-auto w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-0.5">
                         {item.tags.duration && (
-                           <span className="inline-flex items-center gap-1.5 text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded-md">{item.tags.duration}</span>
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
+                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                             {item.tags.duration}
+                           </span>
                         )}
                         {item.tags.people && (
-                           <span className="inline-flex items-center gap-1.5 text-[11px] font-medium bg-brand/10 dark:bg-brand/20 text-brand px-2 py-0.5 rounded-md">{item.tags.people}</span>
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
+                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                             {item.tags.people}
+                           </span>
+                        )}
+                        {item.tags.result && (
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
+                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                             {item.tags.result}
+                           </span>
                         )}
                       </div>
                     )}
