@@ -24,10 +24,7 @@ export function useVersion() {
 export function VersionProvider({ children }: { children: ReactNode }) {
   const [version, setVersion] = useState<Version>("new")
 
-  const [heroStyle, setHeroStyle] = useState<HeroStyle>(() => {
-    const stored = localStorage.getItem("wmt-hero-style")
-    return stored === "webgl" ? "webgl" : "video"
-  })
+  const [heroStyle, setHeroStyle] = useState<HeroStyle>("webgl")
 
   useEffect(() => {
     localStorage.setItem("wmt-site-version", version)

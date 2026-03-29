@@ -20,7 +20,7 @@ export function ImplementationWave() {
         pills={["30 занятий", "10 недель", "Вовлечение 90%"]}
       />
 
-      <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-12">Результат на трёх уровнях</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -40,7 +40,7 @@ export function ImplementationWave() {
         </div>
       </section>
 
-      <section id="program" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+      <section id="program" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-16">5 модулей на 10 недель</h2>
           <div className="space-y-12">
@@ -60,7 +60,7 @@ export function ImplementationWave() {
         </div>
       </section>
 
-      <section id="budget" className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+      <section id="budget" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
         <div className="max-w-7xl mx-auto flex gap-12 flex-col lg:flex-row items-center">
             <div className="lg:w-2/3">
                 <h2 className="text-4xl font-semibold mb-6">Бюджет: от 800 тыс. руб. за волну</h2>

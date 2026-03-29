@@ -82,10 +82,10 @@ export function Teams() {
 function SituationsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Какая ситуация у вашей компании сейчас</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Какая ситуация у вашей компании сейчас</h2>
           <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl">Практический формат зависит от того, где компания находится. Узнайте свою ситуацию — и ниже увидите, что подходит.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -113,7 +113,7 @@ function TeamProgramSection({ program: p, index }: any) {
   const bg = index % 2 === 0 ? "bg-gray-50/50 dark:bg-[hsl(220,18%,5%)]" : "bg-white dark:bg-[hsl(220,20%,7%)]"
   
   return (
-    <section ref={ref} className={`py-24 px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300`}>
+    <section ref={ref} className={`py-16 md:py-24 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">{p.title}</h2>
@@ -136,7 +136,7 @@ function TeamProgramSection({ program: p, index }: any) {
           </div>
 
           <div className="mt-4">
-             <a href="#contact" className="inline-flex items-center gap-2 bg-brand text-white rounded-full px-8 pt-[14px] pb-[18px] font-medium hover:bg-[#e64627] transition-all duration-300 text-base hover:-translate-y-0.5 shadow-md shadow-brand/20">
+             <a href="#contact" className="inline-flex items-center gap-2 bg-brand text-white rounded-full w-full sm:w-auto px-6 sm:px-8 py-3 sm:pt-[14px] sm:pb-[18px] font-medium hover:bg-[#e64627] transition-all duration-300 text-base hover:-translate-y-0.5 shadow-md shadow-brand/20">
                Узнать детали <ArrowRight className="w-5 h-5 ml-1 mt-0.5" />
             </a>
           </div>
@@ -149,7 +149,7 @@ function TeamProgramSection({ program: p, index }: any) {
 function BuilderFormats() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Продвинутая сборка: два формата для тех, кто готов строить агентов</h2>

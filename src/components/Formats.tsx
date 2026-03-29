@@ -134,10 +134,10 @@ export function Formats() {
   ]
 
   return (
-    <section id="formats" className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+    <section id="formats" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
             Форматы работы
           </h2>
           <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500">

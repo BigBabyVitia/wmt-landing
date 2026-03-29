@@ -72,7 +72,7 @@ export function BuilderDay() {
         }
       />
 
-      <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           <FitAssessment items={fitItems} title="Этот день даёт результат, когда команда и задача уже собраны" />
         </div>
@@ -92,7 +92,7 @@ export function BuilderDay() {
 function PreparationSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Чем конкретнее подготовка, тем сильнее результат</h2>
@@ -122,7 +122,7 @@ function PreparationSection() {
 function BlocksSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto bg-[linear-gradient(to_right,rgba(128,128,128,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(128,128,128,0.05)_1px,transparent_1px)] bg-[size:32px_32px]">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Пять блоков — пять компонентов агента</h2>
@@ -154,7 +154,7 @@ function BlocksSection() {
 function OutputsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold mb-4 text-gray-900 dark:text-white">После дня остаётся то, что можно использовать завтра</h2>
@@ -177,7 +177,7 @@ function OutputsSection() {
 function NextStepsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">После дня у результата должен быть владелец и продолжение</h2>

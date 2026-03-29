@@ -18,7 +18,7 @@ export function Hero() {
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 mt-12">
-        <h1 className="text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise">
           <em className="not-italic text-brand font-bold">AI-трансформация</em> бизнеса.<br /> От стратегии до результата
         </h1>
         

@@ -37,7 +37,7 @@ export function V2Hero({ label, title, description, buttons, tags }: V2HeroProps
               {label}
             </motion.span>
             
-            <h1 className="text-4xl md:text-5xl lg:text-7xl leading-[1.1] font-bold text-white tracking-tight animate-fade-rise">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-[1.1] font-bold text-white tracking-tight animate-fade-rise">
               {title}
             </h1>
             

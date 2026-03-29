@@ -26,7 +26,7 @@ const classicLinks = [
 export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const { version, toggleVersion, heroStyle, toggleHeroStyle } = useVersion()
+  const { version } = useVersion()
   const { isDark: isDarkTheme, toggleTheme } = useTheme()
   const location = useLocation()
 
@@ -103,51 +103,6 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
           </div>
 
           <div className="flex items-center gap-3">
-            {/* Version toggle */}
-            <button
-              onClick={toggleVersion}
-              className={`hidden md:flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
-                isDark
-                  ? isDarkTheme
-                    ? "border-white/10 text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
-                    : "border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
-                  : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
-              }`}
-            >
-              <span className={version === "new" ? "opacity-100" : "opacity-50"}>v2</span>
-              <span className={`w-6 h-3.5 rounded-full relative transition-colors ${
-                version === "new" ? "bg-brand" : isDark ? "bg-gray-300" : "bg-white/30"
-              }`}>
-                <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white dark:bg-[hsl(220,20%,7%)] transition-transform ${
-                  version === "new" ? "left-3" : "left-0.5"
-                }`} />
-              </span>
-              <span className={version === "classic" ? "opacity-100" : "opacity-50"}>classic</span>
-            </button>
-
-            {/* Hero style toggle — only for v2 */}
-            {version === "new" && (
-              <button
-                onClick={toggleHeroStyle}
-                className={`hidden md:flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
-                  isDark
-                    ? isDarkTheme
-                      ? "border-white/10 text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
-                      : "border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
-                    : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
-                }`}
-              >
-                <span className={heroStyle === "video" ? "opacity-100" : "opacity-50"}>🎬</span>
-                <span className={`w-6 h-3.5 rounded-full relative transition-colors ${
-                  heroStyle === "webgl" ? "bg-brand" : isDark ? "bg-gray-300" : "bg-white/30"
-                }`}>
-                  <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white dark:bg-[hsl(220,20%,7%)] transition-transform ${
-                    heroStyle === "webgl" ? "left-3" : "left-0.5"
-                  }`} />
-                </span>
-                <span className={heroStyle === "webgl" ? "opacity-100" : "opacity-50"}>✨</span>
-              </button>
-            )}
 
             {/* Theme toggle */}
             <button
@@ -211,31 +166,6 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
             ))}
 
             <div className="pt-6 border-t border-white/10 space-y-4">
-              <button
-                onClick={toggleVersion}
-                className="flex items-center gap-3 text-sm text-gray-400 dark:text-gray-500"
-              >
-                <span>Версия сайта:</span>
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                  version === "new" ? "bg-brand text-white" : "bg-white/10 text-white"
-                }`}>
-                  {version === "new" ? "v2" : "classic"}
-                </span>
-              </button>
-
-              {version === "new" && (
-                <button
-                  onClick={toggleHeroStyle}
-                  className="flex items-center gap-3 text-sm text-gray-400 dark:text-gray-500"
-                >
-                  <span>Стиль hero:</span>
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    heroStyle === "webgl" ? "bg-brand text-white" : "bg-white/10 text-white"
-                  }`}>
-                    {heroStyle === "video" ? "🎬 Видео" : "✨ WebGL"}
-                  </span>
-                </button>
-              )}
 
               {/* Theme toggle mobile */}
               <button

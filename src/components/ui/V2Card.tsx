@@ -64,7 +64,7 @@ export function V2Card({
         }}
       />
       
-      <div className="p-8 md:p-14 relative z-10 flex flex-col h-full">
+      <div className="p-6 sm:p-8 md:p-14 relative z-10 flex flex-col h-full">
         {children}
       </div>
     </div>

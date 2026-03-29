@@ -3,6 +3,8 @@ import { ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom"
 import { NavbarV2 } from "@/components/NavbarV2"
 import { useVersion } from "@/context/VersionContext"
+import { LogoCloud } from "@/components/ui/logo-cloud"
+import { clients } from "@/data/clients"
 
 const UnicornScene = lazy(() => import("unicornstudio-react"))
 import { TrustStrip } from "@/components/TrustStrip"
@@ -205,30 +207,40 @@ function HeroVideo() {
   return (
     <section id="home" className="relative w-full h-screen overflow-hidden bg-black flex flex-col pt-24 pb-40">
       <NavbarV2 variant="home" />
-      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-70">
+      <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-65">
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4" />
       </video>
+      <div className="absolute inset-0 z-[1] bg-black/15" />
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 mt-12">
-        <h1 className="text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise">
+        <h1 className="text-4xl sm:text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise">
           WMT перестраивает бизнес под&nbsp;<em className="not-italic text-brand font-bold">ИИ</em>
         </h1>
-        <p className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mt-8 leading-relaxed animate-fade-rise-delay">
+        <p className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mt-6 sm:mt-8 leading-relaxed animate-fade-rise-delay">
           От решения руководства до рабочих команд. Каждый формат работает сам по себе и ведёт в следующий.
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-4 mt-8 animate-fade-rise-delay-2">
-          {["50+ проектов 2024–2026", "80–85% практики руками", "Рабочие агенты на выходе"].map((t) => (
-            <div key={t} className="bg-white/5 backdrop-blur-md border border-white/10 text-white/90 px-4 py-2 rounded-full text-sm font-medium">
-              {t}
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-row items-center justify-center gap-4 mt-12 animate-fade-rise-delay-2">
-          <a href="#directions" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white rounded-full px-12 py-4 text-base font-semibold hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
+
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto">
+          <a href="#directions" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-semibold hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
             Узнать, что подойдёт
           </a>
-          <Link to="/all-formats" className="liquid-glass rounded-full px-12 py-4 text-base font-medium text-white hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 inline-block">
+          <Link to="/all-formats" className="bg-white text-gray-900 rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
             Сравнить программы
           </Link>
+        </div>
+
+      </div>
+
+      {/* Hero Logos Section */}
+      <div className="absolute bottom-6 md:bottom-10 left-0 right-0 w-full z-20 animate-fade-rise-delay-2 pointer-events-none">
+        <div className="w-full max-w-6xl mx-auto px-4">
+          <div className="text-center mb-5">
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">Нам доверяют трансформацию</span>
+          </div>
+          <div className="relative [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] pointer-events-auto">
+            <div className="grayscale brightness-0 mix-blend-multiply opacity-90">
+              <LogoCloud logos={clients} />
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -255,39 +267,47 @@ function HeroWebGL() {
         </Suspense>
       </div>
 
-      {/* Contrast layers - removed dark overlay to keep WebGL visible */}
+      {/* Contrast layers - very subtle dark overlay for text contrast */}
+      <div className="absolute inset-0 z-[2] bg-black/20" />
       {gradientClass && <div className={`absolute inset-0 z-[2] transition-all duration-500 ${gradientClass}`} />}
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 mt-12">
         <h1
-          className="text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise"
+          className="text-4xl sm:text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise"
         >
           WMT перестраивает бизнес под&nbsp;<em className="not-italic text-white font-bold">ИИ</em>
         </h1>
         <p
-          className="text-gray-200 text-base md:text-lg lg:text-xl max-w-3xl mt-8 leading-relaxed animate-fade-rise-delay"
+          className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mt-6 sm:mt-8 leading-relaxed animate-fade-rise-delay"
           style={subShadow ? { textShadow: subShadow } : undefined}
         >
           От решения руководства до рабочих команд. Каждый формат работает сам по себе и ведёт в следующий.
         </p>
-        <div className="flex flex-wrap justify-center items-center gap-4 mt-8 animate-fade-rise-delay-2">
-          {["50+ проектов 2024–2026", "80–85% практики руками", "Рабочие агенты на выходе"].map((t) => (
-            <div key={t} className="bg-black dark:bg-[hsl(220,20%,4%)]/30 backdrop-blur-md border border-white/10 text-white/90 px-4 py-2 rounded-full text-sm font-medium" style={subShadow ? { textShadow: subShadow } : undefined}>
-              {t}
-            </div>
-          ))}
-        </div>
-        <div className="flex flex-row items-center justify-center gap-4 mt-12 animate-fade-rise-delay-2">
-          <a href="#directions" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white rounded-full px-12 py-4 text-base font-semibold hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
+
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto">
+          <a href="#directions" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-semibold hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
             Узнать, что подойдёт
           </a>
-          <Link to="/all-formats" className="liquid-glass rounded-full px-12 py-4 text-base font-medium text-white hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 inline-block">
+          <Link to="/all-formats" className="bg-white text-gray-900 rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
             Сравнить программы
           </Link>
         </div>
+
       </div>
 
-
+      {/* Hero Logos Section */}
+      <div className="absolute bottom-6 md:bottom-10 left-0 right-0 w-full z-20 animate-fade-rise-delay-2 pointer-events-none">
+        <div className="w-full max-w-6xl mx-auto px-4">
+          <div className="text-center mb-5">
+            <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-black">Нам доверяют трансформацию</span>
+          </div>
+          <div className="relative [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] pointer-events-auto">
+            <div className="grayscale brightness-0 mix-blend-multiply opacity-90">
+              <LogoCloud logos={clients} />
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
@@ -298,13 +318,13 @@ function ChallengesSection() {
   const { ref, visible } = useScrollVisible()
 
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
+        <div className={`mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-3xl sm:text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 md:mb-6">
             ИИ уже меняет рынок.<br />Готова ли ваша компания к этому переходу?
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-4xl">
+          <p className="text-base sm:text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-4xl">
             Многие уже видят потенциал ИИ. Но чем крупнее компания, тем сложнее добиться реального эффекта. Нужен точный подход к AI-трансформации и свой трек изменений.
           </p>
         </div>
@@ -315,17 +335,17 @@ function ChallengesSection() {
               className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: visible ? `${200 + idx * 120}ms` : "0ms" }}
             >
-              <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
+              <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/[0.03] to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
-                <div className="relative z-10 flex gap-5 items-start">
+                <div className="relative z-10 flex gap-4 sm:gap-5 items-start">
                   <div className="flex-shrink-0 mt-1">
                     <ChallengeAppIcon>
                       {challengeSvgs[idx]()}
                     </ChallengeAppIcon>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{c.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed text-base">{c.desc}</p>
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">{c.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed">{c.desc}</p>
                   </div>
                 </div>
               </div>
@@ -342,14 +362,14 @@ export function LevelsSection() {
   const [activeLevel, setActiveLevel] = useState<number | null>(null)
 
   return (
-    <section ref={ref} id="directions" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+    <section ref={ref} id="directions" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
             Одна система — три уровня готовности
           </h2>
           <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-5xl">
-            WMT не продаёт отдельные курсы. Каждый формат работает самостоятельно и переводит в следующий: <span className="text-brand font-medium">управление</span> → <span className="text-brand font-medium">масштабирование</span> → <span className="text-brand font-medium">личное углубление</span>. Каждый уровень вытекает из предыдущего, компания продвигается в своём темпе.
+            WMT не продаёт отдельные курсы. Каждый формат работает самостоятельно и переводит в следующий: <span className="text-brand font-medium">управление</span> → <span className="text-brand font-medium">практика</span> → <span className="text-brand font-medium">масштабирование</span>. Каждый уровень вытекает из предыдущего, компания продвигается в своём темпе.
           </p>
         </div>
 
@@ -417,43 +437,91 @@ export function LevelsSection() {
 const teaserData = [
   {
     id: "exec-teaser",
-    title: "Когда ИИ нужно запускать сверху",
+    title: "Топ-менеджмент",
     desc: "Когда на столе много предложений, а общего решения нет — начинать нужно не с пилота и не с массового обучения. Нужен управленческий ход.",
     items: [
-      "Системный ИИ — когда нужно выровнять руководство и получить план на 90 дней.",
-      "Бизнес 2.0 — когда нужен глубокий пересмотр стратегии и операционной модели под ИИ.",
-      "ИИ-марафон для топ-менеджеров — когда руководители должны не только понять тему, а пройти месяц практики.",
+      {
+        title: "Системный ИИ",
+        desc: "когда нужно выровнять руководство и получить план на 90 дней.",
+        tags: { format: "Офлайн / Онлайн", duration: "План на 90 дней" }
+      },
+      {
+        title: "Бизнес 2.0",
+        desc: "когда нужен глубокий пересмотр стратегии и операционной модели под ИИ.",
+        tags: { format: "Офлайн", duration: "Рабочие сессии" }
+      },
+      {
+        title: "ИИ-марафон для топ-менеджеров",
+        desc: "когда руководители должны не только понять тему, а пройти месяц практики.",
+        tags: { format: "Онлайн", duration: "1 месяц (8 модулей)" }
+      },
+      {
+        title: "Цифровой каркас",
+        desc: "построение архитектуры ИИ-перехода и запуск первого пилота.",
+        tags: { format: "Офлайн", duration: "1–2 дня" }
+      }
     ],
     link: "/executive",
     linkText: "Выбрать управленческий формат",
   },
   {
     id: "teams-teaser",
-    title: "Когда команде нужна практика, а не ещё один разговор",
-    desc: "Здесь живут форматы для тех, кто уже прошёл управленческое выравнивание или кому оно не нужно — задача и люди уже есть.",
+    title: "Масштабирование",
+    desc: "Практика расширяется на отделы и процессы. Обучение команд руками на собственных задачах и внедрение лучшей практики на сотни сотрудников.",
     items: [
-      "Цифровой каркас — построение архитектуры ИИ-перехода и запуск первого пилота за 3–5 часов.",
-      "Мышление 2.0 — ядро практиков за 1–1,5 дня, 80% практики.",
-      "ИИ-марафон — широкая волна на 10 недель, 100% руками.",
-      "Agent Builder Day — рабочий агент у каждого за один день.",
-      "n8n + Claude — глубокая малогрупповая программа по сборке агентов.",
+      {
+        title: "Мышление 2.0",
+        desc: "ядро практиков за 1–1,5 дня, 80% практики.",
+        tags: { format: "Офлайн", duration: "1–1,5 дня", people: "10–30 человек" }
+      },
+      {
+        title: "ИИ-марафон (корпоративная волна)",
+        desc: "широкая волна на 10 недель, 100% руками.",
+        tags: { format: "Онлайн", duration: "10 недель", people: "Сотни человек" }
+      },
+      {
+        title: "Agent Builder Day",
+        desc: "рабочий агент у каждого за один день.",
+        tags: { format: "Офлайн", duration: "1 день", people: "30–40 человек" }
+      },
+      {
+        title: "n8n + Claude",
+        desc: "глубокая малогрупповая программа по сборке агентов.",
+        tags: { format: "Офлайн / Онлайн", duration: "По запросу", people: "до 6 человек" }
+      }
     ],
     link: "/teams",
-    linkText: "Подобрать программу для команды",
+    linkText: "Подобрать программу внедрения",
   },
   {
     id: "personal-teaser",
-    title: "Если вы хотите разобраться сами, а не отправлять команду",
-    desc: "Два дня, руками, с собственной стратегией и собственным агентом. Без корпоративного контекста и без массовой группы. После интенсива тема часто возвращается в компанию — уже с другим пониманием и другим качеством вопросов.",
-    items: [],
+    title: "Личный ИИ",
+    desc: "Полное погружение с анализом процессов и сборкой решения под вашу специфику. Если вы хотите глубоко разобраться в теме самостоятельно, вне корпоративного контекста.",
+    personalSteps: [
+      { title: "1. Изучение", desc: "Анализируем бизнес-потребность и текущие процессы." },
+      { title: "2. Подготовка", desc: "Разрабатываем индивидуальную программу и готовим материалы." },
+      { title: "3. Работа", desc: "Личное обучение, передача стратегии и сборка навыков." }
+    ],
+    items: [
+      {
+        title: "Стратегическая сессия",
+        desc: "Сжатый формат для построения плана и решения острых задач",
+        tags: { format: "Офлайн / Онлайн", duration: "4 часа", people: "1 человек" }
+      },
+      {
+        title: "ИИ-марафон (выезд)",
+        desc: "Полное погружение с собственной стратегией и сборкой агента",
+        tags: { format: "Офлайн", duration: "2 дня", people: "1 человек" }
+      }
+    ],
     link: "/personal-ai",
-    linkText: "Узнать про личный интенсив",
+    linkText: "Узнать про личный ИИ",
   }
 ];
 
 export function DirectionTeasersCards() {
   return (
-    <section className="py-24 px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] relative overflow-hidden border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] relative overflow-hidden border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand/5 blur-[120px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto flex flex-col gap-10 relative z-10 text-center">
@@ -465,7 +533,7 @@ export function DirectionTeasersCards() {
   );
 }
 
-function TeaserCard({ id, title, desc, items, link, linkText, index }: any) {
+function TeaserCard({ id, title, desc, items, personalSteps, link, linkText, index }: any) {
   const { ref, visible } = useScrollVisible(0.15);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -509,22 +577,56 @@ function TeaserCard({ id, title, desc, items, link, linkText, index }: any) {
         }}
       />
       
-      <div className="p-8 md:p-14 relative z-10 flex flex-col gap-10">
+      <div className="p-6 sm:p-6 sm:p-8 md:p-14 relative z-10 flex flex-col gap-8 md:gap-10">
         <div className="w-full text-center xl:text-left">
-          <h3 className="text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-5">{title}</h3>
-          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed max-w-3xl mx-auto xl:mx-0">{desc}</p>
+          <h3 className="text-2xl sm:text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 md:mb-5">{title}</h3>
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed max-w-3xl mx-auto xl:mx-0">{desc}</p>
         </div>
         
-        {items.length > 0 && (
+        {personalSteps && personalSteps.length > 0 && (
+          <div className="w-full mb-2">
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4 md:mb-5 text-center xl:text-left">Процесс</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 relative">
+               {/* Соединительная линия (только на десктопе) */}
+               <div className="hidden sm:block absolute top-[28px] left-[15%] right-[15%] h-[1px] bg-brand/30 z-0 border-t border-dashed border-brand/50" />
+               
+               {personalSteps.map((step: any, idx: number) => (
+                  <div key={idx} className="flex flex-col gap-1.5 p-4 md:p-5 relative z-10 sm:items-center sm:text-center bg-transparent border border-brand/10 dark:border-brand/[0.05] rounded-2xl">
+                    <span className="font-semibold text-brand text-sm sm:text-base leading-tight inline-block mb-1">{step.title}</span>
+                    <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm leading-snug">{step.desc}</span>
+                  </div>
+               ))}
+            </div>
+          </div>
+        )}
+
+        {items && items.length > 0 && (
           <div className="w-full">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 dark:text-gray-500 mb-5 text-center xl:text-left">Программы</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {items.map((item: string, idx: number) => {
-                const parts = item.split(" — ");
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4 md:mb-5 text-center xl:text-left">
+              {personalSteps ? "Доступные форматы" : "Программы"}
+            </h4>
+            <div className={`grid grid-cols-1 gap-3 md:gap-4 ${personalSteps ? "sm:grid-cols-2 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
+              {items.map((item: any, idx: number) => {
                 return (
-                  <div key={idx} className="flex flex-col gap-1.5 bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-2xl p-5 content-start">
-                    <span className="font-semibold text-gray-900 dark:text-white text-base leading-tight">{parts[0]}</span>
-                    {parts[1] && <span className="text-gray-600 dark:text-gray-400 dark:text-gray-500 text-sm leading-snug">{parts[1]}</span>}
+                  <div key={idx} className="flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-2xl p-4 md:p-5 content-start relative group/card hover:border-brand/20 transition-colors">
+                    <div className="flex justify-between items-start gap-3 mb-2">
+                       <span className="font-semibold text-gray-900 dark:text-white text-[15px] sm:text-[16px] leading-tight">{item.title}</span>
+                       {item.tags && item.tags.format && (
+                         <span className="shrink-0 inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-md">{item.tags.format}</span>
+                       )}
+                    </div>
+                    {item.desc && <span className="text-gray-600 dark:text-gray-400 text-xs sm:text-[13px] leading-relaxed mb-3">{item.desc}</span>}
+                    
+                    {item.tags && (
+                      <div className="flex flex-wrap items-center gap-2 mt-auto">
+                        {item.tags.duration && (
+                           <span className="inline-flex items-center gap-1.5 text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-0.5 rounded-md">{item.tags.duration}</span>
+                        )}
+                        {item.tags.people && (
+                           <span className="inline-flex items-center gap-1.5 text-[11px] font-medium bg-brand/10 dark:bg-brand/20 text-brand px-2 py-0.5 rounded-md">{item.tags.people}</span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 );
               })}
@@ -532,10 +634,10 @@ function TeaserCard({ id, title, desc, items, link, linkText, index }: any) {
           </div>
         )}
 
-        <div className="mt-2 text-center xl:text-left">
+        <div className="mt-2 text-center xl:text-left w-full sm:w-auto">
           <Link
             to={link}
-            className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] rounded-full px-8 pt-[14px] pb-[18px] font-medium transition-colors duration-300 text-base hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-brand text-white hover:bg-[#e64627] rounded-full px-6 sm:px-8 py-3.5 sm:pt-[14px] sm:pb-[18px] font-medium transition-colors duration-300 text-sm sm:text-base hover:-translate-y-0.5"
           >
             {linkText} <ArrowRight className="w-5 h-5 ml-1 mt-0.5" />
           </Link>
@@ -548,42 +650,82 @@ function TeaserCard({ id, title, desc, items, link, linkText, index }: any) {
 function CombinedLevelsViewer() {
   const { ref, visible } = useScrollVisible()
 
-  const mergedData = [
-    {
-      ...teaserData[0],
-      title: "Шаг 1. Управленческий ход",
-      desc: "Руководство принимает решение и видит бизнес-ценность ИИ. Эффективно, когда нужно запускать тему сверху — если на столе много хаотичных предложений, а единой стратегии масштабирования нет."
-    },
-    {
-      ...teaserData[1],
-      title: "Шаг 2. Масштабирование на команды",
-      desc: "Практика расширяется на отделы и рабочих агентов. Здесь живут форматы для тех, кто уже прошёл управленческое выравнивание или кому оно не нужно — конкретная задача и люди под неё уже есть."
-    },
-    {
-      ...teaserData[2],
-      title: "Шаг 3. Личное углубление",
-      desc: "Если вы хотите разобраться во всём руками, а не просто управлять командой. Два дня интенсива, с собственной стратегией и сборкой собственного агента без корпоративного контекста."
-    }
-  ]
-  
   return (
-    <section ref={ref} id="directions" className="flex flex-col items-center pb-24 border-t border-gray-100 dark:border-white/[0.06] bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] pt-24 min-h-screen transition-colors duration-300">
-      <div className="px-6 md:px-12 w-full max-w-7xl mx-auto flex flex-col items-center">
-        <div className={`w-full mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
-            Одна система — три уровня готовности
+    <section ref={ref} id="directions" className="flex flex-col items-center pb-16 md:pb-24 border-t border-gray-100 dark:border-white/[0.06] bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] pt-16 md:pt-24 min-h-screen transition-colors duration-300">
+      <div className="px-4 sm:px-6 md:px-12 w-full max-w-7xl mx-auto flex flex-col items-center">
+        <div className={`w-full text-center xl:text-left mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-3xl sm:text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 md:mb-6">
+            Одна система — три вектора AI-трансформации
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-5xl">
-            WMT не продаёт отдельные курсы. Каждый формат работает самостоятельно и переводит компанию на следующий уровень: <span className="text-brand font-medium">от управления</span> → <span className="text-brand font-medium">через масштабирование</span> → <span className="text-brand font-medium">в практику</span>.
+          <p className="text-base sm:text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-5xl mx-auto xl:mx-0">
+            Мы выстраиваем интеграцию нейросетей на трех равноправных уровнях: <span className="text-brand font-medium">топ-менеджмент</span> (стратегия), <span className="text-brand font-medium">масштаб на команды</span> (практика) и <span className="text-brand font-medium">личный трек</span> (индивидуальное погружение).
           </p>
+          
+        </div>
+
+        {/* Visual Flow Schemes - Hidden per user request */}
+        <div className="hidden w-full mb-16">
+          <TransformationVectors />
         </div>
 
         <div className="w-full flex flex-col gap-10">
-          {mergedData.map((t, i) => <TeaserCard key={t.id} {...t} index={i} />)}
+          {teaserData.map((t, i) => <TeaserCard key={t.id} {...t} index={i} />)}
         </div>
       </div>
     </section>
   )
 }
 
+function TransformationVectors() {
+  const { ref, visible } = useScrollVisible(0.7)
+  const vectors = [
+    { 
+      num: "01", 
+      title: "Топ-менеджмент", 
+      desc: "Управленческие форматы",
+      color: "text-gray-900 dark:text-white"
+    },
+    { 
+      num: "02", 
+      title: "Масштабирование", 
+      desc: "Внедрение в команды",
+      color: "text-gray-900 dark:text-white"
+    },
+    { 
+      num: "03", 
+      title: "Личный ИИ", 
+      desc: "Индивидуальный трек",
+      color: "text-gray-900 dark:text-white"
+    }
+  ];
+
+  return (
+    <div ref={ref} className="relative w-full">
+      <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 w-full relative z-10">
+        {vectors.map((vector, i) => (
+          <motion.div 
+            key={i}
+            initial={{ opacity: 0, y: 30 }}
+            animate={visible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ delay: i * 0.15, duration: 0.6, ease: "easeOut" }}
+            className="flex-1 rounded-[1.5rem] bg-white dark:bg-[hsl(220,18%,10%)] border border-gray-200 dark:border-white/[0.06] p-6 lg:p-8 flex flex-col items-start lg:items-center lg:text-center relative overflow-hidden group hover:border-brand/30 transition-all duration-300 shadow-sm hover:shadow-md"
+          >
+            <div className="absolute top-0 right-0 lg:left-1/2 w-32 h-32 bg-brand/5 blur-[40px] rounded-full lg:-translate-x-1/2 -translate-y-1/2 pointer-events-none group-hover:bg-brand/10 transition-colors duration-500" />
+            
+            <div className="flex flex-row lg:flex-col items-center gap-4 lg:gap-0 w-full lg:w-auto">
+              <div className="w-12 h-12 rounded-full bg-brand/10 text-brand flex items-center justify-center font-bold text-lg lg:mb-4 relative z-10 transition-transform duration-500 group-hover:scale-110 shrink-0">
+                {vector.num}
+              </div>
+              
+              <div className="relative z-10 flex-1">
+                 <h3 className={`text-xl font-bold tracking-tight mb-1 lg:mb-2 ${vector.color}`}>{vector.title}</h3>
+                 <p className="text-sm font-medium text-gray-500 dark:text-gray-400">{vector.desc}</p>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  )
+}
 

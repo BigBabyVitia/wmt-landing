@@ -109,7 +109,7 @@ export function InnerHero({ formatName, headline, subheadline, pills, navLinks }
             {formatName}
           </span>
         )}
-        <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-semibold text-white animate-fade-rise whitespace-pre-line">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-semibold text-white animate-fade-rise whitespace-pre-line">
           {headline}
         </h1>
 

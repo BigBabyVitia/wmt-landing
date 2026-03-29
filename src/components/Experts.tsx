@@ -44,9 +44,9 @@ export function Experts() {
   ]
 
   return (
-    <section ref={sectionRef} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+    <section ref={sectionRef} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
       <div className="max-w-7xl mx-auto">
-        <h2 className={`text-4xl md:text-5xl font-semibold text-center mb-16 text-gray-900 dark:text-white transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <h2 className={`text-3xl sm:text-4xl md:text-5xl font-semibold text-center mb-16 text-gray-900 dark:text-white transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           Наши <span className="text-brand">эксперты</span>
         </h2>
 

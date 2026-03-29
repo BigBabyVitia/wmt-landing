@@ -28,7 +28,7 @@ export function ForManagers() {
         pills={["3 live-демо агентов", "15 кейсов с ROI", "road-map 90 дней — ваш"]}
       />
 
-      <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-12">Эта сессия для вас, если</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -46,7 +46,7 @@ export function ForManagers() {
         </div>
       </section>
 
-      <section id="program" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+      <section id="program" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-6">Что происходит за 1.5-2 часа</h2>
           <p className="text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 mb-16">Пять блоков. Каждый заканчивается конкретным результатом. Три live-демо агентов.</p>
@@ -74,7 +74,7 @@ export function ForManagers() {
         </div>
       </section>
       
-      <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-16">Что вы уносите после сессии</h2>
           <div className="space-y-8">
@@ -110,7 +110,7 @@ export function ForManagers() {
         </div>
       </section>
 
-      <section id="budget" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-b border-gray-100 dark:border-white/[0.06]">
+      <section id="budget" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-b border-gray-100 dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
             {/* Бюджет */}
             <div className="mb-12">

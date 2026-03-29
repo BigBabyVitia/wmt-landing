@@ -56,15 +56,15 @@ export function PersonalAI() {
         tags={["2 дня / 16 часов", "Офлайн, в офисе", "Практика с тренерами", "Свой агент на выходе"]}
         buttons={
           <>
-            <a href="#contact" className="inline-flex items-center gap-2 bg-white text-gray-900 rounded-full px-8 py-4 font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5">
-              Записаться в лист ожидания <ArrowRight className="w-5 h-5" />
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-10 py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.25)] hover:shadow-[0_8px_40px_rgba(255,255,255,0.4)] hover:-translate-y-1 transform-gpu">
+              Записаться в лист ожидания <ArrowRight className="w-5 h-5 ml-1" />
             </a>
             <div className="w-full text-white/50 text-sm mt-2">Поток 4–5 апреля 2026 уже заполнен.</div>
           </>
         }
       />
 
-      <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
+      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           <FitAssessment items={fitItems} title="Этот интенсив работает, когда вы действительно хотите пройти его сами" />
         </div>
@@ -84,7 +84,7 @@ export function PersonalAI() {
 function ProgramContent() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">16&nbsp;часов практики, а&nbsp;не&nbsp;16&nbsp;часов про&nbsp;будущее ИИ</h2>
@@ -111,7 +111,7 @@ function ProgramContent() {
 function OutputsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300 border-t border-gray-100 dark:border-white/[0.06]">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300 border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold mb-4 text-gray-900 dark:text-white">Вы&nbsp;уезжаете с&nbsp;рабочими инструментами</h2>
@@ -136,7 +136,7 @@ function OutputsSection() {
 function WhyOfflineSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Офлайн здесь нужен по&nbsp;функции</h2>
@@ -158,7 +158,7 @@ function WhyOfflineSection() {
 function StreamStatus() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`relative bg-gray-50/50 dark:bg-white/[0.03] rounded-[2.5rem] p-10 md:p-16 border border-gray-100 dark:border-white/[0.06] overflow-hidden max-w-4xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-64 h-64 bg-brand/5 blur-[80px] pointer-events-none rounded-full" />

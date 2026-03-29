@@ -24,13 +24,13 @@ export function FreePlatform() {
   }, [])
 
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="mb-16">
             <div className="max-w-3xl">
               <span className="inline-block text-sm font-bold tracking-widest text-brand uppercase mb-4">Демо-доступ</span>
-              <h2 className="text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
                 Начните с видеоуроков — <span className="text-brand">бесплатно</span>
               </h2>
               <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 leading-relaxed font-light mb-8">

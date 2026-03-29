@@ -35,7 +35,7 @@ export function MainCta() {
 
           {/* Left Column: Text + Manager contacts */}
           <div className="w-full max-w-xl mt-0">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8">
               Готовы обсудить<br /> вашу задачу?
             </h2>
             <p className="text-gray-300 text-lg lg:text-xl leading-relaxed mb-12">

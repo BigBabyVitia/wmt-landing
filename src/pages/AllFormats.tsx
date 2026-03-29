@@ -45,9 +45,9 @@ export function AllFormats() {
         description="Здесь собраны все программы WMT AI — от первого хода генерального директора до корпоративной волны на сотни человек. Эта страница создана как навигатор: выберите блок по своей задаче и перешлите коллегам."
         buttons={
           <div className="grid grid-cols-2 sm:flex sm:flex-row gap-3">
-            <a href="#exec" className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white rounded-xl px-5 py-3 text-sm font-medium transition-colors border border-white/10 backdrop-blur-sm">Руководителям</a>
-            <a href="#teams" className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white rounded-xl px-5 py-3 text-sm font-medium transition-colors border border-white/10 backdrop-blur-sm">Командам</a>
-            <a href="#builder" className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white rounded-xl px-5 py-3 text-sm font-medium transition-colors border border-white/10 backdrop-blur-sm">Сборщикам</a>
+            <a href="#exec" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-white rounded-xl px-4 py-2 text-xs font-bold transition-all border border-white/20 backdrop-blur-md shadow-lg">РУКОВОДИТЕЛЯМ</a>
+            <a href="#teams" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-white rounded-xl px-4 py-2 text-xs font-bold transition-all border border-white/20 backdrop-blur-md shadow-lg">КОМАНДАМ</a>
+            <a href="#builder" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-white rounded-xl px-4 py-2 text-xs font-bold transition-all border border-white/20 backdrop-blur-md shadow-lg">СБОРЩИКАМ</a>
           </div>
         }
       />
@@ -67,7 +67,7 @@ export function AllFormats() {
 function CriteriaSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Как выбрать программу</h2>
@@ -95,7 +95,7 @@ function CriteriaSection() {
 function ExecSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Для собственников и топ-команды</h2>
@@ -126,7 +126,7 @@ function TeamFormats() {
   const { ref, visible } = useScrollVisible()
   const groups = ["A. Ранние практические программы", "B. Масштабирование"]
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Для команд: пилоты, профи и волна перестройки</h2>
@@ -161,7 +161,7 @@ function TeamFormats() {
 function BuilderSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Разработка агентов (Builders)</h2>
@@ -194,7 +194,7 @@ function BuilderSection() {
 function PersonalSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Для себя лично и платформенное обучение</h2>
@@ -229,7 +229,7 @@ function PersonalSection() {
 function TrustSignal() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`relative bg-white dark:bg-white/[0.03] rounded-[2.5rem] p-10 md:p-14 border border-gray-100 dark:border-white/[0.06] overflow-hidden transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="absolute top-0 right-1/4 -translate-y-1/2 w-64 h-64 bg-brand/5 blur-[80px] pointer-events-none rounded-full" />
@@ -250,7 +250,7 @@ function TrustSignal() {
 function NavSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-4">Выберите точечное направление</h2>

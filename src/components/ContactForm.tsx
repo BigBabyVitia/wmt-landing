@@ -10,10 +10,10 @@ export function ContactForm({ quoteSlot }: ContactFormProps) {
     <section id="contact" className="bg-black text-white">
       {quoteSlot}
 
-      <div className="py-24 px-6 md:px-12">
+      <div className="py-16 md:py-24 px-4 sm:px-6 md:px-12">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
           <div>
-            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-20">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight mb-20">
               Обсудим задачу — подберём формат и бюджет за 24 часа
             </h2>
             <div className="space-y-6">

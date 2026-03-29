@@ -34,9 +34,9 @@ function ResultsSection() {
   ]
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+    <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Что останется после хакатона?</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Что останется после хакатона?</h2>
         <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 mb-16">Три конкретных результата, которые уходят с вами</p>
         <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {results.map((r, idx) => (
@@ -78,7 +78,7 @@ export function PracticalTeam() {
           <span className="inline-block text-sm md:text-base font-medium text-white/70 tracking-wider uppercase mb-4 animate-fade-rise">
             Хакатон Мышление 2.0
           </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-semibold text-white animate-fade-rise">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-semibold text-white animate-fade-rise">
             Ваша команда начнёт применять ИИ через 10 часов
           </h1>
 
@@ -98,7 +98,7 @@ export function PracticalTeam() {
 
       <ResultsSection />
 
-      <section id="program" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+      <section id="program" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-16">Как проходят эти 10 часов</h2>
           <div className="space-y-12">
@@ -118,7 +118,7 @@ export function PracticalTeam() {
         </div>
       </section>
 
-      <section id="budget" className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+      <section id="budget" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
         <div className="max-w-7xl mx-auto flex gap-12 flex-col lg:flex-row items-center">
             <div className="lg:w-2/3">
                 <h2 className="text-4xl font-semibold mb-6">Бюджет: от 900 тыс. руб. за команду</h2>

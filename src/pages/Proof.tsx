@@ -64,7 +64,7 @@ export function Proof() {
         <NavbarV2 variant="inner" />
         <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto w-full">
           <span className="inline-block text-sm font-medium text-white/70 tracking-wider uppercase mb-4 animate-fade-rise">Доказательства</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-semibold text-white animate-fade-rise max-w-4xl">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-semibold text-white animate-fade-rise max-w-4xl">
             Игорь Никитин. Основатель WMT&nbsp;AI. 400+&nbsp;сотрудников.
           </h1>
           <p className="text-white/80 text-lg md:text-xl max-w-3xl mt-8 leading-relaxed animate-fade-rise-delay">
@@ -103,7 +103,7 @@ export function Proof() {
 function FounderSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
       <div className="max-w-7xl mx-auto">
         <div className={`flex flex-col sm:flex-row gap-8 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <img src="/experts/nikitin-large.webp" alt="Игорь Никитин" className="w-48 sm:w-56 h-auto self-start object-cover object-top rounded-2xl flex-shrink-0" />
@@ -145,7 +145,7 @@ function ClientsSection() {
 function StanfordSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06]">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`max-w-3xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <span className="inline-block text-xs font-semibold text-brand uppercase tracking-wider mb-3">Академическое признание</span>
@@ -175,7 +175,7 @@ function StanfordSection() {
 function PublicationsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-3">Проверьте до&nbsp;того, как примете решение</h2>
@@ -196,7 +196,7 @@ function PublicationsSection() {
 function PodcastSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06]">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`max-w-3xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-4">Подкаст «AI Transformation»</h2>
@@ -220,7 +220,7 @@ function PodcastSection() {
 function EventsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-4">Площадки, на&nbsp;которых выступает WMT&nbsp;AI</h2>
@@ -271,7 +271,7 @@ function ForwardSection() {
 
 function NavBackSection() {
   return (
-    <section className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+    <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-4">Доказательства проверены. Какой следующий шаг?</h2>
         <p className="text-gray-500 dark:text-gray-400 dark:text-gray-500 mb-8">Эта страница&nbsp;&mdash; не&nbsp;тупик. Выберите, куда вернуться, чтобы продолжить выбор программы.</p>

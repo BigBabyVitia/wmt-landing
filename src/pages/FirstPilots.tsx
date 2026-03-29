@@ -35,9 +35,9 @@ function DeliverablesSection() {
   ]
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+    <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Что вы получите на руках после сессии</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Что вы получите на руках после сессии</h2>
         <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 mb-16">Четыре конкретных результата, которые уходят с вами</p>
         <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {deliverables.map((d, idx) => (
@@ -81,7 +81,7 @@ export function FirstPilots() {
 
       <DeliverablesSection />
 
-      <section id="program" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+      <section id="program" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-16">Программа (4 блока)</h2>
           <div className="space-y-12">
@@ -101,7 +101,7 @@ export function FirstPilots() {
         </div>
       </section>
 
-      <section id="budget" className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+      <section id="budget" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
         <div className="max-w-7xl mx-auto flex gap-12 flex-col lg:flex-row items-center">
             <div className="lg:w-2/3">
                 <h2 className="text-4xl font-semibold mb-6">Бюджет: 650K - 1.2M руб.</h2>
