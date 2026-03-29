@@ -54,12 +54,12 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[env(safe-area-inset-top)] ${
           isDark
             ? isDarkTheme
-              ? "bg-[hsl(220,20%,7%)]/70 backdrop-blur-xl py-3"
-              : "bg-white/70 backdrop-blur-xl py-3"
-            : "bg-transparent py-5"
+              ? "bg-[hsl(220,20%,7%)]/70 backdrop-blur-xl pb-3"
+              : "bg-white/70 backdrop-blur-xl pb-3"
+            : "pb-5"
         }`}
       >
         <div className="flex flex-row items-center justify-between px-6 md:px-8 max-w-7xl mx-auto w-full">

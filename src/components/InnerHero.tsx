@@ -98,9 +98,13 @@ interface InnerHeroProps {
 export function InnerHero({ formatName, headline, subheadline, pills, navLinks }: InnerHeroProps) {
   return (
     <section
-      className="relative w-full overflow-hidden flex flex-col pt-32 pb-24 md:pb-32 bg-cover bg-center bg-no-repeat"
+      className="relative w-full overflow-hidden flex flex-col pt-24 pb-20 md:pt-32 md:pb-32 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/brand/hero-bg.webp')" }}
     >
+      {/* Overscroll fillers */}
+      <div className="absolute -top-[100vh] -inset-x-[20vw] h-[100vh] bg-background z-0" />
+      <div className="absolute -bottom-[100vh] -inset-x-[20vw] h-[100vh] bg-background z-0" />
+      
       <NavbarInner links={navLinks} />
 
       <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-12 max-w-7xl mx-auto w-full">
@@ -113,7 +117,7 @@ export function InnerHero({ formatName, headline, subheadline, pills, navLinks }
           {headline}
         </h1>
 
-        <p className="text-white/80 text-lg md:text-xl lg:text-2xl max-w-3xl mt-8 leading-relaxed animate-fade-rise-delay">
+        <p className="text-white/80 text-xl md:text-xl lg:text-2xl max-w-3xl mt-8 leading-relaxed animate-fade-rise-delay">
           {subheadline}
         </p>
 
