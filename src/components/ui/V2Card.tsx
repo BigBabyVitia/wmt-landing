@@ -1,5 +1,5 @@
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
-import { ReactNode, MouseEvent } from "react"
+import type { ReactNode, MouseEvent } from "react"
 
 export interface V2CardProps {
   children: ReactNode
