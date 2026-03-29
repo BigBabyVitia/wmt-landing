@@ -25,7 +25,7 @@ export function ContactForm({ quoteSlot }: ContactFormProps) {
                 />
                 <div>
                   <p className="text-2xl font-semibold">Данильчик Анастасия</p>
-                  <p className="text-sm text-gray-400 mt-1">Координатор программ обучения WMT</p>
+                  <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">Координатор программ обучения WMT</p>
                 </div>
               </div>
               <div className="flex flex-col space-y-4">
@@ -48,7 +48,7 @@ export function ContactForm({ quoteSlot }: ContactFormProps) {
                   adanilchik@wmtgroup.ru
                 </a>
               </div>
-              <p className="text-gray-400 italic text-sm mt-8">Отвечаем за 2 часа в рабочее время. Предложение с бюджетом отправим за 24 часа.</p>
+              <p className="text-gray-400 dark:text-gray-500 italic text-sm mt-8">Отвечаем за 2 часа в рабочее время. Предложение с бюджетом отправим за 24 часа.</p>
             </div>
           </div>
 
@@ -78,7 +78,7 @@ export function ContactForm({ quoteSlot }: ContactFormProps) {
               <button className="w-full bg-brand text-white font-semibold py-4 rounded-xl hover:bg-[#e64627] transition-colors">
                 Запросить звонок
               </button>
-              <p className="text-xs text-gray-500 text-center mt-4">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</p>
+              <p className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500 text-center mt-4">Нажимая кнопку, вы соглашаетесь с политикой обработки персональных данных.</p>
             </form>
           </div>
         </div>

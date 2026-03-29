@@ -13,7 +13,7 @@ export function AnimatedCard({ className, ...props }: CardProps) {
       aria-labelledby="card-title"
       aria-describedby="card-description"
       className={cn(
-        "group/animated-card relative w-full overflow-hidden rounded-xl border border-zinc-200 bg-white shadow-sm dark:border-zinc-900 dark:bg-black",
+        "group/animated-card relative w-full overflow-hidden rounded-xl border border-zinc-200 bg-white dark:bg-[hsl(220,20%,7%)] shadow-sm dark:border-zinc-900 dark:bg-black dark:bg-[hsl(220,20%,4%)]",
         className
       )}
       {...props}
@@ -172,13 +172,13 @@ const Layer1: React.FC<LayerProps> = ({ color, secondaryColor }) => {
       }
     >
       {/* Дефолтное состояние — исчезает при ховере */}
-      <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 ease-in-out group-hover/animated-card:opacity-0 dark:border-zinc-800 dark:bg-black/25">
+      <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 ease-in-out group-hover/animated-card:opacity-0 dark:border-zinc-800 dark:bg-black dark:bg-[hsl(220,20%,4%)]/25">
         <div className="h-1.5 w-1.5 rounded-full bg-[var(--color)]" />
         <span className="ml-1 text-[10px] text-black dark:text-white">
           9 энтузиастов
         </span>
       </div>
-      <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 ease-in-out group-hover/animated-card:opacity-0 dark:border-zinc-800 dark:bg-black/25">
+      <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 ease-in-out group-hover/animated-card:opacity-0 dark:border-zinc-800 dark:bg-black dark:bg-[hsl(220,20%,4%)]/25">
         <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
         <span className="ml-1 text-[10px] text-black dark:text-white">
           241 не начали
@@ -186,7 +186,7 @@ const Layer1: React.FC<LayerProps> = ({ color, secondaryColor }) => {
       </div>
       {/* Hover-состояние — появляется при ховере */}
       <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 ease-in-out group-hover/animated-card:opacity-100">
-        <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm dark:border-zinc-800 dark:bg-black/25">
+        <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm dark:border-zinc-800 dark:bg-black dark:bg-[hsl(220,20%,4%)]/25">
           <div className="h-1.5 w-1.5 rounded-full bg-[var(--color)]" />
           <span className="ml-1 text-[10px] text-black dark:text-white">
             250 вовлечены
@@ -204,7 +204,7 @@ const Layer2: React.FC<{ color: string }> = ({ color }) => {
       style={{ "--color": color } as React.CSSProperties}
     >
       <div className="ease-[cubic-bezier(0.6, 0.6, 0, 1)] absolute inset-0 z-[7] flex w-full translate-y-full items-start justify-center bg-transparent p-4 transition-transform duration-500 group-hover/animated-card:translate-y-0">
-        <div className="ease-[cubic-bezier(0.6, 0, 1)] rounded-md border border-zinc-200 bg-white/25 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover/animated-card:opacity-100 dark:border-zinc-800 dark:bg-black/25">
+        <div className="ease-[cubic-bezier(0.6, 0, 1)] rounded-md border border-zinc-200 bg-white/25 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover/animated-card:opacity-100 dark:border-zinc-800 dark:bg-black dark:bg-[hsl(220,20%,4%)]/25">
           <div className="flex items-center gap-2">
             <div className="h-2 w-2 shrink-0 rounded-full bg-[var(--color)]" />
             <p className="text-xs text-black dark:text-white">
@@ -488,16 +488,16 @@ export function Visual1({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-            <span className="ml-1 text-[10px] text-black">4 отдела тянут</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">4 отдела тянут</span>
           </div>
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span className="ml-1 text-[10px] text-black">0 решений</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">0 решений</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">1 приоритет</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">1 приоритет</span>
             </div>
           </div>
         </div>
@@ -507,7 +507,7 @@ export function Visual1({
             <div className="rounded-md border border-zinc-200 bg-white/25 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover/animated-card:opacity-100">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: mainColor }} />
-                <p className="text-xs text-black">Стратегическая сессия</p>
+                <p className="text-xs text-black dark:text-white">Стратегическая сессия</p>
               </div>
               <p className="text-xs text-neutral-500">Приоритеты расставлены</p>
             </div>
@@ -572,7 +572,7 @@ export function Visual2({
                       </svg>
                     )}
                   </div>
-                  <span className="text-[11px] text-gray-600">{idea}</span>
+                  <span className="text-[11px] text-gray-600 dark:text-gray-400 dark:text-gray-500">{idea}</span>
                 </div>
                 <span
                   className="text-[9px] rounded px-1.5 py-0.5 transition-all duration-500"
@@ -592,16 +592,16 @@ export function Visual2({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-            <span className="ml-1 text-[10px] text-black">3 идеи</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">3 идеи</span>
           </div>
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span className="ml-1 text-[10px] text-black">0 запущено</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">0 запущено</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">первый пилот</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">первый пилот</span>
             </div>
           </div>
         </div>
@@ -611,7 +611,7 @@ export function Visual2({
             <div className="rounded-md border border-zinc-200 bg-white/25 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover/animated-card:opacity-100">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: mainColor }} />
-                <p className="text-xs text-black">Цифровой каркас</p>
+                <p className="text-xs text-black dark:text-white">Цифровой каркас</p>
               </div>
               <p className="text-xs text-neutral-500">Первый пилот в работе</p>
             </div>
@@ -743,12 +743,12 @@ export function VisualWorkspace({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span className="ml-1 text-[10px] text-black">до хакатона</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">до хакатона</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">настроено</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">настроено</span>
             </div>
           </div>
         </div>
@@ -856,12 +856,12 @@ export function VisualAgent({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span className="ml-1 text-[10px] text-black">ещё не собран</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">ещё не собран</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">собран и работает</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">собран и работает</span>
             </div>
           </div>
         </div>
@@ -988,12 +988,12 @@ export function VisualCase({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span className="ml-1 text-[10px] text-black">задача</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">задача</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">решение готово</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">решение готово</span>
             </div>
           </div>
         </div>
@@ -1065,16 +1065,16 @@ export function VisualTeam({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span className="ml-1 text-[10px] text-black">240 слышали</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">240 слышали</span>
           </div>
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-            <span className="ml-1 text-[10px] text-black">0 умеют</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">0 умеют</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">12 в команде</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">12 в команде</span>
             </div>
           </div>
         </div>
@@ -1084,7 +1084,7 @@ export function VisualTeam({
             <div className="rounded-md border border-zinc-200 bg-white/25 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover/animated-card:opacity-100">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: mainColor }} />
-                <p className="text-xs text-black">После хакатона</p>
+                <p className="text-xs text-black dark:text-white">После хакатона</p>
               </div>
               <p className="text-xs text-neutral-500">Команда готова к внедрению</p>
             </div>
@@ -1141,12 +1141,12 @@ export function VisualMatrix({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span className="ml-1 text-[10px] text-black">не оценено</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">не оценено</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">оценка готова</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">оценка готова</span>
             </div>
           </div>
         </div>
@@ -1155,7 +1155,7 @@ export function VisualMatrix({
             <div className="rounded-md border border-zinc-200 bg-white/25 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover/animated-card:opacity-100">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: mainColor }} />
-                <p className="text-xs text-black">Цифровой каркас</p>
+                <p className="text-xs text-black dark:text-white">Цифровой каркас</p>
               </div>
               <p className="text-xs text-neutral-500">6 процессов оценены</p>
             </div>
@@ -1198,7 +1198,7 @@ export function VisualPilot({
                       style={{ borderColor: active ? mainColor : "#d1d5db" }}>
                       {active && <div className="h-2 w-2 rounded-full" style={{ backgroundColor: mainColor }} />}
                     </div>
-                    <span className="text-[11px] font-medium text-gray-700">{idea.title}</span>
+                    <span className="text-[11px] font-medium text-gray-700 dark:text-gray-200">{idea.title}</span>
                   </div>
                   <span className="text-[9px] font-medium px-1.5 py-0.5 rounded-full transition-all duration-500"
                     style={{ backgroundColor: active ? `${mainColor}20` : "#f3f4f6", color: active ? mainColor : "#9ca3af" }}>
@@ -1213,12 +1213,12 @@ export function VisualPilot({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span className="ml-1 text-[10px] text-black">3 идеи</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">3 идеи</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">пилот выбран</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">пилот выбран</span>
             </div>
           </div>
         </div>
@@ -1227,7 +1227,7 @@ export function VisualPilot({
             <div className="rounded-md border border-zinc-200 bg-white/25 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover/animated-card:opacity-100">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: mainColor }} />
-                <p className="text-xs text-black">Цифровой каркас</p>
+                <p className="text-xs text-black dark:text-white">Цифровой каркас</p>
               </div>
               <p className="text-xs text-neutral-500">Первый пилот готов к старту</p>
             </div>
@@ -1289,12 +1289,12 @@ export function VisualBlockers({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-red-400" />
-            <span className="ml-1 text-[10px] text-black">3 блокера</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">3 блокера</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">путь свободен</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">путь свободен</span>
             </div>
           </div>
         </div>
@@ -1303,7 +1303,7 @@ export function VisualBlockers({
             <div className="rounded-md border border-zinc-200 bg-white/25 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover/animated-card:opacity-100">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: mainColor }} />
-                <p className="text-xs text-black">Цифровой каркас</p>
+                <p className="text-xs text-black dark:text-white">Цифровой каркас</p>
               </div>
               <p className="text-xs text-neutral-500">Блокеры согласованы</p>
             </div>
@@ -1345,7 +1345,7 @@ export function VisualRoadmap({
                     style={{ color: active ? "#374151" : "#d1d5db", transitionDelay: hovered ? `${i * 100}ms` : "0ms" }}>
                     {w.label}
                   </span>
-                  <div className="flex-1 h-6 bg-gray-100 rounded-md overflow-hidden relative">
+                  <div className="flex-1 h-6 bg-gray-100 dark:bg-[hsl(220,18%,14%)] rounded-md overflow-hidden relative">
                     <div className="h-full rounded-md transition-all duration-700 ease-out"
                       style={{
                         width: hovered || i === 0 ? "100%" : "0%",
@@ -1366,12 +1366,12 @@ export function VisualRoadmap({
         <div className="absolute top-4 left-4 z-[9] flex items-center gap-1">
           <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm transition-opacity duration-300 group-hover/animated-card:opacity-0">
             <div className="h-1.5 w-1.5 rounded-full bg-neutral-300" />
-            <span className="ml-1 text-[10px] text-black">неделя 1</span>
+            <span className="ml-1 text-[10px] text-black dark:text-white">неделя 1</span>
           </div>
           <div className="absolute top-0 left-0 flex items-center gap-1 opacity-0 transition-opacity duration-300 group-hover/animated-card:opacity-100">
             <div className="flex shrink-0 items-center rounded-full border border-zinc-200 bg-white/25 px-1.5 py-0.5 backdrop-blur-sm">
               <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: mainColor }} />
-              <span className="ml-1 text-[10px] text-black">план на 4 недели</span>
+              <span className="ml-1 text-[10px] text-black dark:text-white">план на 4 недели</span>
             </div>
           </div>
         </div>
@@ -1380,7 +1380,7 @@ export function VisualRoadmap({
             <div className="rounded-md border border-zinc-200 bg-white/25 p-1.5 opacity-0 backdrop-blur-sm transition-opacity duration-500 group-hover/animated-card:opacity-100">
               <div className="flex items-center gap-2">
                 <div className="h-2 w-2 shrink-0 rounded-full" style={{ backgroundColor: mainColor }} />
-                <p className="text-xs text-black">Цифровой каркас</p>
+                <p className="text-xs text-black dark:text-white">Цифровой каркас</p>
               </div>
               <p className="text-xs text-neutral-500">Дорожная карта готова</p>
             </div>

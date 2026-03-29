@@ -21,24 +21,24 @@ export function Navbar() {
     >
       <div className="flex flex-row items-center justify-between px-8 max-w-7xl mx-auto w-full">
         <div className={`text-3xl tracking-tight font-semibold transition-colors duration-300 ${
-          scrolled ? "text-gray-900" : "text-white"
+          scrolled ? "text-gray-900 dark:text-white" : "text-white"
         }`}>
           WMT
         </div>
         <div className={`hidden md:flex items-center space-x-8 text-sm transition-colors duration-300 ${
-          scrolled ? "text-gray-500" : "text-gray-300"
+          scrolled ? "text-gray-500 dark:text-gray-400 dark:text-gray-500" : "text-gray-300"
         }`}>
-          <a href="#home" className={`hover:text-brand transition-colors ${scrolled ? "text-gray-900" : "text-white"}`}>Главная</a>
-          <a href="#problems" className={`transition-colors ${scrolled ? "hover:text-gray-900" : "hover:text-white"}`}>Задачи</a>
-          <a href="#formats" className={`transition-colors ${scrolled ? "hover:text-gray-900" : "hover:text-white"}`}>Форматы</a>
-          <a href="#trust" className={`transition-colors ${scrolled ? "hover:text-gray-900" : "hover:text-white"}`}>Команда</a>
+          <a href="#home" className={`hover:text-brand transition-colors ${scrolled ? "text-gray-900 dark:text-white" : "text-white"}`}>Главная</a>
+          <a href="#problems" className={`transition-colors ${scrolled ? "hover:text-gray-900 dark:hover:text-white" : "hover:text-white"}`}>Задачи</a>
+          <a href="#formats" className={`transition-colors ${scrolled ? "hover:text-gray-900 dark:hover:text-white" : "hover:text-white"}`}>Форматы</a>
+          <a href="#trust" className={`transition-colors ${scrolled ? "hover:text-gray-900 dark:hover:text-white" : "hover:text-white"}`}>Команда</a>
         </div>
         <div className="flex items-center gap-3">
           <button
             onClick={toggleVersion}
             className={`hidden md:flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
               scrolled
-                ? "border-gray-200 text-gray-500 hover:border-brand hover:text-brand"
+                ? "border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
                 : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
             }`}
           >
@@ -46,7 +46,7 @@ export function Navbar() {
             <span className={`w-6 h-3.5 rounded-full relative transition-colors ${
               version === "new" ? "bg-brand" : scrolled ? "bg-gray-300" : "bg-white/30"
             }`}>
-              <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform ${
+              <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white dark:bg-[hsl(220,20%,7%)] transition-transform ${
                 version === "new" ? "left-3" : "left-0.5"
               }`} />
             </span>

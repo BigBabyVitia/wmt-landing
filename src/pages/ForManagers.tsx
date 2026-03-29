@@ -28,17 +28,17 @@ export function ForManagers() {
         pills={["3 live-демо агентов", "15 кейсов с ROI", "road-map 90 дней — ваш"]}
       />
 
-      <section className="py-24 px-6 md:px-12 bg-white">
+      <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-12">Эта сессия для вас, если</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {problems.map((p, i) => (
-              <Card key={i} className="border border-gray-100 bg-white rounded-2xl p-4">
+              <Card key={i} className="border border-gray-100 dark:border-white/[0.06] bg-white dark:bg-[hsl(220,20%,7%)] rounded-2xl p-4">
                 <CardHeader>
                   <CardTitle className="text-xl font-semibold">{p.title}</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-gray-600 leading-relaxed">{p.desc}</p>
+                  <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed">{p.desc}</p>
                 </CardContent>
               </Card>
             ))}
@@ -46,21 +46,21 @@ export function ForManagers() {
         </div>
       </section>
 
-      <section id="program" className="py-24 px-6 md:px-12 bg-gray-50 border-t border-gray-100">
+      <section id="program" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-6">Что происходит за 1.5-2 часа</h2>
-          <p className="text-xl text-gray-600 mb-16">Пять блоков. Каждый заканчивается конкретным результатом. Три live-демо агентов.</p>
+          <p className="text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 mb-16">Пять блоков. Каждый заканчивается конкретным результатом. Три live-демо агентов.</p>
           
           <div className="space-y-12">
             {program.map((b, i) => (
-              <div key={i} className="flex flex-col md:flex-row border-b border-gray-200 pb-12 gap-8">
+              <div key={i} className="flex flex-col md:flex-row border-b border-gray-200 dark:border-white/10 pb-12 gap-8">
                 <div className="md:w-1/4 flex flex-col">
                   <span className="text-5xl font-semibold text-gray-300">{b.num}</span>
                   <span className="text-brand font-medium mt-2">{b.time}</span>
                 </div>
                 <div className="md:w-3/4">
                   <h3 className="text-2xl font-semibold mb-4">{b.title}</h3>
-                  <p className="text-gray-700 leading-relaxed text-lg">{b.text}</p>
+                  <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-lg">{b.text}</p>
                 </div>
               </div>
             ))}
@@ -74,7 +74,7 @@ export function ForManagers() {
         </div>
       </section>
       
-      <section className="py-24 px-6 md:px-12 bg-white">
+      <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-16">Что вы уносите после сессии</h2>
           <div className="space-y-8">
@@ -82,48 +82,48 @@ export function ForManagers() {
               <CheckCircle2 className="w-8 h-8 text-brand shrink-0 mr-6 mt-1" />
               <div>
                 <h3 className="text-2xl font-semibold mb-3">Видели своими глазами, как работают ИИ-агенты</h3>
-                <p className="text-gray-600 text-lg leading-relaxed">Не слайды, а живые демонстрации. Три агента: аналитик, координатор, исполнитель.</p>
+                <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 text-lg leading-relaxed">Не слайды, а живые демонстрации. Три агента: аналитик, координатор, исполнитель.</p>
               </div>
             </div>
             <div className="flex items-start">
               <CheckCircle2 className="w-8 h-8 text-brand shrink-0 mr-6 mt-1" />
               <div>
                 <h3 className="text-2xl font-semibold mb-3">Road-map запуска ИИ за 90 дней</h3>
-                <p className="text-gray-600 text-lg leading-relaxed">Конкретный шаблон: неделя 1-4, неделя 5-8, неделя 9-12. Заполняемый. С этапами, ответственными и метриками.</p>
+                <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 text-lg leading-relaxed">Конкретный шаблон: неделя 1-4, неделя 5-8, неделя 9-12. Заполняемый. С этапами, ответственными и метриками.</p>
               </div>
             </div>
             <div className="flex items-start">
               <CheckCircle2 className="w-8 h-8 text-brand shrink-0 mr-6 mt-1" />
               <div>
                 <h3 className="text-2xl font-semibold mb-3">Понимание разницы между «чат-бот» и «агентская система»</h3>
-                <p className="text-gray-600 text-lg leading-relaxed">И почему второе в 10x ценнее. Рамка, которую вы используете для оценки любого ИИ-предложения.</p>
+                <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 text-lg leading-relaxed">И почему второе в 10x ценнее. Рамка, которую вы используете для оценки любого ИИ-предложения.</p>
               </div>
             </div>
             <div className="flex items-start">
               <CheckCircle2 className="w-8 h-8 text-brand shrink-0 mr-6 mt-1" />
               <div>
                 <h3 className="text-2xl font-semibold mb-3">1 конкретная идея для вашего бизнеса</h3>
-                <p className="text-gray-600 text-lg leading-relaxed">Не абстрактный совет, а конкретный процесс вашей компании, который агент может взять на себя.</p>
+                <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 text-lg leading-relaxed">Не абстрактный совет, а конкретный процесс вашей компании, который агент может взять на себя.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="budget" className="py-24 px-6 md:px-12 bg-gray-50 border-t border-b border-gray-100">
+      <section id="budget" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-b border-gray-100 dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
             {/* Бюджет */}
             <div className="mb-12">
                 <h2 className="text-4xl font-semibold mb-6">Бюджет: от 350 тыс. руб.</h2>
-                <p className="text-xl text-gray-600 mb-8">Стратегическая сессия + live-демо (1.5-2 часа)</p>
-                <p className="text-gray-700 text-lg leading-relaxed mb-10 max-w-3xl">Финальный бюджет зависит от числа участников, адаптации под вашу отрасль, подбора кейсов и логистики. Мы рассчитаем точную стоимость после обсуждения задачи.</p>
+                <p className="text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 mb-8">Стратегическая сессия + live-демо (1.5-2 часа)</p>
+                <p className="text-gray-700 dark:text-gray-200 text-lg leading-relaxed mb-10 max-w-3xl">Финальный бюджет зависит от числа участников, адаптации под вашу отрасль, подбора кейсов и логистики. Мы рассчитаем точную стоимость после обсуждения задачи.</p>
                 <a href="#contact" className="inline-block bg-brand text-white rounded-full px-10 py-4 font-medium hover:bg-[#e64627] transition-colors text-lg">
                     Обсудить бюджет
                 </a>
             </div>
 
             {/* Спикер — горизонтальная карточка */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-6 flex flex-col sm:flex-row gap-6 max-w-2xl">
+            <div className="bg-white dark:bg-[hsl(220,20%,7%)] rounded-2xl border border-gray-200 dark:border-white/10 p-6 flex flex-col sm:flex-row gap-6 max-w-2xl">
                 <img
                   src="/experts/nikitin-large.webp"
                   alt="Игорь Никитин"
@@ -135,13 +135,13 @@ export function ForManagers() {
                         <p className="text-brand font-medium text-sm mt-1">Фаундер WMT AI</p>
                     </div>
                     <div className="flex flex-col gap-3">
-                      <div className="flex items-start gap-2.5 bg-gray-100 rounded-xl px-4 py-3">
+                      <div className="flex items-start gap-2.5 bg-gray-100 dark:bg-[hsl(220,18%,14%)] rounded-xl px-4 py-3">
                         <span className="text-lg mt-0.5">🏆</span>
-                        <p className="text-sm text-gray-700 font-medium">Победитель глобального конкурса Anthropic — единственный в мире</p>
+                        <p className="text-sm text-gray-700 dark:text-gray-200 font-medium">Победитель глобального конкурса Anthropic — единственный в мире</p>
                       </div>
-                      <div className="flex items-start gap-2.5 bg-gray-100 rounded-xl px-4 py-3">
+                      <div className="flex items-start gap-2.5 bg-gray-100 dark:bg-[hsl(220,18%,14%)] rounded-xl px-4 py-3">
                         <span className="text-lg mt-0.5">🎓</span>
-                        <p className="text-sm text-gray-700 font-medium">Эксклюзивное право обучения 100 специалистов от создателей Claude</p>
+                        <p className="text-sm text-gray-700 dark:text-gray-200 font-medium">Эксклюзивное право обучения 100 специалистов от создателей Claude</p>
                       </div>
                     </div>
                 </div>

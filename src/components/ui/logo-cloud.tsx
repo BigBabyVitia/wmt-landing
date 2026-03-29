@@ -30,11 +30,16 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
               <img
                 src={logo.src}
                 alt={logo.name}
-                className={cn("h-9 max-w-[180px] object-contain pointer-events-none", logo.invert && "invert")}
+                className={cn(
+                  "h-9 max-w-[180px] object-contain pointer-events-none transition-[filter] duration-300",
+                  logo.invert
+                    ? "invert dark:invert-0"   // originally white → invert to black in light, show white in dark
+                    : "dark:invert dark:brightness-200" // originally dark → show as-is in light, invert to white in dark
+                )}
                 loading="lazy"
               />
             ) : (
-              <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300 whitespace-nowrap">
                 {logo.name}
               </span>
             )}

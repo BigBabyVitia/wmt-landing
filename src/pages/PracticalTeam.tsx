@@ -34,10 +34,10 @@ function ResultsSection() {
   ]
 
   return (
-    <section className="py-24 px-6 md:px-12 bg-white">
+    <section className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-4">Что останется после хакатона?</h2>
-        <p className="text-lg md:text-xl text-gray-500 mb-16">Три конкретных результата, которые уходят с вами</p>
+        <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Что останется после хакатона?</h2>
+        <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 mb-16">Три конкретных результата, которые уходят с вами</p>
         <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {results.map((r, idx) => (
             <AnimatedCard
@@ -98,19 +98,19 @@ export function PracticalTeam() {
 
       <ResultsSection />
 
-      <section id="program" className="py-24 px-6 md:px-12 bg-gray-50 border-t border-gray-100">
+      <section id="program" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-4xl font-semibold mb-16">Как проходят эти 10 часов</h2>
           <div className="space-y-12">
             {program.map((b, i) => (
-              <div key={i} className="flex flex-col md:flex-row border-b border-gray-200 pb-12 gap-8">
+              <div key={i} className="flex flex-col md:flex-row border-b border-gray-200 dark:border-white/10 pb-12 gap-8">
                 <div className="md:w-1/4 flex flex-col">
                   <span className="text-5xl font-semibold text-gray-300">0{b.num}</span>
                   <span className="text-brand font-medium mt-2">{b.time}</span>
                 </div>
                 <div className="md:w-3/4">
                   <h3 className="text-2xl font-semibold mb-4">{b.title}</h3>
-                  <p className="text-gray-700 leading-relaxed text-lg">{b.text}</p>
+                  <p className="text-gray-700 dark:text-gray-200 leading-relaxed text-lg">{b.text}</p>
                 </div>
               </div>
             ))}
@@ -118,12 +118,12 @@ export function PracticalTeam() {
         </div>
       </section>
 
-      <section id="budget" className="py-24 px-6 md:px-12 bg-white">
+      <section id="budget" className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
         <div className="max-w-7xl mx-auto flex gap-12 flex-col lg:flex-row items-center">
             <div className="lg:w-2/3">
                 <h2 className="text-4xl font-semibold mb-6">Бюджет: от 900 тыс. руб. за команду</h2>
-                <p className="text-xl text-gray-600 mb-8">Тренинг-хакатон «Мышление 2.0» (10-30 человек)</p>
-                <div className="prose prose-lg text-gray-700 mb-10">
+                <p className="text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 mb-8">Тренинг-хакатон «Мышление 2.0» (10-30 человек)</p>
+                <div className="prose prose-lg text-gray-700 dark:text-gray-200 mb-10">
                     <p>Точная стоимость зависит от числа участников, площадки (онлайн/офлайн) и количества требуемых помощников или интеграторов на сессии.</p>
                 </div>
                 <a href="#contact" className="inline-block bg-brand text-white rounded-full px-10 py-4 font-medium hover:bg-[#e64627] transition-colors">
@@ -144,7 +144,7 @@ export function PracticalTeam() {
               <WavePath className="mb-14 text-white" />
               <div className="flex w-[70vw] flex-col items-end">
                 <div className="flex justify-end">
-                  <p className="text-gray-400 mt-2 text-base md:text-lg lg:text-xl font-medium">Игорь Никитин</p>
+                  <p className="text-gray-400 dark:text-gray-500 mt-2 text-base md:text-lg lg:text-xl font-medium">Игорь Никитин</p>
                   <p className="text-gray-300 ml-8 w-3/4 text-2xl md:text-4xl italic">
                     Мы не учим «про ИИ». Мы открываем ноутбуки и за несколько часов делаем то, о чём другие рассказывают неделями.
                   </p>

@@ -79,7 +79,7 @@ const levelIcons = [
 /* Simple app-icon style icons for challenge cards */
 function ChallengeAppIcon({ children }: { children: React.ReactNode }) {
   return (
-    <div className="challenge-icon w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 bg-gray-100 border-gray-200 group-hover:bg-brand/10 group-hover:border-brand/20 group-hover:shadow-sm group-hover:shadow-brand/20">
+    <div className="challenge-icon w-12 h-12 rounded-xl border flex items-center justify-center transition-all duration-300 bg-gray-100 dark:bg-white/5 border-gray-200 dark:border-white/10 group-hover:bg-brand/10 group-hover:border-brand/20 group-hover:shadow-sm group-hover:shadow-brand/20">
       {children}
     </div>
   )
@@ -88,13 +88,13 @@ function ChallengeAppIcon({ children }: { children: React.ReactNode }) {
 const challengeSvgs = [
   // 1. Порог входа — молния
   () => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300 text-gray-500 group-hover:text-brand">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300 text-gray-500 dark:text-gray-400 dark:text-gray-500 group-hover:text-brand">
       <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
     </svg>
   ),
   // 2. Большой бизнес — здание
   () => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300 text-gray-500 group-hover:text-brand">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300 text-gray-500 dark:text-gray-400 dark:text-gray-500 group-hover:text-brand">
       <rect x="4" y="2" width="16" height="20" rx="2" />
       <line x1="9" y1="6" x2="9" y2="6.01" />
       <line x1="15" y1="6" x2="15" y2="6.01" />
@@ -107,7 +107,7 @@ const challengeSvgs = [
   ),
   // 3. Локальная польза — разъединённые точки
   () => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300 text-gray-500 group-hover:text-brand">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300 text-gray-500 dark:text-gray-400 dark:text-gray-500 group-hover:text-brand">
       <circle cx="6" cy="6" r="2" />
       <circle cx="18" cy="6" r="2" />
       <circle cx="6" cy="18" r="2" />
@@ -120,7 +120,7 @@ const challengeSvgs = [
   ),
   // 4. Ошибка в треке — график вниз
   () => (
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300 text-gray-500 group-hover:text-brand">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="transition-colors duration-300 text-gray-500 dark:text-gray-400 dark:text-gray-500 group-hover:text-brand">
       <polyline points="22 17 13.5 8.5 8.5 13.5 2 7" />
       <polyline points="16 17 22 17 22 11" />
     </svg>
@@ -223,7 +223,7 @@ function HeroVideo() {
           ))}
         </div>
         <div className="flex flex-row items-center justify-center gap-4 mt-12 animate-fade-rise-delay-2">
-          <a href="#directions" className="bg-white text-gray-900 rounded-full px-12 py-4 text-base font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
+          <a href="#directions" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white rounded-full px-12 py-4 text-base font-semibold hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
             Узнать, что подойдёт
           </a>
           <Link to="/all-formats" className="liquid-glass rounded-full px-12 py-4 text-base font-medium text-white hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 inline-block">
@@ -236,7 +236,7 @@ function HeroVideo() {
 }
 
 function HeroWebGL() {
-  const overlayClass = "bg-black/25"
+  const overlayClass = "bg-black dark:bg-[hsl(220,20%,4%)]/25"
   const gradientClass = ""
   const subShadow = "0 1px 12px rgba(0,0,0,0.4)"
 
@@ -246,7 +246,7 @@ function HeroWebGL() {
 
       {/* Unicorn Studio WebGL background */}
       <div className="absolute inset-0 z-0">
-        <Suspense fallback={<div className="w-full h-full bg-black" />}>
+        <Suspense fallback={<div className="w-full h-full bg-black dark:bg-[hsl(220,20%,4%)]" />}>
           <UnicornScene
             projectId="jJjGTV0vcy9VIfmO9Wr8"
             sdkUrl="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.5/dist/unicornStudio.umd.js"
@@ -274,13 +274,13 @@ function HeroWebGL() {
         </p>
         <div className="flex flex-wrap justify-center items-center gap-4 mt-8 animate-fade-rise-delay-2">
           {["50+ проектов 2024–2026", "80–85% практики руками", "Рабочие агенты на выходе"].map((t) => (
-            <div key={t} className="bg-black/30 backdrop-blur-md border border-white/10 text-white/90 px-4 py-2 rounded-full text-sm font-medium" style={subShadow ? { textShadow: subShadow } : undefined}>
+            <div key={t} className="bg-black dark:bg-[hsl(220,20%,4%)]/30 backdrop-blur-md border border-white/10 text-white/90 px-4 py-2 rounded-full text-sm font-medium" style={subShadow ? { textShadow: subShadow } : undefined}>
               {t}
             </div>
           ))}
         </div>
         <div className="flex flex-row items-center justify-center gap-4 mt-12 animate-fade-rise-delay-2">
-          <a href="#directions" className="bg-white text-gray-900 rounded-full px-12 py-4 text-base font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
+          <a href="#directions" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white rounded-full px-12 py-4 text-base font-semibold hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
             Узнать, что подойдёт
           </a>
           <Link to="/all-formats" className="liquid-glass rounded-full px-12 py-4 text-base font-medium text-white hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 inline-block">
@@ -300,13 +300,13 @@ function ChallengesSection() {
   const { ref, visible } = useScrollVisible()
 
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white">
+    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
             ИИ уже меняет рынок.<br />Готова ли ваша компания к этому переходу?
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 max-w-4xl">
+          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-4xl">
             Многие уже видят потенциал ИИ. Но чем крупнее компания, тем сложнее добиться реального эффекта. Нужен точный подход к AI-трансформации и свой трек изменений.
           </p>
         </div>
@@ -317,7 +317,7 @@ function ChallengesSection() {
               className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: visible ? `${200 + idx * 120}ms` : "0ms" }}
             >
-              <div className="group relative bg-gray-50 rounded-2xl p-8 border border-gray-100 transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
+              <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/[0.03] to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
                 <div className="relative z-10 flex gap-5 items-start">
                   <div className="flex-shrink-0 mt-1">
@@ -326,8 +326,8 @@ function ChallengesSection() {
                     </ChallengeAppIcon>
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 mb-3">{c.title}</h3>
-                    <p className="text-gray-600 leading-relaxed text-base">{c.desc}</p>
+                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">{c.title}</h3>
+                    <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed text-base">{c.desc}</p>
                   </div>
                 </div>
               </div>
@@ -344,13 +344,13 @@ export function LevelsSection() {
   const [activeLevel, setActiveLevel] = useState<number | null>(null)
 
   return (
-    <section ref={ref} id="directions" className="py-24 px-6 md:px-12 bg-gray-50 border-t border-gray-100">
+    <section ref={ref} id="directions" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
             Одна система — три уровня готовности
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 max-w-5xl">
+          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-5xl">
             WMT не продаёт отдельные курсы. Каждый формат работает самостоятельно и переводит в следующий: <span className="text-brand font-medium">управление</span> → <span className="text-brand font-medium">масштабирование</span> → <span className="text-brand font-medium">личное углубление</span>. Каждый уровень вытекает из предыдущего, компания продвигается в своём темпе.
           </p>
         </div>
@@ -360,7 +360,7 @@ export function LevelsSection() {
             <div key={idx}>
               <Link
                 to={l.link}
-                className={`relative block group bg-white rounded-2xl p-8 md:p-10 border border-gray-100 transition-all duration-500 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-200/50 hover:-translate-y-0.5
+                className={`relative block group bg-white dark:bg-[hsl(220,20%,7%)] rounded-2xl p-8 md:p-10 border border-gray-100 dark:border-white/[0.06] transition-all duration-500 hover:border-gray-300 dark:hover:border-white/20 hover:shadow-lg hover:shadow-gray-200/50 hover:-translate-y-0.5
                   ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 style={{ transitionDelay: visible ? `${200 + idx * 150}ms` : "0ms" }}
                 onMouseEnter={() => setActiveLevel(idx)}
@@ -375,14 +375,14 @@ export function LevelsSection() {
                   <span className="inline-block text-xs font-semibold text-brand uppercase tracking-wider mb-3">
                     {l.label}
                   </span>
-                  <h3 className="text-2xl font-semibold text-gray-900 mb-3">{l.title}</h3>
-                  <p className="text-gray-600 leading-relaxed text-base mb-5 max-w-2xl">{l.desc}</p>
+                  <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">{l.title}</h3>
+                  <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed text-base mb-5 max-w-2xl">{l.desc}</p>
 
                   {/* Program tags — gray style with label */}
                   <div className="flex flex-wrap items-center gap-2 mb-6">
-                    <span className="text-[11px] text-gray-400 font-medium mr-1">Программы:</span>
+                    <span className="text-[11px] text-gray-400 dark:text-gray-500 font-medium mr-1">Программы:</span>
                     {l.tags.map((tag) => (
-                      <span key={tag} className="text-[11px] text-gray-600 bg-gray-100 px-3 py-[7px] rounded-full font-medium leading-[1]">
+                      <span key={tag} className="text-[11px] text-gray-600 dark:text-gray-400 dark:text-gray-500 bg-gray-100 dark:bg-[hsl(220,18%,14%)] px-3 py-[7px] rounded-full font-medium leading-[1]">
                         {tag}
                       </span>
                     ))}
@@ -408,7 +408,7 @@ export function LevelsSection() {
           ))}
         </div>
 
-        <p className="text-sm text-gray-400 mt-8">
+        <p className="text-sm text-gray-400 dark:text-gray-500 mt-8">
           Платформа и библиотека уроков — бесплатный подготовительный уровень для самостоятельного старта.
         </p>
       </div>
@@ -434,7 +434,7 @@ const teaserData = [
     title: "Когда команде нужна практика, а не ещё один разговор",
     desc: "Здесь живут форматы для тех, кто уже прошёл управленческое выравнивание или кому оно не нужно — задача и люди уже есть.",
     items: [
-      "Цифровой каркас — защищаемый первый пилот за 3–5 часов.",
+      "Цифровой каркас — построение архитектуры ИИ-перехода и запуск первого пилота за 3–5 часов.",
       "Мышление 2.0 — ядро практиков за 1–1,5 дня, 80% практики.",
       "ИИ-марафон — широкая волна на 10 недель, 100% руками.",
       "Agent Builder Day — рабочий агент у каждого за один день.",
@@ -455,7 +455,7 @@ const teaserData = [
 
 export function DirectionTeasersCards() {
   return (
-    <section className="py-24 px-6 md:px-12 bg-gray-50/50 relative overflow-hidden border-t border-gray-100">
+    <section className="py-24 px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] relative overflow-hidden border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand/5 blur-[120px] rounded-full pointer-events-none" />
       
       <div className="max-w-7xl mx-auto flex flex-col gap-10 relative z-10 text-center">
@@ -482,7 +482,7 @@ function TeaserCard({ id, title, desc, items, link, linkText, index }: any) {
     <div
       ref={ref}
       id={id}
-      className={`relative group w-full rounded-[2.5rem] border border-gray-200/60 bg-white transition-all duration-700 overflow-hidden text-left ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"}`}
+      className={`relative group w-full rounded-[2.5rem] border border-gray-200 dark:border-white/10/60 dark:border-white/[0.06] bg-white dark:bg-white/[0.02] transition-all duration-700 overflow-hidden text-left ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"}`}
       style={{ transitionDelay: visible ? `${index * 150}ms` : "0ms" }}
       onMouseMove={handleMouseMove}
     >
@@ -513,20 +513,20 @@ function TeaserCard({ id, title, desc, items, link, linkText, index }: any) {
       
       <div className="p-8 md:p-14 relative z-10 flex flex-col gap-10">
         <div className="w-full text-center xl:text-left">
-          <h3 className="text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 mb-5">{title}</h3>
-          <p className="text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto xl:mx-0">{desc}</p>
+          <h3 className="text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-5">{title}</h3>
+          <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed max-w-3xl mx-auto xl:mx-0">{desc}</p>
         </div>
         
         {items.length > 0 && (
           <div className="w-full">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-5 text-center xl:text-left">Программы</h4>
+            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 dark:text-gray-500 mb-5 text-center xl:text-left">Программы</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {items.map((item: string, idx: number) => {
                 const parts = item.split(" — ");
                 return (
-                  <div key={idx} className="flex flex-col gap-1.5 bg-gray-50/80 border border-gray-100 rounded-2xl p-5 content-start">
-                    <span className="font-semibold text-gray-900 text-base leading-tight">{parts[0]}</span>
-                    {parts[1] && <span className="text-gray-600 text-sm leading-snug">{parts[1]}</span>}
+                  <div key={idx} className="flex flex-col gap-1.5 bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-2xl p-5 content-start">
+                    <span className="font-semibold text-gray-900 dark:text-white text-base leading-tight">{parts[0]}</span>
+                    {parts[1] && <span className="text-gray-600 dark:text-gray-400 dark:text-gray-500 text-sm leading-snug">{parts[1]}</span>}
                   </div>
                 );
               })}
@@ -569,13 +569,13 @@ function CombinedLevelsViewer() {
   ]
   
   return (
-    <section ref={ref} id="directions" className="flex flex-col items-center pb-24 border-t border-gray-100 bg-gray-50/50 pt-24 min-h-screen">
+    <section ref={ref} id="directions" className="flex flex-col items-center pb-24 border-t border-gray-100 dark:border-white/[0.06] bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] pt-24 min-h-screen transition-colors duration-300">
       <div className="px-6 md:px-12 w-full max-w-7xl mx-auto flex flex-col items-center">
         <div className={`w-full mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
             Одна система — три уровня готовности
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 max-w-5xl">
+          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-5xl">
             WMT не продаёт отдельные курсы. Каждый формат работает самостоятельно и переводит компанию на следующий уровень: <span className="text-brand font-medium">от управления</span> → <span className="text-brand font-medium">через масштабирование</span> → <span className="text-brand font-medium">в практику</span>.
           </p>
         </div>

@@ -52,7 +52,7 @@ export function MainCta() {
                 />
                 <div>
                   <p className="text-xl font-semibold">Данильчик Анастасия</p>
-                  <p className="text-sm text-gray-400 mt-1">Координатор программ обучения WMT</p>
+                  <p className="text-sm text-gray-400 dark:text-gray-500 mt-1">Координатор программ обучения WMT</p>
                 </div>
               </div>
               <div className="flex flex-col space-y-3">
@@ -75,7 +75,7 @@ export function MainCta() {
                   adanilchik@wmtgroup.ru
                 </a>
               </div>
-              <p className="text-gray-500 italic text-sm">Отвечаем за 2 часа в рабочее время.<br />Предложение с бюджетом отправим за 24 часа.</p>
+              <p className="text-gray-500 dark:text-gray-400 dark:text-gray-500 italic text-sm">Отвечаем за 2 часа в рабочее время.<br />Предложение с бюджетом отправим за 24 часа.</p>
             </div>
           </div>
 
@@ -84,26 +84,26 @@ export function MainCta() {
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div>
                 <label className="block text-sm font-semibold mb-2 text-gray-200">ФИО</label>
-                <input type="text" placeholder="Ваши имя и фамилия" className="w-full bg-black/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                <input type="text" placeholder="Ваши имя и фамилия" className="w-full bg-black dark:bg-[hsl(220,20%,4%)]/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-semibold mb-2 text-gray-200">Email</label>
-                  <input type="email" placeholder="work@company.ru" className="w-full bg-black/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                  <input type="email" placeholder="work@company.ru" className="w-full bg-black dark:bg-[hsl(220,20%,4%)]/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
                 </div>
                 <div>
                   <label className="block text-sm font-semibold mb-2 text-gray-200">Телефон</label>
-                  <input type="tel" placeholder="+7 (999) 000-00-00" className="w-full bg-black/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                  <input type="tel" placeholder="+7 (999) 000-00-00" className="w-full bg-black dark:bg-[hsl(220,20%,4%)]/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
                 </div>
               </div>
               <div>
                 <label className="block text-sm font-semibold mb-2 text-gray-200">Компания</label>
-                <input type="text" placeholder="Название организации" className="w-full bg-black/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                <input type="text" placeholder="Название организации" className="w-full bg-black dark:bg-[hsl(220,20%,4%)]/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
               </div>
               <button className="w-full bg-brand text-white font-semibold py-5 mt-8 rounded-full hover:bg-[#e64627] hover:scale-[1.02] transition-all text-xl tracking-wide">
                 Отправить заявку
               </button>
-              <p className="text-xs text-gray-500 text-center mt-6">
+              <p className="text-xs text-gray-500 dark:text-gray-400 dark:text-gray-500 text-center mt-6">
                 Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных.
               </p>
             </form>

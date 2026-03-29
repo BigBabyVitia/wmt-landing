@@ -39,7 +39,7 @@ export function FitAssessment({ items, title = "Подходит / Не подх
             {fits.map((item, idx) => (
               <div key={idx} className="flex items-start gap-3">
                 <CheckCircle2 className="w-5 h-5 text-green-600 shrink-0 mt-0.5" />
-                <p className="text-gray-700 text-sm leading-relaxed">{item.text}</p>
+                <p className="text-gray-700 dark:text-gray-200 text-sm leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
@@ -50,7 +50,7 @@ export function FitAssessment({ items, title = "Подходит / Не подх
             {notFits.map((item, idx) => (
               <div key={idx} className="flex items-start gap-3">
                 <XCircle className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                <p className="text-gray-700 text-sm leading-relaxed">{item.text}</p>
+                <p className="text-gray-700 dark:text-gray-200 text-sm leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>

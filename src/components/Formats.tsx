@@ -134,13 +134,13 @@ export function Formats() {
   ]
 
   return (
-    <section id="formats" className="py-24 px-6 md:px-12 bg-white">
+    <section id="formats" className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
       <div className="max-w-7xl mx-auto">
         <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
             Форматы работы
           </h2>
-          <p className="text-lg md:text-xl text-gray-500">
+          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500">
             Выберите точку входа в зависимости от вашей ситуации
           </p>
         </div>
@@ -151,7 +151,7 @@ export function Formats() {
               key={idx}
               to={f.path}
               onMouseEnter={() => setActiveCard(idx)}
-              className={`group relative flex flex-col justify-between bg-gray-50 hover:bg-gray-100/80 rounded-2xl p-8 lg:p-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`group relative flex flex-col justify-between bg-gray-50 dark:bg-[hsl(220,18%,10%)] hover:bg-gray-100/80 rounded-2xl p-8 lg:p-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: visible ? `${idx * 150}ms` : "0ms" }}
             >
               {/* Animated SVG — large, overflows card edges */}
@@ -160,13 +160,13 @@ export function Formats() {
               </div>
 
               <div className="relative z-10">
-                <h3 className="text-2xl lg:text-3xl font-semibold text-gray-900 mb-1 group-hover:text-brand transition-colors">
+                <h3 className="text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-brand transition-colors">
                   {f.title}
                 </h3>
-                <p className="text-gray-500 text-sm mb-5">{f.subtitle}</p>
+                <p className="text-gray-500 dark:text-gray-400 dark:text-gray-500 text-sm mb-5">{f.subtitle}</p>
                 <ul className="space-y-2">
                   {f.items.map((item, i) => (
-                    <li key={i} className="flex items-start text-gray-700">
+                    <li key={i} className="flex items-start text-gray-700 dark:text-gray-200">
                       <span className="text-brand mr-2 mt-1 text-xs">&#9679;</span>
                       {item}
                     </li>

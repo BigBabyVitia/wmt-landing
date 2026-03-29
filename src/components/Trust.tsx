@@ -48,13 +48,13 @@ export function Trust() {
   ]
 
   return (
-    <section id="trust" ref={sectionRef} className="py-24 px-6 md:px-12 bg-gray-50 border-t border-gray-100">
+    <section id="trust" ref={sectionRef} className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-6 max-w-4xl">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6 max-w-4xl">
             Почему нам доверяют
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 max-w-3xl">
+          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-3xl">
             Работаем с корпоративными сценариями, где важна не презентация, а результат.
           </p>
         </div>
@@ -63,12 +63,12 @@ export function Trust() {
           {blocks.map((b, idx) => (
             <div
               key={idx}
-              className={`flex flex-col bg-white p-8 rounded-3xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`flex flex-col bg-white dark:bg-[hsl(220,20%,7%)] p-8 rounded-3xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: visible ? `${200 + idx * 150}ms` : "0ms" }}
             >
               {b.icon}
-              <h3 className="text-2xl font-semibold text-gray-900 mb-4 leading-tight min-h-[4.5rem]">{b.title}</h3>
-              <p className="text-gray-600 leading-relaxed text-base">{b.desc}</p>
+              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 leading-tight min-h-[4.5rem]">{b.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed text-base">{b.desc}</p>
             </div>
           ))}
         </div>
@@ -76,15 +76,15 @@ export function Trust() {
         <div className={`mt-20 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? "700ms" : "0ms" }}>
           <div className="mx-auto max-w-3xl text-center mb-6">
             <h3 className="text-xl md:text-3xl font-medium tracking-tight">
-              <span className="text-gray-400">Проверено на практике.</span>
+              <span className="text-gray-400 dark:text-gray-500">Проверено на практике.</span>
               <br />
-              <span className="font-semibold text-gray-900">Работаем с лидерами рынка.</span>
+              <span className="font-semibold text-gray-900 dark:text-white">Работаем с лидерами рынка.</span>
             </h3>
           </div>
           <div className="mx-auto max-w-3xl">
-            <div className="my-5 h-px bg-gray-200 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+            <div className="my-5 h-px bg-gray-200 dark:bg-[hsl(220,18%,18%)] [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
             <LogoCloud logos={clients} />
-            <div className="mt-5 h-px bg-gray-200 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
+            <div className="mt-5 h-px bg-gray-200 dark:bg-[hsl(220,18%,18%)] [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
           </div>
         </div>
 

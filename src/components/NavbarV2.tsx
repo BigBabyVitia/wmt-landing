@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
-import { X, Menu } from "lucide-react"
+import { X, Menu, Sun, Moon } from "lucide-react"
 import { Link, useLocation } from "react-router-dom"
 import { useVersion } from "@/context/VersionContext"
+import { useTheme } from "@/context/ThemeContext"
 
 interface NavbarV2Props {
   variant?: "home" | "inner"
@@ -26,6 +27,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { version, toggleVersion, heroStyle, toggleHeroStyle } = useVersion()
+  const { isDark: isDarkTheme, toggleTheme } = useTheme()
   const location = useLocation()
 
   const links = version === "new" ? newLinks : classicLinks
@@ -54,7 +56,9 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isDark
-            ? "bg-white/70 backdrop-blur-xl py-3"
+            ? isDarkTheme
+              ? "bg-[hsl(220,20%,7%)]/70 backdrop-blur-xl py-3"
+              : "bg-white/70 backdrop-blur-xl py-3"
             : "bg-transparent py-5"
         }`}
       >
@@ -62,7 +66,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
           <Link
             to="/"
             className={`text-2xl md:text-3xl tracking-tight font-semibold transition-colors duration-300 ${
-              isDark ? "text-gray-900" : "text-white"
+              isDark ? (isDarkTheme ? "text-white" : "text-gray-900 dark:text-white") : "text-white"
             }`}
           >
             WMT
@@ -71,7 +75,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
           {/* Desktop nav */}
           <div
             className={`hidden lg:flex items-center space-x-6 text-sm transition-colors duration-300 ${
-              isDark ? "text-gray-500" : "text-gray-300"
+              isDark ? (isDarkTheme ? "text-gray-400 dark:text-gray-500" : "text-gray-500 dark:text-gray-400 dark:text-gray-500") : "text-gray-300"
             }`}
           >
             {links.map((link) => (
@@ -81,10 +85,14 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
                 className={`transition-colors whitespace-nowrap ${
                   isActive(link.to)
                     ? isDark
-                      ? "text-gray-900 font-medium"
+                      ? isDarkTheme
+                        ? "text-white font-medium"
+                        : "text-gray-900 dark:text-white font-medium"
                       : "text-white font-medium"
                     : isDark
-                    ? "hover:text-gray-900"
+                    ? isDarkTheme
+                      ? "hover:text-white"
+                      : "hover:text-gray-900 dark:hover:text-white"
                     : "hover:text-white"
                 }`}
               >
@@ -100,7 +108,9 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
               onClick={toggleVersion}
               className={`hidden md:flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
                 isDark
-                  ? "border-gray-200 text-gray-500 hover:border-brand hover:text-brand"
+                  ? isDarkTheme
+                    ? "border-white/10 text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
+                    : "border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
                   : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
               }`}
             >
@@ -108,7 +118,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
               <span className={`w-6 h-3.5 rounded-full relative transition-colors ${
                 version === "new" ? "bg-brand" : isDark ? "bg-gray-300" : "bg-white/30"
               }`}>
-                <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform ${
+                <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white dark:bg-[hsl(220,20%,7%)] transition-transform ${
                   version === "new" ? "left-3" : "left-0.5"
                 }`} />
               </span>
@@ -121,7 +131,9 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
                 onClick={toggleHeroStyle}
                 className={`hidden md:flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full border transition-all ${
                   isDark
-                    ? "border-gray-200 text-gray-500 hover:border-brand hover:text-brand"
+                    ? isDarkTheme
+                      ? "border-white/10 text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
+                      : "border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
                     : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
                 }`}
               >
@@ -129,13 +141,28 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
                 <span className={`w-6 h-3.5 rounded-full relative transition-colors ${
                   heroStyle === "webgl" ? "bg-brand" : isDark ? "bg-gray-300" : "bg-white/30"
                 }`}>
-                  <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white transition-transform ${
+                  <span className={`absolute top-0.5 w-2.5 h-2.5 rounded-full bg-white dark:bg-[hsl(220,20%,7%)] transition-transform ${
                     heroStyle === "webgl" ? "left-3" : "left-0.5"
                   }`} />
                 </span>
                 <span className={heroStyle === "webgl" ? "opacity-100" : "opacity-50"}>✨</span>
               </button>
             )}
+
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              className={`hidden md:flex items-center justify-center w-9 h-9 rounded-full border transition-all duration-300 ${
+                isDark
+                  ? isDarkTheme
+                    ? "border-white/10 text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
+                    : "border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
+                  : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
+              }`}
+              title={isDarkTheme ? "Светлая тема" : "Тёмная тема"}
+            >
+              {isDarkTheme ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
 
             {/* Login button */}
             <a
@@ -144,7 +171,9 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
               rel="noopener noreferrer"
               className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 hover:scale-[1.03] hidden md:inline-block ${
                 isDark
-                  ? "bg-brand text-white hover:bg-[#e64627]"
+                  ? isDarkTheme
+                    ? "bg-brand text-white hover:bg-[#e64627]"
+                    : "bg-brand text-white hover:bg-[#e64627]"
                   : "liquid-glass text-white"
               }`}
             >
@@ -155,7 +184,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden p-2 transition-colors ${
-                isDark ? "text-gray-900" : "text-white"
+                isDark ? (isDarkTheme ? "text-white" : "text-gray-900 dark:text-white") : "text-white"
               }`}
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -166,14 +195,14 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
 
       {/* Mobile menu overlay */}
       {mobileOpen && (
-        <div className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl pt-20 px-6 lg:hidden overflow-y-auto">
+        <div className="fixed inset-0 z-40 bg-black dark:bg-[hsl(220,20%,4%)]/95 backdrop-blur-xl pt-20 px-6 lg:hidden overflow-y-auto">
           <div className="flex flex-col space-y-6 py-8">
             {links.map((link) => (
               <Link
                 key={link.to}
                 to={link.to}
                 className={`text-2xl font-medium transition-colors ${
-                  isActive(link.to) ? "text-white" : "text-gray-400 hover:text-white"
+                  isActive(link.to) ? "text-white" : "text-gray-400 dark:text-gray-500 hover:text-white"
                 }`}
                 onClick={() => setMobileOpen(false)}
               >
@@ -184,7 +213,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
             <div className="pt-6 border-t border-white/10 space-y-4">
               <button
                 onClick={toggleVersion}
-                className="flex items-center gap-3 text-sm text-gray-400"
+                className="flex items-center gap-3 text-sm text-gray-400 dark:text-gray-500"
               >
                 <span>Версия сайта:</span>
                 <span className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -197,7 +226,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
               {version === "new" && (
                 <button
                   onClick={toggleHeroStyle}
-                  className="flex items-center gap-3 text-sm text-gray-400"
+                  className="flex items-center gap-3 text-sm text-gray-400 dark:text-gray-500"
                 >
                   <span>Стиль hero:</span>
                   <span className={`px-3 py-1 rounded-full text-xs font-medium ${
@@ -207,6 +236,19 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
                   </span>
                 </button>
               )}
+
+              {/* Theme toggle mobile */}
+              <button
+                onClick={toggleTheme}
+                className="flex items-center gap-3 text-sm text-gray-400 dark:text-gray-500"
+              >
+                <span>Тема:</span>
+                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
+                  isDarkTheme ? "bg-brand text-white" : "bg-white/10 text-white"
+                }`}>
+                  {isDarkTheme ? "🌙 Тёмная" : "☀️ Светлая"}
+                </span>
+              </button>
             </div>
 
             <a

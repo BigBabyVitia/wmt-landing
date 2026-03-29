@@ -1,25 +1,10 @@
-import { useEffect, useRef, useState } from "react"
 import { ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom"
-import { NavbarV2 } from "@/components/NavbarV2"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
-
-function useScrollVisible(threshold = 0.15) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [visible, setVisible] = useState(false)
-  useEffect(() => {
-    const el = ref.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect() } },
-      { threshold }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [threshold])
-  return { ref, visible }
-}
+import { useScrollVisible } from "@/hooks/useScrollVisible"
+import { V2Hero } from "@/components/ui/V2Hero"
+import { V2Card } from "@/components/ui/V2Card"
 
 const signals = [
   "На столе уже лежат дорогие предложения по ИИ, но никто не уверен, с чего начинать",
@@ -80,49 +65,26 @@ const programs = [
 export function Executive() {
   return (
     <>
-      {/* HERO */}
-      <section className="relative w-full overflow-hidden flex flex-col pt-32 pb-24 md:pb-32 bg-[#0a1628] bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/brand/hero-bg.webp')" }}>
-        <NavbarV2 variant="inner" />
-        {/* Removes bg-black/50 to keep background saturated */}
-        <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto w-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-            <div>
-              <span className="inline-block text-sm font-medium text-white/70 tracking-wider uppercase mb-4 animate-fade-rise">Для руководителей</span>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-semibold text-white animate-fade-rise">
-                Пока руководство не приняло решение, компания теряет время
-              </h1>
-              <p className="text-white/80 text-lg md:text-xl max-w-xl mt-8 leading-relaxed animate-fade-rise-delay">
-                Эта страница для собственника, генерального директора и тех, кто отвечает за управленческий старт по ИИ. Здесь три формата — под разную глубину и разную задачу.
-              </p>
-              <a href="#contact" className="mt-8 inline-flex items-center gap-2 bg-black text-white rounded-full px-8 py-4 font-medium hover:bg-gray-900 transition-colors animate-fade-rise-delay-2">
-                Обсудить с экспертом <ArrowRight className="w-5 h-5" />
-              </a>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-fade-rise-delay">
-              {signals.map((s, i) => (
-                <div key={i} className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-5 text-white/90 text-sm leading-relaxed">
-                  {s}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <V2Hero 
+        label="Для руководителей"
+        title={<>Пока руководство не приняло решение, <em className="not-italic text-brand font-bold">компания теряет время</em></>}
+        description="Эта страница для собственника, генерального директора и тех, кто отвечает за управленческий старт по ИИ. Здесь три формата — под разную глубину и разную задачу."
+        tags={signals}
+        buttons={
+          <a href="#contact" className="inline-flex items-center gap-2 bg-white text-gray-900 rounded-full px-8 py-4 font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5">
+            Обсудить с экспертом <ArrowRight className="w-5 h-5" />
+          </a>
+        }
+      />
 
-      {/* СИТУАЦИИ */}
       <SituationsSection />
 
-      {/* ПРОГРАММЫ */}
       {programs.map((p, i) => (
         <ProgramSection key={i} program={p} index={i} />
       ))}
 
-      {/* TRUST + МОСТ */}
       <TrustStrip />
-
       <BridgeSection />
-
-      {/* ФОРМА */}
       <MainCta />
     </>
   )
@@ -131,23 +93,24 @@ export function Executive() {
 function SituationsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white">
+    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-6">Какая из этих ситуаций ваша?</h2>
-          <p className="text-lg text-gray-500 max-w-3xl">Каждая — реальная точка, с которой приходят компании. Каждой отвечает свой формат.</p>
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Какая из этих ситуаций ваша?</h2>
+          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl">Каждая — реальная точка, с которой приходят компании. Каждой отвечает свой формат.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {situations.map((s, idx) => (
-            <div
+            <V2Card
               key={idx}
-              className={`group bg-gray-50 rounded-2xl p-8 border border-gray-100 transition-all duration-500 hover:border-gray-300 hover:shadow-lg hover:shadow-gray-200/50 hover:-translate-y-1 cursor-default ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              style={{ transitionDelay: visible ? `${200 + idx * 150}ms` : "0ms" }}
+              visible={visible}
+              index={idx}
+              className="flex flex-col gap-4 !p-8 border-gray-100 dark:border-white/[0.06] hover:border-brand/30 hover:shadow-brand/10 hover:-translate-y-1"
             >
-              <h3 className="text-lg font-semibold text-gray-900 mb-3 leading-snug">{s.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed mb-6">{s.desc}</p>
-              <span className="text-brand font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all">&rarr; {s.format}</span>
-            </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 leading-snug relative z-10">{s.title}</h3>
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-6 flex-1 relative z-10">{s.desc}</p>
+              <span className="text-brand font-semibold text-sm group-hover:gap-2 inline-flex items-center gap-1 transition-all mt-auto relative z-10">&rarr; {s.format}</span>
+            </V2Card>
           ))}
         </div>
       </div>
@@ -155,58 +118,47 @@ function SituationsSection() {
   )
 }
 
-interface ProgramData {
-  title: string
-  subtitle: string
-  body: string
-  results?: { title: string; desc: string }[]
-  badge?: string
-  diff?: string
-  params?: string[]
-  audience?: string
-}
-
-function ProgramSection({ program: p, index }: { program: ProgramData; index: number }) {
+function ProgramSection({ program: p, index }: any) {
   const { ref, visible } = useScrollVisible()
-  const bg = index % 2 === 0 ? "bg-gray-50" : "bg-white"
+  const bg = index % 2 === 0 ? "bg-gray-50/50 dark:bg-[hsl(220,18%,5%)]" : "bg-white dark:bg-[hsl(220,20%,7%)]"
 
   return (
-    <section ref={ref} className={`py-24 px-6 md:px-12 ${bg} border-t border-gray-100`}>
+    <section ref={ref} className={`py-24 px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300`}>
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 mb-4">{p.title}</h2>
-          <p className="text-lg text-gray-500 max-w-3xl mb-4">{p.subtitle}</p>
-          <p className="text-base text-gray-600 max-w-3xl mb-8 leading-relaxed">{p.body}</p>
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">{p.title}</h2>
+          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mb-4">{p.subtitle}</p>
+          <p className="text-base text-gray-600 dark:text-gray-400 max-w-3xl mb-8 leading-relaxed">{p.body}</p>
 
           {p.results && (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-              {p.results.map((r, i) => (
-                <div key={i} className="bg-white rounded-xl p-5 border border-gray-100 transition-all duration-300 hover:border-gray-200 hover:shadow-sm">
-                  <h4 className="font-semibold text-gray-900 mb-2">{r.title}</h4>
-                  <p className="text-gray-600 text-sm leading-relaxed">{r.desc}</p>
+              {p.results.map((r: any, i: number) => (
+                <div key={i} className="bg-white/80 dark:bg-white/[0.02] rounded-2xl p-6 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 hover:border-brand/30 dark:hover:border-brand/20 hover:shadow-sm">
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{r.title}</h4>
+                  <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{r.desc}</p>
                 </div>
               ))}
             </div>
           )}
 
           {p.diff && (
-            <div className="bg-white rounded-xl p-6 border border-gray-100 mb-8 max-w-3xl">
-              <h4 className="font-semibold text-gray-900 mb-2">Ключевое отличие</h4>
-              <p className="text-gray-600 text-sm leading-relaxed">{p.diff}</p>
+            <div className="bg-white/80 dark:bg-white/[0.02] rounded-2xl p-6 border border-gray-100 dark:border-white/[0.06] mb-8 max-w-3xl shadow-sm">
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Ключевое отличие</h4>
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{p.diff}</p>
             </div>
           )}
 
           {p.params && (
             <div className="flex flex-wrap gap-3 mb-6">
-              {p.params.map((t, i) => (
-                <span key={i} className="text-sm text-gray-700 bg-gray-100 px-4 py-2 rounded-lg font-medium">{t}</span>
+              {p.params.map((t: string, i: number) => (
+                <span key={i} className="text-[13px] text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-white/10 px-4 py-2 rounded-full font-medium">{t}</span>
               ))}
             </div>
           )}
 
           {p.audience && (
-            <p className="text-sm text-gray-500 mb-8 max-w-2xl">
-              <strong className="text-gray-700">Для кого:</strong> {p.audience}
+            <p className="text-sm text-gray-500 dark:text-gray-400 mb-8 max-w-2xl">
+              <strong className="text-gray-700 dark:text-gray-200">Для кого:</strong> {p.audience}
             </p>
           )}
 
@@ -214,9 +166,9 @@ function ProgramSection({ program: p, index }: { program: ProgramData; index: nu
             <span className="inline-block text-sm text-brand font-semibold bg-brand/10 px-5 py-2 rounded-full mb-6">{p.badge}</span>
           )}
 
-          <div className="mt-4">
-            <a href="#contact" className="inline-flex items-center gap-2 bg-brand text-white rounded-full px-8 py-4 font-medium hover:bg-[#e64627] transition-colors">
-              Узнать детали <ArrowRight className="w-4 h-4" />
+          <div className="mt-8">
+            <a href="#contact" className="inline-flex items-center gap-2 bg-brand text-white rounded-full px-8 pt-[14px] pb-[18px] font-medium hover:bg-[#e64627] transition-all duration-300 text-base hover:-translate-y-0.5">
+              Узнать детали <ArrowRight className="w-5 h-5 ml-1 mt-0.5" />
             </a>
           </div>
         </div>
@@ -228,22 +180,27 @@ function ProgramSection({ program: p, index }: { program: ProgramData; index: nu
 function BridgeSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-24 px-6 md:px-12 bg-white border-t border-gray-100">
+    <section ref={ref} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300 border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
-        <div className={`bg-gray-50 rounded-2xl p-10 md:p-12 border border-gray-100 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-3xl font-semibold text-gray-900 mb-4">ИИ не должен застрять в кабинете руководителя</h2>
-          <p className="text-lg text-gray-500 mb-4 max-w-3xl">Когда управленческая команда выровнена, дальше подключаются команды, пилоты и программа компании.</p>
-          <p className="text-base text-gray-600 mb-8 max-w-3xl leading-relaxed">
-            Управленческий старт нужен не ради самого разговора, а ради следующего шага. Подготовленная команда идёт в{" "}
-            <Link to="/builder-day" className="text-brand hover:underline">Agent Builder Day</Link>.
-            Функция получает защищаемый пилот. Компания собирает программу от команды-чемпиона до широкой волны. Всё это — следующий уровень после управленческого решения, и он уже описан.
-          </p>
-          <Link
-            to="/teams"
-            className="inline-flex items-center gap-2 border-2 border-gray-300 text-gray-700 rounded-full px-8 py-3 font-medium hover:border-brand hover:text-brand transition-colors"
-          >
-            Посмотреть программы для команды <ArrowRight className="w-4 h-4" />
-          </Link>
+        <div className={`relative overflow-hidden bg-gray-50/50 dark:bg-white/[0.03] rounded-[2.5rem] p-10 md:p-16 border border-gray-100 dark:border-white/[0.06] transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {/* Subtle glow background */}
+          <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-brand/5 blur-[80px] pointer-events-none rounded-full" />
+          
+          <div className="relative z-10 max-w-4xl">
+            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 dark:text-white mb-6">ИИ не должен застрять в кабинете руководителя</h2>
+            <p className="text-lg text-gray-500 dark:text-gray-400 mb-6 font-medium">Когда управленческая команда выровнена, дальше подключаются команды, пилоты и программа компании.</p>
+            <p className="text-base text-gray-600 dark:text-gray-400 mb-10 leading-relaxed max-w-3xl">
+              Управленческий старт нужен не ради самого разговора, а ради следующего шага. Подготовленная команда идёт в{" "}
+              <Link to="/builder-day" className="text-brand hover:underline font-medium">Agent Builder Day</Link>.
+              Функция получает защищаемый пилот. Компания собирает программу от команды-чемпиона до широкой волны. Всё это — следующий уровень после управленческого решения, и он уже описан.
+            </p>
+            <Link
+              to="/teams"
+              className="inline-flex items-center gap-2 border border-gray-300 dark:border-white/20 hover:border-brand/40 text-gray-700 dark:text-white bg-white/50 dark:bg-white/5 hover:bg-brand/5 dark:hover:bg-brand/10 rounded-full px-8 py-4 font-medium transition-all duration-300 hover:-translate-y-0.5 shadow-sm"
+            >
+              Смотреть программы для команды <ArrowRight className="w-5 h-5 ml-1 mt-0.5" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>

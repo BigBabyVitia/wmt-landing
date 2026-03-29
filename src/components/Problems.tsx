@@ -50,18 +50,18 @@ const uiIllustrations = [
       { text: "Автоматизация отчётности", status: "нет владельца" },
       { text: "Чат-бот поддержки", status: "не прошёл ИБ" },
     ].map((item, i) => (
-      <div key={i} className="flex items-center justify-between rounded-xl bg-gray-50 px-4 py-2.5">
+      <div key={i} className="flex items-center justify-between rounded-xl bg-gray-50 dark:bg-[hsl(220,18%,10%)] px-4 py-2.5">
         <div className="flex items-center gap-3">
-          <div className="w-5 h-5 rounded border-2 border-gray-200 shrink-0" />
-          <span className="text-sm text-gray-600">{item.text}</span>
+          <div className="w-5 h-5 rounded border-2 border-gray-200 dark:border-white/10 shrink-0" />
+          <span className="text-sm text-gray-600 dark:text-gray-400 dark:text-gray-500">{item.text}</span>
         </div>
-        <span className="text-xs text-gray-400 bg-white px-3 py-1.5 rounded-lg whitespace-nowrap">{item.status}</span>
+        <span className="text-xs text-gray-400 dark:text-gray-500 bg-white dark:bg-[hsl(220,20%,7%)] px-3 py-1.5 rounded-lg whitespace-nowrap">{item.status}</span>
       </div>
     ))}
     <div className="flex items-center justify-between rounded-xl px-4 py-2.5" style={{ backgroundColor: `${C}08`, border: `1.5px solid ${C}20` }}>
       <div className="flex items-center gap-3">
         <div className="w-5 h-5 rounded border-2 shrink-0" style={{ borderColor: C }} />
-        <span className="text-sm font-semibold text-gray-900">Ваш первый пилот</span>
+        <span className="text-sm font-semibold text-gray-900 dark:text-white">Ваш первый пилот</span>
       </div>
       <span className="text-xs font-semibold text-white px-3.5 py-1.5 rounded-lg" style={{ backgroundColor: C }}>запустить</span>
     </div>
@@ -69,11 +69,11 @@ const uiIllustrations = [
 
   // 3. Нет команды — две плашки в ряд
   <div className="flex gap-4 items-stretch">
-    <div className="flex-1 bg-gray-50 rounded-xl px-4 py-4">
-      <div className="text-[11px] text-gray-400 uppercase tracking-wider mb-3">Слышали про ИИ</div>
+    <div className="flex-1 bg-gray-50 dark:bg-[hsl(220,18%,10%)] rounded-xl px-4 py-4">
+      <div className="text-[11px] text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-3">Слышали про ИИ</div>
       <div className="flex -space-x-2 mb-2">
         {[...Array(4)].map((_, i) => (
-          <div key={i} className="w-8 h-8 rounded-full bg-gray-200 border-2 border-gray-50 flex items-center justify-center">
+          <div key={i} className="w-8 h-8 rounded-full bg-gray-200 dark:bg-[hsl(220,18%,18%)] border-2 border-gray-50 flex items-center justify-center">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round">
               <circle cx="12" cy="8" r="4" />
               <path d="M5 20c0-4 3.5-7 7-7s7 3 7 7" />
@@ -81,7 +81,7 @@ const uiIllustrations = [
           </div>
         ))}
       </div>
-      <span className="text-xs text-gray-400">+240</span>
+      <span className="text-xs text-gray-400 dark:text-gray-500">+240</span>
     </div>
     <div className="flex-1 rounded-xl px-4 py-4" style={{ backgroundColor: `${C}06` }}>
       <div className="text-[11px] uppercase tracking-wider mb-3" style={{ color: C }}>Умеют делать</div>
@@ -212,13 +212,13 @@ export function Problems() {
   ]
 
   return (
-    <section id="problems" className="py-24 px-6 md:px-12 bg-gray-50">
+    <section id="problems" className="py-24 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)]">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
             С чем к нам приходят
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 text-center">
+          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 text-center">
             Узнайте свою ситуацию
           </p>
         </div>
@@ -249,14 +249,14 @@ export function Problems() {
             ) : (
               <div
                 key={idx}
-                className={`group bg-white rounded-2xl p-8 lg:p-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`group bg-white dark:bg-[hsl(220,20%,7%)] rounded-2xl p-8 lg:p-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
                 style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
               >
                 <div className="mb-8">
                   {illustrations[idx]}
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-gray-500 leading-relaxed">{p.desc}</p>
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">{p.title}</h3>
+                <p className="text-gray-500 dark:text-gray-400 dark:text-gray-500 leading-relaxed">{p.desc}</p>
               </div>
             );
           })}

@@ -44,9 +44,9 @@ export function Experts() {
   ]
 
   return (
-    <section ref={sectionRef} className="py-24 px-6 md:px-12 bg-white">
+    <section ref={sectionRef} className="py-24 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
       <div className="max-w-7xl mx-auto">
-        <h2 className={`text-4xl md:text-5xl font-semibold text-center mb-16 text-gray-900 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <h2 className={`text-4xl md:text-5xl font-semibold text-center mb-16 text-gray-900 dark:text-white transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           Наши <span className="text-brand">эксперты</span>
         </h2>
 
@@ -62,7 +62,7 @@ export function Experts() {
                 <img src={expert.imgUrl} alt={expert.name} className="w-full h-full object-contain pointer-events-none" />
               </div>
               <h3 className="text-2xl font-semibold text-brand mb-3 w-full text-center">{expert.name}</h3>
-              <p className="text-gray-600 text-[15px] leading-[1.6] flex-grow w-full text-left">
+              <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 text-[15px] leading-[1.6] flex-grow w-full text-left">
                 {expert.desc}
               </p>
             </div>
@@ -81,7 +81,7 @@ export function Experts() {
                 <img src={expert.imgUrl} alt={expert.name} className="w-full h-full object-contain pointer-events-none" />
               </div>
               <h3 className="text-2xl font-semibold text-brand mb-3 w-full text-center">{expert.name}</h3>
-              <p className="text-gray-600 text-[15px] leading-[1.6] flex-grow w-full text-left">
+              <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 text-[15px] leading-[1.6] flex-grow w-full text-left">
                 {expert.desc}
               </p>
             </div>

@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { VersionProvider, useVersion } from "@/context/VersionContext"
+import { ThemeProvider } from "@/context/ThemeContext"
 
 /* Classic pages */
 import { Home } from "./pages/Home"
@@ -38,9 +39,10 @@ function HomePage() {
 function App() {
   return (
     <BrowserRouter>
+      <ThemeProvider>
       <VersionProvider>
         <ScrollToTop />
-        <main className="min-h-screen text-gray-900 bg-white selection:bg-brand selection:text-white flex flex-col">
+        <main className="min-h-screen text-gray-900 dark:text-gray-100 bg-white dark:bg-[hsl(220,20%,7%)] selection:bg-brand selection:text-white flex flex-col transition-colors duration-300">
           <div className="flex-1">
             <Routes>
               {/* Home — version switch */}
@@ -65,7 +67,7 @@ function App() {
               <Route path="/cookies" element={<Cookies />} />
             </Routes>
           </div>
-          <footer className="bg-black text-gray-400 py-12 px-6 text-center text-sm mt-auto">
+          <footer className="bg-black dark:bg-[hsl(220,20%,4%)] text-gray-400 dark:text-gray-500 py-12 px-6 text-center text-sm mt-auto">
             <div className="max-w-7xl mx-auto flex flex-col items-center justify-between md:flex-row border-t border-white/10 pt-8">
               <p>© {new Date().getFullYear()} WMT. Все права защищены.</p>
               <div className="mt-4 md:mt-0 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 items-center">
@@ -76,6 +78,7 @@ function App() {
           </footer>
         </main>
       </VersionProvider>
+      </ThemeProvider>
     </BrowserRouter>
   )
 }
