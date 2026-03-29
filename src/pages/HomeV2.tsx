@@ -236,7 +236,6 @@ function HeroVideo() {
 }
 
 function HeroWebGL() {
-  const overlayClass = "bg-black dark:bg-[hsl(220,20%,4%)]/25"
   const gradientClass = ""
   const subShadow = "0 1px 12px rgba(0,0,0,0.4)"
 
@@ -256,8 +255,7 @@ function HeroWebGL() {
         </Suspense>
       </div>
 
-      {/* Contrast layers */}
-      {overlayClass && <div className={`absolute inset-0 z-[1] transition-all duration-500 ${overlayClass}`} />}
+      {/* Contrast layers - removed dark overlay to keep WebGL visible */}
       {gradientClass && <div className={`absolute inset-0 z-[2] transition-all duration-500 ${gradientClass}`} />}
 
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 mt-12">
