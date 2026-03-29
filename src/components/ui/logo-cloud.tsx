@@ -20,7 +20,7 @@ export function LogoCloud({ className, logos, ...props }: LogoCloudProps) {
         className
       )}
     >
-      <InfiniteSlider gap={48} duration={30} durationOnHover={60}>
+      <InfiniteSlider gap={48} duration={60} durationOnHover={60}>
         {logos.map((logo) => (
           <div
             key={logo.name}
