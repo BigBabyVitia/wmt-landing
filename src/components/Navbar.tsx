@@ -13,10 +13,10 @@ export function Navbar() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[calc(env(safe-area-inset-top)+16px)] ${
         scrolled
-          ? "bg-white/70 backdrop-blur-xl py-4"
-          : "bg-transparent py-6"
+          ? "bg-white/70 backdrop-blur-xl pb-4"
+          : "bg-transparent pb-6"
       }`}
     >
       <div className="flex flex-row items-center justify-between px-8 max-w-7xl mx-auto w-full">

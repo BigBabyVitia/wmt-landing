@@ -54,7 +54,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[env(safe-area-inset-top)] ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pt-[calc(env(safe-area-inset-top)+12px)] ${
           isDark
             ? isDarkTheme
               ? "bg-[hsl(220,20%,7%)]/70 backdrop-blur-xl pb-3"
