@@ -70,24 +70,19 @@
   html {
     scroll-behavior: smooth;
     @apply bg-background transition-colors duration-300;
-    overflow-x: hidden;
-    overscroll-behavior: none;
-    min-height: 100vh;
   }
   html.dark {
     color-scheme: dark;
-    background-color: hsl(var(--background));
   }
   * {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground min-h-screen;
     font-family: 'Cygre', 'Arial', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
-    overscroll-behavior: none;
-    min-height: 100vh;
+    overscroll-behavior-y: auto;
     background-color: hsl(var(--background));
   }
 }

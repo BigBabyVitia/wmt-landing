@@ -42,7 +42,7 @@ function App() {
       <ThemeProvider>
       <VersionProvider>
         <ScrollToTop />
-        <main className="min-h-screen text-gray-900 dark:text-gray-100 bg-background selection:bg-brand selection:text-white flex flex-col transition-colors duration-300 overflow-x-hidden">
+        <main className="min-h-screen text-gray-900 dark:text-gray-100 bg-background selection:bg-brand selection:text-white flex flex-col transition-colors duration-300">
           <div className="flex-1">
             <Routes>
               {/* Home — version switch */}
