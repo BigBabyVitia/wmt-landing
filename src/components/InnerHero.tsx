@@ -98,9 +98,13 @@ interface InnerHeroProps {
 export function InnerHero({ formatName, headline, subheadline, pills, navLinks }: InnerHeroProps) {
   return (
     <section
-      className="relative w-full overflow-hidden flex flex-col pt-24 pb-20 md:pt-32 md:pb-32 bg-cover bg-center bg-no-repeat"
+      className="relative w-full overflow-hidden flex flex-col pt-32 pb-20 md:pt-40 md:pb-32 bg-cover bg-[75%_center] sm:bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/brand/hero-bg.webp')" }}
     >
+      {/* Soft gradient overlay to ensure text readability without killing the background color */}
+      <div className="absolute inset-0 z-[1] bg-gradient-to-r from-black/60 via-transparent to-transparent sm:hidden" />
+      <div className="absolute inset-0 z-[1] bg-gradient-to-b from-transparent via-transparent to-[#050b14] sm:hidden" />
+
       {/* Overscroll fillers */}
       <div className="absolute -top-[100vh] -inset-x-[20vw] h-[100vh] bg-background z-0" />
       <div className="absolute -bottom-[100vh] -inset-x-[20vw] h-[100vh] bg-background z-0" />
@@ -109,22 +113,26 @@ export function InnerHero({ formatName, headline, subheadline, pills, navLinks }
 
       <div className="relative z-10 flex flex-col justify-center h-full px-6 md:px-12 max-w-7xl mx-auto w-full">
         {formatName && (
-          <span className="inline-block text-sm md:text-base font-medium text-white/70 tracking-wider uppercase mb-4 animate-fade-rise">
+          <span className="inline-block text-[10px] md:text-base font-bold text-white/40 tracking-[0.2em] uppercase mb-4 animate-fade-rise">
             {formatName}
           </span>
         )}
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-semibold text-white animate-fade-rise whitespace-pre-line">
-          {headline}
-        </h1>
+        
+        {/* Remove orange highlight on mobile via CSS override if any exists in headline */}
+        <div className="[&_em]:not-italic [&_em]:text-white sm:[&_em]:text-brand [&_em]:font-bold">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-bold text-white animate-fade-rise whitespace-pre-line tracking-tight">
+            {headline}
+          </h1>
+        </div>
 
-        <p className="text-white/80 text-xl md:text-xl lg:text-2xl max-w-3xl mt-8 leading-relaxed animate-fade-rise-delay">
+        <p className="text-white/70 text-base md:text-xl lg:text-2xl max-w-3xl mt-6 md:mt-8 leading-relaxed animate-fade-rise-delay font-medium">
           {subheadline}
         </p>
 
         {pills && pills.length > 0 && (
-          <div className="flex flex-wrap gap-4 mt-10 animate-fade-rise-delay-2">
+          <div className="flex flex-wrap gap-3 md:gap-4 mt-8 md:mt-10 animate-fade-rise-delay-2">
             {pills.map((pill, idx) => (
-              <div key={idx} className="flex items-center text-white bg-white/20 px-4 py-2 rounded-full border border-white/30 backdrop-blur-sm text-sm font-medium">
+              <div key={idx} className="flex items-center text-white bg-white/10 px-4 py-2 rounded-full border border-white/20 backdrop-blur-md text-[10px] sm:text-sm font-medium">
                 {pill}
               </div>
             ))}

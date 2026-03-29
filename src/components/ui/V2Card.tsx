@@ -4,6 +4,7 @@ import type { ReactNode, MouseEvent } from "react"
 export interface V2CardProps {
   children: ReactNode
   className?: string
+  contentClassName?: string
   visible?: boolean
   index?: number
   delayBase?: number
@@ -13,6 +14,7 @@ export interface V2CardProps {
 export function V2Card({ 
   children, 
   className = "", 
+  contentClassName = "",
   visible = true, 
   index = 0,
   delayBase = 200,
@@ -64,7 +66,7 @@ export function V2Card({
         }}
       />
       
-      <div className="p-6 sm:p-8 md:p-14 relative z-10 flex flex-col h-full">
+      <div className={`p-6 sm:p-8 md:p-10 relative z-10 flex flex-col h-full ${contentClassName}`}>
         {children}
       </div>
     </div>

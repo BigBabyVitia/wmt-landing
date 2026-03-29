@@ -117,6 +117,16 @@
   .animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
   .animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
 
+  @keyframes text-glow {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+  }
+  .animate-text-glow {
+    background-size: 200% auto;
+    animation: text-glow 10s ease-in-out infinite;
+  }
+
   /* Line-draw animation for format card SVGs */
   .format-svg-path {
     transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);

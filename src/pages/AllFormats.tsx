@@ -24,14 +24,14 @@ const teamPrograms = [
 ]
 
 const builderPrograms = [
-  { name: "Agent Builder Day", desc: "Один рабочий день, в который команда собирает агента под свой кейс", audience: "Собранная команда с задачей", format: "Офлайн, 30–40 человек", result: "Рабочий агент, n8n workflow", threshold: "Нужна конкретная задача", next: "Углубление через n8n + Claude", proof: "80–85% практики", link: "/builder-day", },
-  { name: "n8n + Claude", desc: "Глубокая программа сборщиков с RAG и multi-agent", audience: "Продвинутый практик", format: "Малая группа до 6 человек", result: "3–5 агентов", threshold: "Аппетит на сборку", next: "Самостоятельная разработка в компании", proof: "Офлайн/Онлайн гибрид", link: "", }
+  { name: "День сборки агентов", desc: "Один рабочий день, в который команда собирает агента под свой кейс", audience: "Собранная команда с задачей", format: "Офлайн, 30–40 человек", result: "Рабочий агент, n8n workflow", threshold: "Нужна конкретная задача", next: "Углубление через n8n + Claude", proof: "80–85% практики", link: "/builder-day", },
+  { name: "Сборка (n8n + Claude)", desc: "Глубокая программа сборщиков с RAG и multi-agent", audience: "Продвинутый практик", format: "Малая группа до 6 человек", result: "3–5 агентов", threshold: "Аппетит на сборку", next: "Самостоятельная разработка в компании", proof: "Офлайн/Онлайн гибрид", link: "", }
 ]
 
 const navCards = [
   { label: "Для руководителей", to: "/executive" },
   { label: "Для команд", to: "/teams" },
-  { label: "Agent Builder Day", to: "/builder-day" },
+  { label: "День сборки агентов", to: "/builder-day" },
   { label: "Личный ИИ", to: "/personal-ai" },
   { label: "Доказательства", to: "/proof" },
 ]

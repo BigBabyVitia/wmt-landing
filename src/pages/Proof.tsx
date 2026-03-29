@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom"
-import { NavbarV2 } from "@/components/NavbarV2"
 import { LogoCloud } from "@/components/ui/logo-cloud"
 import { clients } from "@/data/clients"
+import { InnerHero } from "@/components/InnerHero"
 
 function useScrollVisible(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null)
@@ -60,18 +60,11 @@ export function Proof() {
   return (
     <>
       {/* HERO */}
-      <section className="relative w-full overflow-hidden flex flex-col pt-32 pb-24 md:pb-32 bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/brand/hero-bg.webp')" }}>
-        <NavbarV2 variant="inner" />
-        <div className="relative z-10 px-6 md:px-12 max-w-7xl mx-auto w-full">
-          <span className="inline-block text-sm font-medium text-white/70 tracking-wider uppercase mb-4 animate-fade-rise">Доказательства</span>
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.15] font-semibold text-white animate-fade-rise max-w-4xl">
-            Игорь Никитин. Основатель WMT&nbsp;AI. 400+&nbsp;сотрудников.
-          </h1>
-          <p className="text-white/80 text-lg md:text-xl max-w-3xl mt-8 leading-relaxed animate-fade-rise-delay">
-            Программы WMT&nbsp;AI&nbsp;&mdash; не анонимный онлайн-продукт. За ними стоит конкретный человек с&nbsp;проверяемым опытом и&nbsp;компания с&nbsp;реальным масштабом.
-          </p>
-        </div>
-      </section>
+      <InnerHero 
+        formatName="Доказательства"
+        headline="Игорь Никитин. Основатель WMT AI. 400+ сотрудников."
+        subheadline="Программы WMT AI — не анонимный онлайн-продукт. За ними стоит конкретный человек с проверяемым опытом и компания с реальным масштабом."
+      />
 
       {/* FOUNDER */}
       <FounderSection />

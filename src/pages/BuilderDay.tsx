@@ -54,11 +54,11 @@ export function BuilderDay() {
   return (
     <>
       <V2Hero 
-        label="Agent Builder Day"
+        label="День сборки агентов"
         title={<>Рабочий агент у каждого в команде. <em className="not-italic text-brand font-bold">За один день.</em></>}
         description={
           <>
-            Agent Builder Day — практический день для собранной команды с конкретной задачей. 5 часов работы, мини-группы по 3–4 человека, свой агент и алгоритм повторной сборки на выходе.
+            День сборки агентов — практический день для собранной команды с конкретной задачей. 5 часов работы, мини-группы по 3–4 человека, свой агент и алгоритм повторной сборки на выходе.
             <span className="block mt-4 text-white/60 text-base max-w-3xl leading-relaxed">
               Формат рассчитан на 30–40 человек. Каждый участник проходит через 5 блоков сборки: от выбора модели до финального питча. На выходе — агент под реальную задачу компании.
             </span>
@@ -96,7 +96,7 @@ function PreparationSection() {
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Чем конкретнее подготовка, тем сильнее результат</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 mb-12">Agent Builder Day не требует бюрократии. Нужен понятный контекст.</p>
+          <p className="text-lg text-gray-500 dark:text-gray-400 mb-12">День сборки агентов не требует бюрократии. Нужен понятный контекст.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {preparation.map((p, idx) => (
               <V2Card
@@ -181,7 +181,7 @@ function NextStepsSection() {
       <div className="max-w-7xl mx-auto">
         <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">После дня у результата должен быть владелец и продолжение</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 font-medium">Agent Builder Day работает сильнее, когда за ним идёт конкретный следующий шаг.</p>
+          <p className="text-lg text-gray-500 dark:text-gray-400 font-medium">День сборки агентов работает сильнее, когда за ним идёт конкретный следующий шаг.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {nextSteps.map((s, idx) => (

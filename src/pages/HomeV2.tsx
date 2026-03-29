@@ -132,19 +132,19 @@ const challengeSvgs = [
 const challenges = [
   {
     title: "Порог входа уже пройден",
-    desc: "ИИ перестал быть темой «на потом» и стал фактором скорости, качества и эффективности.",
+    desc: "ИИ стал базовым фактором скорости и эффективности, который нельзя игнорировать.",
   },
   {
     title: "Большой бизнес не перестраивается сам",
-    desc: "Чем крупнее компания, тем сложнее превратить интерес к ИИ в реальное изменение процессов, решений и повседневной работы.",
+    desc: "Масштаб мешает быстро превратить интерес к ИИ в реальное изменение процессов.",
   },
   {
     title: "Локальная польза не меняет систему",
-    desc: "Отдельные эксперименты могут быть полезны, но без глубокого и последовательного внедрения почти не влияют на результат компании в целом.",
+    desc: "Точечные тесты не дают эффекта без системного внедрения в структуру бизнеса.",
   },
   {
     title: "Ошибка в треке обходится слишком дорого",
-    desc: "Если AI-трансформация идёт хаотично или по неподходящему сценарию, усилия, время и инвестиции легко уходят в точечные улучшения без большого эффекта для бизнеса.",
+    desc: "Ошибки в стратегии ведут к трате ресурсов на улучшения без реального результата.",
   },
 ]
 
@@ -161,14 +161,14 @@ const levels = [
     label: "Уровень 2. Масштабирование",
     title: "Практика расширяется на команды и компанию",
     desc: "Пилоты, команды-чемпионы, корпоративная волна, сборка агентов. ИИ выходит из кабинета руководителя в рабочие процессы.",
-    tags: ["Цифровой каркас", "Мышление 2.0", "ИИ-марафон", "Agent Builder Day", "n8n + Claude"],
+    tags: ["Цифровой каркас", "Мышление 2.0", "ИИ-марафон", "День сборки агентов", "Сборка агентов (n8n + Claude)"],
     link: "/teams",
     linkText: "Подобрать программу для команды",
   },
   {
     label: "Уровень 3. Личный",
-    title: "Углубление для тех, кто хочет пройти тему лично",
-    desc: "Офлайн-интенсив — два дня руками, с собственной стратегией и агентом. Часто после него тема возвращается в компанию на другом уровне.",
+    title: "Личный трек для тех, кто хочет пройти тему глубоко",
+    desc: "Двухдневный интенсив — работаем руками с вашей стратегией и конкретными агентами. Часто после этого тема возвращается в компанию на совершенно другом уровне.",
     tags: ["Личный ИИ"],
     link: "/personal-ai",
     linkText: "Узнать про личный интенсив",
@@ -322,44 +322,97 @@ function HeroWebGL() {
 
 /* ── Sub-components ── */
 
+const challengeLabels = ["ВХОД", "МАСШТАБ", "СИСТЕМА", "СТРАТЕГИЯ"];
+
 function ChallengesSection() {
   const { ref, visible } = useScrollVisible()
+  const [variant, setVariant] = useState<"modern" | "stack">("modern")
 
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
+    <section ref={ref} className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-3xl sm:text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 md:mb-6">
-            ИИ уже меняет рынок.<br />Готова ли ваша компания к этому переходу?
+        {/* Switcher (only for design selection) */}
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex p-1 bg-gray-100 dark:bg-white/5 rounded-full border border-gray-200 dark:border-white/10">
+            {(["modern", "stack"] as const).map((v) => (
+              <button
+                key={v}
+                onClick={() => setVariant(v)}
+                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
+                  variant === v 
+                    ? "bg-white dark:bg-white/10 text-brand shadow-sm" 
+                    : "text-gray-500 hover:text-gray-900 dark:hover:text-white"
+                }`}
+              >
+                {v === "modern" ? "Карточки" : "Список"}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className={`mb-16 md:mb-24 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-3xl md:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-8 leading-[1.15]">
+            ИИ уже меняет рынок.<br />
+            <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/40 dark:via-white dark:to-white/40 bg-clip-text text-transparent inline-block py-2 -my-2 animate-text-glow">
+              Готовы ли вы к переходу?
+            </span>
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-4xl">
-            Многие уже видят потенциал ИИ. Но чем крупнее компания, тем сложнее добиться реального эффекта. Нужен точный подход к AI-трансформации и свой трек изменений.
+          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-3xl leading-relaxed">
+            Мы помогаем крупному бизнесу не просто «попробовать» нейросети, а встроить их в ДНК процессов и решений.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {challenges.map((c, idx) => (
-            <div
-              key={idx}
-              className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              style={{ transitionDelay: visible ? `${200 + idx * 120}ms` : "0ms" }}
-            >
-              <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/[0.03] to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
-                <div className="relative z-10 flex gap-4 sm:gap-5 items-start">
-                  <div className="flex-shrink-0 mt-1">
-                    <ChallengeAppIcon>
-                      {challengeSvgs[idx]()}
-                    </ChallengeAppIcon>
-                  </div>
-                  <div>
-                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">{c.title}</h3>
-                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed">{c.desc}</p>
+
+        {variant === "modern" && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {challenges.map((c, idx) => (
+              <div
+                key={idx}
+                className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
+              >
+                <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/[0.03] to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+                  <div className="relative z-10 flex gap-4 sm:gap-5 items-start">
+                    <div className="flex-shrink-0 mt-1">
+                      <ChallengeAppIcon>
+                        {challengeSvgs[idx]()}
+                      </ChallengeAppIcon>
+                    </div>
+                    <div>
+                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">{c.title}</h3>
+                      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed">{c.desc}</p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
+
+        {variant === "stack" && (
+          <div className="flex flex-col gap-4">
+            {challenges.map((c, idx) => (
+              <div key={idx} className="group relative bg-gray-50/50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/[0.05] rounded-[2rem] p-6 md:p-10 transition-all duration-300 hover:border-brand/30 hover:bg-gray-50 dark:hover:bg-white/[0.04] overflow-hidden">
+                {/* Background Ghost Label */}
+                <div className="absolute -right-4 -bottom-4 select-none pointer-events-none opacity-100">
+                   <span className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-gray-400/10 via-gray-900/5 to-gray-400/10 dark:from-white/0 dark:via-white/[0.03] dark:to-white/0 bg-clip-text text-transparent animate-text-glow tracking-tight">
+                     {challengeLabels[idx]}
+                   </span>
+                </div>
+                
+                <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 relative z-10">
+                  <div className="flex-shrink-0 md:w-24">
+                    <span className="text-[10px] font-bold tracking-[0.2em] text-brand/60 uppercase">{challengeLabels[idx]}</span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-brand transition-colors duration-300">{c.title}</h3>
+                    <p className="text-sm md:text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-4xl">{c.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   )
@@ -447,6 +500,7 @@ const teaserData = [
     id: "exec-teaser",
     title: "Топ-менеджмент",
     desc: "Когда на столе много предложений, а общего решения нет — начинать нужно не с пилота и не с массового обучения. Нужен управленческий ход.",
+    mobileDesc: "Когда общего решения нет — начинать нужно не с обучения, а с управленческого хода.",
     items: [
       {
         title: "Системный ИИ",
@@ -475,7 +529,8 @@ const teaserData = [
   {
     id: "teams-teaser",
     title: "Масштабирование",
-    desc: "Практика расширяется на отделы и процессы. Обучение команд руками на собственных задачах и внедрение лучшей практики на сотни сотрудников.",
+    desc: "Практика расширяется на отделы и процессы. Обучение команд на собственных задачах и внедрение лучших решений на сотни сотрудников.",
+    mobileDesc: "Внедрение практики на отделы и процессы. Обучение команд на собственных задачах.",
     items: [
       {
         title: "Мышление 2.0",
@@ -483,17 +538,17 @@ const teaserData = [
         tags: { format: "Офлайн", duration: "1–1,5 дня", people: "10–30 человек" }
       },
       {
-        title: "ИИ-марафон (корпоративная волна)",
+        title: "ИИ-марафон (корп. волна)",
         desc: "широкая волна на 10 недель, 100% руками.",
         tags: { format: "Онлайн", duration: "10 недель", people: "Сотни человек" }
       },
       {
-        title: "Agent Builder Day",
+        title: "День сборки агентов",
         desc: "рабочий агент у каждого за один день.",
         tags: { format: "Офлайн", duration: "1 день", people: "30–40 человек" }
       },
       {
-        title: "n8n + Claude",
+        title: "Сборка (n8n + Claude)",
         desc: "глубокая малогрупповая программа по сборке агентов.",
         tags: { format: "Офлайн / Онлайн", duration: "По запросу", people: "до 6 человек" }
       }
@@ -505,6 +560,7 @@ const teaserData = [
     id: "personal-teaser",
     title: "Личный ИИ",
     desc: "Полное погружение с анализом процессов и сборкой решения под вашу специфику. Если вы хотите глубоко разобраться в теме самостоятельно, вне корпоративного контекста.",
+    mobileDesc: "Глубокое погружение и сборка решения под вашу специфику вне корпоративного контекста.",
     personalSteps: [
       { title: "1. Изучение", desc: "Анализируем бизнес-потребность и текущие процессы." },
       { title: "2. Подготовка", desc: "Разрабатываем индивидуальную программу и готовим материалы." },
@@ -541,7 +597,7 @@ export function DirectionTeasersCards() {
   );
 }
 
-function TeaserCard({ id, title, desc, items, personalSteps, link, linkText, index }: any) {
+function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, linkText, index }: any) {
   const { ref, visible } = useScrollVisible(0.15);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -556,7 +612,7 @@ function TeaserCard({ id, title, desc, items, personalSteps, link, linkText, ind
     <div
       ref={ref}
       id={id}
-      className={`relative group w-full rounded-[2.5rem] border border-gray-200 dark:border-white/10/60 dark:border-white/[0.06] bg-white dark:bg-white/[0.02] transition-all duration-700 overflow-hidden text-left ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"}`}
+      className={`relative group w-full rounded-[2rem] border border-gray-200 dark:border-white/10/60 dark:border-white/[0.06] bg-white dark:bg-white/[0.02] transition-all duration-700 overflow-hidden text-left ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"}`}
       style={{ transitionDelay: visible ? `${index * 150}ms` : "0ms" }}
       onMouseMove={handleMouseMove}
     >
@@ -585,23 +641,26 @@ function TeaserCard({ id, title, desc, items, personalSteps, link, linkText, ind
         }}
       />
       
-      <div className="p-6 sm:p-6 sm:p-8 md:p-14 relative z-10 flex flex-col gap-8 md:gap-10">
+      <div className="p-4 py-6 sm:p-8 md:p-14 relative z-10 flex flex-col gap-4 sm:gap-6 md:gap-10">
         <div className="w-full text-center xl:text-left">
-          <h3 className="text-2xl sm:text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 md:mb-5">{title}</h3>
-          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed max-w-3xl mx-auto xl:mx-0">{desc}</p>
+          <h3 className="text-xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-1 md:mb-5">{title}</h3>
+          <p className="hidden sm:block text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed max-w-3xl mx-auto xl:mx-0">{desc}</p>
+          <p className="block sm:hidden text-[13px] text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto italic">
+            {mobileDesc || desc}
+          </p>
         </div>
         
         {personalSteps && personalSteps.length > 0 && (
-          <div className="w-full mb-2">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4 md:mb-5 text-center xl:text-left">Процесс</h4>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 relative">
+          <div className="w-full mb-0 sm:mb-2">
+            <h4 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 md:mb-5 text-center xl:text-left">Процесс</h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-4 relative">
                {/* Соединительная линия (только на десктопе) */}
                <div className="hidden sm:block absolute top-[28px] left-[15%] right-[15%] h-[1px] bg-brand/30 z-0 border-t border-dashed border-brand/50" />
                
                {personalSteps.map((step: any, idx: number) => (
-                  <div key={idx} className="flex flex-col gap-1.5 p-4 md:p-5 relative z-10 sm:items-center sm:text-center bg-transparent border border-brand/10 dark:border-brand/[0.05] rounded-2xl">
-                    <span className="font-semibold text-brand text-sm sm:text-base leading-tight inline-block mb-1">{step.title}</span>
-                    <span className="text-gray-700 dark:text-gray-300 text-xs sm:text-sm leading-snug">{step.desc}</span>
+                  <div key={idx} className="flex flex-col gap-0.5 p-3 md:p-5 relative z-10 sm:items-center sm:text-center bg-transparent border border-brand/10 dark:border-brand/[0.05] rounded-xl sm:rounded-2xl">
+                    <span className="font-semibold text-brand text-xs sm:text-base leading-tight inline-block">{step.title}</span>
+                    <span className="text-gray-700 dark:text-gray-300 text-[10px] sm:text-sm leading-snug">{step.desc}</span>
                   </div>
                ))}
             </div>
@@ -610,39 +669,33 @@ function TeaserCard({ id, title, desc, items, personalSteps, link, linkText, ind
 
         {items && items.length > 0 && (
           <div className="w-full">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-4 md:mb-5 text-center xl:text-left">
+            <h4 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 md:mb-5 text-center xl:text-left">
               {personalSteps ? "Доступные форматы" : "Программы"}
             </h4>
-            <div className={`grid grid-cols-1 gap-3 md:gap-4 ${personalSteps ? "sm:grid-cols-2 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
+            <div className={`grid grid-cols-1 gap-2 md:gap-4 ${personalSteps ? "sm:grid-cols-2 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
               {items.map((item: any, idx: number) => {
                 return (
-                  <div key={idx} className="flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-2xl p-4 md:p-5 content-start relative group/card hover:border-brand/20 transition-colors">
-                    <div className="flex justify-between items-start gap-3 mb-2">
-                       <span className="font-semibold text-gray-900 dark:text-white text-[15px] sm:text-[16px] leading-tight">{item.title}</span>
+                  <div key={idx} className="flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/20 transition-colors">
+                    <div className="flex justify-between items-start gap-3 mb-1 sm:mb-2">
+                       <span className="font-semibold text-gray-900 dark:text-white text-sm sm:text-[16px] leading-tight">{item.title}</span>
                        {item.tags && item.tags.format && (
-                         <span className="shrink-0 inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-md">{item.tags.format}</span>
+                         <span className="shrink-0 inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-1.5 py-0.5 rounded-md">{item.tags.format}</span>
                        )}
                     </div>
-                    {item.desc && <span className="text-gray-600 dark:text-gray-400 text-xs sm:text-[13px] leading-relaxed mb-3">{item.desc}</span>}
+                    {item.desc && <span className="text-gray-600 dark:text-gray-400 text-[11px] sm:text-[13px] leading-relaxed mb-2 sm:mb-3">{item.desc}</span>}
                     
                     {item.tags && (
-                      <div className="flex flex-nowrap items-center gap-2 mt-auto overflow-x-auto w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-0.5">
+                      <div className="flex flex-nowrap items-center gap-1.5 mt-auto overflow-x-auto w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-0.5">
                         {item.tags.duration && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
-                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-1.5 py-1 rounded-md">
+                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                              {item.tags.duration}
                            </span>
                         )}
                         {item.tags.people && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
-                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-1.5 py-1 rounded-md">
+                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                              {item.tags.people}
-                           </span>
-                        )}
-                        {item.tags.result && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
-                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                             {item.tags.result}
                            </span>
                         )}
                       </div>
@@ -654,12 +707,12 @@ function TeaserCard({ id, title, desc, items, personalSteps, link, linkText, ind
           </div>
         )}
 
-        <div className="mt-2 text-center xl:text-left w-full sm:w-auto">
+        <div className="mt-1 sm:mt-2 text-center xl:text-left w-full sm:w-auto">
           <Link
             to={link}
-            className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-brand text-white hover:bg-[#e64627] rounded-full px-6 sm:px-8 py-3.5 sm:pt-[14px] sm:pb-[18px] font-medium transition-colors duration-300 text-sm sm:text-base hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-brand text-white hover:bg-[#e64627] rounded-full px-6 py-3 sm:px-8 sm:py-3.5 sm:pt-[14px] sm:pb-[18px] font-medium transition-colors duration-300 text-xs sm:text-base hover:-translate-y-0.5"
           >
-            {linkText} <ArrowRight className="w-5 h-5 ml-1 mt-0.5" />
+            {linkText} <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1 mt-0.5" />
           </Link>
         </div>
       </div>

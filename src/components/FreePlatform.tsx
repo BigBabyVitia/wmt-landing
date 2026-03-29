@@ -24,48 +24,50 @@ export function FreePlatform() {
   }, [])
 
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-12 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="mb-16">
+          <div className="mb-10 md:mb-16 text-center sm:text-left">
             <div className="max-w-3xl">
-              <span className="inline-block text-sm font-bold tracking-widest text-brand uppercase mb-4">Демо-доступ</span>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-semibold tracking-tight text-gray-900 dark:text-white mb-6">
+              <span className="inline-block text-xs sm:text-sm font-bold tracking-widest text-brand uppercase mb-3 sm:mb-4">Демо-доступ</span>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] leading-[1.1] font-semibold tracking-tight text-gray-900 dark:text-white mb-4 sm:mb-6">
                 Начните с видеоуроков — <span className="text-brand">бесплатно</span>
               </h2>
-              <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 leading-relaxed font-light mb-8">
+              <p className="hidden sm:block text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 leading-relaxed font-light mb-8">
                 Библиотека уроков, практические модули и рабочая среда. На платформе WMT AI уже открыты 4 базовых модуля, которые дадут вам реальную практику и понимание технологий до того, как вы решите двигаться дальше.
               </p>
-
+              <p className="block sm:hidden text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-light mb-6 italic">
+                Доступ к базе знаний, урокам и готовым промптам. Начните внедрение ИИ самостоятельно и без лишних затрат.
+              </p>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {modules.map((m, idx) => (
             <div
               key={idx}
               className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: visible ? `${200 + idx * 100}ms` : "0ms" }}
             >
-              <div className="bg-white dark:bg-white/[0.03] rounded-[2rem] p-8 border border-gray-200 dark:border-white/[0.06] shadow-sm hover:shadow-lg hover:shadow-brand/20 hover:-translate-y-1 hover:border-brand/30 transition-all duration-300 group h-full cursor-default transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
-                <div className="w-14 h-14 rounded-2xl bg-gray-50 dark:bg-white/5 flex items-center justify-center mb-6 group-hover:bg-brand/10 transition-colors duration-300">
-                  <m.icon />
+              <div className="bg-white dark:bg-white/[0.03] rounded-[2rem] p-6 sm:p-8 border border-gray-200 dark:border-white/[0.06] shadow-sm hover:shadow-lg hover:shadow-brand/20 hover:-translate-y-1 hover:border-brand/30 transition-all duration-300 group h-full cursor-default transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gray-50 dark:bg-white/5 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-brand/10 transition-colors duration-300">
+                  <m.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>
-                <p className="text-[13px] font-bold tracking-wider text-brand uppercase mb-3 text-left">Бесплатно</p>
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">{m.title}</h3>
-                <p className="text-gray-500 dark:text-gray-400 dark:text-gray-500 text-[15px] leading-relaxed">{m.desc}</p>
+                <p className="text-[11px] sm:text-[13px] font-bold tracking-wider text-brand uppercase mb-2 sm:mb-3 text-left">Бесплатно</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2 sm:mb-3">{m.title}</h3>
+                <p className="text-gray-500 dark:text-gray-400 text-[13px] sm:text-[15px] leading-relaxed">{m.desc}</p>
               </div>
             </div>
           ))}
         </div>
 
-        <div className={`mt-16 flex justify-start transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "600ms" }}>
+        <div className={`mt-10 md:mt-16 flex justify-center sm:justify-start transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: "600ms" }}>
           <a
             href="https://transformation.wmtunnel.ru"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-brand shadow-lg shadow-brand/50 text-white hover:bg-[#e64627] hover:-translate-y-0.5 transition-all duration-300 rounded-full px-12 py-4 font-medium text-lg inline-block"
+            className="bg-brand shadow-lg shadow-brand/50 text-white hover:bg-[#e64627] hover:-translate-y-0.5 transition-all duration-300 rounded-full px-10 py-3.5 sm:px-12 sm:py-4 font-medium text-base sm:text-lg inline-block"
           >
             Получить доступ
           </a>
