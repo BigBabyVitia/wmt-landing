@@ -36,7 +36,7 @@
   }
 
   .dark {
-    --background: 220 20% 7%;
+    --background: 0 0% 0%; /* Change to pure black for uniform look */
     --foreground: 210 20% 95%;
     
     --card: 220 18% 10%;
@@ -69,6 +69,9 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    @apply bg-background transition-colors duration-300;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
   }
   html.dark {
     color-scheme: dark;
@@ -77,9 +80,10 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground min-h-screen;
     font-family: 'Cygre', 'Arial', sans-serif;
     transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden;
   }
 }
 

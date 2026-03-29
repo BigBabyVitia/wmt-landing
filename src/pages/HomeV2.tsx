@@ -205,17 +205,17 @@ export function HomeV2() {
 
 function HeroVideo() {
   return (
-    <section id="home" className="relative w-full h-screen overflow-hidden bg-black flex flex-col pt-24 pb-40">
+    <section id="home" className="relative w-full h-screen overflow-hidden bg-background flex flex-col pt-20 pb-32 sm:pt-24 sm:pb-40">
       <NavbarV2 variant="home" />
       <video autoPlay loop muted playsInline className="absolute inset-0 w-full h-full object-cover z-0 opacity-65">
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 z-[1] bg-black/15" />
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 mt-12">
-        <h1 className="text-4xl sm:text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 mt-4 sm:mt-12">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise">
           WMT перестраивает бизнес под&nbsp;<em className="not-italic text-brand font-bold">ИИ</em>
         </h1>
-        <p className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mt-6 sm:mt-8 leading-relaxed animate-fade-rise-delay">
+        <p className="text-gray-200 text-lg sm:text-base md:text-lg lg:text-xl max-w-3xl mt-6 sm:mt-8 leading-relaxed animate-fade-rise-delay">
           От решения руководства до рабочих команд. Каждый формат работает сам по себе и ведёт в следующий.
         </p>
 
@@ -252,11 +252,13 @@ function HeroWebGL() {
   const subShadow = "0 1px 12px rgba(0,0,0,0.4)"
 
   return (
-    <section id="home" className="relative w-full h-screen overflow-hidden bg-black flex flex-col pt-24 pb-40">
+    <section id="home" className="relative w-full h-screen overflow-hidden bg-background flex flex-col pt-20 pb-32 sm:pt-24 sm:pb-40">
+      {/* Overscroll-up filler to match bg-background */}
+      <div className="absolute -top-[100vh] inset-x-0 h-[100vh] bg-background z-0" />
       <NavbarV2 variant="home" />
 
       {/* Unicorn Studio WebGL background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute -inset-[2px] z-0">
         <Suspense fallback={<div className="w-full h-full bg-black dark:bg-[hsl(220,20%,4%)]" />}>
           <UnicornScene
             projectId="jJjGTV0vcy9VIfmO9Wr8"
@@ -271,14 +273,14 @@ function HeroWebGL() {
       <div className="absolute inset-0 z-[2] bg-black/20" />
       {gradientClass && <div className={`absolute inset-0 z-[2] transition-all duration-500 ${gradientClass}`} />}
 
-      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 mt-12">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 mt-4 sm:mt-12">
         <h1
-          className="text-4xl sm:text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise"
         >
           WMT перестраивает бизнес под&nbsp;<em className="not-italic text-white font-bold">ИИ</em>
         </h1>
         <p
-          className="text-gray-200 text-sm sm:text-base md:text-lg lg:text-xl max-w-3xl mt-6 sm:mt-8 leading-relaxed animate-fade-rise-delay"
+          className="text-gray-200 text-lg sm:text-base md:text-lg lg:text-xl max-w-3xl mt-6 sm:mt-8 leading-relaxed animate-fade-rise-delay"
           style={subShadow ? { textShadow: subShadow } : undefined}
         >
           От решения руководства до рабочих команд. Каждый формат работает сам по себе и ведёт в следующий.
