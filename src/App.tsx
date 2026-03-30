@@ -67,7 +67,7 @@ function App() {
               <Route path="/cookies" element={<Cookies />} />
             </Routes>
           </div>
-          <footer className="bg-black dark:bg-[hsl(220,20%,4%)] text-gray-400 dark:text-gray-500 py-12 px-6 text-center text-sm mt-auto">
+          <footer className="bg-black dark:bg-black text-gray-400 dark:text-gray-500 py-12 px-6 text-center text-sm mt-auto">
             <div className="max-w-7xl mx-auto flex flex-col items-center justify-between md:flex-row border-t border-white/10 pt-8">
               <p>© {new Date().getFullYear()} WMT. Все права защищены.</p>
               <div className="mt-4 md:mt-0 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 items-center">
