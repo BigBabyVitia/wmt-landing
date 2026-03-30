@@ -44,11 +44,14 @@ export function Experts() {
   ]
 
   return (
-    <section ref={sectionRef} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+    <section ref={sectionRef} className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-[#0F0F24] dark:bg-[#0F0F24]">
       <div className="max-w-7xl mx-auto">
-        <h2 className={`text-3xl sm:text-4xl md:text-5xl font-semibold text-center mb-16 text-gray-900 dark:text-white transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          Наши <span className="text-brand">эксперты</span>
-        </h2>
+        <div className="text-center mb-16 md:mb-24">
+          <div className="text-brand text-xs md:text-sm font-bold uppercase tracking-[0.2em] mb-4">Команда</div>
+          <h2 className={`text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            Наши <span className="text-brand">эксперты</span>
+          </h2>
+        </div>
 
         {/* Row 1: 3 experts */}
         <div className="flex flex-wrap justify-center gap-x-8 gap-y-16 lg:gap-x-12 mb-16">

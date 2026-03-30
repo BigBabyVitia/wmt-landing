@@ -48,27 +48,28 @@ export function Trust() {
   ]
 
   return (
-    <section id="trust" ref={sectionRef} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+    <section id="trust" ref={sectionRef} className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-[#0B0B1A] dark:bg-[#0B0B1A] border-t border-white/[0.05]">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6 max-w-4xl">
+        <div className={`mb-16 md:mb-24 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="text-brand text-xs md:text-sm font-bold uppercase tracking-[0.2em] mb-4">Доверие</div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-6 max-w-4xl">
             Почему нам доверяют
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-3xl">
+          <p className="text-lg md:text-2xl text-gray-500 dark:text-[#94A3B8] max-w-3xl leading-relaxed">
             Работаем с корпоративными сценариями, где важна не презентация, а результат.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
           {blocks.map((b, idx) => (
             <div
               key={idx}
-              className={`flex flex-col bg-white dark:bg-[hsl(220,20%,7%)] p-8 rounded-3xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`flex flex-col bg-[#161B26] border border-white/5 p-8 lg:p-10 rounded-2xl transition-all duration-700 hover:border-white/10 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: visible ? `${200 + idx * 150}ms` : "0ms" }}
             >
-              {b.icon}
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 leading-tight min-h-[4.5rem]">{b.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed text-base">{b.desc}</p>
+              <div className="mb-8">{b.icon}</div>
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">{b.title}</h3>
+              <p className="text-gray-600 dark:text-[#94A3B8] leading-relaxed text-base md:text-lg">{b.desc}</p>
             </div>
           ))}
         </div>

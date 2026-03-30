@@ -81,6 +81,9 @@ export function Proof() {
       {/* PODCAST */}
       <PodcastSection />
 
+      {/* IICHNICA CONFERENCE */}
+      <IichnicaSection />
+
       {/* EVENTS */}
       <EventsSection />
 
@@ -210,10 +213,83 @@ function PodcastSection() {
   )
 }
 
+function IichnicaSection() {
+  const { ref, visible } = useScrollVisible()
+  return (
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06] overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          <div className="relative group">
+            {/* Background Glows */}
+            <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand/5 blur-[120px] rounded-full group-hover:bg-brand/10 transition-colors duration-700" />
+            <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-brand/5 blur-[120px] rounded-full group-hover:bg-brand/10 transition-colors duration-700" />
+            
+            <div className="bg-white dark:bg-black/40 backdrop-blur-xl border border-gray-100 dark:border-white/[0.08] rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-16 relative overflow-hidden shadow-2xl shadow-brand/5 transition-all duration-500 hover:border-brand/30">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div className="text-left relative z-10">
+                  <div className="mb-10 md:mb-14">
+                    <img src="/logos/wmtaichnica.svg" alt="ИИЧНИЦА SHOW" className="h-16 md:h-20 lg:h-24 w-auto dark:invert-[0.1] active:scale-95 transition-transform" />
+                  </div>
+                  <p className="text-2xl md:text-5xl font-semibold text-gray-900 dark:text-white mb-6 md:mb-10 tracking-tight leading-none">
+                    От ИИ-игрушек к&nbsp;AI-трансформации.
+                  </p>
+                  <p className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 md:mb-12 leading-relaxed">
+                    Собственное мероприятие WMT&nbsp;AI, которое мы проводим дважды в&nbsp;год. Вечерний формат, живые подкасты, реальные кейсы внедрения от лидеров рынка и&nbsp;инсайты, которые не&nbsp;попадут в&nbsp;паблик.
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-4 mb-10 md:mb-14 text-left">
+                    <div className="flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand" />
+                      <span className="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">Топовые спикеры</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand" />
+                      <span className="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">Закрытый нетворкинг</span>
+                    </div>
+                    <div className="flex items-center gap-3">
+                      <div className="w-1.5 h-1.5 rounded-full bg-brand" />
+                      <span className="text-sm md:text-base text-gray-600 dark:text-gray-300 font-medium">Разборы кейсов вглубь</span>
+                    </div>
+                  </div>
+
+                  <a href="https://wmtaichnica.ru/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 md:px-12 py-3.5 md:py-4.5 font-bold hover:bg-[#e64627] hover:scale-[1.03] transition-all duration-300 text-sm md:text-base shadow-xl shadow-brand/20">
+                    Смотреть сайт шоу <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
+                  </a>
+                </div>
+                
+                <div className="relative z-10 flex items-center justify-center lg:justify-end">
+                   <div className="relative group/card">
+                      {/* Interactive Card Elements */}
+                      <div className="absolute -inset-1 bg-gradient-to-r from-brand to-orange-400 rounded-[2rem] blur opacity-15 group-hover/card:opacity-30 transition duration-1000 group-hover/card:duration-200" />
+                      <div className="relative bg-white dark:bg-[hsl(220,18%,10%)] rounded-[2rem] p-8 md:p-10 border border-gray-100 dark:border-white/10 shadow-xl max-w-sm">
+                        <div className="mb-8">
+                          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 block">Ближайшая дата</span>
+                          <span className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">31 марта 2026</span>
+                        </div>
+                        <div className="mb-8">
+                          <span className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-2 block">Локация</span>
+                          <span className="text-2xl font-bold text-gray-900 dark:text-white tracking-tight">Москва, Business-Show</span>
+                        </div>
+                        <div className="h-px w-full bg-gray-100 dark:bg-white/10 mb-8" />
+                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed italic">
+                          «Это то место, где ИИ-методологии WMT&nbsp;AI встречаются с&nbsp;реальным бизнесом в&nbsp;прямом эфире.»
+                        </p>
+                      </div>
+                   </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
 function EventsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-4">Площадки, на&nbsp;которых выступает WMT&nbsp;AI</h2>
@@ -245,7 +321,7 @@ function EventsSection() {
 function ForwardSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06]">
+    <section ref={ref} className="py-16 px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-6">Эту страницу удобно переслать</h2>

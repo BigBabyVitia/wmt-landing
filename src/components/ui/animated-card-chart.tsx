@@ -13,7 +13,7 @@ export function AnimatedCard({ className, ...props }: CardProps) {
       aria-labelledby="card-title"
       aria-describedby="card-description"
       className={cn(
-        "group/animated-card relative w-full overflow-hidden rounded-xl border border-zinc-200 bg-white dark:bg-[hsl(220,20%,7%)] shadow-sm dark:border-zinc-900 dark:bg-black dark:bg-[hsl(220,20%,4%)]",
+        "group/animated-card relative w-full overflow-hidden rounded-2xl border border-zinc-200/50 bg-white shadow-sm transition-all duration-300 hover:border-zinc-300 dark:border-white/5 dark:bg-[#161B26] dark:hover:border-white/10",
         className
       )}
       {...props}
@@ -26,7 +26,7 @@ export function CardBody({ className, ...props }: CardProps) {
     <div
       role="group"
       className={cn(
-        "flex flex-col space-y-1.5 border-t border-zinc-200 p-4 dark:border-zinc-900",
+        "flex flex-col space-y-2 p-6 md:p-8",
         className
       )}
       {...props}
@@ -40,7 +40,7 @@ export function CardTitle({ className, ...props }: CardTitleProps) {
   return (
     <h3
       className={cn(
-        "text-lg font-semibold leading-none tracking-tight text-black dark:text-white",
+        "text-xl md:text-2xl font-bold leading-tight tracking-tight text-black dark:text-white",
         className
       )}
       {...props}
@@ -55,7 +55,7 @@ export function CardDescription({ className, ...props }: CardDescriptionProps) {
   return (
     <p
       className={cn(
-        "text-sm text-neutral-500 dark:text-neutral-400",
+        "text-base text-neutral-500 dark:text-[#94A3B8] leading-relaxed",
         className
       )}
       {...props}

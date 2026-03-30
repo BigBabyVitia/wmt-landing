@@ -134,49 +134,50 @@ export function Formats() {
   ]
 
   return (
-    <section id="formats" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)]">
+    <section id="formats" className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-[#0F0F24] dark:bg-[#0F0F24]">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
-            Форматы работы
+        <div className="mb-16 md:mb-24">
+          <div className="text-brand text-xs md:text-sm font-bold uppercase tracking-[0.2em] mb-4">Форматы</div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-6">
+            Как мы работаем
           </h2>
-          <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500">
+          <p className="text-lg md:text-2xl text-gray-500 dark:text-[#94A3B8] max-w-3xl leading-relaxed">
             Выберите точку входа в зависимости от вашей ситуации
           </p>
         </div>
 
-        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {formats.map((f, idx) => (
             <Link
               key={idx}
               to={f.path}
               onMouseEnter={() => setActiveCard(idx)}
-              className={`group relative flex flex-col justify-between bg-gray-50 dark:bg-[hsl(220,18%,10%)] hover:bg-gray-100/80 rounded-2xl p-8 lg:p-10 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`group relative flex flex-col justify-between border border-white/5 bg-[#161B26] hover:border-white/10 rounded-2xl p-8 lg:p-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: visible ? `${idx * 150}ms` : "0ms" }}
             >
               {/* Animated SVG — large, overflows card edges */}
-              <div className={`absolute -top-8 -right-8 w-48 h-48 lg:w-56 lg:h-56 transition-opacity duration-500 hidden md:block pointer-events-none ${activeCard === idx ? "opacity-100 format-active" : "opacity-0"}`}>
+              <div className={`absolute -top-12 -right-12 w-56 h-56 lg:w-64 lg:h-64 transition-opacity duration-500 hidden md:block pointer-events-none opacity-20 group-hover:opacity-40 ${activeCard === idx ? "format-active" : ""}`}>
                 {icons[idx]}
               </div>
 
               <div className="relative z-10">
-                <h3 className="text-2xl lg:text-3xl font-semibold text-gray-900 dark:text-white mb-1 group-hover:text-brand transition-colors">
+                <h3 className="text-2xl lg:text-4xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-brand transition-colors">
                   {f.title}
                 </h3>
-                <p className="text-gray-500 dark:text-gray-400 dark:text-gray-500 text-sm mb-5">{f.subtitle}</p>
-                <ul className="space-y-2">
+                <p className="text-[#94A3B8] text-sm md:text-base mb-8 uppercase tracking-wide font-medium">{f.subtitle}</p>
+                <ul className="space-y-4">
                   {f.items.map((item, i) => (
-                    <li key={i} className="flex items-start text-gray-700 dark:text-gray-200">
-                      <span className="text-brand mr-2 mt-1 text-xs">&#9679;</span>
+                    <li key={i} className="flex items-start text-gray-700 dark:text-[#CBD5E1] text-base md:text-lg">
+                      <span className="text-brand mr-3 mt-1.5 text-[10px] shrink-0">&#9679;</span>
                       {item}
                     </li>
                   ))}
                 </ul>
               </div>
 
-              <div className="relative z-10 mt-8">
-                <span className="inline-flex items-center text-brand text-base font-bold group-hover:translate-x-1 transition-transform">
-                  Программа и стоимость <ArrowRight className="w-4 h-4 ml-1.5" />
+              <div className="relative z-10 mt-12 md:mt-16">
+                <span className="inline-flex items-center text-brand text-lg font-bold group-hover:translate-x-2 transition-transform">
+                  Узнать программу <ArrowRight className="w-5 h-5 ml-2" />
                 </span>
               </div>
             </Link>

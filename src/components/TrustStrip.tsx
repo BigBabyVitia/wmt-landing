@@ -31,7 +31,7 @@ export function TrustStrip() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mt-10">
               {/* Founder Card */}
-              <div className="lg:col-span-8 bg-gray-50 dark:bg-white/[0.03] rounded-[2.5rem] p-8 md:p-12 border border-gray-100 dark:border-white/[0.06] relative overflow-hidden flex flex-col md:flex-row gap-8 lg:gap-12 items-center md:items-start group">
+              <div className="lg:col-span-8 bg-gray-50 dark:bg-white/[0.03] rounded-[2.5rem] p-8 md:p-12 border border-gray-100 dark:border-white/[0.06] relative overflow-hidden flex flex-col md:flex-row gap-8 lg:gap-12 items-center md:items-start group transition-all duration-300 hover:border-brand/30">
                 <div className="w-48 h-48 md:w-56 md:h-56 shrink-0 rounded-[2.5rem] overflow-hidden shadow-xl shadow-gray-200/50 dark:shadow-black/30">
                   <img src="/experts/nikitin-large.webp" alt="Игорь Никитин" className="w-full h-full object-cover object-top filter brightness-105 group-hover:scale-105 transition-transform duration-700" />
                 </div>
@@ -61,29 +61,61 @@ export function TrustStrip() {
                     </div>
                     <div className="flex items-start gap-2 sm:col-span-2">
                       <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-0.5" />
-                      <span>Эксклюзивное право на <b>обучение 100+ специалистов</b> напрямую у создателей нейросети Claude (победа в конкурсе Anthropic).</span>
+                      <span>Эксклюзивное право на <b>обучение 100+ специалистов</b> напрямую у создателей нейросети Claude.</span>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Stanford Card */}
-              <div className="lg:col-span-4 bg-white dark:bg-white/[0.03] rounded-[2.5rem] p-8 md:p-10 border border-gray-100 dark:border-white/[0.06] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none flex flex-col group relative">
-                <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 dark:text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-6 text-center lg:text-left">Академическое признание</span>
+              <div className="lg:col-span-4 bg-white dark:bg-white/[0.03] rounded-[2.5rem] p-8 md:p-10 border border-gray-100 dark:border-white/[0.06] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none flex flex-col group relative transition-all duration-300 hover:border-brand/30">
+                <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-6 text-center lg:text-left">Академическое признание</span>
                 <div className="flex-1 flex flex-col justify-center items-center text-center">
                   <div className="relative group/cert cursor-pointer" onClick={() => setIsCertModalOpen(true)}>
                     <img src="/brand/certificate.jpg" alt="Stanford Certificate" className="w-full max-w-[280px] rounded-lg shadow-md mb-6 transition-all duration-300 border border-gray-100 dark:border-white/[0.06] group-hover/cert:shadow-xl group-hover/cert:-translate-y-1" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/cert:opacity-100 transition-opacity duration-300">
-                      <span className="bg-white/90 backdrop-blur-sm text-gray-900 dark:text-white text-sm font-medium px-4 py-2 rounded-full shadow-lg absolute -bottom-2 -translate-y-[20px]">Увеличить</span>
+                      <span className="bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-medium px-4 py-2 rounded-full shadow-lg absolute -bottom-2 -translate-y-[20px]">Увеличить</span>
                     </div>
                   </div>
                   <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight">Stanford Global Studies</h4>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 dark:text-gray-500 leading-relaxed mb-6">
-                    Наш фреймворк «AI Transformation» официально получил академическое признание и статус Executive программы.
+                  <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
+                    Наш фреймворк официально получил академическое признание и статус Executive программы.
                   </p>
                   <div className="mt-auto flex flex-wrap justify-center items-center gap-2 text-xs font-semibold">
-                    <span className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 dark:text-gray-500 px-3 py-1.5 rounded-full whitespace-nowrap">Ученая валидация</span>
-                    <span className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 dark:text-gray-500 px-3 py-1.5 rounded-full whitespace-nowrap">Март 2026</span>
+                    <span className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-3 py-1.5 rounded-full">Ученая валидация</span>
+                    <span className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-3 py-1.5 rounded-full">Март 2026</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Iichnica Card (New) */}
+              <div className="lg:col-span-12 bg-white dark:bg-white/[0.03] rounded-[2.5rem] p-8 md:p-12 border border-gray-100 dark:border-white/[0.06] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none overflow-hidden relative group transition-all duration-500 hover:border-brand/35">
+                {/* Decorative background blur */}
+                <div className="absolute -top-12 -right-12 w-64 h-64 bg-brand/5 blur-[80px] rounded-full group-hover:bg-brand/10 transition-colors duration-700" />
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center relative z-10">
+                  <div className="lg:col-span-1 text-center md:text-left">
+                    <img src="/logos/wmtaichnica.svg" alt="ИИЧНИЦА SHOW" className="h-14 md:h-18 lg:h-20 w-auto mb-6 mx-auto md:mx-0 dark:invert-[0.1] active:scale-95 transition-transform" />
+                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
+                      Собственное мероприятие WMT&nbsp;AI для лидеров бизнеса. Проводится дважды в&nbsp;год в&nbsp;Москве.
+                    </p>
+                  </div>
+                  
+                  <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-gray-100 dark:border-white/10 py-6 md:py-0 md:px-8">
+                    <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight tracking-tight">От ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                      Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
+                    </p>
+                  </div>
+                  
+                  <div className="lg:col-span-1 flex flex-col items-center lg:items-end gap-5">
+                    <div className="text-center lg:text-right">
+                      <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-1 block">Ближайшая дата</span>
+                      <span className="text-lg font-bold text-gray-900 dark:text-white">31 марта 2026, Москва</span>
+                    </div>
+                    <a href="https://wmtaichnica.ru/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-gray-100 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
+                      Смотреть сайт шоу <ArrowRight className="w-4 h-4" />
+                    </a>
                   </div>
                 </div>
               </div>

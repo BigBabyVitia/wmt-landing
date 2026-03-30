@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Clock, Target, Users, Zap, CheckCircle2 } from "lucide-react"
 import { Link } from "react-router-dom"
 import { TrustStrip } from "@/components/TrustStrip"
 import { FreePlatform } from "@/components/FreePlatform"
@@ -16,36 +16,54 @@ const situations = [
 
 const programs = [
   {
-    title: "Цифровой каркас: 1–2 процесса, владельцы, критерии, защита",
-    subtitle: "Когда компания уже знает, что ИИ нужен, но ни один сценарий ещё не дошёл до реального запуска. Стратегическая сессия с практикумами и live-демо агентов.",
-    body: "Цифровой каркас — это 3–5 часов работы с C-level и руководителями подразделений. За это время команда выбирает 1–2 конкретных процесса, строит архитектуру ИИ-перехода, определяет владельцев и метрики. На выходе — паспорт пилота: что запускаем, кто отвечает, как измеряем результат.",
-    params: ["3–5 часов, 3 блока", "60% практики руками", "1–2 пилотных сценария на выходе", "Live-демо агентов"],
+    id: "digital-skeleton",
+    badge: "Пилот",
+    title: "Цифровой каркас",
+    tagline: "1–2 процесса, владельцы, критерии и защита",
+    desc: "Когда компания уже знает, что ИИ нужен, но ни один сценарий ещё не дошёл до реального запуска. Команда выбирает 1–2 конкретных процесса, строит архитектуру ИИ-перехода, определяет владельцев и метрики. На выходе — паспорт пилота: что запускаем, кто отвечает, как измеряем результат.",
+    params: [
+      { label: "Длительность", value: "3–5 часов", icon: Clock },
+      { label: "Практика", value: "60% руками", icon: Zap },
+      { label: "Результат", value: "Паспорт пилота", icon: Target },
+    ],
     results: [
-      { title: "Паспорт пилота", desc: "С владельцами и метриками для защиты перед руководством." },
-      { title: "Live-демо", desc: "Агенты на реальных задачах компании — не абстрактные примеры." },
-      { title: "Следующий шаг", desc: "Понятно, кто делает что дальше и когда." },
+      { title: "Паспорт пилота", desc: "С владельцами и метриками для защиты перед руководством.", icon: CheckCircle2 },
+      { title: "Live-демо", desc: "Агенты на реальных задачах компании — не абстрактные примеры.", icon: CheckCircle2 },
+      { title: "Следующий шаг", desc: "Понятно, кто делает что дальше и когда.", icon: CheckCircle2 },
     ],
   },
   {
-    title: "Мышление 2.0: 10–30 человек, которые потянут тему руками",
-    subtitle: "Тренинг-хакатон для тех, кто должен стать ядром практиков внутри компании. 80% работы руками: собирают агентов, проверяют кейсы, фиксируют 30-дневный план.",
-    body: "Мышление 2.0 длится 1–1,5 дня и работает с группами 10–30 человек. Участники берут реальные задачи компании, собирают агентов, проверяют гипотезы и уходят с рабочими артефактами. После этого формата внутри компании появляются люди-носители — те, кто может объяснить, показать и продолжить тему без внешней поддержки.",
-    params: ["10 часов, 1–1,5 дня", "80% практики руками", "Собственные агенты и артефакты", "30-дневный план"],
+    id: "mindset-2",
+    badge: "Команда",
+    title: "Мышление 2.0",
+    tagline: "10–30 человек, которые потянут тему руками",
+    desc: "Тренинг-хакатон для тех, кто должен стать ядром практиков. Участники берут реальные задачи компании, собирают агентов, проверяют гипотезы и уходят с рабочими артефактами. После этого внутри компании появляются свои люди-носители навыка — те, кто может продолжить тему без внешней поддержки.",
+    params: [
+      { label: "Длительность", value: "1–1,5 дня", icon: Clock },
+      { label: "Практика", value: "80% руками", icon: Zap },
+      { label: "Группа", value: "10–30 человек", icon: Users },
+    ],
     results: [
-      { title: "Ядро практиков", desc: "10–30 человек с реальным опытом работы с ИИ." },
-      { title: "Рабочие артефакты", desc: "Промпты, сценарии, агенты — не конспекты." },
-      { title: "План на 30 дней", desc: "Каждый участник знает, что делать после программы." },
+      { title: "Ядро практиков", desc: "10–30 человек с реальным опытом работы с ИИ.", icon: CheckCircle2 },
+      { title: "Рабочие артефакты", desc: "Промпты, сценарии, агенты — не конспекты.", icon: CheckCircle2 },
+      { title: "План на 30 дней", desc: "Каждый участник знает, что делать после программы.", icon: CheckCircle2 },
     ],
   },
   {
-    title: "Корпоративный ИИ-марафон: когда практика нужна не пяти, а пятистам",
-    subtitle: "Онлайн-марафон на 10 недель. 30 занятий. 100% работы руками. Программа по ролям, библиотека кейсов, видимость для руководства.",
-    body: "Корпоративный ИИ-марафон — это управляемая программа масштаба: участники работают по ролям, собирают агентов под свои задачи, фиксируют результаты. Руководство видит прогресс, получает отчётность и понимает, кто двигает тему. После марафона компания получает рабочую привычку использования ИИ в десятках процессов.",
-    params: ["10 недель, 30 занятий", "100% практики руками", "Программа по ролям", "Отчётность для руководства"],
+    id: "ai-marathon",
+    badge: "Масштаб",
+    title: "ИИ-марафон",
+    tagline: "Управляемая волна перемен на 10 недель",
+    desc: "Когда практика нужна не пяти, а пятистам сотрудникам. Участники работают по ролям, собирают агентов под свои задачи, фиксируют результаты. Руководство видит прогресс, получает отчётность и понимает, кто действительно двигает тему. После марафона компания получает рабочую привычку использования ИИ в десятках процессов.",
+    params: [
+      { label: "Срок", value: "10 недель", icon: Clock },
+      { label: "Занятия", value: "30 модулей", icon: Zap },
+      { label: "Масштаб", value: "Сотни сотрудников", icon: Users },
+    ],
     results: [
-      { title: "ИИ-привычки", desc: "Десятки процессов переведены на работу с ИИ." },
-      { title: "Отчётность", desc: "Руководство видит, кто, что и как использует." },
-      { title: "Масштаб", desc: "Не 10–30 человек, а сотни — по ролям и функциям." },
+      { title: "ИИ-привычки", desc: "Десятки процессов переведены на работу с ИИ.", icon: CheckCircle2 },
+      { title: "Отчётность", desc: "Руководство видит, кто, что и как использует.", icon: CheckCircle2 },
+      { title: "Масштаб", desc: "Не 10–30 человек, а сотни — по ролям и функциям.", icon: CheckCircle2 },
     ],
   },
 ]
@@ -95,7 +113,8 @@ function SituationsSection() {
               visible={visible}
               index={idx}
               delayMult={120}
-              className="flex flex-col gap-4 !p-8 hover:border-brand/30 hover:shadow-brand/10 hover:-translate-y-1"
+              className="flex flex-col gap-4 border-gray-100 dark:border-white/[0.06] hover:border-brand/30 hover:shadow-brand/10 hover:-translate-y-1 transition-all duration-500"
+              contentClassName="!p-6 md:!p-10"
             >
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 relative z-10">{s.title}</h3>
               <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 flex-1 relative z-10">{s.desc}</p>
@@ -110,36 +129,70 @@ function SituationsSection() {
 
 function TeamProgramSection({ program: p, index }: any) {
   const { ref, visible } = useScrollVisible()
-  const bg = index % 2 === 0 ? "bg-gray-50/50 dark:bg-[hsl(220,18%,5%)]" : "bg-white dark:bg-[hsl(220,20%,7%)]"
-  
+  const isEven = index % 2 === 0
+  const bg = isEven ? "bg-white dark:bg-black" : "bg-gray-50/50 dark:bg-[hsl(220,20%,7%)]"
+
   return (
-    <section ref={ref} className={`py-16 md:py-24 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300`}>
-      <div className="max-w-7xl mx-auto">
-        <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">{p.title}</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl mb-4 font-medium">{p.subtitle}</p>
-          <p className="text-base text-gray-600 dark:text-gray-400 max-w-3xl mb-10 leading-relaxed">{p.body}</p>
+    <section ref={ref} className={`py-16 md:py-32 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden text-left`}>
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand/[0.03] blur-[120px] pointer-events-none rounded-full" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-start text-left">
+            {/* Left Column: Content */}
+            <div className="lg:col-span-7">
+              <div className="mb-8 md:mb-10 text-left">
+                <span className="inline-block text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-brand uppercase mb-4 md:mb-6">{p.badge}</span>
+                <h2 className="text-2xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-3 md:mb-4 leading-tight">{p.title}</h2>
+                <p className="text-base md:text-xl text-brand font-medium tracking-tight mb-6 md:mb-8 leading-relaxed">{p.tagline}</p>
+                
+                <div className="flex flex-wrap items-center gap-2 mb-8 md:mb-10">
+                  {p.params.map((param: any, i: number) => (
+                    <div key={i} className="flex items-center gap-1.5 bg-white/50 dark:bg-white/[0.05] border border-gray-100 dark:border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full">
+                      <param.icon className="w-3 md:w-3.5 h-3 md:h-3.5 text-brand/70" />
+                      <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">{param.value}</span>
+                    </div>
+                  ))}
+                </div>
 
-          <div className="flex flex-wrap gap-3 mb-10">
-            {p.params.map((t: string, i: number) => (
-              <span key={i} className="text-[13px] text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-white/10 px-4 py-2 rounded-full font-medium">{t}</span>
-            ))}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-10">
-            {p.results.map((r: any, i: number) => (
-              <div key={i} className="bg-white dark:bg-[hsl(220,20%,7%)] rounded-2xl p-6 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 hover:border-brand/40 dark:hover:border-brand/30 shadow-sm hover:shadow-md hover:shadow-brand/5 hover:-translate-y-1">
-                <h4 className="font-semibold text-gray-900 dark:text-white mb-2">{r.title}</h4>
-                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">{r.desc}</p>
+                <p className="text-[15px] md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed mb-8 md:mb-10">{p.desc}</p>
+                
+                <div className="flex">
+                  <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-[#e64627] hover:scale-[1.03] transition-all duration-300 text-sm md:text-base shadow-xl shadow-brand/20 w-full sm:w-auto">
+                    Узнать детали <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
+                  </a>
+                </div>
               </div>
-            ))}
+            </div>
+
+            {/* Right Column: Artifacts Card */}
+            <div className="lg:col-span-5 lg:pt-[42px] mt-8 lg:mt-0">
+              <div className="bg-white dark:bg-white/[0.03] backdrop-blur-sm border border-gray-100 dark:border-white/[0.06] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 md:pt-8 shadow-sm relative overflow-hidden group hover:border-brand/20 transition-all duration-500">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 blur-[60px] rounded-full -translate-y-1/2 translate-x-1/2" />
+                
+                <div className="mb-6 md:mb-10 relative z-10 text-left">
+                  <span className="text-[9px] md:text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-2 block">Результаты уровня</span>
+                  <div className="h-px w-10 md:w-12 bg-brand/30 rounded-full" />
+                </div>
+                
+                <div className="space-y-6 md:space-y-10 relative z-10">
+                  {p.results.map((r: any, i: number) => (
+                    <div key={i} className="flex gap-4 md:gap-6 group/item text-left">
+                      <div className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-[1.25rem] bg-gray-50 dark:bg-white/[0.05] border border-gray-100 dark:border-white/10 flex items-center justify-center text-brand group-hover/item:scale-110 transition-all duration-500 shadow-sm">
+                        <r.icon className="w-5 h-5 md:w-7 md:h-7" />
+                      </div>
+                      <div className="flex flex-col justify-center text-left">
+                        <h5 className="font-semibold text-gray-900 dark:text-white mb-1 leading-snug text-[15px] md:text-lg text-left">{r.title}</h5>
+                        <p className="text-[13px] md:text-sm text-gray-500 dark:text-gray-400 leading-relaxed text-left">{r.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div className="mt-4">
-             <a href="#contact" className="inline-flex items-center gap-2 bg-brand text-white rounded-full w-full sm:w-auto px-6 sm:px-8 py-3 sm:pt-[14px] sm:pb-[18px] font-medium hover:bg-[#e64627] transition-all duration-300 text-base hover:-translate-y-0.5 shadow-md shadow-brand/20">
-               Узнать детали <ArrowRight className="w-5 h-5 ml-1 mt-0.5" />
-            </a>
-          </div>
         </div>
       </div>
     </section>
@@ -156,8 +209,8 @@ function BuilderFormats() {
           <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl font-medium">Agent Builder Day и n8n + Claude решают разные задачи, работают с разной аудиторией и требуют разной подготовки.</p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <V2Card visible={visible} index={0}>
-            <span className="inline-block text-xs font-semibold text-brand uppercase tracking-wider mb-4 relative z-10">Agent Builder Day</span>
+          <V2Card visible={visible} index={0} contentClassName="!p-6 md:!p-10">
+            <span className="inline-block text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-brand uppercase mb-4 md:mb-6 relative z-10">Agent Builder Day</span>
             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 relative z-10">Рабочий агент у каждого за один день</h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-8 flex-1 relative z-10">Один практический день для собранной команды из 30–40 человек. Мини-группы по 3–4. На выходе — рабочий агент, настроенный n8n workflow и алгоритм пересборки.</p>
             <div className="flex flex-wrap gap-2 mb-8 relative z-10">
@@ -170,8 +223,8 @@ function BuilderFormats() {
             </Link>
           </V2Card>
 
-          <V2Card visible={visible} index={1}>
-            <span className="inline-block text-xs font-semibold text-brand uppercase tracking-wider mb-4 relative z-10">n8n + Claude</span>
+          <V2Card visible={visible} index={1} contentClassName="!p-6 md:!p-10">
+            <span className="inline-block text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-brand uppercase mb-4 md:mb-6 relative z-10">n8n + Claude</span>
             <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 relative z-10">Групповая программа по агентам</h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-8 flex-1 relative z-10">Малая группа до 6 человек. 4 занятия по 1,5 часа. Последовательное погружение: экосистема Claude, основы n8n, AI-агенты в n8n, продвинутая сборка с RAG, memory, multi-agent и error handling.</p>
             <div className="flex flex-wrap gap-2 mb-8 relative z-10">

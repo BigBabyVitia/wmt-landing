@@ -1,11 +1,10 @@
-import { ArrowRight, CheckCircle2 } from "lucide-react"
+import { ArrowRight, CheckCircle2, Clock, MapPin, Zap, Target } from "lucide-react"
 import { Link } from "react-router-dom"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
 import { FitAssessment } from "@/components/sections/FitAssessment"
 import { useScrollVisible } from "@/hooks/useScrollVisible"
 import { V2Hero } from "@/components/ui/V2Hero"
-import { V2Card } from "@/components/ui/V2Card"
 
 const fitItems = [
   { text: "Вы сами принимаете решения и хотите пройти ИИ-перестройку лично", fit: true },
@@ -40,31 +39,40 @@ const whyOffline = [
 ]
 
 export function PersonalAI() {
+  const paramsTags = [
+    { label: "Длительность", value: "2 дня / 16 часов", icon: Clock },
+    { label: "Формат", value: "Офлайн, в офисе", icon: MapPin },
+    { label: "Практика", value: "С тренерами рядом", icon: Zap },
+    { label: "Результат", value: "Свой AI-агент", icon: Target },
+  ].map((p, i) => (
+    <div key={i} className="group relative bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-6 transition-all duration-500 hover:border-brand/30 h-full flex flex-col items-start text-left">
+      <div className="mb-4 relative z-10 flex items-center gap-2">
+        <p className="text-[10px] font-bold tracking-[0.2em] text-brand uppercase">{p.label}</p>
+      </div>
+      <div className="flex items-center gap-3 relative z-10">
+        <p className="text-white font-semibold text-base md:text-lg leading-[1.1]">{p.value}</p>
+      </div>
+    </div>
+  ))
+
   return (
-    <>
+    <div className="bg-black min-h-screen text-white">
       <V2Hero 
         label="Личный ИИ"
         title={<>Перестройте свою работу с&nbsp;<em className="not-italic text-brand font-bold">ИИ</em> за&nbsp;два плотных дня</>}
-        description={
-          <>
-            Офлайн-интенсив на&nbsp;16&nbsp;часов для тех, кто принимает решения сам и&nbsp;хочет выйти из&nbsp;общего интереса к&nbsp;ИИ в&nbsp;рабочее владение.
-            <span className="block mt-4 text-white/60 text-base max-w-3xl leading-relaxed">
-              Это не&nbsp;программа, куда отправляют сотрудников. Это личный интенсив для человека, который хочет сам пройти перестройку: понять реальную карту ИИ, собрать личную стратегию, наработать промпты и&nbsp;собрать своего первого агента.
-            </span>
-          </>
-        }
-        tags={["2 дня / 16 часов", "Офлайн, в офисе", "Практика с тренерами", "Свой агент на выходе"]}
+        description="Интенсив на 16 часов для тех, кто хочет выйти из общего интереса к ИИ в рабочее владение. Вы пройдете путь от реальной карты возможностей до сборки собственного агента под свои задачи."
+        tags={paramsTags}
         buttons={
-          <>
-            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-10 py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.25)] hover:shadow-[0_8px_40px_rgba(255,255,255,0.4)] hover:-translate-y-1 transform-gpu">
+          <div className="flex flex-col gap-4">
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-[0_8px_32px_rgba(255,83,49,0.25)] hover:-translate-y-1 transform-gpu">
               Записаться в лист ожидания <ArrowRight className="w-5 h-5 ml-1" />
             </a>
-            <div className="w-full text-white/50 text-sm mt-2">Поток 4–5 апреля 2026 уже заполнен.</div>
-          </>
+            <div className="text-white/50 text-sm text-center md:text-left">Поток 4–5 апреля 2026 уже заполнен.</div>
+          </div>
         }
       />
 
-      <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
+      <section className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-white/[0.06] transition-colors duration-500">
         <div className="max-w-7xl mx-auto">
           <FitAssessment items={fitItems} title="Этот интенсив работает, когда вы действительно хотите пройти его сами" />
         </div>
@@ -77,30 +85,29 @@ export function PersonalAI() {
       
       <TrustStrip />
       <MainCta />
-    </>
+    </div>
   )
 }
 
 function ProgramContent() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">16&nbsp;часов практики, а&nbsp;не&nbsp;16&nbsp;часов про&nbsp;будущее ИИ</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl">Внутри — карта ИИ, личная стратегия, работа с&nbsp;промптами рядом с&nbsp;тренерами и&nbsp;сборка собственного агента. Лекций мало. Основной объём — работа руками.</p>
+        <div className={`mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-2xl md:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight">16 часов практики, а не лекций</h2>
+          <p className="text-white/60 text-base md:text-xl max-w-3xl leading-relaxed">Внутри — карта ИИ, личная стратегия, работа с промптами и сборка собственного агента. Основной объём — работа руками с тренерами.</p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {components.map((c, idx) => (
-            <V2Card
+            <div
               key={idx}
-              visible={visible}
-              index={idx}
-              className="!p-6 !rounded-2xl hover:border-brand/30 hover:shadow-brand/10 hover:-translate-y-1"
+              className={`flex flex-col bg-white/[0.02] border border-white/[0.06] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 transition-all duration-500 hover:border-brand/30 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
             >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 relative z-10">{c.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed relative z-10">{c.desc}</p>
-            </V2Card>
+              <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4 leading-tight">{c.title}</h3>
+              <p className="text-white/60 text-sm md:text-base leading-relaxed">{c.desc}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -111,18 +118,18 @@ function ProgramContent() {
 function OutputsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300 border-t border-gray-100 dark:border-white/[0.06]">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl font-semibold mb-4 text-gray-900 dark:text-white">Вы&nbsp;уезжаете с&nbsp;рабочими инструментами</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl mb-12">Каждый результат ниже — то, что вы действительно забираете с собой.</p>
-          <div className="space-y-4">
+          <h2 className="text-2xl md:text-5xl font-semibold mb-6 text-white leading-tight">Вы уезжаете с рабочими инструментами</h2>
+          <p className="text-white/60 text-base md:text-xl max-w-3xl mb-12 md:mb-16 leading-relaxed">Каждый результат ниже — то, что вы действительно забираете с собой.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             {outputs.map((o, idx) => (
-              <div key={idx} className="flex items-start gap-5 bg-gray-50/80 dark:bg-[hsl(220,18%,10%)] rounded-2xl p-6 border border-gray-100 dark:border-white/[0.06] hover:border-brand/30 dark:hover:border-brand/20 hover:shadow-sm transition-all duration-300 w-full md:w-3/4">
-                <CheckCircle2 className="w-7 h-7 text-brand shrink-0 mt-0.5" />
+              <div key={idx} className="flex items-start gap-4 md:gap-6 bg-white/[0.02] border border-white/[0.06] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 transition-all duration-500 hover:border-brand/30">
+                <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-brand shrink-0 mt-1" />
                 <div>
-                  <p className="text-gray-900 dark:text-white text-[19px] font-semibold tracking-tight">{o.title}</p>
-                  <p className="text-gray-600 dark:text-gray-400 text-[15px] mt-1.5 leading-relaxed">{o.desc}</p>
+                  <p className="text-white text-lg md:text-xl font-semibold tracking-tight leading-tight">{o.title}</p>
+                  <p className="text-white/60 text-sm md:text-base mt-2 md:mt-3 leading-relaxed">{o.desc}</p>
                 </div>
               </div>
             ))}
@@ -136,18 +143,22 @@ function OutputsSection() {
 function WhyOfflineSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Офлайн здесь нужен по&nbsp;функции</h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-3xl">Интенсив собран офлайн потому, что плотную практику, мгновенную обратную связь и&nbsp;сборку агента проще сделать сильно именно так.</p>
+        <div className={`mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-2xl md:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight">Офлайн здесь нужен по функции</h2>
+          <p className="text-white/60 text-base md:text-xl max-w-3xl leading-relaxed">Интенсив собран офлайн потому, что плотную практику, мгновенную обратную связь и сборку агента проще сделать сильно именно так.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {whyOffline.map((w, idx) => (
-            <V2Card key={idx} visible={visible} index={idx} className="!p-8 !rounded-2xl hover:border-brand/30 hover:shadow-brand/10 hover:-translate-y-1">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3 relative z-10">{w.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 leading-relaxed relative z-10">{w.desc}</p>
-            </V2Card>
+            <div
+              key={idx}
+              className={`flex flex-col bg-white/[0.02] border border-white/[0.06] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 transition-all duration-500 hover:border-brand/30 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
+            >
+              <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4 leading-tight">{w.title}</h3>
+              <p className="text-white/60 text-sm md:text-base leading-relaxed">{w.desc}</p>
+            </div>
           ))}
         </div>
       </div>
@@ -158,29 +169,29 @@ function WhyOfflineSection() {
 function StreamStatus() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
-        <div className={`relative bg-gray-50/50 dark:bg-white/[0.03] rounded-[2.5rem] p-10 md:p-16 border border-gray-100 dark:border-white/[0.06] overflow-hidden max-w-4xl transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-64 h-64 bg-brand/5 blur-[80px] pointer-events-none rounded-full" />
+        <div className={`relative bg-white/[0.02] backdrop-blur-xl rounded-[2.5rem] p-10 md:p-20 border border-white/[0.08] overflow-hidden max-w-5xl transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 blur-[100px] pointer-events-none rounded-full -translate-y-1/2 translate-x-1/4" />
 
           <div className="relative z-10">
-            <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Ближайший поток закрыт</h2>
-            <p className="text-gray-600 dark:text-gray-400 text-lg mb-8">Поток 4–5&nbsp;апреля 2026&nbsp;года заполнен. Мы&nbsp;не&nbsp;создаём ложного ажиотажа, сейчас собираем лист ожидания.</p>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight">Ближайший поток закрыт</h2>
+            <p className="text-lg md:text-xl text-white/50 mb-10 leading-relaxed max-w-3xl">Поток 4–5 апреля 2026 года заполнен. Мы не создаём ложного ажиотажа, сейчас собираем лист ожидания на следующий набор.</p>
             
-            <div className="bg-white dark:bg-white/5 rounded-2xl p-8 border border-gray-100 dark:border-white/[0.06] shadow-sm mb-8">
-              <p className="text-lg text-gray-900 dark:text-white font-semibold mb-2">Правильный следующий шаг</p>
-              <p className="text-gray-600 dark:text-gray-400">Зафиксировать интерес на&nbsp;следующий набор. Так вы попадёте в&nbsp;список уведомления о&nbsp;новых датах, заранее получите программу и&nbsp;сможете принять решение без&nbsp;спешки.</p>
+            <div className="bg-white/[0.05] rounded-2xl p-8 md:p-10 border border-white/[0.08] mb-10 max-w-3xl shadow-2xl">
+              <p className="text-xl text-white font-semibold mb-3 leading-tight">Правильный следующий шаг</p>
+              <p className="text-white/60 leading-relaxed">Зафиксировать интерес на следующий набор. Так вы попадёте в список уведомления о новых датах, заранее получите программу и сможете принять решение без спешки.</p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 py-4 font-medium hover:bg-[#e64627] transition-all duration-300 shadow-md shadow-brand/20 hover:-translate-y-0.5">
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-xl shadow-brand/20 hover:-translate-y-0.5">
                 Лист ожидания
               </a>
-              <Link to="/executive" className="inline-flex items-center justify-center gap-2 border border-brand/20 dark:border-brand/40 text-brand bg-brand/5 dark:bg-brand/10 rounded-full px-8 py-4 font-medium hover:border-brand hover:bg-brand/10 transition-colors">
-                Корпоративные форматы <ArrowRight className="w-4 h-4 ml-1" />
+              <Link to="/executive" className="inline-flex items-center justify-center gap-2 border border-white/10 text-white bg-white/5 rounded-full px-10 py-4 font-bold hover:border-white/30 transition-all duration-300">
+                Корпоративные форматы <ArrowRight className="w-5 h-5 ml-1" />
               </Link>
             </div>
-            <p className="text-gray-500 dark:text-gray-400 text-sm">После записи вы получите подтверждение и останетесь в приоритете.</p>
+            <p className="text-white/40 text-sm">После записи вы получите подтверждение и останетесь в приоритете.</p>
           </div>
         </div>
       </div>
