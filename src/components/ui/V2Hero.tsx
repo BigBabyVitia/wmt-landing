@@ -93,7 +93,9 @@ export function V2Hero({ label, title, description, buttons, tags, layout = "mos
         {/* Mosaic layout tags (bottom row) */}
         {tags && tags.length > 0 && isMosaic && (
           <div 
-            className="mt-10 sm:mt-16 flex overflow-x-auto sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 animate-fade-rise-delay-2 -mx-6 px-6 sm:mx-0 sm:px-0 items-stretch"
+            className={`mt-10 sm:mt-16 flex overflow-x-auto sm:grid gap-4 animate-fade-rise-delay-2 -mx-6 px-6 sm:mx-0 sm:px-0 items-stretch ${
+              tags.length === 3 ? "sm:grid-cols-3 lg:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"
+            }`}
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
             <style dangerouslySetInnerHTML={{ __html: `

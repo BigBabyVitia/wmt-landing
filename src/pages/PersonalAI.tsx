@@ -1,5 +1,6 @@
 import { ArrowRight, MapPin, Zap, Target, Bot, Compass, Terminal, Shield, Sparkles, UserCheck, Users, Radio, UserPlus } from "lucide-react"
 import { Link } from "react-router-dom"
+import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
 import { FitAssessment } from "@/components/sections/FitAssessment"
@@ -104,7 +105,7 @@ export function PersonalAI() {
   ))
 
   return (
-    <div className="bg-black min-h-screen text-white">
+    <div className="bg-background min-h-screen text-foreground transition-colors duration-500">
       <V2Hero 
         label="Личный ИИ"
         title={<>Индивидуальная <em className="not-italic text-brand font-bold">ИИ-трансформация</em> под ваши задачи</>}
@@ -112,7 +113,7 @@ export function PersonalAI() {
         tags={paramsTags}
         buttons={
           <div className="flex flex-col gap-4">
-            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-2xl px-10 py-5 font-bold hover:bg-[#fb4119] transition-all duration-300 shadow-[0_8px_32px_rgba(255,83,49,0.25)] hover:-translate-y-1 transform-gpu">
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-2xl px-10 py-5 font-bold hover:bg-[#fb4119] transition-all duration-300 shadow-[0_8px_32px_rgba(255,83,49,0.25)] hover:-translate-y-1 transform-gpu whitespace-nowrap">
               Обсудить ваш проект <ArrowRight className="w-5 h-5 ml-1" />
             </a>
             <div className="text-white/50 text-sm text-center md:text-left">Ближайшие свободные окна: Конец апреля / Начало мая.</div>
@@ -120,7 +121,7 @@ export function PersonalAI() {
         }
       />
 
-      <section className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-white/[0.06] transition-colors duration-500">
+      <section className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500">
         <div className="max-w-7xl mx-auto">
           <FitAssessment items={fitItems} title="Личное сопровождение подходит, если вы готовы к глубокой перестройке" />
         </div>
@@ -139,13 +140,22 @@ export function PersonalAI() {
 
 function ProgramContent() {
   const { ref, visible } = useScrollVisible()
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  function handleMouseMove({ currentTarget, clientX, clientY }: React.MouseEvent) {
+    let { left, top } = currentTarget.getBoundingClientRect();
+    mouseX.set(clientX - left);
+    mouseY.set(clientY - top);
+  }
+
   return (
     <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 md:mb-24 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-8 border-l-4 border-brand pl-6">
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-8 border-l-4 border-brand pl-6">
             Три этапа <br />
-            <span className="text-white/40">персональной работы</span>
+            <span className="text-gray-400 dark:text-white/40">персональной работы</span>
           </h2>
         </div>
 
@@ -153,20 +163,35 @@ function ProgramContent() {
           {personalSteps.map((step, idx) => (
             <div 
               key={idx}
-              className={`group relative bg-white/[0.02] border border-white/[0.08] rounded-[2.5rem] p-8 md:p-12 transition-all duration-700 hover:border-brand/40 overflow-hidden ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+              className={`group relative bg-gray-50/50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/[0.08] rounded-[2.5rem] p-6 md:p-8 transition-all duration-700 hover:border-brand/40 overflow-hidden ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
               style={{ transitionDelay: `${idx * 200}ms` }}
+              onMouseMove={handleMouseMove}
             >
-              <div className="absolute top-0 right-0 w-40 h-40 bg-brand/5 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              {/* Background Grid Pattern with fade-out mask - balanced visibility */}
+              <div 
+                className="absolute inset-0 pointer-events-none opacity-[0.4] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)]" 
+                style={{
+                  backgroundImage: `linear-gradient(to right, rgba(128,128,128,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(128,128,128,0.12) 1px, transparent 1px)`,
+                  backgroundSize: '80px 80px',
+                  backgroundPosition: 'center center'
+                }}
+              />
+
+              <motion.div
+                className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-500 group-hover:opacity-100"
+                style={{
+                  background: useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.12), transparent 80%)`,
+                }}
+              />
               
-              <div className="mb-8 flex justify-between items-start">
-                 <div className="p-4 bg-white/[0.04] border border-white/10 rounded-2xl group-hover:bg-brand/10 group-hover:border-brand/30 transition-all duration-500">
-                    {idx === 0 ? <Compass className="w-8 h-8 text-brand" /> : idx === 1 ? <Target className="w-8 h-8 text-brand" /> : <Zap className="w-8 h-8 text-brand" />}
-                 </div>
-                 <span className="text-white/20 font-bold text-lg tracking-widest">{step.badge}</span>
+              <div className="relative z-10 text-left">
+                <div className="mb-4">
+                   <span className="text-brand font-bold text-sm tracking-[0.2em] uppercase">{step.badge}</span>
+                </div>
+                
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-4 leading-tight group-hover:text-brand transition-colors duration-500">{step.title}</h3>
+                <p className="text-gray-500 dark:text-white/50 text-base md:text-lg leading-relaxed">{step.desc}</p>
               </div>
-              
-              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight group-hover:text-brand transition-colors duration-500">{step.title}</h3>
-              <p className="text-white/50 text-lg leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
@@ -181,18 +206,18 @@ function OutputsSection() {
   const otherOutputs = [outputs[0], outputs[1], outputs[2], outputs[4]];
 
   return (
-    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-black overflow-hidden">
+    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full mb-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-full mb-6">
                 <Sparkles className="w-4 h-4 text-brand" />
-                <span className="text-white/60 text-[10px] font-bold uppercase tracking-widest">ВАШ ЛИЧНЫЙ АКТИВ</span>
+                <span className="text-gray-500 dark:text-white/60 text-[10px] font-bold uppercase tracking-widest">ВАШ ЛИЧНЫЙ АКТИВ</span>
               </div>
-              <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight">Результаты <br /><span className="text-white/40">программы</span></h2>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white leading-tight">Результаты <br /><span className="text-gray-400 dark:text-white/40">программы</span></h2>
             </div>
-            <p className="text-white/40 text-lg md:text-xl max-w-sm leading-relaxed border-l border-white/10 pl-8">
+            <p className="text-gray-400 dark:text-white/40 text-lg md:text-xl max-w-sm leading-relaxed border-l border-gray-200 dark:border-white/10 pl-8">
               Вы уезжаете с полностью готовым инструментарием и планом его развития.
             </p>
           </div>
@@ -219,13 +244,13 @@ function OutputsSection() {
               {otherOutputs.map((o, idx) => (
                 <div 
                   key={idx}
-                  className="group relative bg-white/[0.03] border border-white/[0.08] rounded-[2.5rem] p-8 md:p-10 transition-all duration-700 hover:border-white/20 flex flex-col justify-between"
+                  className="group relative bg-gray-50/50 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.08] rounded-[2.5rem] p-8 md:p-10 transition-all duration-700 hover:border-brand/20 flex flex-col justify-between"
                 >
                   <div className="relative z-10">
                     <div className="mb-8 text-brand group-hover:scale-110 transition-transform duration-500">{o.icon}</div>
-                    <div className="mb-3 text-white/30 text-[10px] font-bold uppercase tracking-widest">{o.label}</div>
-                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 leading-tight group-hover:text-brand transition-colors duration-500">{o.title}</h3>
-                    <p className="text-white/50 text-base leading-relaxed line-clamp-3">{o.desc}</p>
+                    <div className="mb-3 text-gray-400 dark:text-white/30 text-[10px] font-bold uppercase tracking-widest">{o.label}</div>
+                    <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-4 leading-tight group-hover:text-brand transition-colors duration-500">{o.title}</h3>
+                    <p className="text-gray-500 dark:text-white/50 text-base leading-relaxed line-clamp-3">{o.desc}</p>
                   </div>
                 </div>
               ))}
@@ -240,7 +265,7 @@ function OutputsSection() {
 function WhyOfflineSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 border-t border-white/[0.06]">
+    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-black transition-colors duration-500 border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
         <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="max-w-3xl mb-16 md:mb-24">
@@ -248,25 +273,25 @@ function WhyOfflineSection() {
               <Radio className="w-4 h-4 text-brand animate-pulse" />
               <span className="text-brand text-[10px] font-bold uppercase tracking-widest">ПЕРСОНАЛЬНАЯ РЕАЛИЗАЦИЯ</span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-8 leading-tight">Почему результат возможен <br /><span className="text-brand">только в личном формате?</span></h2>
-            <p className="text-white/60 text-lg md:text-xl leading-relaxed">
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-8 leading-tight">Почему результат возможен <br /><span className="text-brand">только в личном формате?</span></h2>
+            <p className="text-gray-500 dark:text-white/60 text-lg md:text-xl leading-relaxed">
               При сборке ИИ-агента критична скорость: мгновенная правка «в руках» работает в 10 раз быстрее, чем переписка в чате или Zoom.
             </p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
             <div className="lg:col-span-2 h-full">
-              <div className="group relative h-full bg-white/[0.02] border border-white/[0.08] rounded-[3rem] p-10 md:p-14 transition-all duration-700 hover:border-brand/40 overflow-hidden flex flex-col justify-between">
+              <div className="group relative h-full bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/[0.08] rounded-[3rem] p-10 md:p-14 transition-all duration-700 hover:border-brand/40 overflow-hidden flex flex-col justify-between">
                 <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 blur-[120px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
                 
                 <div>
                    <div className="mb-10 text-brand scale-125 origin-left">{whyOffline[0].icon}</div>
-                   <h3 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-tight max-w-lg">{whyOffline[0].title}</h3>
-                   <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-xl">{whyOffline[0].desc}</p>
+                   <h3 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight max-w-lg">{whyOffline[0].title}</h3>
+                   <p className="text-gray-500 dark:text-white/60 text-lg md:text-xl leading-relaxed max-w-xl">{whyOffline[0].desc}</p>
                 </div>
                 
-                <div className="mt-12 flex items-center gap-4 text-white/40 text-sm font-medium">
-                   <div className="h-px flex-1 bg-white/[0.08]" />
+                <div className="mt-12 flex items-center gap-4 text-gray-400 dark:text-white/40 text-sm font-medium">
+                   <div className="h-px flex-1 bg-gray-200 dark:bg-white/[0.08]" />
                    <span>ЦЕННОСТЬ ПЕРСОНАЛЬНОЙ РАБОТЫ #01</span>
                 </div>
               </div>
@@ -276,12 +301,12 @@ function WhyOfflineSection() {
                {whyOffline.slice(1).map((w, idx) => (
                  <div 
                    key={idx} 
-                   className="group relative bg-white/[0.02] border border-white/[0.08] rounded-[2.5rem] p-8 md:p-10 transition-all duration-700 hover:border-brand/40 overflow-hidden flex flex-col"
+                   className="group relative bg-white dark:bg-white/[0.02] border border-gray-200 dark:border-white/[0.08] rounded-[2.5rem] p-8 md:p-10 transition-all duration-700 hover:border-brand/40 overflow-hidden flex flex-col"
                    style={{ transitionDelay: `${(idx + 1) * 200}ms` }}
                  >
                     <div className="mb-6">{w.icon}</div>
-                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 leading-tight group-hover:text-brand transition-colors duration-500">{w.title}</h3>
-                    <p className="text-white/60 text-base leading-relaxed">{w.desc}</p>
+                    <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-4 leading-tight group-hover:text-brand transition-colors duration-500">{w.title}</h3>
+                    <p className="text-gray-500 dark:text-white/60 text-base leading-relaxed">{w.desc}</p>
                  </div>
                ))}
             </div>
@@ -295,9 +320,9 @@ function WhyOfflineSection() {
 function AvailabilityDashboard() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-black transition-colors duration-500 border-t border-white/[0.06] overflow-hidden">
+    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 border-t border-gray-100 dark:border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className={`relative bg-white/[0.02] backdrop-blur-3xl rounded-[3.5rem] p-8 md:p-16 border border-white/[0.08] overflow-hidden transition-all duration-1000 ${visible ? "opacity-100 translate-y-0 shadow-[0_50px_100px_rgba(0,0,0,0.5)]" : "opacity-0 translate-y-12"}`}>
+        <div className={`relative bg-gray-50/50 dark:bg-white/[0.02] backdrop-blur-3xl rounded-[3.5rem] p-8 md:p-16 border border-gray-200 dark:border-white/[0.08] overflow-hidden transition-all duration-1000 ${visible ? "opacity-100 translate-y-0 shadow-lg dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)]" : "opacity-0 translate-y-12"}`}>
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/10 blur-[120px] pointer-events-none rounded-full -translate-y-1/2 translate-x-1/4" />
           <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand/5 blur-[100px] pointer-events-none rounded-full translate-y-1/2 -translate-x-1/4 opacity-50" />
 
@@ -310,12 +335,12 @@ function AvailabilityDashboard() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
               <div className="lg:col-span-12 xl:col-span-7 space-y-10">
                  <div className="space-y-8">
-                    <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
+                    <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight text-gray-900 dark:text-white leading-[1.1]">
                       Доступность личного <br />
-                      <span className="text-white/40">онбординга</span>
+                      <span className="text-gray-400 dark:text-white/40">онбординга</span>
                     </h2>
 
-                    <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl">
+                    <p className="text-gray-500 dark:text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl">
                       Для обеспечения глубины погружения и качества сборки я работаю не более чем с 2-мя клиентами одновременно. Это гарантирует мой фокус на ваших задачах.
                     </p>
                  </div>
@@ -325,14 +350,14 @@ function AvailabilityDashboard() {
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_2s_infinite]" />
                       Обсудить ваш проект
                     </a>
-                    <Link to="/executive" className="inline-flex items-center justify-center gap-2 border border-white/10 text-white bg-white/5 rounded-2xl px-10 py-5 font-bold hover:border-white/30 transition-all duration-300 whitespace-nowrap">
+                    <Link to="/executive" className="inline-flex items-center justify-center gap-2 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white bg-gray-50 dark:bg-white/5 rounded-2xl px-10 py-5 font-bold hover:border-brand/30 transition-all duration-300 whitespace-nowrap">
                       Для корпораций <ArrowRight className="w-5 h-5 ml-1" />
                     </Link>
                  </div>
               </div>
 
               <div className="lg:col-span-12 xl:col-span-5">
-                 <div className="bg-white/[0.03] border border-white/[0.08] rounded-[2.5rem] p-8 md:p-12 backdrop-blur-xl relative group h-full">
+                 <div className="bg-gray-50/50 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.08] rounded-[2.5rem] p-8 md:p-12 backdrop-blur-xl relative group h-full">
                     <div className="absolute -top-4 -right-4 w-20 h-20 bg-brand/10 blur-2xl group-hover:bg-brand/20 transition-colors duration-500" />
                     
                     <div className="flex items-center gap-4 mb-6 text-brand">
@@ -340,8 +365,8 @@ function AvailabilityDashboard() {
                        <span className="text-lg font-bold">Текущий статус</span>
                     </div>
                     
-                    <h3 className="text-2xl font-semibold text-white mb-6 leading-tight">Очередь на вход</h3>
-                    <p className="text-white/50 text-lg leading-relaxed">
+                    <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-6 leading-tight">Очередь на вход</h3>
+                    <p className="text-gray-500 dark:text-white/50 text-lg leading-relaxed">
                       Слоты на текущий месяц заполнены. Заявка сейчас гарантирует вам приоритет при освобождении места и возможность начать подготовку заранее.
                     </p>
                  </div>

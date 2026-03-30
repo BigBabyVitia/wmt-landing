@@ -8,33 +8,38 @@ import { V2Card } from "@/components/ui/V2Card"
 
 const signalsData = {
   status: [
-    { code: "ХАОС", title: "Система не выровнена", desc: "Отделы внедряют ИИ без стратегии.", icon: Layers },
-    { code: "БЛОК", title: "Решение отложено", desc: "Страх ошибки парализует старт.", icon: ShieldCheck },
-    { code: "РИСК", title: "Избыточные затраты", desc: "Дорогие решения без гарантии результата.", icon: Target },
-    { code: "ТУПИК", title: "Нет мандата", desc: "ИИ занимается энтузиаст без полномочий.", icon: Users },
+    { code: "СИТУАЦИЯ 01", title: "Пока непонятно, насколько ИИ нужен компании", desc: "Хочется спокойно разобраться в масштабе возможностей и рисков.", icon: ShieldAlert },
+    { code: "СИТУАЦИЯ 02", title: "Ясно, что нужно идти — неясно, как именно", desc: "Без понятной архитектуры легко потерять точность на старте.", icon: Map },
+    { code: "СИТУАЦИЯ 03", title: "ИИ даёт локальный эффект, компании — нет", desc: "Без общей стратегии это не превращается в системный результат.", icon: Layers },
   ]
 }
 
-const situations = [
+const overviewPrograms = [
   {
-    title: "Безопасный старт без потери квартала",
-    desc: "Входим в тему ИИ. Нужно увидеть демо, расставить приоритеты и получить план действий на 90 дней.",
-    mobileDesc: "Входим в ИИ. Нужно увидеть демо, приоритеты и план на 90 дней.",
-    format: "Системный ИИ",
+    id: "system-ai",
+    title: "Системный ИИ",
+    desc: "когда нужно выровнять руководство и получить план на 90 дней.",
+    tags: { format: "Офлайн / Онлайн", duration: "1,5–2 часа", people: "до 15 человек" }
   },
   {
-    title: "Глубокий пересмотр стратегии под ИИ",
-    desc: "Косметических правок уже мало. Перестраиваем бизнес-модель и процессы под новую реальность.",
-    mobileDesc: "Косметики мало. Перестраиваем бизнес-модель и процессы под ИИ.",
-    format: "Бизнес 2.0",
+    id: "skeleton",
+    title: "Цифровой каркас",
+    desc: "построение архитектуры ИИ-перехода и запуск первого пилота.",
+    tags: { format: "Офлайн", duration: "1–2 дня", people: "до 30 человек" }
   },
   {
-    title: "Переход от теории к личной практике",
-    desc: "Решение принято, пора работать руками. Месяц практики для принятия решений на основе опыта.",
-    mobileDesc: "Пора работать руками. Месяц практики для принятия решений на опыте.",
-    format: "ИИ-марафон для топов",
+    id: "business-2",
+    title: "Бизнес 2.0",
+    desc: "когда нужен глубокий пересмотар стратегии и операционной модели под ИИ.",
+    tags: { format: "Офлайн", duration: "2 дня", people: "до 15 человек" }
   },
-]
+  {
+    id: "exec-marathon",
+    title: "ИИ-марафон для топ-менеджеров",
+    desc: "когда руководители должны не только понять тему, а пройти месяц практики.",
+    tags: { format: "Онлайн", duration: "1 месяц", people: "8–20 человек" }
+  }
+];
 
 const programs = [
   {
@@ -53,6 +58,23 @@ const programs = [
       { label: "Участники", value: "до 15 человек", icon: Users }
     ],
     badge: "Первый ход",
+  },
+  {
+    id: "skeleton",
+    title: "Цифровой каркас",
+    tagline: "Архитектура и первый работающий пилот за 2 дня",
+    desc: "Когда стратегии уже мало, и нужно твердое решение в процессах. Построение ИИ-архитектуры, которая учитывает ваши данные и безопасность, и запуск первого рабочего пилота под вашим управленческим контролем. Это мост между пониманием и эксплуатацией.",
+    results: [
+      { title: "Анализ ИИ-потенциала", desc: "Глубокий аудит для выбора участка с максимальным ROI.", icon: Target },
+      { title: "Архитектура систем", desc: "Как ИИ встроится в ваши данные, безопасность и IT-ландшафт.", icon: ShieldCheck },
+      { title: "Запущенный пилот", desc: "Живой, работающий агент, решающий реальную задачу компании.", icon: Zap },
+    ],
+    params: [
+      { label: "Длительность", value: "1–2 дня", icon: Clock },
+      { label: "Результат", value: "Запущенный пилот", icon: Target },
+      { label: "Участники", value: "до 30 человек", icon: Users }
+    ],
+    badge: "Строительство",
   },
   {
     id: "business-2",
@@ -94,8 +116,9 @@ const programs = [
 export function Executive() {
   const statusTags = signalsData.status.map((s, i) => (
     <div key={i} className="group relative bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 transition-all duration-500 hover:border-brand/30 h-full flex flex-col items-start text-left">
-      <div className="mb-4 relative z-10">
-        <span className="text-[10px] font-bold tracking-[0.2em] text-brand uppercase bg-brand/10 px-2.5 py-1 rounded-full">СТАТУС: {s.code}</span>
+      <div className="mb-4 relative z-10 flex items-center gap-2">
+        <s.icon className="w-4 h-4 text-brand" />
+        <span className="text-[10px] font-bold tracking-[0.2em] text-brand uppercase bg-brand/10 px-2.5 py-1 rounded-full">{s.code}</span>
       </div>
       <h3 className="text-white font-semibold text-lg mb-2 relative z-10 leading-snug">{s.title}</h3>
       <p className="text-white/50 text-sm leading-relaxed relative z-10">{s.desc}</p>
@@ -117,7 +140,7 @@ export function Executive() {
         }
       />
 
-      <SituationsSection />
+      <ProgramsOverviewSection />
 
       {programs.map((p, i) => (
         <ProgramSection key={p.id} program={p} index={i} />
@@ -130,31 +153,67 @@ export function Executive() {
   )
 }
 
-function SituationsSection() {
+function ProgramsOverviewSection() {
   const { ref, visible } = useScrollVisible()
+
+  const scrollToProgram = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
     <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-10 md:mb-20 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-2xl sm:text-4xl md:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 md:mb-6 leading-[1.15]">Какая из этих ситуаций ваша?</h2>
-          <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 max-w-3xl font-medium leading-relaxed">Каждая — реальная точка, с которой приходят компании. Каждой отвечает свой формат.</p>
+        <div className={`mb-10 md:mb-16 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Линейка программ для руководства</h2>
+          <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 max-w-5xl font-medium leading-relaxed">От управленческого выравнивания до архитектуры ИИ-перехода и личной практики.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {situations.map((s, idx) => (
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+          {overviewPrograms.map((program, idx) => (
             <V2Card
               key={idx}
               visible={visible}
               index={idx}
-              className="flex flex-col gap-4 border-gray-100 dark:border-white/[0.06] hover:border-brand/30 transition-all duration-500"
-              contentClassName="!p-6 md:!p-10"
+              className="flex flex-col bg-gray-50/80 dark:bg-white/[0.08] border border-gray-100 dark:border-white/10 rounded-[2rem] hover:border-brand/40 transition-all duration-500 group cursor-pointer shadow-sm"
+              contentClassName="p-6 md:p-8"
+              onClick={() => scrollToProgram(program.id)}
             >
-              <h3 className="text-lg md:text-2xl font-semibold text-gray-900 dark:text-white mb-2 leading-snug relative z-10">{s.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base leading-relaxed mb-6 md:mb-8 flex-1 relative z-10 hidden md:block">{s.desc}</p>
-              <p className="text-gray-600 dark:text-gray-400 text-[13px] leading-relaxed mb-4 flex-1 relative z-10 block md:hidden">{s.mobileDesc}</p>
-              <div className="mt-auto relative z-10">
-                <span className="text-brand font-semibold text-[11px] md:text-sm uppercase tracking-wider inline-flex items-center gap-2 group-hover:gap-3 transition-all">
-                  {s.format} <ArrowRight className="w-3.5 h-3.5 md:w-4 md:h-4" />
-                </span>
+              <div className="flex justify-between items-start gap-3 mb-3">
+                <h3 className="font-semibold text-gray-900 dark:text-white text-base md:text-[17px] leading-tight group-hover:text-brand transition-colors">{program.title}</h3>
+                {program.tags.format && (
+                  <span className="shrink-0 inline-flex items-center gap-1 text-[10px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-md leading-none">
+                    {program.tags.format}
+                  </span>
+                )}
+              </div>
+              
+              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 flex-1">
+                {program.desc}
+              </p>
+              
+              <div className="flex flex-wrap items-center gap-2 mt-auto">
+                {program.tags.duration && (
+                  <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
+                    <Clock className="w-3 h-3 opacity-50 text-brand" />
+                    {program.tags.duration}
+                  </span>
+                )}
+                {program.tags.people && (
+                  <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
+                    <Users className="w-3 h-3 opacity-50 text-brand" />
+                    {program.tags.people}
+                  </span>
+                )}
               </div>
             </V2Card>
           ))}
@@ -170,7 +229,7 @@ function ProgramSection({ program: p, index }: any) {
   const bg = isEven ? "bg-gray-50/50 dark:bg-white/[0.02]" : "bg-white dark:bg-black"
 
   return (
-    <section ref={ref} className={`py-16 md:py-32 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden`}>
+    <section id={p.id} ref={ref} className={`py-16 md:py-32 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden`}>
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand/[0.03] blur-[120px] pointer-events-none rounded-full" />
       
       <div className="max-w-7xl mx-auto relative z-10">
@@ -256,7 +315,7 @@ function BridgeSection() {
           <div className="relative z-10 max-w-4xl">
             <h2 className="text-2xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">ИИ не должен застрять в кабинете руководителя</h2>
             <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 mb-8 md:mb-10 font-medium leading-relaxed">
-              Управленческий старт нужен ради следующего шага. Команды идут в <Link to="/builder-day" className="text-brand hover:underline">сборку</Link>, функции — в пилоты, компания — в волну перемен.
+              Управленческий старт нужен ради следующего шага. Команды идут в сборку, функции — в пилоты, компания — в волну перемен.
             </p>
             <Link
               to="/teams"

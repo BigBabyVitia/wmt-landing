@@ -322,34 +322,12 @@ function HeroWebGL() {
 
 /* ── Sub-components ── */
 
-const challengeLabels = ["ВХОД", "МАСШТАБ", "СИСТЕМА", "СТРАТЕГИЯ"];
-
 function ChallengesSection() {
   const { ref, visible } = useScrollVisible()
-  const [variant, setVariant] = useState<"modern" | "stack">("modern")
 
   return (
     <section ref={ref} className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        {/* Switcher (only for design selection) */}
-        <div className="flex justify-center mb-16">
-          <div className="inline-flex p-1 bg-gray-100 dark:bg-white/5 rounded-full border border-gray-200 dark:border-white/10">
-            {(["modern", "stack"] as const).map((v) => (
-              <button
-                key={v}
-                onClick={() => setVariant(v)}
-                className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all ${
-                  variant === v 
-                    ? "bg-white dark:bg-white/10 text-brand shadow-sm" 
-                    : "text-gray-500 hover:text-gray-900 dark:hover:text-white"
-                }`}
-              >
-                {v === "modern" ? "Карточки" : "Список"}
-              </button>
-            ))}
-          </div>
-        </div>
-
         <div className={`mb-16 md:mb-24 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl md:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-8 leading-[1.15]">
             ИИ уже меняет рынок.<br />
@@ -362,57 +340,30 @@ function ChallengesSection() {
           </p>
         </div>
 
-        {variant === "modern" && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {challenges.map((c, idx) => (
-              <div
-                key={idx}
-                className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-                style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
-              >
-                <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
-                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/[0.03] to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
-                  <div className="relative z-10 flex gap-4 sm:gap-5 items-start">
-                    <div className="flex-shrink-0 mt-1">
-                      <ChallengeAppIcon>
-                        {challengeSvgs[idx]()}
-                      </ChallengeAppIcon>
-                    </div>
-                    <div>
-                      <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">{c.title}</h3>
-                      <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed">{c.desc}</p>
-                    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {challenges.map((c, idx) => (
+            <div
+              key={idx}
+              className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
+            >
+              <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/[0.03] to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
+                <div className="relative z-10 flex gap-4 sm:gap-5 items-start">
+                  <div className="flex-shrink-0 mt-1">
+                    <ChallengeAppIcon>
+                      {challengeSvgs[idx]()}
+                    </ChallengeAppIcon>
+                  </div>
+                  <div>
+                    <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-3">{c.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed">{c.desc}</p>
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
-        )}
-
-        {variant === "stack" && (
-          <div className="flex flex-col gap-4">
-            {challenges.map((c, idx) => (
-              <div key={idx} className="group relative bg-gray-50/50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/[0.05] rounded-[2rem] p-6 md:p-10 transition-all duration-300 hover:border-brand/30 hover:bg-gray-50 dark:hover:bg-white/[0.04] overflow-hidden">
-                {/* Background Ghost Label */}
-                <div className="absolute -right-4 -bottom-4 select-none pointer-events-none opacity-100">
-                   <span className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-gray-400/10 via-gray-900/5 to-gray-400/10 dark:from-white/0 dark:via-white/[0.03] dark:to-white/0 bg-clip-text text-transparent animate-text-glow tracking-tight">
-                     {challengeLabels[idx]}
-                   </span>
-                </div>
-                
-                <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12 relative z-10">
-                  <div className="flex-shrink-0 md:w-24">
-                    <span className="text-[10px] font-bold tracking-[0.2em] text-brand/60 uppercase">{challengeLabels[idx]}</span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-brand transition-colors duration-300">{c.title}</h3>
-                    <p className="text-sm md:text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-4xl">{c.desc}</p>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -508,6 +459,11 @@ const teaserData = [
         tags: { format: "Офлайн / Онлайн", duration: "1,5–2 часа", people: "до 15 человек", result: "План на 90 дней" }
       },
       {
+        title: "Цифровой каркас",
+        desc: "построение архитектуры ИИ-перехода и запуск первого пилота.",
+        tags: { format: "Офлайн", duration: "1–2 дня", people: "до 30 человек", result: "Первый пилот" }
+      },
+      {
         title: "Бизнес 2.0",
         desc: "когда нужен глубокий пересмотр стратегии и операционной модели под ИИ.",
         tags: { format: "Офлайн", duration: "2 дня", people: "до 15 человек", result: "Рабочие сессии" }
@@ -516,11 +472,6 @@ const teaserData = [
         title: "ИИ-марафон для топ-менеджеров",
         desc: "когда руководители должны не только понять тему, а пройти месяц практики.",
         tags: { format: "Онлайн", duration: "1 месяц", people: "8–20 человек", result: "8 модулей" }
-      },
-      {
-        title: "Цифровой каркас",
-        desc: "построение архитектуры ИИ-перехода и запуск первого пилота.",
-        tags: { format: "Офлайн", duration: "1–2 дня", people: "до 30 человек", result: "Первый пилот" }
       }
     ],
     link: "/executive",
@@ -624,12 +575,12 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
         }}
       />
 
-      {/* Background Grid Pattern with fade-out mask */}
+      {/* Background Grid Pattern with fade-out mask - balanced visibility */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.5] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_30%,transparent_100%)]" 
+        className="absolute inset-0 pointer-events-none opacity-[0.6] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)]" 
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(128,128,128,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(128,128,128,0.15) 1px, transparent 1px)`,
-          backgroundSize: '72px 72px',
+          backgroundImage: `linear-gradient(to right, rgba(128,128,128,0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(128,128,128,0.18) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
           backgroundPosition: 'center center'
         }}
       />
@@ -637,7 +588,7 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-500 group-hover:opacity-100"
         style={{
-          background: useMotionTemplate`radial-gradient(700px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.08), transparent 80%)`,
+          background: useMotionTemplate`radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.18), transparent 80%)`,
         }}
       />
       

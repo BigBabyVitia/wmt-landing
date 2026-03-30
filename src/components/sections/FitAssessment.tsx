@@ -32,7 +32,7 @@ export function FitAssessment({ items, title = "Подходит / Не подх
 
   return (
     <div ref={ref} className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-      <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white mb-10 md:mb-16 leading-tight max-w-4xl">
+      <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-10 md:mb-16 leading-tight max-w-4xl">
         {title}
       </h2>
       
@@ -44,7 +44,7 @@ export function FitAssessment({ items, title = "Подходит / Не подх
           className="hover:border-brand/30" 
           contentClassName="p-8 md:p-12"
         >
-          <h3 className="text-xl md:text-2xl font-semibold text-white mb-8 flex items-center gap-3 relative z-10">
+          <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-8 flex items-center gap-3 relative z-10">
             Подходит, если
           </h3>
           
@@ -52,28 +52,28 @@ export function FitAssessment({ items, title = "Подходит / Не подх
             {fits.map((item, idx) => (
               <div key={idx} className="flex items-start gap-4">
                 <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-1" />
-                <p className="text-white/80 text-base md:text-lg leading-relaxed">{item.text}</p>
+                <p className="text-gray-700 dark:text-white/80 text-base md:text-lg leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
         </V2Card>
-
+ 
         {/* Not Suitable */}
         <V2Card 
           visible={visible} 
           index={1} 
-          className="hover:border-white/10" 
+          className="hover:border-gray-200 dark:hover:border-white/10" 
           contentClassName="p-8 md:p-12"
         >
-          <h3 className="text-xl md:text-2xl font-semibold text-white mb-8 flex items-center gap-3 relative z-10">
+          <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-8 flex items-center gap-3 relative z-10">
             Не подходит, если
           </h3>
           
           <div className="space-y-6 relative z-10">
             {notFits.map((item, idx) => (
               <div key={idx} className="flex items-start gap-4">
-                <XCircle className="w-5 h-5 text-white/40 shrink-0 mt-1" />
-                <p className="text-white/70 text-base md:text-lg leading-relaxed">{item.text}</p>
+                <XCircle className="w-5 h-5 text-gray-400 dark:text-white/40 shrink-0 mt-1" />
+                <p className="text-gray-500 dark:text-white/70 text-base md:text-lg leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
