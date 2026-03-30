@@ -1,4 +1,4 @@
-import { ArrowRight, CheckCircle2, Clock, MapPin, Zap, Target } from "lucide-react"
+import { ArrowRight, MapPin, Zap, Target, Bot, Compass, Terminal, Shield, Sparkles, UserCheck, Users, Radio, UserPlus } from "lucide-react"
 import { Link } from "react-router-dom"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
@@ -7,43 +7,91 @@ import { useScrollVisible } from "@/hooks/useScrollVisible"
 import { V2Hero } from "@/components/ui/V2Hero"
 
 const fitItems = [
-  { text: "Вы сами принимаете решения и хотите пройти ИИ-перестройку лично", fit: true },
-  { text: "Вам нужна плотная практика руками, а не лекции «посмотреть про ИИ»", fit: true },
-  { text: "Вы готовы два дня работать рядом с тренерами и группой", fit: true },
-  { text: "Вам важно уехать с рабочими инструментами, а не с общим ощущением", fit: true },
-  { text: "Вы ищете программу, куда отправить сотрудников", fit: false },
-  { text: "Вам нужна онлайн-библиотека или мягкое знакомство с темой", fit: false },
-  { text: "У вас корпоративная задача и нужна программа для компании", fit: false },
-  { text: "Вы хотите просто «быть в курсе» без собственной практики", fit: false },
+  { text: "Вам нужно персональное решение под ваши задачи, а не общий курс", fit: true },
+  { text: "Вы хотите разобраться в ИИ глубоко и самостоятельно, вне корпоративного контекста", fit: true },
+  { text: "Вам важна плотная практика 1-на-1 с тренером, а не лекции в Zoom", fit: true },
+  { text: "Вы готовы к интенсивному погружению для быстрого результата", fit: true },
+  { text: "Вы ищете массовые курсы или вебинары для ознакомления", fit: false },
+  { text: "Вам нужна онлайн-библиотека промптов без обратной связи", fit: false },
+  { text: "Вы хотите просто «быть в курсе» трендов без глубокой практики", fit: false },
+  { text: "У вас задача обучить отдел (для этого есть корпоративный формат)", fit: false },
 ]
 
-const components = [
-  { title: "Карта ИИ и реальный ландшафт", desc: "Что происходит в мире ИИ прямо сейчас, чем рабочие сдвиги отличаются от шума и как не потеряться в потоке новых инструментов." },
-  { title: "Личная стратегия развития", desc: "Где ИИ должен усиливать именно вас. Не абстрактный план, а конкретные точки, в которых ИИ меняет ваш рабочий процесс." },
-  { title: "Промпты и плотная практика", desc: "Почему одна формулировка даёт мусор, а другая — результат. Разбор на реальных запросах, с тренерами рядом." },
-  { title: "Сборка своего агента", desc: "Не «узнать, что агенты бывают», а собрать своего помощника под свою задачу и увидеть, как он работает." },
+const personalSteps = [
+  { 
+    title: "Изучение и аудит", 
+    desc: "Анализируем ваш бизнес-процесс и текущие задачи. Находим «бутылочные горлышки», которые ИИ может расшить уже завтра.",
+    badge: "Шаг 01"
+  },
+  { 
+    title: "Индивидуальный трек", 
+    desc: "Разрабатываем программу обучения и инструменты специально под ваш кейс. Минимум теории — максимум того, что нужно именно вам.",
+    badge: "Шаг 02"
+  },
+  { 
+    title: "Личная сборка", 
+    desc: "Выходим на реализацию. Вместе собираем стратегию, промпты и ИИ-агентов, внедряя их в ваш реальный рабочий процесс.",
+    badge: "Шаг 03"
+  },
 ]
 
 const outputs = [
-  { title: "Понимание реального ландшафта ИИ", desc: "Вы лучше видите, что важно именно вам, а что остаётся чужим шумом." },
-  { title: "Личная стратегия развития", desc: "Свои приоритеты и конкретный следующий шаг, а не общий интерес к теме." },
-  { title: "Библиотека рабочих промптов", desc: "Промпты, которые уже работают, а не случайная подборка из интернета." },
-  { title: "Собственный AI-агент", desc: "Рабочий помощник под конкретную задачу, собранный вашими руками." },
-  { title: "Новый способ работы с ИИ", desc: "Навык формулировать задачи, получать результат и думать вместе с ИИ, а не зависеть от кнопок и инструкций." },
+  { 
+    title: "Навигатор по ландшафту ИИ", 
+    desc: "Различайте реальные сдвиги и шум. Фокус на приоритетах, важных именно для вашего бизнеса.",
+    icon: <Compass className="w-8 h-8 text-brand" />,
+    label: "Стратегия"
+  },
+  { 
+    title: "Персональный Roadmap", 
+    desc: "Пошаговый план внедрения ИИ-инструментов в ваши рабочие процессы на ближайшие 3–6 месяцев.",
+    icon: <Target className="w-8 h-8 text-brand" />,
+    label: "План"
+  },
+  { 
+    title: "Библиотека рабочих промптов", 
+    desc: "Стек проверенных запросов под ваши задачи, который работает сразу, а не после бесконечных правок.",
+    icon: <Terminal className="w-8 h-8 text-brand" />,
+    label: "Инструментарий"
+  },
+  { 
+    title: "Готовый ИИ-агент под задачу", 
+    desc: "Полноценный автономный помощник, собранный под ваш запрос. Самый ценный актив программы.",
+    icon: <Bot className="w-12 h-12 text-white" />,
+    label: "Главный результат"
+  },
+  { 
+    title: "Навык автономного развития", 
+    desc: "Навык внедрения любых новых ИИ-моделей без зависимости от чужих инструкций и гайдов.",
+    icon: <Zap className="w-8 h-8 text-brand" />,
+    label: "Компетенция"
+  },
 ]
 
 const whyOffline = [
-  { title: "Коррекция в моменте", desc: "Когда вы работаете руками, нужна быстрая обратная связь рядом, а не отложенный комментарий через сутки." },
-  { title: "Плотность двух дней", desc: "За два офлайн-дня легче удержать фокус, пройти весь путь от карты ИИ до агента и не растянуть процесс на месяцы." },
-  { title: "Группа и темп", desc: "Сильный офлайн-формат держит темп, который в онлайне неизбежно рассыпается." },
+  { 
+    title: "Коррекция в моменте", 
+    desc: "Когда мы работаем 1-на-1, я вижу каждую ошибку в промпте мгновенно. Это правит ваши руки сразу, достигая результата в 10 раз быстрее.",
+    icon: <UserCheck className="w-8 h-8 text-brand" />
+  },
+  { 
+    title: "Плотность работы", 
+    desc: "Максимальная концентрация на ваших задачах без отвлечений на уведомления и сторонние темы. Только ваш кейс.",
+    icon: <Zap className="w-8 h-8 text-brand" />
+  },
+  { 
+    title: "Персональный фокус", 
+    desc: "Вся энергия и опыт тренера направлены на решение ваших специфических проблем, что невозможно в групповом формате.",
+    icon: <Users className="w-8 h-8 text-brand" />
+  },
 ]
 
 export function PersonalAI() {
   const paramsTags = [
-    { label: "Длительность", value: "2 дня / 16 часов", icon: Clock },
-    { label: "Формат", value: "Офлайн, в офисе", icon: MapPin },
-    { label: "Практика", value: "С тренерами рядом", icon: Zap },
-    { label: "Результат", value: "Свой AI-агент", icon: Target },
+    { label: "Формат", value: "Персонально, 1-на-1", icon: Users },
+    { label: "Локация", value: "Офлайн / Онлайн", icon: MapPin },
+    { label: "Фокус", value: "Сборка под ваш кейс", icon: Zap },
+    { label: "Результат", value: "Работающий AI-агент", icon: Target },
   ].map((p, i) => (
     <div key={i} className="group relative bg-white/[0.05] backdrop-blur-xl border border-white/10 rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-6 transition-all duration-500 hover:border-brand/30 h-full flex flex-col items-start text-left">
       <div className="mb-4 relative z-10 flex items-center gap-2">
@@ -59,29 +107,29 @@ export function PersonalAI() {
     <div className="bg-black min-h-screen text-white">
       <V2Hero 
         label="Личный ИИ"
-        title={<>Перестройте свою работу с&nbsp;<em className="not-italic text-brand font-bold">ИИ</em> за&nbsp;два плотных дня</>}
-        description="Интенсив на 16 часов для тех, кто хочет выйти из общего интереса к ИИ в рабочее владение. Вы пройдете путь от реальной карты возможностей до сборки собственного агента под свои задачи."
+        title={<>Индивидуальная <em className="not-italic text-brand font-bold">ИИ-трансформация</em> под ваши задачи</>}
+        description="Глубокое погружение в нейросети вне корпоративного контекста. Мы анализируем ваши процессы, разрабатываем персональную программу и вместе собираем рабочие решения."
         tags={paramsTags}
         buttons={
           <div className="flex flex-col gap-4">
-            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-[0_8px_32px_rgba(255,83,49,0.25)] hover:-translate-y-1 transform-gpu">
-              Записаться в лист ожидания <ArrowRight className="w-5 h-5 ml-1" />
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-2xl px-10 py-5 font-bold hover:bg-[#fb4119] transition-all duration-300 shadow-[0_8px_32px_rgba(255,83,49,0.25)] hover:-translate-y-1 transform-gpu">
+              Обсудить ваш проект <ArrowRight className="w-5 h-5 ml-1" />
             </a>
-            <div className="text-white/50 text-sm text-center md:text-left">Поток 4–5 апреля 2026 уже заполнен.</div>
+            <div className="text-white/50 text-sm text-center md:text-left">Ближайшие свободные окна: Конец апреля / Начало мая.</div>
           </div>
         }
       />
 
       <section className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-white/[0.06] transition-colors duration-500">
         <div className="max-w-7xl mx-auto">
-          <FitAssessment items={fitItems} title="Этот интенсив работает, когда вы действительно хотите пройти его сами" />
+          <FitAssessment items={fitItems} title="Личное сопровождение подходит, если вы готовы к глубокой перестройке" />
         </div>
       </section>
 
       <ProgramContent />
       <OutputsSection />
       <WhyOfflineSection />
-      <StreamStatus />
+      <AvailabilityDashboard />
       
       <TrustStrip />
       <MainCta />
@@ -92,21 +140,33 @@ export function PersonalAI() {
 function ProgramContent() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500">
+    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-2xl md:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight">16 часов практики, а не лекций</h2>
-          <p className="text-white/60 text-base md:text-xl max-w-3xl leading-relaxed">Внутри — карта ИИ, личная стратегия, работа с промптами и сборка собственного агента. Основной объём — работа руками с тренерами.</p>
+        <div className={`mb-16 md:mb-24 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-8 border-l-4 border-brand pl-6">
+            Три этапа <br />
+            <span className="text-white/40">персональной работы</span>
+          </h2>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {components.map((c, idx) => (
-            <div
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 relative z-10">
+          {personalSteps.map((step, idx) => (
+            <div 
               key={idx}
-              className={`flex flex-col bg-white/[0.02] border border-white/[0.06] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 transition-all duration-500 hover:border-brand/30 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
+              className={`group relative bg-white/[0.02] border border-white/[0.08] rounded-[2.5rem] p-8 md:p-12 transition-all duration-700 hover:border-brand/40 overflow-hidden ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}
+              style={{ transitionDelay: `${idx * 200}ms` }}
             >
-              <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4 leading-tight">{c.title}</h3>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed">{c.desc}</p>
+              <div className="absolute top-0 right-0 w-40 h-40 bg-brand/5 blur-[60px] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              
+              <div className="mb-8 flex justify-between items-start">
+                 <div className="p-4 bg-white/[0.04] border border-white/10 rounded-2xl group-hover:bg-brand/10 group-hover:border-brand/30 transition-all duration-500">
+                    {idx === 0 ? <Compass className="w-8 h-8 text-brand" /> : idx === 1 ? <Target className="w-8 h-8 text-brand" /> : <Zap className="w-8 h-8 text-brand" />}
+                 </div>
+                 <span className="text-white/20 font-bold text-lg tracking-widest">{step.badge}</span>
+              </div>
+              
+              <h3 className="text-2xl md:text-3xl font-bold text-white mb-6 leading-tight group-hover:text-brand transition-colors duration-500">{step.title}</h3>
+              <p className="text-white/50 text-lg leading-relaxed">{step.desc}</p>
             </div>
           ))}
         </div>
@@ -117,22 +177,59 @@ function ProgramContent() {
 
 function OutputsSection() {
   const { ref, visible } = useScrollVisible()
+  const featuredOutput = outputs[3];
+  const otherOutputs = [outputs[0], outputs[1], outputs[2], outputs[4]];
+
   return (
-    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 border-t border-white/[0.06]">
+    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-black overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-2xl md:text-5xl font-semibold mb-6 text-white leading-tight">Вы уезжаете с рабочими инструментами</h2>
-          <p className="text-white/60 text-base md:text-xl max-w-3xl mb-12 md:mb-16 leading-relaxed">Каждый результат ниже — то, что вы действительно забираете с собой.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            {outputs.map((o, idx) => (
-              <div key={idx} className="flex items-start gap-4 md:gap-6 bg-white/[0.02] border border-white/[0.06] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 transition-all duration-500 hover:border-brand/30">
-                <CheckCircle2 className="w-6 h-6 md:w-8 md:h-8 text-brand shrink-0 mt-1" />
-                <div>
-                  <p className="text-white text-lg md:text-xl font-semibold tracking-tight leading-tight">{o.title}</p>
-                  <p className="text-white/60 text-sm md:text-base mt-2 md:mt-3 leading-relaxed">{o.desc}</p>
-                </div>
+        <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 md:mb-24">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/5 border border-white/10 rounded-full mb-6">
+                <Sparkles className="w-4 h-4 text-brand" />
+                <span className="text-white/60 text-[10px] font-bold uppercase tracking-widest">ВАШ ЛИЧНЫЙ АКТИВ</span>
               </div>
-            ))}
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white leading-tight">Результаты <br /><span className="text-white/40">программы</span></h2>
+            </div>
+            <p className="text-white/40 text-lg md:text-xl max-w-sm leading-relaxed border-l border-white/10 pl-8">
+              Вы уезжаете с полностью готовым инструментарием и планом его развития.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 md:gap-5">
+            <div className="lg:col-span-12 xl:col-span-4 h-full">
+              <div className="group relative h-full bg-brand p-8 md:p-10 rounded-[3rem] overflow-hidden flex flex-col justify-between transition-all duration-700 hover:bg-[#fb4119] shadow-[0_30px_60px_rgba(255,83,49,0.2)]">
+                <div className="absolute top-0 right-0 w-80 h-80 bg-white/10 blur-[100px] -translate-y-1/2 translate-x-1/2" />
+                <div className="relative z-10">
+                  <div className="mb-10 p-5 bg-white/10 backdrop-blur-xl rounded-3xl w-fit group-hover:scale-110 transition-transform duration-500">
+                    {featuredOutput.icon}
+                  </div>
+                  <div className="mb-4 inline-block px-3 py-1 bg-white/20 rounded-full text-[10px] font-bold text-white uppercase tracking-widest">
+                    {featuredOutput.label}
+                  </div>
+                  <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 leading-tight">{featuredOutput.title}</h3>
+                  <p className="text-white/80 text-lg leading-relaxed">{featuredOutput.desc}</p>
+                </div>
+                <div className="mt-12 text-white/40 text-xs font-bold tracking-[0.2em] uppercase">#ВашЛичныйАктив</div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-12 xl:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+              {otherOutputs.map((o, idx) => (
+                <div 
+                  key={idx}
+                  className="group relative bg-white/[0.03] border border-white/[0.08] rounded-[2.5rem] p-8 md:p-10 transition-all duration-700 hover:border-white/20 flex flex-col justify-between"
+                >
+                  <div className="relative z-10">
+                    <div className="mb-8 text-brand group-hover:scale-110 transition-transform duration-500">{o.icon}</div>
+                    <div className="mb-3 text-white/30 text-[10px] font-bold uppercase tracking-widest">{o.label}</div>
+                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 leading-tight group-hover:text-brand transition-colors duration-500">{o.title}</h3>
+                    <p className="text-white/50 text-base leading-relaxed line-clamp-3">{o.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -143,55 +240,113 @@ function OutputsSection() {
 function WhyOfflineSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500">
+    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-2xl md:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight">Офлайн здесь нужен по функции</h2>
-          <p className="text-white/60 text-base md:text-xl max-w-3xl leading-relaxed">Интенсив собран офлайн потому, что плотную практику, мгновенную обратную связь и сборку агента проще сделать сильно именно так.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
-          {whyOffline.map((w, idx) => (
-            <div
-              key={idx}
-              className={`flex flex-col bg-white/[0.02] border border-white/[0.06] rounded-[2rem] md:rounded-[2.5rem] p-6 md:p-10 transition-all duration-500 hover:border-brand/30 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
-            >
-              <h3 className="text-lg md:text-xl font-semibold text-white mb-3 md:mb-4 leading-tight">{w.title}</h3>
-              <p className="text-white/60 text-sm md:text-base leading-relaxed">{w.desc}</p>
+        <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="max-w-3xl mb-16 md:mb-24">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-brand/10 border border-brand/20 rounded-full mb-6">
+              <Radio className="w-4 h-4 text-brand animate-pulse" />
+              <span className="text-brand text-[10px] font-bold uppercase tracking-widest">ПЕРСОНАЛЬНАЯ РЕАЛИЗАЦИЯ</span>
             </div>
-          ))}
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-8 leading-tight">Почему результат возможен <br /><span className="text-brand">только в личном формате?</span></h2>
+            <p className="text-white/60 text-lg md:text-xl leading-relaxed">
+              При сборке ИИ-агента критична скорость: мгновенная правка «в руках» работает в 10 раз быстрее, чем переписка в чате или Zoom.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
+            <div className="lg:col-span-2 h-full">
+              <div className="group relative h-full bg-white/[0.02] border border-white/[0.08] rounded-[3rem] p-10 md:p-14 transition-all duration-700 hover:border-brand/40 overflow-hidden flex flex-col justify-between">
+                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 blur-[120px] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
+                
+                <div>
+                   <div className="mb-10 text-brand scale-125 origin-left">{whyOffline[0].icon}</div>
+                   <h3 className="text-2xl md:text-4xl font-bold text-white mb-6 leading-tight max-w-lg">{whyOffline[0].title}</h3>
+                   <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-xl">{whyOffline[0].desc}</p>
+                </div>
+                
+                <div className="mt-12 flex items-center gap-4 text-white/40 text-sm font-medium">
+                   <div className="h-px flex-1 bg-white/[0.08]" />
+                   <span>ЦЕННОСТЬ ПЕРСОНАЛЬНОЙ РАБОТЫ #01</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="lg:col-span-1 grid grid-cols-1 gap-6 md:gap-8">
+               {whyOffline.slice(1).map((w, idx) => (
+                 <div 
+                   key={idx} 
+                   className="group relative bg-white/[0.02] border border-white/[0.08] rounded-[2.5rem] p-8 md:p-10 transition-all duration-700 hover:border-brand/40 overflow-hidden flex flex-col"
+                   style={{ transitionDelay: `${(idx + 1) * 200}ms` }}
+                 >
+                    <div className="mb-6">{w.icon}</div>
+                    <h3 className="text-xl md:text-2xl font-semibold text-white mb-4 leading-tight group-hover:text-brand transition-colors duration-500">{w.title}</h3>
+                    <p className="text-white/60 text-base leading-relaxed">{w.desc}</p>
+                 </div>
+               ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
   )
 }
 
-function StreamStatus() {
+function AvailabilityDashboard() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 border-t border-white/[0.06]">
+    <section ref={ref} className="py-20 md:py-40 px-4 sm:px-6 md:px-12 bg-black transition-colors duration-500 border-t border-white/[0.06] overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className={`relative bg-white/[0.02] backdrop-blur-xl rounded-[2.5rem] p-10 md:p-20 border border-white/[0.08] overflow-hidden max-w-5xl transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 blur-[100px] pointer-events-none rounded-full -translate-y-1/2 translate-x-1/4" />
+        <div className={`relative bg-white/[0.02] backdrop-blur-3xl rounded-[3.5rem] p-8 md:p-16 border border-white/[0.08] overflow-hidden transition-all duration-1000 ${visible ? "opacity-100 translate-y-0 shadow-[0_50px_100px_rgba(0,0,0,0.5)]" : "opacity-0 translate-y-12"}`}>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand/10 blur-[120px] pointer-events-none rounded-full -translate-y-1/2 translate-x-1/4" />
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand/5 blur-[100px] pointer-events-none rounded-full translate-y-1/2 -translate-x-1/4 opacity-50" />
 
-          <div className="relative z-10">
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-white mb-6 leading-tight">Ближайший поток закрыт</h2>
-            <p className="text-lg md:text-xl text-white/50 mb-10 leading-relaxed max-w-3xl">Поток 4–5 апреля 2026 года заполнен. Мы не создаём ложного ажиотажа, сейчас собираем лист ожидания на следующий набор.</p>
-            
-            <div className="bg-white/[0.05] rounded-2xl p-8 md:p-10 border border-white/[0.08] mb-10 max-w-3xl shadow-2xl">
-              <p className="text-xl text-white font-semibold mb-3 leading-tight">Правильный следующий шаг</p>
-              <p className="text-white/60 leading-relaxed">Зафиксировать интерес на следующий набор. Так вы попадёте в список уведомления о новых датах, заранее получите программу и сможете принять решение без спешки.</p>
+          <div className="relative z-10 space-y-12">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-brand/10 border border-brand/20 rounded-xl">
+               <Shield className="w-4 h-4 text-brand" />
+               <span className="text-brand text-xs font-bold uppercase tracking-widest leading-none">Ограниченный набор</span>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-xl shadow-brand/20 hover:-translate-y-0.5">
-                Лист ожидания
-              </a>
-              <Link to="/executive" className="inline-flex items-center justify-center gap-2 border border-white/10 text-white bg-white/5 rounded-full px-10 py-4 font-bold hover:border-white/30 transition-all duration-300">
-                Корпоративные форматы <ArrowRight className="w-5 h-5 ml-1" />
-              </Link>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
+              <div className="lg:col-span-12 xl:col-span-7 space-y-10">
+                 <div className="space-y-8">
+                    <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold tracking-tight text-white leading-[1.1]">
+                      Доступность личного <br />
+                      <span className="text-white/40">онбординга</span>
+                    </h2>
+
+                    <p className="text-white/60 text-lg md:text-xl leading-relaxed max-w-2xl">
+                      Для обеспечения глубины погружения и качества сборки я работаю не более чем с 2-мя клиентами одновременно. Это гарантирует мой фокус на ваших задачах.
+                    </p>
+                 </div>
+
+                 <div className="flex flex-col sm:flex-row gap-4">
+                    <a href="#contact" className="relative group/btn inline-flex items-center justify-center gap-2 bg-brand text-white rounded-2xl px-10 py-5 font-bold hover:bg-[#fb4119] transition-all duration-300 shadow-xl shadow-brand/20 overflow-hidden whitespace-nowrap">
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_2s_infinite]" />
+                      Обсудить ваш проект
+                    </a>
+                    <Link to="/executive" className="inline-flex items-center justify-center gap-2 border border-white/10 text-white bg-white/5 rounded-2xl px-10 py-5 font-bold hover:border-white/30 transition-all duration-300 whitespace-nowrap">
+                      Для корпораций <ArrowRight className="w-5 h-5 ml-1" />
+                    </Link>
+                 </div>
+              </div>
+
+              <div className="lg:col-span-12 xl:col-span-5">
+                 <div className="bg-white/[0.03] border border-white/[0.08] rounded-[2.5rem] p-8 md:p-12 backdrop-blur-xl relative group h-full">
+                    <div className="absolute -top-4 -right-4 w-20 h-20 bg-brand/10 blur-2xl group-hover:bg-brand/20 transition-colors duration-500" />
+                    
+                    <div className="flex items-center gap-4 mb-6 text-brand">
+                       <UserPlus className="w-6 h-6" />
+                       <span className="text-lg font-bold">Текущий статус</span>
+                    </div>
+                    
+                    <h3 className="text-2xl font-semibold text-white mb-6 leading-tight">Очередь на вход</h3>
+                    <p className="text-white/50 text-lg leading-relaxed">
+                      Слоты на текущий месяц заполнены. Заявка сейчас гарантирует вам приоритет при освобождении места и возможность начать подготовку заранее.
+                    </p>
+                 </div>
+              </div>
             </div>
-            <p className="text-white/40 text-sm">После записи вы получите подтверждение и останетесь в приоритете.</p>
           </div>
         </div>
       </div>

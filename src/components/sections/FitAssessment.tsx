@@ -51,7 +51,7 @@ export function FitAssessment({ items, title = "Подходит / Не подх
           <div className="space-y-6 relative z-10">
             {fits.map((item, idx) => (
               <div key={idx} className="flex items-start gap-4">
-                <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-0.5" />
+                <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-1" />
                 <p className="text-white/80 text-base md:text-lg leading-relaxed">{item.text}</p>
               </div>
             ))}
@@ -63,7 +63,7 @@ export function FitAssessment({ items, title = "Подходит / Не подх
           visible={visible} 
           index={1} 
           className="hover:border-white/10" 
-          contentClassName="p-8 md:p-12 opacity-80"
+          contentClassName="p-8 md:p-12"
         >
           <h3 className="text-xl md:text-2xl font-semibold text-white mb-8 flex items-center gap-3 relative z-10">
             Не подходит, если
@@ -71,9 +71,9 @@ export function FitAssessment({ items, title = "Подходит / Не подх
           
           <div className="space-y-6 relative z-10">
             {notFits.map((item, idx) => (
-              <div key={idx} className="flex items-start gap-4 opacity-50">
-                <XCircle className="w-5 h-5 text-white/40 shrink-0 mt-0.5" />
-                <p className="text-white/60 text-base md:text-lg leading-relaxed">{item.text}</p>
+              <div key={idx} className="flex items-start gap-4">
+                <XCircle className="w-5 h-5 text-white/40 shrink-0 mt-1" />
+                <p className="text-white/70 text-base md:text-lg leading-relaxed">{item.text}</p>
               </div>
             ))}
           </div>
