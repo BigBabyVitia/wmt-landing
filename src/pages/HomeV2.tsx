@@ -216,11 +216,11 @@ function HeroVideo() {
       </video>
       <div className="absolute inset-0 z-[1] bg-black/15" />
       <div className="relative z-10 flex flex-col items-center justify-start sm:justify-center h-full text-center px-6 pt-10 sm:pt-0 sm:mt-12">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise">
-          WMT перестраивает бизнес под&nbsp;<em className="not-italic text-brand font-bold">ИИ</em>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.1] tracking-tight max-w-[1200px] font-semibold text-white animate-fade-rise">
+          ИИвизация бизнеса от&nbsp;стратегического решения до&nbsp;масштаба всей компании
         </h1>
-        <p className="text-gray-200 text-xl sm:text-base md:text-lg lg:text-xl max-w-3xl mt-6 sm:mt-8 leading-relaxed animate-fade-rise-delay">
-          От решения руководства до рабочих команд. Каждый формат работает сам по себе и ведёт в следующий.
+        <p className="text-gray-200 text-base sm:text-lg md:text-xl max-w-4xl mt-6 sm:mt-10 leading-relaxed animate-fade-rise-delay">
+          Инструменты AI-трансформации для первых лиц, руководителей и команд: от стратсессий и обучения до персональной работы и практики внедрения
         </p>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto">
@@ -281,15 +281,15 @@ function HeroWebGL() {
 
       <div className="relative z-10 flex flex-col items-center justify-start sm:justify-center h-full text-center px-6 pt-10 sm:pt-0 sm:mt-12">
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise"
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.1] tracking-tight max-w-[1200px] font-semibold text-white animate-fade-rise"
         >
-          WMT перестраивает бизнес под&nbsp;<em className="not-italic text-white font-bold">ИИ</em>
+          ИИвизация бизнеса от&nbsp;стратегического решения до&nbsp;масштаба всей компании
         </h1>
         <p
-          className="text-gray-200 text-xl sm:text-base md:text-lg lg:text-xl max-w-3xl mt-6 sm:mt-8 leading-relaxed animate-fade-rise-delay"
+          className="text-gray-200 text-base sm:text-lg md:text-xl max-w-4xl mt-6 sm:mt-10 leading-relaxed animate-fade-rise-delay"
           style={subShadow ? { textShadow: subShadow } : undefined}
         >
-          От решения руководства до рабочих команд. Каждый формат работает сам по себе и ведёт в следующий.
+          Инструменты AI-трансформации для первых лиц, руководителей и команд: от стратсессий и обучения до персональной работы и практики внедрения
         </p>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto">

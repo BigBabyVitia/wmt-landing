@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Target, Users, Layers, Zap, ListTodo, ShieldAlert, Map, Workflow, TrendingUp, Users2, Component, Award, ShieldCheck } from "lucide-react"
+import { ArrowRight, Clock, Users, Layers, Zap, ListTodo, ShieldAlert, Map, Workflow, TrendingUp, Users2, Component, Award, ShieldCheck, Target } from "lucide-react"
 import { Link } from "react-router-dom"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
@@ -6,13 +6,11 @@ import { useScrollVisible } from "@/hooks/useScrollVisible"
 import { V2Hero } from "@/components/ui/V2Hero"
 import { V2Card } from "@/components/ui/V2Card"
 
-const signalsData = {
-  status: [
-    { code: "СИТУАЦИЯ 01", title: "Пока непонятно, насколько ИИ нужен компании", desc: "Хочется спокойно разобраться в масштабе возможностей и рисков.", icon: ShieldAlert },
-    { code: "СИТУАЦИЯ 02", title: "Ясно, что нужно идти — неясно, как именно", desc: "Без понятной архитектуры легко потерять точность на старте.", icon: Map },
-    { code: "СИТУАЦИЯ 03", title: "ИИ даёт локальный эффект, компании — нет", desc: "Без общей стратегии это не превращается в системный результат.", icon: Layers },
-  ]
-}
+const signalsData = [
+  { title: "Непонятно, насколько ИИ нужен компании", icon: ShieldAlert },
+  { title: "Понятно, что в ИИ нужно идти... Но неясно, как именно", icon: Map },
+  { title: "ИИ уже даёт локальный эффект, но заметного результата в компании нет", icon: Layers },
+]
 
 const overviewPrograms = [
   {
@@ -114,14 +112,14 @@ const programs = [
 ]
 
 export function Executive() {
-  const statusTags = signalsData.status.map((s, i) => (
-    <div key={i} className="group relative bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 transition-all duration-500 hover:border-brand/30 h-full flex flex-col items-start text-left">
-      <div className="mb-4 relative z-10 flex items-center gap-2">
-        <s.icon className="w-4 h-4 text-brand" />
-        <span className="text-[10px] font-bold tracking-[0.2em] text-brand uppercase bg-brand/10 px-2.5 py-1 rounded-full">{s.code}</span>
-      </div>
-      <h3 className="text-white font-semibold text-lg mb-2 relative z-10 leading-snug">{s.title}</h3>
-      <p className="text-white/50 text-sm leading-relaxed relative z-10">{s.desc}</p>
+  const statusTags = signalsData.map((s, i) => (
+    <div 
+      key={i} 
+      className="group relative bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md"
+    >
+      <h3 className="text-white font-semibold text-[15px] md:text-xl relative z-10 leading-[1.3] max-w-[320px]">
+        {s.title}
+      </h3>
     </div>
   ))
 
