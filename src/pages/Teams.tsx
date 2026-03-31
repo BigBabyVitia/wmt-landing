@@ -7,9 +7,11 @@ import { V2Hero } from "@/components/ui/V2Hero"
 import { V2Card } from "@/components/ui/V2Card"
 
 const situations = [
-  { title: "Нужно ядро практиков", desc: "Внутри компании уже видны люди, которые готовы работать руками. Им нужен плотный формат, чтобы стать командой-чемпионом и тянуть тему дальше.", format: "Мышление 2.0" },
-  { title: "Пора расширять практику", desc: "Первые результаты уже есть. Компании нужна управляемая волна: десятки или сотни сотрудников, программа по ролям, видимость для руководства.", format: "ИИ-марафон" },
-  { title: "Нужна продвинутая сборка", desc: "Есть подготовленная команда и конкретная задача. Нужен рабочий день или глубокая программа по сборке агентов.", format: "День сборки агентов / n8n + Claude" },
+  { title: "Нужно ядро практиков", desc: "Команда собирает первых агентов на своих задачах и становится ядром AI-трансформации компании.", format: "Мышление 2.0" },
+  { title: "Пора расширять практику", desc: "Широкий практический формат для компании: от базовых навыков ИИ до первых агентов и рабочих сценариев.", format: "ИИ Волна" },
+  { title: "Нужна быстрая сборка", desc: "Есть собранная команда и конкретная задача. Нужен рабочий день, чтобы собрать первого агента.", format: "Агенты за 1 день" },
+  { title: "Нужна продвинутая сборка", desc: "Группа хочет глубоко погрузиться в RAG, multi-agent и n8n для сложных решений.", format: "Мастерская AI-агентов" },
+  { title: "Нужен гибкий формат", desc: "Запрос на индивидуальную программу под специфические задачи и график команды.", format: "Индивидуальная программа" },
 ]
 
 const programs = [
@@ -17,10 +19,10 @@ const programs = [
     id: "mindset-2",
     badge: "Команда",
     title: "Мышление 2.0",
-    tagline: "10–30 человек, которые потянут тему руками",
-    desc: "Тренинг-хакатон для тех, кто должен стать ядром практиков. Участники берут реальные задачи компании, собирают агентов, проверяют гипотезы и уходят с рабочими артефактами. После этого внутри компании появляются свои люди-носители навыка — те, кто может продолжить тему без внешней поддержки.",
+    tagline: "Команда собирает первых агентов на своих задачах",
+    desc: "Команда собирает первых агентов на своих задачах и становится ядром AI-трансформации. Участники берут реальные задачи компании, собирают агентов, проверяют гипотезы и уходят с рабочими артефактами. После этого внутри компании появляются свои люди-носители навыка — те, кто может продолжить тему без внешней поддержки.",
     params: [
-      { label: "Длительность", value: "1–1,5 дня", icon: Clock },
+      { label: "Длительность", value: "1–1,5 дня / 10 ч", icon: Clock },
       { label: "Практика", value: "80% руками", icon: Zap },
       { label: "Группа", value: "10–30 человек", icon: Users },
     ],
@@ -31,22 +33,73 @@ const programs = [
     ],
   },
   {
-    id: "ai-marathon",
+    id: "ai-wave",
     badge: "Масштаб",
-    title: "ИИ-марафон",
-    tagline: "Управляемая волна перемен на 10 недель",
-    desc: "Когда практика нужна не пяти, а пятистам сотрудникам. Участники работают по ролям, собирают агентов под свои задачи, фиксируют результаты. Руководство видит прогресс, получает отчётность и понимает, кто действительно двигает тему. После марафона компания получает рабочую привычку использования ИИ в десятках процессов.",
+    title: "ИИ Волна",
+    tagline: "Широкий практический формат для всей компании",
+    desc: "Широкий практический формат для компании: от базовых навыков ИИ до первых агентов и рабочих сценариев. Участники работают по ролям, собирают агентов под свои задачи, фиксируют результаты. Руководство видит прогресс, получает отчётность и понимает, кто действительно двигает тему. После программы компания получает рабочую привычку использования ИИ в десятках процессов.",
     params: [
-      { label: "Срок", value: "10 недель", icon: Clock },
-      { label: "Занятия", value: "30 модулей", icon: Zap },
-      { label: "Масштаб", value: "Сотни сотрудников", icon: Users },
+      { label: "Срок", value: "8 мод / Месяц", icon: Clock },
+      { label: "Занятия", value: "80% практики", icon: Zap },
+      { label: "Масштаб", value: "Группа компании", icon: Users },
     ],
     results: [
       { title: "ИИ-привычки", desc: "Десятки процессов переведены на работу с ИИ.", icon: CheckCircle2 },
       { title: "Отчётность", desc: "Руководство видит, кто, что и как использует.", icon: CheckCircle2 },
-      { title: "Масштаб", desc: "Не 10–30 человек, а сотни — по ролям и функциям.", icon: CheckCircle2 },
+      { title: "Масштабирование", desc: "Навык ИИ становится доступен каждому в компании.", icon: CheckCircle2 },
     ],
   },
+  {
+    id: "builder-day",
+    badge: "Сборка",
+    title: "Агенты за 1 день",
+    tagline: "За один день команда собирает рабочего агента",
+    desc: "Практический интенсив для собранной команды с конкретной задачей. Каждый участник проходит через 5 блоков сборки: от выбора мозга модели до финального интерфейса. На выходе — рабочий агент, настроенный n8n workflow и алгоритм пересборки. Мини-группы по 3–4 человека работают над реальными сценариями компании.",
+    params: [
+      { label: "Длительность", value: "1 день / 5 ч", icon: Clock },
+      { label: "Практика", value: "80–85% руками", icon: Zap },
+      { label: "Группа", value: "до 50 человек", icon: Users },
+    ],
+    results: [
+      { title: "Собранный агент", desc: "Агент, который работает на реальной задаче компании.", icon: CheckCircle2 },
+      { title: "n8n Workflow", desc: "Рабочая автоматизация, которую можно развивать.", icon: CheckCircle2 },
+      { title: "Навык сборки", desc: "Участники понимают алгоритм сборки новых агентов.", icon: CheckCircle2 },
+    ],
+  },
+  {
+    id: "ai-mastery",
+    badge: "Продвинуто",
+    title: "Мастерская AI-агентов",
+    tagline: "Глубокий разбор Claude и n8n под процессы компании",
+    desc: "Малая группа до 6 человек. 4 занятия по 1,5 часа. Последовательное погружение: экосистема Claude, основы n8n, AI-агенты в n8n, продвинутая сборка с RAG, memory, multi-agent и error handling. Идеально для тех, кто готов стать внутренним архитектором ИИ-решений и внедрять сложные цепочки автоматизации.",
+    params: [
+      { label: "Срок", value: "4 зан × 1,5 ч", icon: Clock },
+      { label: "Результат", value: "3–5 агентов", icon: Zap },
+      { label: "Группа", value: "до 6 человек", icon: Users },
+    ],
+    results: [
+      { title: "Библиотека агентов", desc: "3–5 работающих агентов под ваши процессы.", icon: CheckCircle2 },
+      { title: "Продвинутый n8n", desc: "Опыт работы с RAG, памятью и мульти-агентными схемами.", icon: CheckCircle2 },
+      { title: "Готовый артефакт", desc: "Настроенные и проверенные цепочки автоматизации.", icon: CheckCircle2 },
+    ],
+  },
+  {
+    id: "custom-team",
+    badge: "Персонально",
+    title: "Индивидуальная программа под команду",
+    tagline: "Программа под ваши задачи, процессы и масштаб",
+    desc: "Собираем программу AI-трансформации под ваши задачи, команду, процессы и нужный масштаб внедрения. Мы проводим предварительный аудит, интервьюируем ключевых участников и собираем формат, который даст максимальный эффект именно вашему подразделению.",
+    params: [
+      { label: "Формат", value: "Онлайн / Офлайн", icon: Clock },
+      { label: "Срок", value: "По запросу", icon: Zap },
+      { label: "Группа", value: "Под ваш состав", icon: Users },
+    ],
+    results: [
+      { title: "Индивидуальный подход", desc: "Программа, полностью адаптированная под ваш бизнес.", icon: CheckCircle2 },
+      { title: "Фокус на задачи", desc: "Решаем именно те проблемы, которые стоят перед вами.", icon: CheckCircle2 },
+      { title: "Готовый результат", desc: "Внедрение ИИ в конкретные процессы вашей команды.", icon: CheckCircle2 },
+    ],
+  }
 ]
 
 export function Teams() {
@@ -69,8 +122,6 @@ export function Teams() {
         <TeamProgramSection key={i} program={p} index={i} />
       ))}
 
-      <BuilderFormats />
-
       <TrustStrip />
       <FreePlatform />
       <MainCta />
@@ -87,7 +138,7 @@ function SituationsSection() {
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Какая ситуация у вашей компании сейчас</h2>
           <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl">Практический формат зависит от того, где компания находится. Узнайте свою ситуацию — и ниже увидите, что подходит.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {situations.map((s, idx) => (
             <V2Card
               key={idx}
@@ -174,49 +225,6 @@ function TeamProgramSection({ program: p, index }: any) {
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function BuilderFormats() {
-  const { ref, visible } = useScrollVisible()
-  return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
-      <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Продвинутая сборка: два формата для тех, кто готов строить агентов</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl font-medium">Agent Builder Day и n8n + Claude решают разные задачи, работают с разной аудиторией и требуют разной подготовки.</p>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <V2Card visible={visible} index={0} contentClassName="!p-6 md:!p-10">
-            <span className="inline-block text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-brand uppercase mb-4 md:mb-6 relative z-10">Agent Builder Day</span>
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 relative z-10">Рабочий агент у каждого за один день</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-8 flex-1 relative z-10">Один практический день для собранной команды из 30–40 человек. Мини-группы по 3–4. На выходе — рабочий агент, настроенный n8n workflow и алгоритм пересборки.</p>
-            <div className="flex flex-wrap gap-2 mb-8 relative z-10">
-              {["1 день", "5 часов", "30–40 человек", "80–85% практики"].map((t, i) => (
-                <span key={i} className="text-[12px] text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-white/10 px-3 py-1.5 rounded-md font-medium">{t}</span>
-              ))}
-            </div>
-            <a href="#contact" className="inline-flex items-center gap-2 text-brand font-medium hover:text-brand/80 transition-colors mt-auto relative z-10">
-              Подробнее про Builder Day <ArrowRight className="w-4 h-4" />
-            </a>
-          </V2Card>
-
-          <V2Card visible={visible} index={1} contentClassName="!p-6 md:!p-10">
-            <span className="inline-block text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-brand uppercase mb-4 md:mb-6 relative z-10">n8n + Claude</span>
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4 relative z-10">Групповая программа по агентам</h3>
-            <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-8 flex-1 relative z-10">Малая группа до 6 человек. 4 занятия по 1,5 часа. Последовательное погружение: экосистема Claude, основы n8n, AI-агенты в n8n, продвинутая сборка с RAG, memory, multi-agent и error handling.</p>
-            <div className="flex flex-wrap gap-2 mb-8 relative z-10">
-              {["4 сессии × 1,5 ч", "До 6 человек", "3–5 агентов на выходе"].map((t, i) => (
-                <span key={i} className="text-[12px] text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-white/10 px-3 py-1.5 rounded-md font-medium">{t}</span>
-              ))}
-            </div>
-            <a href="#contact" className="inline-flex items-center gap-2 text-brand font-medium hover:text-brand/80 transition-colors mt-auto relative z-10">
-              Узнать детали <ArrowRight className="w-4 h-4" />
-            </a>
-          </V2Card>
         </div>
       </div>
     </section>

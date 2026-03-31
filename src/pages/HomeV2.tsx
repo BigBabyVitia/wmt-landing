@@ -215,27 +215,26 @@ function HeroVideo() {
         <source src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260314_131748_f2ca2a28-fed7-44c8-b9a9-bd9acdd5ec31.mp4" type="video/mp4" />
       </video>
       <div className="absolute inset-0 z-[1] bg-black/15" />
-      <div className="relative z-10 flex flex-col items-center justify-start sm:justify-center h-full text-center px-6 pt-10 sm:pt-0 sm:mt-12">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 pt-20 pb-20 sm:pb-24 md:pb-28">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.1] tracking-tight max-w-[1200px] font-semibold text-white animate-fade-rise">
           ИИвизация бизнеса от&nbsp;стратегического решения до&nbsp;масштаба всей компании
         </h1>
-        <p className="text-gray-200 text-base sm:text-lg md:text-xl max-w-4xl mt-6 sm:mt-10 leading-relaxed animate-fade-rise-delay">
+        <p className="text-gray-200 text-base sm:text-lg md:text-xl max-w-4xl mt-4 sm:mt-6 md:mt-10 leading-relaxed animate-fade-rise-delay">
           Инструменты AI-трансформации для первых лиц, руководителей и команд: от стратсессий и обучения до персональной работы и практики внедрения
         </p>
 
-        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8 md:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto">
           <a href="#directions" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-semibold hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
             Узнать, что подойдёт
           </a>
-          
         </div>
 
       </div>
 
       {/* Hero Logos Section */}
-      <div className="absolute bottom-10 sm:bottom-6 md:bottom-10 left-0 right-0 w-full z-20 animate-fade-rise-delay-2 pointer-events-none pb-[env(safe-area-inset-bottom)]">
+      <div className="absolute bottom-2 sm:bottom-4 md:bottom-6 left-0 right-0 w-full z-20 animate-fade-rise-delay-2 pointer-events-none pb-[env(safe-area-inset-bottom)]">
         <div className="w-full max-w-6xl mx-auto px-4">
-          <div className="text-center mb-4">
+          <div className="text-center mb-2 sm:mb-4">
             <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white/50">Нам доверяют трансформацию</span>
           </div>
           <div className="relative [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)] pointer-events-auto">
@@ -277,14 +276,14 @@ function HeroWebGL() {
       <div className="absolute inset-0 z-[2] bg-black/20" />
       {gradientClass && <div className={`absolute inset-0 z-[2] transition-all duration-500 ${gradientClass}`} />}
 
-      <div className="relative z-10 flex flex-col items-center justify-start sm:justify-center h-full text-center px-6 pt-10 sm:pt-0 sm:mt-12">
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 pt-20 pb-20 sm:pb-24 md:pb-28">
         <h1
           className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.1] tracking-tight max-w-[1200px] font-semibold text-white animate-fade-rise"
         >
           ИИвизация бизнеса от&nbsp;стратегического решения до&nbsp;масштаба всей компании
         </h1>
         <p
-          className="text-gray-200 text-base sm:text-lg md:text-xl max-w-4xl mt-6 sm:mt-10 leading-relaxed animate-fade-rise-delay"
+          className="text-gray-200 text-base sm:text-lg md:text-xl max-w-4xl mt-4 sm:mt-6 md:mt-10 leading-relaxed animate-fade-rise-delay"
           style={subShadow ? { textShadow: subShadow } : undefined}
         >
           Инструменты AI-трансформации для первых лиц, руководителей и команд: от стратсессий и обучения до персональной работы и практики внедрения
@@ -300,7 +299,7 @@ function HeroWebGL() {
       </div>
 
       {/* Hero Logos Section */}
-      <div className="absolute bottom-10 sm:bottom-6 md:bottom-10 left-0 right-0 w-full z-20 animate-fade-rise-delay-2 pointer-events-none pb-[env(safe-area-inset-bottom)]">
+      <div className="absolute bottom-2 sm:bottom-4 md:bottom-6 left-0 right-0 w-full z-20 animate-fade-rise-delay-2 pointer-events-none pb-[env(safe-area-inset-bottom)]">
         <div className="w-full max-w-6xl mx-auto px-4">
           <div className="text-center mb-4">
             <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white/50">Нам доверяют трансформацию</span>
@@ -452,34 +451,34 @@ const teaserData = [
     items: [
       {
         title: "Системный ИИ",
-        desc: "когда нужно выровнять руководство и получить план на 90 дней.",
+        desc: "Быстрый старт: какой эффект ИИ даст компании и с какого шага стоит начинать",
         tags: { format: "Офлайн / Онлайн", duration: "1,5–2 часа", people: "до 15 человек" }
       },
       {
         title: "Цифровой каркас",
-        desc: "построение архитектуры ИИ-перехода и запуск первого пилота.",
-        tags: { format: "Офлайн", duration: "1–2 дня", people: "до 30 человек" }
+        desc: "Команда собирает архитектуру AI-перехода и проектирует первые пилоты на своих процессах",
+        tags: { format: "Офлайн", duration: "3–5 часов", people: "до 30 человек" }
       },
       {
         title: "ИИ-архитектура бизнеса",
-        desc: "когда нужен глубокий пересмотр стратегии и операционной модели под ИИ.",
-        tags: { format: "Офлайн", duration: "2 дня", people: "до 15 человек" }
+        desc: "Двухдневный интенсив по пересборке ключевых процессов и портфеля ИИ-инициатив компании.",
+        tags: { format: "Офлайн", duration: "2 дня", people: "8–20 человек" }
       },
       {
         title: "ИИ-практикум для руководителей",
-        desc: "когда руководители должны не только понять тему, а пройти практику работы.",
+        desc: "Практическая работы с ИИ на ваших задачах и подготовка следующего шага для компании",
         tags: { format: "Онлайн", duration: "6 занятий", people: "8–20 человек" }
       },
       {
-        title: "Персональная работа с руководителем",
-        desc: "индивидуальный трек для собственников и первых лиц.",
-        tags: { format: "Офлайн / Онлайн", duration: "По запросу", people: "1 человек" },
+        title: "Персональная работа с ИИ",
+        desc: "Глубокий персональный формат под ваши задачи: от первых шагов в ИИ до стратегии, рабочих сценариев и сопровождения.",
+        tags: { format: "Онлайн / Офлайн", duration: "По запросу", people: "1 человек" },
         isPersonal: true
       },
       {
         title: "Корпоративная программа под ваш запрос",
-        desc: "сборка уникальной архитектуры трансформации под задачи вашей компании.",
-        tags: { format: "Офлайн / Онлайн", duration: "Индивидуально", people: "Любая аудитория" },
+        desc: "Программа AI-трансформации, собранная под цели, процессы и задачи вашей компании.",
+        tags: { format: "Онлайн / Офлайн", duration: "По запросу", people: "Под ваш состав" },
         isCorporate: true
       }
     ],
@@ -495,23 +494,28 @@ const teaserData = [
     items: [
       {
         title: "Мышление 2.0",
-        desc: "ядро практиков за 1–1,5 дня, 80% практики.",
-        tags: { format: "Офлайн", duration: "1–1,5 дня", people: "10–30 человек" }
+        desc: "Команда собирает первых агентов на своих задачах и становится ядром AI-трансформации",
+        tags: { format: "Офлайн", duration: "1–1,5 дня / 10 ч", people: "10–30 человек", practice: "80% практики" }
       },
       {
-        title: "ИИ-марафон (корп. волна)",
-        desc: "широкая волна на 10 недель, 100% руками.",
-        tags: { format: "Онлайн", duration: "10 недель", people: "Сотни человек" }
+        title: "ИИ Волна",
+        desc: "Широкий практический формат для компании: от базовых навыков ИИ до первых агентов и рабочих сценариев",
+        tags: { format: "Онлайн", duration: "8 мод / Месяц", people: "Широкая группа", practice: "80% практики" }
       },
       {
-        title: "День сборки агентов",
-        desc: "рабочий агент у каждого за один день.",
-        tags: { format: "Офлайн", duration: "1 день", people: "30–40 человек" }
+        title: "Агенты за 1 день",
+        desc: "За один день команда собирает рабочего агента и формирует навык сборки",
+        tags: { format: "Офлайн", duration: "1 день / 5 ч", people: "до 50 человек", practice: "80–85% практики" }
       },
       {
-        title: "Сборка (n8n + Claude)",
-        desc: "глубокая малогрупповая программа по сборке агентов.",
-        tags: { format: "Офлайн / Онлайн", duration: "По запросу", people: "до 6 человек" }
+        title: "Мастерская AI-агентов",
+        desc: "Малая группа глубоко разбирает Claude и n8n, собирает агентов под реальные процессы компании",
+        tags: { format: "Онлайн / Офлайн", duration: "4 зан × 1,5 ч", people: "до 6 человек", practice: "3–5 агентов" }
+      },
+      {
+        title: "Индивидуальная программа под команду",
+        desc: "Собираем программу AI-трансформации под ваши задачи, команду, процессы и нужный масштаб внедрения.",
+        tags: { format: "Онлайн / Офлайн", duration: "По запросу", people: "Под ваш состав" }
       }
     ],
     link: "/teams",
@@ -670,13 +674,13 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
                       </>
                     )}
                     
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-5 relative z-10 text-left">
-                       <h5 className={titleClassName}>{item.title}</h5>
+                    <div className="mb-4 relative z-10 text-left">
                        {item.tags && item.tags.format && (
-                         <span className="shrink-0 inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-bold bg-white/10 dark:bg-white/5 text-gray-700 dark:text-white/60 px-2.5 py-1 rounded-lg border border-gray-200 dark:border-white/10 backdrop-blur-sm self-end sm:self-start uppercase tracking-wider">
+                         <span className="block text-[9px] sm:text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-1.5 opacity-90">
                            {item.tags.format}
                          </span>
                        )}
+                       <h5 className={titleClassName}>{item.title}</h5>
                     </div>
                     
                     {item.desc && (
@@ -697,6 +701,12 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
                            <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold bg-gray-100/50 dark:bg-white/[0.04] text-gray-700 dark:text-brand px-3 py-1.5 rounded-xl border border-gray-200/50 dark:border-brand/10">
                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-80"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                              {item.tags.people}
+                           </span>
+                        )}
+                        {item.tags.practice && (
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold bg-gray-100/50 dark:bg-white/[0.04] text-gray-700 dark:text-brand px-3 py-1.5 rounded-xl border border-gray-200/50 dark:border-brand/10">
+                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-80"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+                             {item.tags.practice}
                            </span>
                         )}
                       </div>

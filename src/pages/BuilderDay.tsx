@@ -47,7 +47,7 @@ const outputs = [
 const nextSteps = [
   { title: "Первый пилот", program: "Цифровой каркас", desc: "Когда нужно взять один сценарий из дня и перевести его из демонстрации в защищаемую рабочую задачу.", to: "/teams" },
   { title: "Команда-чемпион", program: "Мышление 2.0", desc: "Когда видны люди, которые могут стать внутренним ядром практиков. Им нужен плотный формат.", to: "/teams" },
-  { title: "Глубокая сборка агентов", program: "n8n + Claude", desc: "Когда сильнейшие участники хотят пойти дальше в RAG, multi-agent, error handling в n8n.", to: "/teams" },
+  { title: "Глубокая сборка агентов", program: "Мастерская AI-агентов", desc: "Когда сильнейшие участники хотят пойти дальше в RAG, multi-agent, error handling в n8n.", to: "/teams" },
 ]
 
 function BlockCard({ b, idx, visible }: { b: any, idx: number, visible: boolean }) {
@@ -97,7 +97,7 @@ export function BuilderDay() {
   return (
     <div className="bg-white dark:bg-black text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
       <V2Hero 
-        label="Agent Builder Day"
+        label="Агенты за 1 день"
         title={<>Рабочий агент у каждого в команде. <em className="not-italic text-brand font-bold">За один день.</em></>}
         description={
           <>
