@@ -575,11 +575,11 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
       style={{ transitionDelay: visible ? `${index * 150}ms` : "0ms" }}
       onMouseMove={handleMouseMove}
     >
-      {/* Background Glow Pattern (like EllipseGradient) */}
+      {/* Background Glow Pattern - more punchy */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-50"
+        className="absolute inset-0 pointer-events-none opacity-[0.6] dark:opacity-[0.8]"
         style={{
-          background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255, 83, 49, 0.08) 0%, rgba(255, 83, 49, 0.03) 40%, transparent 100%)"
+          background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255, 83, 49, 0.12) 0%, rgba(255, 83, 49, 0.04) 45%, transparent 100%)"
         }}
       />
 
@@ -640,15 +640,20 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
                 let titleClassName = "font-semibold text-gray-900 dark:text-white text-sm sm:text-[16px] leading-tight";
                 
                 if (isPersonal) {
-                  cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.03] border border-brand/20 dark:border-brand/30 rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/50 transition-colors shadow-md shadow-brand/5";
+                  cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.03] border border-brand/20 dark:border-brand/30 rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/50 transition-colors shadow-md shadow-brand/5 overflow-hidden";
                 } else if (isCorporate) {
-                  cardClassName = "flex flex-col bg-gradient-to-br from-gray-50/80 to-brand/5 dark:from-white/[0.04] dark:to-brand/10 border border-gray-100 dark:border-white/[0.06] rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/30 transition-colors shadow-lg shadow-brand/10";
+                  cardClassName = "flex flex-col bg-gradient-to-br from-gray-50/80 to-brand/5 dark:from-white/[0.04] dark:to-brand/10 border border-gray-100 dark:border-white/[0.06] rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/30 transition-colors shadow-lg shadow-brand/10 overflow-hidden";
                   titleClassName = "font-semibold text-brand dark:text-brand text-sm sm:text-[16px] leading-tight";
                 }
 
                 return (
                   <div key={idx} className={cardClassName}>
-                    <div className="flex justify-between items-start gap-3 mb-1 sm:mb-2">
+                    {(isPersonal || isCorporate) && (
+                      <div 
+                        className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_40%,rgba(255,83,49,0.18)_0%,transparent_70%)] z-0 group-hover:scale-110 transition-transform duration-700" 
+                      />
+                    )}
+                    <div className="flex justify-between items-start gap-3 mb-1 sm:mb-2 relative z-10">
                        <span className={titleClassName}>{item.title}</span>
                        {item.tags && item.tags.format && (
                          <span className="shrink-0 inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-1.5 py-0.5 rounded-md">{item.tags.format}</span>
@@ -660,13 +665,13 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
                       <div className="flex flex-nowrap items-center gap-1.5 mt-auto overflow-x-auto w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-0.5">
                         {item.tags.duration && (
                            <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-1.5 py-1 rounded-md">
-                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70 text-brand"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                              {item.tags.duration}
                            </span>
                         )}
                         {item.tags.people && (
                            <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-1.5 py-1 rounded-md">
-                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-50"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70 text-brand"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                              {item.tags.people}
                            </span>
                         )}

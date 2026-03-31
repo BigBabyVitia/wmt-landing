@@ -45,11 +45,11 @@ export function V2Card({
       onMouseMove={handleMouseMove}
       onClick={onClick}
     >
-      {/* Background Glow Pattern */}
+      {/* Background Glow Pattern - more pronounced */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.3] md:opacity-50"
+        className="absolute inset-0 pointer-events-none opacity-[0.45] md:opacity-[0.65]"
         style={{
-          background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255, 83, 49, 0.08) 0%, rgba(255, 83, 49, 0.03) 40%, transparent 100%)"
+          background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255, 83, 49, 0.15) 0%, rgba(255, 83, 49, 0.05) 45%, transparent 100%)"
         }}
       />
 

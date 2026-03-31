@@ -249,13 +249,13 @@ function ProgramsOverviewSection() {
                 <div className="flex flex-wrap items-center gap-2 mt-auto">
                   {program.tags.duration && (
                     <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
-                      <Clock className="w-3 h-3 opacity-50 text-brand" />
+                      <Clock className="w-3 h-3 opacity-70 text-brand" />
                       {program.tags.duration}
                     </span>
                   )}
                   {program.tags.people && (
                     <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
-                      <Users className="w-3 h-3 opacity-50 text-brand" />
+                      <Users className="w-3 h-3 opacity-70 text-brand" />
                       {program.tags.people}
                     </span>
                   )}
