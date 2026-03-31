@@ -53,7 +53,7 @@ export function Navbar() {
             <span className={version === "classic" ? "opacity-100" : "opacity-50"}>classic</span>
           </button>
 
-          <a href="#apply" className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 hover:scale-[1.03] inline-block ${
+          <a href="#contact" className={`rounded-full px-6 py-2.5 text-sm font-medium transition-all duration-300 hover:scale-[1.03] inline-block ${
             scrolled
               ? "bg-brand text-white hover:bg-[#e64627]"
               : "liquid-glass text-white"

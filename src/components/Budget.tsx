@@ -10,10 +10,10 @@ export function Budget() {
             Пришлите задачу — мы подскажем формат, дадим ориентир по бюджету и срокам.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#apply" className="bg-brand text-white hover:bg-[#e64627] transition-colors rounded-full px-8 py-4 font-medium text-lg hover:scale-[1.03] transition-transform">
+            <a href="#contact" className="bg-brand text-white hover:bg-[#e64627] transition-colors rounded-full px-8 py-4 font-medium text-lg hover:scale-[1.03] transition-transform">
               Обсудить задачу
             </a>
-            <a href="#apply" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-colors rounded-full px-8 py-4 font-medium text-lg">
+            <a href="#contact" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-colors rounded-full px-8 py-4 font-medium text-lg">
               Узнать бюджет
             </a>
           </div>

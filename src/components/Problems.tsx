@@ -130,7 +130,7 @@ export function Problems() {
         
         <div className="mt-16 text-center">
           <p className="text-[#475569] text-sm italic">
-            Ни одна из ситуаций не ваша? Сразу <a href="#apply" className="text-brand hover:underline">обсудите задачу</a>.
+            Ни одна из ситуаций не ваша? Сразу <a href="#contact" className="text-brand hover:underline">обсудите задачу</a>.
           </p>
         </div>
       </div>

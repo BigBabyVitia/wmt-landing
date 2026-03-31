@@ -29,7 +29,7 @@ export function Hero() {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 mt-12 animate-fade-rise-delay-2">
-          <a href="#apply" className="liquid-glass rounded-full px-12 py-4 text-base font-medium text-white hover:scale-[1.03] transition-transform cursor-pointer inline-block">
+          <a href="#contact" className="liquid-glass rounded-full px-12 py-4 text-base font-medium text-white hover:scale-[1.03] transition-transform cursor-pointer inline-block">
             Обсудить задачу
           </a>
           <a href="#formats" className="liquid-glass rounded-full px-12 py-4 text-base font-medium text-white hover:scale-[1.03] transition-transform cursor-pointer inline-block">

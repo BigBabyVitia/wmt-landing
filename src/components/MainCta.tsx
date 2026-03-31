@@ -1,10 +1,35 @@
+import { useState } from "react"
+import { sendTelegramMessage } from "@/lib/telegram"
 import LightRays from "./ui/LightRays"
-import { Phone, Send, Mail } from "lucide-react"
+import { Phone, Send, Mail, Loader2, CheckCircle2 } from "lucide-react"
 
 export function MainCta() {
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setStatus("loading")
+
+    const formData = new FormData(e.currentTarget)
+    const data: Record<string, string> = {}
+    formData.forEach((value, key) => {
+      data[key] = value.toString()
+    })
+
+    try {
+      await sendTelegramMessage(data)
+      setStatus("success")
+      // Reset form after 3 seconds or keep success message
+      setTimeout(() => setStatus("idle"), 5000)
+    } catch (error) {
+      console.error(error)
+      setStatus("error")
+      setTimeout(() => setStatus("idle"), 5000)
+    }
+  }
 
   return (
-    <section id="apply" className="relative bg-background text-foreground w-full overflow-hidden transition-colors duration-500">
+    <section id="contact" className="relative bg-background text-foreground w-full overflow-hidden transition-colors duration-500">
 
       {/* Ambient purple glow — covers entire section background */}
       <div className="absolute inset-0 z-0 pointer-events-none"
@@ -81,34 +106,54 @@ export function MainCta() {
 
           {/* Right Column: Form */}
           <div className="bg-gray-50 dark:bg-white/5 backdrop-blur-xl p-8 lg:p-12 rounded-3xl w-full lg:max-w-[550px] ml-auto border border-gray-100 dark:border-white/10">
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div>
-                <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">ФИО</label>
-                <input type="text" placeholder="Ваши имя и фамилия" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+            {status === "success" ? (
+              <div className="flex flex-col items-center justify-center py-12 text-center animate-in fade-in zoom-in duration-500">
+                <CheckCircle2 className="w-20 h-20 text-green-500 mb-6" />
+                <h3 className="text-2xl font-bold mb-4">Заявка отправлена!</h3>
+                <p className="text-gray-600 dark:text-gray-400">Спасибо за обращение. Мы скоро с вами свяжемся.</p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            ) : (
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Email</label>
-                  <input type="email" placeholder="work@company.ru" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                  <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">ФИО</label>
+                  <input name="name" type="text" placeholder="Ваши имя и фамилия" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Email</label>
+                    <input name="email" type="email" placeholder="work@company.ru" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Телефон</label>
+                    <input name="phone" type="tel" placeholder="+7 (999) 000-00-00" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                  </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Телефон</label>
-                  <input type="tel" placeholder="+7 (999) 000-00-00" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                  <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Компания</label>
+                  <input name="company" type="text" placeholder="Название организации" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
                 </div>
-              </div>
-              <div>
-                <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Компания</label>
-                <input type="text" placeholder="Название организации" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
-              </div>
-              <button className="w-full bg-brand text-white font-semibold py-5 mt-8 rounded-full hover:bg-[#e64627] hover:scale-[1.02] transition-all text-xl tracking-wide">
-                Отправить заявку
-              </button>
-              <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-6">
-                Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных.
-              </p>
-            </form>
+                <button
+                  disabled={status === "loading"}
+                  className="w-full bg-brand text-white font-semibold py-5 mt-8 rounded-full hover:bg-[#e64627] hover:scale-[1.02] transition-all text-xl tracking-wide disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                >
+                  {status === "loading" ? (
+                    <>
+                      <Loader2 className="w-6 h-6 animate-spin" />
+                      Отправляем...
+                    </>
+                  ) : (
+                    "Отправить заявку"
+                  )}
+                </button>
+                {status === "error" && (
+                  <p className="text-red-500 text-sm text-center mt-4">Произошла ошибка. Пожалуйста, попробуйте еще раз.</p>
+                )}
+                <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-6">
+                  Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных.
+                </p>
+              </form>
+            )}
           </div>
-
       </div>
     </section>
   )

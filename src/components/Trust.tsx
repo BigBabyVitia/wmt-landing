@@ -90,7 +90,7 @@ export function Trust() {
         </div>
 
         <div className={`mt-12 flex justify-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? "900ms" : "0ms" }}>
-          <a href="#apply" className="bg-brand text-white hover:bg-[#e64627] transition-colors rounded-full px-8 py-4 font-medium text-lg inline-block">
+          <a href="#contact" className="bg-brand text-white hover:bg-[#e64627] transition-colors rounded-full px-8 py-4 font-medium text-lg inline-block">
             Обсудить задачу
           </a>
         </div>

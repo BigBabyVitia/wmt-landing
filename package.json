@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "setup:telegram": "python3 tmp/get_chat_id.py && node -e \"const fs = require('fs'); const file = 'tmp/get_chat_id.log'; if(!fs.existsSync(file)) return; const output = fs.readFileSync(file, 'utf8').trim(); if(output.includes('FOUND_CHAT_ID=')) { let env = ''; if(fs.existsSync('.env')) env = fs.readFileSync('.env', 'utf8'); const id = output.match(/FOUND_CHAT_ID=(\\d+)/)[1]; if(env.includes('VITE_TELEGRAM_CHAT_ID=')) { env = env.replace(/VITE_TELEGRAM_CHAT_ID=.*/, 'VITE_TELEGRAM_CHAT_ID=' + id); } else { env += '\\nVITE_TELEGRAM_CHAT_ID=' + id; } fs.writeFileSync('.env', env); console.log('✅ .env updated with CHAT_ID:', id); }\""
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.4",

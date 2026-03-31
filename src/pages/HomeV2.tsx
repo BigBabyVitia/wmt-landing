@@ -445,9 +445,10 @@ export function LevelsSection() {
 const teaserData = [
   {
     id: "exec-teaser",
-    title: "Топ-менеджмент",
-    desc: "Когда на столе много предложений, а общего решения нет — начинать нужно не с пилота и не с массового обучения. Нужен управленческий ход.",
-    mobileDesc: "Когда общего решения нет — начинать нужно не с обучения, а с управленческого хода.",
+    badge: "Для первых лиц и топ-команды",
+    title: "Стратегический старт",
+    desc: "На этом шаге AI-трансформация получает управленческий каркас: вместе с руководством мы разбираем лучшие практики, реальные сценарии и задачи компании, чтобы определить оптимальную логику перехода и следующий практический шаг",
+    mobileDesc: "Управленческий каркас: разбираем лучшие практики и задачи для оптимального перехода.",
     items: [
       {
         title: "Системный ИИ",
@@ -467,10 +468,10 @@ const teaserData = [
       {
         title: "ИИ-практикум для руководителей",
         desc: "когда руководители должны не только понять тему, а пройти практику работы.",
-        tags: { format: "Онлайн", duration: "6 сессий", people: "8–20 человек" }
+        tags: { format: "Онлайн", duration: "6 занятий", people: "8–20 человек" }
       },
       {
-        title: "Персональная работа с ИИ",
+        title: "Персональная работа с руководителем",
         desc: "индивидуальный трек для собственников и первых лиц.",
         tags: { format: "Офлайн / Онлайн", duration: "По запросу", people: "1 человек" },
         isPersonal: true
@@ -487,9 +488,10 @@ const teaserData = [
   },
   {
     id: "teams-teaser",
-    title: "Масштабирование",
-    desc: "Практика расширяется на отделы и процессы. Обучение команд на собственных задачах и внедрение лучших решений на сотни сотрудников.",
-    mobileDesc: "Внедрение практики на отделы и процессы. Обучение команд на собственных задачах.",
+    badge: "Для подразделений и команд",
+    title: "Практика и масштабирование",
+    desc: "Здесь AI-трансформация переходит в практику: команды учатся на своих задачах, собирают рабочие решения и переводят лучшие из них в процессы, отделы и повседневную работу компании.",
+    mobileDesc: "Переход к практике: команды учатся на своих задачах и переводят решения в процессы бизнеса.",
     items: [
       {
         title: "Мышление 2.0",
@@ -517,13 +519,13 @@ const teaserData = [
   },
   {
     id: "personal-teaser",
-    title: "Личный ИИ",
-    desc: "Полное погружение с анализом процессов и сборкой решения под вашу специфику. Если вы хотите глубоко разобраться в теме самостоятельно, вне корпоративного контекста.",
-    mobileDesc: "Глубокое погружение и сборка решения под вашу специфику вне корпоративного контекста.",
+    title: "ИИ под ваши личные задачи",
+    desc: "Можно усилить свои навыки работы с ИИ через готовый практикум или собрать персональный формат под ваш запрос — от личной прокачки и настройки инструментов до глубокой one-to-one работы.",
+    mobileDesc: "Собственный формат под ваш запрос: от прокачки инструментов до глубокой one-to-one работы.",
     personalSteps: [
-      { title: "1. Изучение", desc: "Анализируем бизнес-потребность и текущие процессы." },
-      { title: "2. Подготовка", desc: "Разрабатываем индивидуальную программу и готовим материалы." },
-      { title: "3. Работа", desc: "Личное обучение, передача стратегии и сборка навыков." }
+      { title: "1. Изучение", desc: "Анализируем ваш опыт, задачи и текущие боли в работе." },
+      { title: "2. Подготовка", desc: "Разрабатываем индивидуальный трек и готовим персональные инструкции." },
+      { title: "3. Практика", desc: "Личная работа: от настройки инструментов до сборки стратегии." }
     ],
     items: [
       {
@@ -532,9 +534,10 @@ const teaserData = [
         tags: { format: "Офлайн / Онлайн", duration: "4 часа", people: "1 человек" }
       },
       {
-        title: "ИИ-марафон (выезд)",
-        desc: "Полное погружение с собственной стратегией и сборкой агента",
-        tags: { format: "Офлайн", duration: "2 дня", people: "1 человек" }
+        title: "Персональный трек для руководителя",
+        desc: "Полное погружение с собственной стратегией и сборкой агента под ваши задачи. Глубокое изучение проблем и разработка персональной программы внедрения.",
+        tags: { format: "Офлайн", duration: "2 дня", people: "1 человек" },
+        isPersonal: true
       }
     ],
     link: "/personal-ai",
@@ -556,7 +559,7 @@ export function DirectionTeasersCards() {
   );
 }
 
-function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, linkText, index }: any) {
+function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, link, linkText, index }: any) {
   const { ref, visible } = useScrollVisible(0.15);
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -600,11 +603,16 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
         }}
       />
       
-      <div className="p-4 py-6 sm:p-8 md:p-14 relative z-10 flex flex-col gap-4 sm:gap-6 md:gap-10">
+      <div className="p-4 py-6 sm:p-8 md:p-10 relative z-10 flex flex-col gap-4 sm:gap-6 md:gap-8">
         <div className="w-full text-center xl:text-left">
-          <h3 className="text-xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-1 md:mb-5">{title}</h3>
-          <p className="hidden sm:block text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed max-w-3xl mx-auto xl:mx-0">{desc}</p>
-          <p className="block sm:hidden text-[13px] text-gray-600 dark:text-gray-400 leading-relaxed max-w-3xl mx-auto italic">
+          {badge && (
+            <span className="inline-block bg-brand/10 dark:bg-brand/20 text-brand px-3 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider mb-2 md:mb-4 border border-brand/20">
+              {badge}
+            </span>
+          )}
+          <h3 className="text-xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-2 md:mb-5">{title}</h3>
+          <p className="hidden sm:block text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 dark:text-gray-500 leading-relaxed max-w-none mx-auto xl:mx-0">{desc}</p>
+          <p className="block sm:hidden text-[13px] text-gray-600 dark:text-gray-400 leading-relaxed max-w-none mx-auto italic">
             {mobileDesc || desc}
           </p>
         </div>
@@ -635,48 +643,59 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
               {items.map((item: any, idx: number) => {
                 const isPersonal = item.isPersonal;
                 const isCorporate = item.isCorporate;
+                const isHighlighted = isPersonal || isCorporate;
                 
-                let cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/20 transition-colors";
-                let titleClassName = "font-semibold text-gray-900 dark:text-white text-sm sm:text-[16px] leading-tight";
+                // Base class for all cards to ensure unified size and look (more compact now)
+                let cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/20 transition-all duration-300 h-full overflow-hidden";
+                let titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight transition-colors duration-300 group-hover/card:text-brand";
                 
-                if (isPersonal) {
-                  cardClassName = "flex flex-col bg-white/5 dark:bg-[hsla(220,20%,10%,0.4)] backdrop-blur-md border border-brand/20 dark:border-brand/30 rounded-2xl sm:rounded-[2.5rem] p-5 sm:p-8 content-start relative group/card hover:border-brand/60 transition-all duration-700 shadow-2xl shadow-brand/5 overflow-hidden";
-                } else if (isCorporate) {
-                  cardClassName = "flex flex-col bg-gradient-to-br from-white/10 to-brand/5 dark:from-white/10 dark:to-brand/20 backdrop-blur-md border border-white/10 dark:border-brand/30 rounded-2xl sm:rounded-[2.5rem] p-5 sm:p-8 content-start relative group/card hover:border-white/40 transition-all duration-700 shadow-2xl shadow-brand/10 overflow-hidden";
-                  titleClassName = "font-bold text-brand dark:text-brand text-lg sm:text-2xl leading-none tracking-tight mb-2";
+                if (isHighlighted) {
+                  // Enhanced but neat style for highlighted cards
+                  cardClassName = "flex flex-col bg-white/5 dark:bg-white/[0.03] backdrop-blur-xl border border-brand/30 rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/60 transition-all duration-700 shadow-2xl shadow-brand/10 overflow-hidden h-full";
+                  // Keep headline white as requested, just embolden if needed
+                  titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight";
                 }
 
                 return (
                   <div key={idx} className={cardClassName}>
-                    {(isPersonal || isCorporate) && (
+                    {isHighlighted && (
                       <>
+                        {/* Subtle inner glow for highlighted cards */}
                         <div 
-                          className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(255,83,49,0.22)_0%,transparent_60%)] z-0 transition-opacity duration-700" 
+                          className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_30%_20%,rgba(255,83,49,0.15)_0%,transparent_70%)] z-0 transition-opacity duration-700" 
                         />
                          <div 
-                          className="absolute -bottom-24 -right-24 w-64 h-64 pointer-events-none bg-brand/10 blur-[80px] rounded-full z-0 group-hover/card:bg-brand/20 transition-all duration-1000" 
+                          className="absolute -bottom-24 -right-24 w-64 h-64 pointer-events-none bg-brand/10 blur-[80px] rounded-full z-0 opacity-50 group-hover/card:opacity-80 transition-all duration-1000" 
                         />
                       </>
                     )}
-                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4 relative z-10 text-left">
-                       <span className={titleClassName}>{item.title}</span>
+                    
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-5 relative z-10 text-left">
+                       <h5 className={titleClassName}>{item.title}</h5>
                        {item.tags && item.tags.format && (
-                         <span className="shrink-0 inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold bg-black/20 dark:bg-white/10 text-white dark:text-gray-200 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm self-end sm:self-start">{item.tags.format}</span>
+                         <span className="shrink-0 inline-flex items-center gap-1 text-[9px] sm:text-[10px] font-bold bg-white/10 dark:bg-white/5 text-gray-700 dark:text-white/60 px-2.5 py-1 rounded-lg border border-gray-200 dark:border-white/10 backdrop-blur-sm self-end sm:self-start uppercase tracking-wider">
+                           {item.tags.format}
+                         </span>
                        )}
                     </div>
-                    {item.desc && <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-6 relative z-10 font-medium opacity-90 text-left">{item.desc}</span>}
+                    
+                    {item.desc && (
+                      <p className="text-gray-600 dark:text-white/50 text-sm sm:text-base leading-relaxed mb-6 relative z-10 font-medium text-left leading-relaxed">
+                        {item.desc}
+                      </p>
+                    )}
                     
                     {item.tags && (
                       <div className="flex flex-wrap items-center gap-3 mt-auto relative z-10">
                         {item.tags.duration && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold bg-white/5 dark:bg-brand/10 text-gray-700 dark:text-brand px-3 py-2 rounded-xl border border-brand/10">
-                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold bg-gray-100/50 dark:bg-white/[0.04] text-gray-700 dark:text-brand px-3 py-1.5 rounded-xl border border-gray-200/50 dark:border-brand/10">
+                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-80"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                              {item.tags.duration}
                            </span>
                         )}
                         {item.tags.people && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold bg-white/5 dark:bg-brand/10 text-gray-700 dark:text-brand px-3 py-2 rounded-xl border border-brand/10">
-                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold bg-gray-100/50 dark:bg-white/[0.04] text-gray-700 dark:text-brand px-3 py-1.5 rounded-xl border border-gray-200/50 dark:border-brand/10">
+                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-80"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                              {item.tags.people}
                            </span>
                         )}
@@ -710,10 +729,10 @@ function CombinedLevelsViewer() {
       <div className="px-4 sm:px-6 md:px-12 w-full max-w-7xl mx-auto flex flex-col items-center">
         <div className={`w-full text-center xl:text-left mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl sm:text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 md:mb-6">
-            Одна система — три вектора AI-трансформации
+            Траектория эффективной AI-трансформации компании
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-gray-500 dark:text-gray-400 dark:text-gray-500 max-w-5xl mx-auto xl:mx-0">
-            Мы выстраиваем интеграцию нейросетей на трех равноправных уровнях: <span className="text-brand font-medium">топ-менеджмент</span> (стратегия), <span className="text-brand font-medium">масштаб на команды</span> (практика) и <span className="text-brand font-medium">личный трек</span> (индивидуальное погружение).
+          <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-5xl mx-auto xl:mx-0 leading-relaxed">
+            AI-трансформация работает, когда у неё есть правильная архитектура перехода: стратегический слой задаёт каркас, а командный переводит его в практику и масштабирование.
           </p>
           
         </div>

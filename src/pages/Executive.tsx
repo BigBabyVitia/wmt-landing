@@ -34,11 +34,11 @@ const overviewPrograms = [
     id: "exec-workshop",
     title: "ИИ-практикум для руководителей",
     desc: "когда руководители должны не только понять тему, а пройти практику работы.",
-    tags: { format: "Онлайн", duration: "6 сессий", people: "8–20 человек" }
+    tags: { format: "Онлайн", duration: "6 занятий", people: "8–20 человек" }
   },
   {
     id: "personal-ai",
-    title: "Персональная работа с ИИ",
+    title: "Персональная работа с руководителем",
     desc: "индивидуальный трек для собственников и первых лиц.",
     tags: { format: "Офлайн / Онлайн", duration: "По запросу", people: "1 человек" },
     isPersonal: true
@@ -56,8 +56,9 @@ const programs = [
   {
     id: "system-ai",
     title: "Системный ИИ",
-    tagline: "Выровнять руководство и получить план на 90 дней",
-    desc: "Когда на столе много предложений, а единого решения нет. Проводим встречу с живыми демонстрациями, разбираем ситуацию компании и фиксируем приоритеты. На выходе — управленческая карта: что запускать, чего не делать и кто отвечает за результат.",
+    tagline: "С чего начать путь в ИИ без ошибок",
+    when: "Когда компания хочет быстро и на реальных кейсах понять, насколько ИИ ей действительно нужен, где он может дать эффект и с какого первого шага стоит начинать",
+    result: "Руководство получает ясное понимание, где ИИ может дать компании реальный эффект, а компания — первый осмысленный шаг в AI-трансформации вместо абстрактного интереса",
     results: [
       { title: "Приоритеты", desc: "Что запускать первым, а что сознательно не брать в работу.", icon: ListTodo },
       { title: "Границы", desc: "Где ИИ уже даёт результат, а где цена ошибки пока высока.", icon: ShieldAlert },
@@ -74,7 +75,8 @@ const programs = [
     id: "skeleton",
     title: "Цифровой каркас",
     tagline: "Архитектура и первый работающий пилот за 2 дня",
-    desc: "Когда стратегии уже мало, и нужно твердое решение в процессах. Построение ИИ-архитектуры, которая учитывает ваши данные и безопасность, и запуск первого рабочего пилота под вашим управленческим контролем. Это мост между пониманием и эксплуатацией.",
+    when: "Когда руководство уже понимает, что в ИИ нужно идти, и теперь компании нужно собрать архитектуру перехода, определить приоритеты и спроектировать первые пилоты",
+    result: "Компания получает архитектуру AI-перехода, приоритизированные направления и 1–2 пилота, готовых к запуску, а руководство — ясность, как двигаться дальше без хаоса и распыления.",
     results: [
       { title: "Анализ ИИ-потенциала", desc: "Глубокий аудит для выбора участка с максимальным ROI.", icon: Target },
       { title: "Архитектура систем", desc: "Как ИИ встроится в ваши данные, безопасность и IT-ландшафт.", icon: ShieldCheck },
@@ -90,8 +92,9 @@ const programs = [
   {
     id: "business-2",
     title: "ИИ-архитектура бизнеса",
-    tagline: "Глубокий пересмотр стратегии и операционной модели под ИИ",
-    desc: "Когда обзорной встречи мало. Глубокая стратегия с топ-командой: пересборка экономики, ролей и бизнес-модели под новую ИИ-реальность.",
+    tagline: "Глубокий пересмотр операционной модели под ИИ",
+    when: "Когда руководство хочет не просто внедрить ИИ в отдельные функции, а связать его с устройством бизнеса и перестроить процессы так, чтобы ИИ стал частью общей архитектуры эффективности",
+    result: "Компания получает портфель ИИ-проектов, новую логику развития под ИИ и первые прототипы, а руководство — общее понимание, как перестраивать бизнес и на чём делать ставку дальше",
     diff: "Системный ИИ даёт план на квартал. ИИ-архитектура бизнеса перестраивает фундамент: как компания будет работать и зарабатывать через два года.",
     results: [
       { title: "Модель 2.0", desc: "Обновленная операционная структура компании под ИИ.", icon: Workflow },
@@ -109,20 +112,55 @@ const programs = [
     id: "exec-workshop",
     title: "ИИ-практикум для руководителей",
     tagline: "Практика работы для принятия ИИ-решений",
-    desc: "Когда руководители должны не только понимать тему, а пройти реальную работу. От анализа ИИ-возможностей в своей функции до сборки рабочих сценариев. Руководство переходит от теории к опыту.",
+    when: "Когда руководство хочет на собственных задачах проверить, как ИИ работает в управленческой практике, и убедиться, что этот подход можно масштабировать дальше на команды и компанию",
+    result: "Руководители получают рабочее понимание ИИ через практику на собственных задачах, а компания — топ-команду, которая уверенно задаёт следующий шаг AI-трансформации и готова масштабировать его дальше.",
     results: [
       { title: "Навык", desc: "Умение ставить задачи ИИ и проверять качество ответа.", icon: Zap },
       { title: "Сборка", desc: "Собственные работающие сценарии под свои функции.", icon: Component },
       { title: "Опыт", desc: "Принятие решений без зависимости от разработчиков.", icon: Award },
     ],
     params: [
-      { label: "Формат", value: "6 сессий / Онлайн", icon: Clock },
+      { label: "Формат", value: "6 занятий / Онлайн", icon: Clock },
       { label: "Срок", value: "Синхронная практика", icon: Zap },
       { label: "Группа", value: "8–20 руководителей", icon: Users }
     ],
     badge: "Практика",
+  },
+  {
+    id: "personal-ai",
+    title: "Персональная работа с руководителем",
+    tagline: "Индивидуальный трек под ваш контекст",
+    when: "Когда первому лицу или руководителю нужен индивижуальный формат под свои задачи: глубже разобраться в ИИ, пройти практику на собственном контексте, собрать личную стратегию и понять, как использовать ИИ в своей роли и в компании.",
+    result: "Руководитель получает персонально собранную работу с ИИ под свои цели, уровень и контекст, а компания — сильного внутреннего драйвера, который понимает, как двигать AI-трансформацию дальше.",
+    results: [
+      { title: "Личная стратегия", desc: "Понимание своих точек роста с ИИ.", icon: Target },
+      { title: "Практика", desc: "Навык работы с ИИ в своем контексте.", icon: Zap },
+      { title: "Драйвер перемен", desc: "Готовность вести компанию за собой.", icon: Award },
+    ],
+    params: [
+      { label: "Формат", value: "По запросу", icon: Clock },
+      { label: "Участники", value: "1 человек", icon: Users }
+    ],
+    badge: "Индивидуально",
+  },
+  {
+    id: "corporate-request",
+    title: "Корпоративная программа под ваш запрос",
+    tagline: "Сборка уникальной архитектуры под задачи компании",
+    when: "Когда AI-трансформация компании требует собственной программы: под её бизнес-контекст, команду, текущий уровень зрелости и те задачи, которые нужно решить на уровне руководства, функций и масштабирования",
+    result: "Компания получает индивидуальную программу обучения и внедрения, собранную под её реальную задачу, а руководство — формат, который точно соответствует бизнес-контексту и даёт нужный следующий шаг",
+    results: [
+      { title: "Реальные задачи", desc: "Программа под ваш контекст и зрелость.", icon: Component },
+      { title: "Масштабирование", desc: "Методика подготовки всей компании.", icon: Layers },
+      { title: "Бизнес-эффект", desc: "Решение конкретных управленческих задач.", icon: TrendingUp },
+    ],
+    params: [
+      { label: "Формат", value: "Офлайн / Онлайн", icon: Clock },
+      { label: "Аудитория", value: "Любая", icon: Users }
+    ],
+    badge: "Решение",
   }
-]
+];
 
 export function Executive() {
   const statusTags = signalsData.map((s, i) => (
@@ -209,11 +247,11 @@ function ProgramsOverviewSection() {
             let cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.08] border border-gray-100 dark:border-white/10 rounded-[2rem] hover:border-brand/40 transition-all duration-500 group shadow-sm";
             let titleClassName = "font-semibold text-gray-900 dark:text-white text-base md:text-[17px] leading-tight group-hover:text-brand transition-colors";
             
-            if (isPersonal) {
-              cardClassName = "flex flex-col bg-white/5 dark:bg-[hsla(220,20%,10%,0.4)] backdrop-blur-md border border-brand/20 dark:border-brand/30 rounded-[2.5rem] hover:border-brand/60 transition-all duration-700 shadow-2xl shadow-brand/5 overflow-hidden";
-            } else if (isCorporate) {
-              cardClassName = "flex flex-col bg-gradient-to-br from-white/10 to-brand/5 dark:from-white/10 dark:to-brand/20 backdrop-blur-md border border-white/10 dark:border-brand/30 rounded-[2.5rem] hover:border-white/40 transition-all duration-700 shadow-2xl shadow-brand/10 overflow-hidden";
-              titleClassName = "font-bold text-brand dark:text-brand text-lg md:text-[22px] leading-tight group-hover:text-brand/80 transition-colors";
+            const isHighlighted = isPersonal || isCorporate;
+            
+            if (isHighlighted) {
+              cardClassName = "flex flex-col bg-gradient-to-br from-white/10 to-brand/5 dark:from-white/10 dark:to-brand/20 backdrop-blur-xl border border-brand/30 rounded-[2rem] hover:border-brand/60 transition-all duration-700 shadow-2xl shadow-brand/10 overflow-hidden h-full";
+              titleClassName = "font-bold text-gray-900 dark:text-white text-base md:text-[17px] leading-tight transition-colors";
             }
             
             return (
@@ -221,52 +259,48 @@ function ProgramsOverviewSection() {
                 key={idx}
                 visible={visible}
                 index={idx}
-                className={cardClassName + (isPersonal || isCorporate ? "" : " cursor-pointer")}
-                contentClassName="p-8 md:p-10"
+                className={cardClassName + " cursor-pointer group active:scale-[0.98] transform-gpu"}
+                contentClassName="p-6 md:p-8 flex flex-col h-full"
                 onClick={() => {
-                  if (program.id === 'personal-ai') {
-                    window.location.href = '/personal-ai';
-                  } else if (program.id === 'corporate-request') {
-                    window.location.href = '#contact';
-                  } else {
-                    scrollToProgram(program.id);
-                  }
+                  scrollToProgram(program.id);
                 }}
               >
                 {(isPersonal || isCorporate) && (
                   <>
                     <div 
-                      className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(255,83,49,0.18)_0%,transparent_60%)] z-0 transition-opacity duration-700" 
+                      className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_30%_20%,rgba(255,83,49,0.15)_0%,transparent_70%)] z-0 transition-opacity duration-700" 
                     />
                      <div 
-                      className="absolute -bottom-24 -right-24 w-64 h-64 pointer-events-none bg-brand/15 blur-[90px] rounded-full z-0 group-hover:bg-brand/25 transition-all duration-1000" 
+                      className="absolute -bottom-24 -right-24 w-64 h-64 pointer-events-none bg-brand/10 blur-[80px] rounded-full z-0 opacity-50 group-hover:opacity-80 transition-all duration-1000" 
                     />
                   </>
                 )}
                 
-                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4 relative z-10">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-3 mb-5 relative z-10 text-left">
                   <h3 className={titleClassName}>{program.title}</h3>
                   {program.tags.format && (
-                    <span className="shrink-0 inline-flex items-center gap-1.5 text-[11px] font-bold bg-black/20 dark:bg-white/10 text-white dark:text-gray-200 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm self-end sm:self-start leading-none transition-colors group-hover:border-white/20">
+                    <span className="shrink-0 inline-flex items-center gap-1 text-[9px] md:text-[10px] font-bold bg-white/10 dark:bg-white/5 text-gray-700 dark:text-white/60 px-2.5 py-1 rounded-lg border border-gray-200 dark:border-white/10 backdrop-blur-sm self-end sm:self-start uppercase tracking-wider transition-colors group-hover:border-white/20">
                       {program.tags.format}
                     </span>
                   )}
                 </div>
                 
-                <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed mb-8 relative z-10 font-medium opacity-90">
-                  {program.desc}
-                </p>
+                {program.desc && (
+                  <p className="text-gray-600 dark:text-white/50 text-sm md:text-base leading-relaxed mb-6 relative z-10 font-medium text-left leading-relaxed">
+                    {program.desc}
+                  </p>
+                )}
                 
                 <div className="flex flex-wrap items-center gap-3 mt-auto relative z-10">
                   {program.tags.duration && (
-                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-xs font-bold bg-white/5 dark:bg-brand/10 text-gray-700 dark:text-brand px-3.5 py-2.5 rounded-xl border border-brand/10 transition-all duration-500 group-hover:border-brand/30">
-                      <Clock className="w-4 h-4 opacity-100" />
+                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[9px] md:text-[10px] font-bold bg-gray-100/50 dark:bg-white/[0.04] text-gray-700 dark:text-brand px-3 py-1.5 rounded-xl border border-gray-200/50 dark:border-brand/10">
+                      <Clock className="w-3.5 h-3.5 opacity-80" />
                       {program.tags.duration}
                     </span>
                   )}
                   {program.tags.people && (
-                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-xs font-bold bg-white/5 dark:bg-brand/10 text-gray-700 dark:text-brand px-3.5 py-2.5 rounded-xl border border-brand/10 transition-all duration-500 group-hover:border-brand/30">
-                      <Users className="w-4 h-4 opacity-100" />
+                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[9px] md:text-[10px] font-bold bg-gray-100/50 dark:bg-white/[0.04] text-gray-700 dark:text-brand px-3 py-1.5 rounded-xl border border-gray-200/50 dark:border-brand/10">
+                      <Users className="w-3.5 h-3.5 opacity-80" />
                       {program.tags.people}
                     </span>
                   )}
@@ -309,7 +343,14 @@ function ProgramSection({ program: p, index }: any) {
                   ))}
                 </div>
 
-                <p className="text-[15px] md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed mb-8 md:mb-10">{p.desc}</p>
+                  {p.when && (
+                    <div className="relative">
+                      <span className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-2 block opacity-80">Когда</span>
+                      <p className="text-gray-900 dark:text-white text-base md:text-xl leading-relaxed font-medium">
+                        {p.when}
+                      </p>
+                    </div>
+                  )}
               </div>
 
               {p.diff && (
@@ -333,9 +374,15 @@ function ProgramSection({ program: p, index }: any) {
               <div className="bg-white dark:bg-white/[0.03] backdrop-blur-sm border border-gray-100 dark:border-white/[0.06] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 md:pt-8 shadow-sm relative overflow-hidden group hover:border-brand/20 transition-all duration-500">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 blur-[60px] rounded-full -translate-y-1/2 translate-x-1/2" />
                 
-                <div className="mb-6 md:mb-10 relative z-10 text-left">
-                  <span className="text-[9px] md:text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-2 block">Результаты уровня</span>
-                  <div className="h-px w-10 md:w-12 bg-brand/30 rounded-full" />
+                <div className="mb-6 md:mb-8 relative z-10 text-left">
+                  <span className="text-[9px] md:text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-2 block">Результат уровня</span>
+                  <div className="h-px w-10 md:w-12 bg-brand/30 rounded-full mb-6" />
+                  
+                  {p.result && (
+                    <p className="text-[13px] md:text-base text-gray-700 dark:text-gray-200 leading-relaxed font-medium tracking-tight mb-4 text-left">
+                      {p.result}
+                    </p>
+                  )}
                 </div>
                 
                 <div className="space-y-6 md:space-y-10 relative z-10">
