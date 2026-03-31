@@ -452,22 +452,34 @@ const teaserData = [
       {
         title: "Системный ИИ",
         desc: "когда нужно выровнять руководство и получить план на 90 дней.",
-        tags: { format: "Офлайн / Онлайн", duration: "1,5–2 часа", people: "до 15 человек", result: "План на 90 дней" }
+        tags: { format: "Офлайн / Онлайн", duration: "1,5–2 часа", people: "до 15 человек" }
       },
       {
         title: "Цифровой каркас",
         desc: "построение архитектуры ИИ-перехода и запуск первого пилота.",
-        tags: { format: "Офлайн", duration: "1–2 дня", people: "до 30 человек", result: "Первый пилот" }
+        tags: { format: "Офлайн", duration: "1–2 дня", people: "до 30 человек" }
       },
       {
         title: "ИИ-архитектура бизнеса",
         desc: "когда нужен глубокий пересмотр стратегии и операционной модели под ИИ.",
-        tags: { format: "Офлайн", duration: "2 дня", people: "до 15 человек", result: "Рабочие сессии" }
+        tags: { format: "Офлайн", duration: "2 дня", people: "до 15 человек" }
       },
       {
-        title: "ИИ-марафон для топ-менеджеров",
-        desc: "когда руководители должны не только понять тему, а пройти месяц практики.",
-        tags: { format: "Онлайн", duration: "1 месяц", people: "8–20 человек", result: "8 модулей" }
+        title: "ИИ-практикум для руководителей",
+        desc: "когда руководители должны не только понять тему, а пройти практику работы.",
+        tags: { format: "Онлайн", duration: "6 сессий", people: "8–20 человек" }
+      },
+      {
+        title: "Персональная работа с ИИ",
+        desc: "индивидуальный трек для собственников и первых лиц.",
+        tags: { format: "Офлайн / Онлайн", duration: "По запросу", people: "1 человек" },
+        isPersonal: true
+      },
+      {
+        title: "Корпоративная программа под ваш запрос",
+        desc: "сборка уникальной архитектуры трансформации под задачи вашей компании.",
+        tags: { format: "Офлайн / Онлайн", duration: "Индивидуально", people: "Любая аудитория" },
+        isCorporate: true
       }
     ],
     link: "/executive",
@@ -621,10 +633,23 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
             </h4>
             <div className={`grid grid-cols-1 gap-2 md:gap-4 ${personalSteps ? "sm:grid-cols-2 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
               {items.map((item: any, idx: number) => {
+                const isPersonal = item.isPersonal;
+                const isCorporate = item.isCorporate;
+                
+                let cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/20 transition-colors";
+                let titleClassName = "font-semibold text-gray-900 dark:text-white text-sm sm:text-[16px] leading-tight";
+                
+                if (isPersonal) {
+                  cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.03] border border-brand/20 dark:border-brand/30 rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/50 transition-colors shadow-md shadow-brand/5";
+                } else if (isCorporate) {
+                  cardClassName = "flex flex-col bg-gradient-to-br from-gray-50/80 to-brand/5 dark:from-white/[0.04] dark:to-brand/10 border border-gray-100 dark:border-white/[0.06] rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/30 transition-colors shadow-lg shadow-brand/10";
+                  titleClassName = "font-semibold text-brand dark:text-brand text-sm sm:text-[16px] leading-tight";
+                }
+
                 return (
-                  <div key={idx} className="flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/20 transition-colors">
+                  <div key={idx} className={cardClassName}>
                     <div className="flex justify-between items-start gap-3 mb-1 sm:mb-2">
-                       <span className="font-semibold text-gray-900 dark:text-white text-sm sm:text-[16px] leading-tight">{item.title}</span>
+                       <span className={titleClassName}>{item.title}</span>
                        {item.tags && item.tags.format && (
                          <span className="shrink-0 inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-1.5 py-0.5 rounded-md">{item.tags.format}</span>
                        )}

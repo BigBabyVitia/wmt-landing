@@ -27,14 +27,28 @@ const overviewPrograms = [
   {
     id: "business-2",
     title: "ИИ-архитектура бизнеса",
-    desc: "когда нужен глубокий пересмотар стратегии и операционной модели под ИИ.",
+    desc: "когда нужен глубокий пересмотр стратегии и операционной модели под ИИ.",
     tags: { format: "Офлайн", duration: "2 дня", people: "до 15 человек" }
   },
   {
-    id: "exec-marathon",
-    title: "ИИ-марафон для топ-менеджеров",
-    desc: "когда руководители должны не только понять тему, а пройти месяц практики.",
-    tags: { format: "Онлайн", duration: "1 месяц", people: "8–20 человек" }
+    id: "exec-workshop",
+    title: "ИИ-практикум для руководителей",
+    desc: "когда руководители должны не только понять тему, а пройти практику работы.",
+    tags: { format: "Онлайн", duration: "6 сессий", people: "8–20 человек" }
+  },
+  {
+    id: "personal-ai",
+    title: "Персональная работа с ИИ",
+    desc: "индивидуальный трек для собственников и первых лиц.",
+    tags: { format: "Офлайн / Онлайн", duration: "По запросу", people: "1 человек" },
+    isPersonal: true
+  },
+  {
+    id: "corporate-request",
+    title: "Корпоративная программа под ваш запрос",
+    desc: "сборка уникальной архитектуры трансформации под задачи вашей компании.",
+    tags: { format: "Офлайн / Онлайн", duration: "Индивидуально", people: "Любая аудитория" },
+    isCorporate: true
   }
 ];
 
@@ -92,18 +106,18 @@ const programs = [
     badge: "Стратегия",
   },
   {
-    id: "exec-marathon",
-    title: "ИИ-марафон для топов",
-    tagline: "Месяц личной практики для принятия ИИ-решений",
-    desc: "Когда руководители должны не только понимать тему, а пройти месяц реальной работы. От анализа ИИ-возможностей в своей функции до сборки рабочих сценариев. К концу месяца руководство принимает решения на основе личного опыта.",
+    id: "exec-workshop",
+    title: "ИИ-практикум для руководителей",
+    tagline: "Практика работы для принятия ИИ-решений",
+    desc: "Когда руководители должны не только понимать тему, а пройти реальную работу. От анализа ИИ-возможностей в своей функции до сборки рабочих сценариев. Руководство переходит от теории к опыту.",
     results: [
       { title: "Навык", desc: "Умение ставить задачи ИИ и проверять качество ответа.", icon: Zap },
       { title: "Сборка", desc: "Собственные работающие сценарии под свои функции.", icon: Component },
-      { title: "Опыт", desc: "Принятие решений без зависимости от консультантов.", icon: Award },
+      { title: "Опыт", desc: "Принятие решений без зависимости от разработчиков.", icon: Award },
     ],
     params: [
-      { label: "Формат", value: "8 модулей / Онлайн", icon: Clock },
-      { label: "Срок", value: "4 недели практики", icon: Zap },
+      { label: "Формат", value: "6 сессий / Онлайн", icon: Clock },
+      { label: "Срок", value: "Синхронная практика", icon: Zap },
       { label: "Группа", value: "8–20 руководителей", icon: Users }
     ],
     badge: "Практика",
@@ -116,10 +130,10 @@ export function Executive() {
       key={i} 
       className="group relative bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]"
     >
-      <div className="absolute top-2 md:top-4 right-4 md:right-6 text-white/[0.02] font-black text-6xl md:text-8xl select-none pointer-events-none group-hover:text-white/[0.04] transition-colors duration-500">
+      <div className="absolute top-0 right-0 p-8 text-white/[0.04] text-8xl md:text-9xl font-black font-mono leading-none z-0 transform translate-x-4 -translate-y-4 pointer-events-none group-hover:scale-110 group-hover:text-brand/5 transition-all duration-500">
         0{i + 1}
       </div>
-      <h3 className="text-white font-medium text-[15px] md:text-[18px] relative z-10 leading-[1.4] max-w-[90%] md:max-w-[320px] line-clamp-2">
+      <h3 className="text-white font-medium text-[15px] md:text-xl relative z-10 leading-[1.3] max-w-[90%] md:max-w-[320px]">
         {s.title}
       </h3>
     </div>
@@ -129,14 +143,23 @@ export function Executive() {
     <>
       <V2Hero 
         layout="mosaic"
-        label="Executive track"
-        title={<>Пока руководство не приняло решение, <em className="not-italic text-brand font-bold">компания теряет время</em></>}
-        description="Эта страница для собственника, генерального директора и тех, кто отвечает за управленческий старт по ИИ. Здесь три формата — под разную глубину и разную задачу."
+        label="EXECUTIVE TRACK / Для владельцев и команды руководителей"
+        title={<>WMT AI помогает собрать архитектуру <em className="not-italic text-brand font-bold">AI-трансформации</em> компании</>}
+        description="Управленческая сборка нужна, когда компания уже понимает, что ИИ — это всерьёз, но пока нет единого взгляда, как именно его применять. Мы помогаем первым лицам и топ-менеджерам сформулировать стратегию, выбрать точки приложения усилий и запустить системные изменения сверху вниз."
+        tagsTitle="Когда компании нужен стратегический старт:"
         tags={statusTags}
         buttons={
-          <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.2)] hover:-translate-y-1 transform-gpu text-sm md:text-base">
-            Обсудить с экспертом <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
-          </a>
+          <>
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.2)] hover:-translate-y-1 transform-gpu text-sm md:text-base">
+              Обсудить с экспертом <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
+            </a>
+            <a href="#programs" className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/20 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-white/5 transition-all duration-300 text-sm md:text-base">
+              К вариантам программ
+            </a>
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-transparent text-brand underline decoration-brand/30 hover:decoration-brand/80 px-4 py-3.5 md:py-4 font-semibold transition-all duration-300 text-sm md:text-base">
+              Получить рекомендацию
+            </a>
+          </>
         }
       />
 
@@ -178,45 +201,68 @@ function ProgramsOverviewSection() {
           <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 max-w-5xl font-medium leading-relaxed">От управленческого выравнивания до архитектуры ИИ-перехода и личной практики.</p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-          {overviewPrograms.map((program, idx) => (
-            <V2Card
-              key={idx}
-              visible={visible}
-              index={idx}
-              className="flex flex-col bg-gray-50/80 dark:bg-white/[0.08] border border-gray-100 dark:border-white/10 rounded-[2rem] hover:border-brand/40 transition-all duration-500 group cursor-pointer shadow-sm"
-              contentClassName="p-6 md:p-8"
-              onClick={() => scrollToProgram(program.id)}
-            >
-              <div className="flex justify-between items-start gap-3 mb-3">
-                <h3 className="font-semibold text-gray-900 dark:text-white text-base md:text-[17px] leading-tight group-hover:text-brand transition-colors">{program.title}</h3>
-                {program.tags.format && (
-                  <span className="shrink-0 inline-flex items-center gap-1 text-[10px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-md leading-none">
-                    {program.tags.format}
-                  </span>
-                )}
-              </div>
-              
-              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 flex-1">
-                {program.desc}
-              </p>
-              
-              <div className="flex flex-wrap items-center gap-2 mt-auto">
-                {program.tags.duration && (
-                  <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
-                    <Clock className="w-3 h-3 opacity-50 text-brand" />
-                    {program.tags.duration}
-                  </span>
-                )}
-                {program.tags.people && (
-                  <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
-                    <Users className="w-3 h-3 opacity-50 text-brand" />
-                    {program.tags.people}
-                  </span>
-                )}
-              </div>
-            </V2Card>
-          ))}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {overviewPrograms.map((program, idx) => {
+            const isPersonal = (program as any).isPersonal;
+            const isCorporate = (program as any).isCorporate;
+            
+            let cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.08] border border-gray-100 dark:border-white/10 rounded-[2rem] hover:border-brand/40 transition-all duration-500 group shadow-sm";
+            let titleClassName = "font-semibold text-gray-900 dark:text-white text-base md:text-[17px] leading-tight group-hover:text-brand transition-colors";
+            
+            if (isPersonal) {
+              cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.05] border border-brand/20 dark:border-brand/30 rounded-[2rem] hover:border-brand/60 transition-all duration-500 group shadow-md shadow-brand/5";
+            } else if (isCorporate) {
+              cardClassName = "flex flex-col bg-gradient-to-br from-gray-50/80 to-brand/5 dark:from-white/[0.08] dark:to-brand/10 border border-gray-100 dark:border-white/10 rounded-[2rem] hover:border-brand/40 transition-all duration-500 group shadow-lg shadow-brand/10";
+              titleClassName = "font-semibold text-brand dark:text-brand text-base md:text-[17px] leading-tight group-hover:text-brand/80 transition-colors";
+            }
+            
+            return (
+              <V2Card
+                key={idx}
+                visible={visible}
+                index={idx}
+                className={cardClassName + (isPersonal || isCorporate ? "" : " cursor-pointer")}
+                contentClassName="p-6 md:p-8"
+                onClick={() => {
+                  if (program.id === 'personal-ai') {
+                    window.location.href = '/personal-ai';
+                  } else if (program.id === 'corporate-request') {
+                    window.location.href = '#contact';
+                  } else {
+                    scrollToProgram(program.id);
+                  }
+                }}
+              >
+                <div className="flex justify-between items-start gap-3 mb-3">
+                  <h3 className={titleClassName}>{program.title}</h3>
+                  {program.tags.format && (
+                    <span className="shrink-0 inline-flex items-center gap-1 text-[10px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-md leading-none">
+                      {program.tags.format}
+                    </span>
+                  )}
+                </div>
+                
+                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 flex-1">
+                  {program.desc}
+                </p>
+                
+                <div className="flex flex-wrap items-center gap-2 mt-auto">
+                  {program.tags.duration && (
+                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
+                      <Clock className="w-3 h-3 opacity-50 text-brand" />
+                      {program.tags.duration}
+                    </span>
+                  )}
+                  {program.tags.people && (
+                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
+                      <Users className="w-3 h-3 opacity-50 text-brand" />
+                      {program.tags.people}
+                    </span>
+                  )}
+                </div>
+              </V2Card>
+            )
+          })}
         </div>
       </div>
     </section>
