@@ -594,9 +594,9 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
       />
 
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-500 group-hover:opacity-100 z-10"
         style={{
-          background: useMotionTemplate`radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.18), transparent 80%)`,
+          background: useMotionTemplate`radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.22), transparent 80%)`,
         }}
       />
       
@@ -640,38 +640,43 @@ function TeaserCard({ id, title, desc, mobileDesc, items, personalSteps, link, l
                 let titleClassName = "font-semibold text-gray-900 dark:text-white text-sm sm:text-[16px] leading-tight";
                 
                 if (isPersonal) {
-                  cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.03] border border-brand/20 dark:border-brand/30 rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/50 transition-colors shadow-md shadow-brand/5 overflow-hidden";
+                  cardClassName = "flex flex-col bg-white/5 dark:bg-[hsla(220,20%,10%,0.4)] backdrop-blur-md border border-brand/20 dark:border-brand/30 rounded-2xl sm:rounded-[2.5rem] p-5 sm:p-8 content-start relative group/card hover:border-brand/60 transition-all duration-700 shadow-2xl shadow-brand/5 overflow-hidden";
                 } else if (isCorporate) {
-                  cardClassName = "flex flex-col bg-gradient-to-br from-gray-50/80 to-brand/5 dark:from-white/[0.04] dark:to-brand/10 border border-gray-100 dark:border-white/[0.06] rounded-xl sm:rounded-2xl p-3 sm:p-5 content-start relative group/card hover:border-brand/30 transition-colors shadow-lg shadow-brand/10 overflow-hidden";
-                  titleClassName = "font-semibold text-brand dark:text-brand text-sm sm:text-[16px] leading-tight";
+                  cardClassName = "flex flex-col bg-gradient-to-br from-white/10 to-brand/5 dark:from-white/10 dark:to-brand/20 backdrop-blur-md border border-white/10 dark:border-brand/30 rounded-2xl sm:rounded-[2.5rem] p-5 sm:p-8 content-start relative group/card hover:border-white/40 transition-all duration-700 shadow-2xl shadow-brand/10 overflow-hidden";
+                  titleClassName = "font-bold text-brand dark:text-brand text-lg sm:text-2xl leading-none tracking-tight mb-2";
                 }
 
                 return (
                   <div key={idx} className={cardClassName}>
                     {(isPersonal || isCorporate) && (
-                      <div 
-                        className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_50%_40%,rgba(255,83,49,0.18)_0%,transparent_70%)] z-0 group-hover:scale-110 transition-transform duration-700" 
-                      />
+                      <>
+                        <div 
+                          className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(255,83,49,0.22)_0%,transparent_60%)] z-0 transition-opacity duration-700" 
+                        />
+                         <div 
+                          className="absolute -bottom-24 -right-24 w-64 h-64 pointer-events-none bg-brand/10 blur-[80px] rounded-full z-0 group-hover/card:bg-brand/20 transition-all duration-1000" 
+                        />
+                      </>
                     )}
-                    <div className="flex justify-between items-start gap-3 mb-1 sm:mb-2 relative z-10">
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4 relative z-10 text-left">
                        <span className={titleClassName}>{item.title}</span>
                        {item.tags && item.tags.format && (
-                         <span className="shrink-0 inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-1.5 py-0.5 rounded-md">{item.tags.format}</span>
+                         <span className="shrink-0 inline-flex items-center gap-1 text-[10px] sm:text-xs font-bold bg-black/20 dark:bg-white/10 text-white dark:text-gray-200 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm self-end sm:self-start">{item.tags.format}</span>
                        )}
                     </div>
-                    {item.desc && <span className="text-gray-600 dark:text-gray-400 text-[11px] sm:text-[13px] leading-relaxed mb-2 sm:mb-3">{item.desc}</span>}
+                    {item.desc && <span className="text-gray-700 dark:text-gray-300 text-sm sm:text-base leading-relaxed mb-6 relative z-10 font-medium opacity-90 text-left">{item.desc}</span>}
                     
                     {item.tags && (
-                      <div className="flex flex-nowrap items-center gap-1.5 mt-auto overflow-x-auto w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] pb-0.5">
+                      <div className="flex flex-wrap items-center gap-3 mt-auto relative z-10">
                         {item.tags.duration && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-1.5 py-1 rounded-md">
-                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70 text-brand"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold bg-white/5 dark:bg-brand/10 text-gray-700 dark:text-brand px-3 py-2 rounded-xl border border-brand/10">
+                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                              {item.tags.duration}
                            </span>
                         )}
                         {item.tags.people && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[9px] sm:text-[11px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-1.5 py-1 rounded-md">
-                             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-70 text-brand"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[11px] sm:text-xs font-bold bg-white/5 dark:bg-brand/10 text-gray-700 dark:text-brand px-3 py-2 rounded-xl border border-brand/10">
+                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                              {item.tags.people}
                            </span>
                         )}

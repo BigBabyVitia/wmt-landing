@@ -210,10 +210,10 @@ function ProgramsOverviewSection() {
             let titleClassName = "font-semibold text-gray-900 dark:text-white text-base md:text-[17px] leading-tight group-hover:text-brand transition-colors";
             
             if (isPersonal) {
-              cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.05] border border-brand/20 dark:border-brand/30 rounded-[2rem] hover:border-brand/60 transition-all duration-500 group shadow-md shadow-brand/5";
+              cardClassName = "flex flex-col bg-white/5 dark:bg-[hsla(220,20%,10%,0.4)] backdrop-blur-md border border-brand/20 dark:border-brand/30 rounded-[2.5rem] hover:border-brand/60 transition-all duration-700 shadow-2xl shadow-brand/5 overflow-hidden";
             } else if (isCorporate) {
-              cardClassName = "flex flex-col bg-gradient-to-br from-gray-50/80 to-brand/5 dark:from-white/[0.08] dark:to-brand/10 border border-gray-100 dark:border-white/10 rounded-[2rem] hover:border-brand/40 transition-all duration-500 group shadow-lg shadow-brand/10";
-              titleClassName = "font-semibold text-brand dark:text-brand text-base md:text-[17px] leading-tight group-hover:text-brand/80 transition-colors";
+              cardClassName = "flex flex-col bg-gradient-to-br from-white/10 to-brand/5 dark:from-white/10 dark:to-brand/20 backdrop-blur-md border border-white/10 dark:border-brand/30 rounded-[2.5rem] hover:border-white/40 transition-all duration-700 shadow-2xl shadow-brand/10 overflow-hidden";
+              titleClassName = "font-bold text-brand dark:text-brand text-lg md:text-[22px] leading-tight group-hover:text-brand/80 transition-colors";
             }
             
             return (
@@ -222,7 +222,7 @@ function ProgramsOverviewSection() {
                 visible={visible}
                 index={idx}
                 className={cardClassName + (isPersonal || isCorporate ? "" : " cursor-pointer")}
-                contentClassName="p-6 md:p-8"
+                contentClassName="p-8 md:p-10"
                 onClick={() => {
                   if (program.id === 'personal-ai') {
                     window.location.href = '/personal-ai';
@@ -233,29 +233,40 @@ function ProgramsOverviewSection() {
                   }
                 }}
               >
-                <div className="flex justify-between items-start gap-3 mb-3">
+                {(isPersonal || isCorporate) && (
+                  <>
+                    <div 
+                      className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_20%_20%,rgba(255,83,49,0.18)_0%,transparent_60%)] z-0 transition-opacity duration-700" 
+                    />
+                     <div 
+                      className="absolute -bottom-24 -right-24 w-64 h-64 pointer-events-none bg-brand/15 blur-[90px] rounded-full z-0 group-hover:bg-brand/25 transition-all duration-1000" 
+                    />
+                  </>
+                )}
+                
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-4 relative z-10">
                   <h3 className={titleClassName}>{program.title}</h3>
                   {program.tags.format && (
-                    <span className="shrink-0 inline-flex items-center gap-1 text-[10px] font-medium bg-gray-200/60 dark:bg-white/10 text-gray-700 dark:text-gray-300 px-2 py-0.5 rounded-md leading-none">
+                    <span className="shrink-0 inline-flex items-center gap-1.5 text-[11px] font-bold bg-black/20 dark:bg-white/10 text-white dark:text-gray-200 px-3 py-1.5 rounded-full border border-white/5 backdrop-blur-sm self-end sm:self-start leading-none transition-colors group-hover:border-white/20">
                       {program.tags.format}
                     </span>
                   )}
                 </div>
                 
-                <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 flex-1">
+                <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed mb-8 relative z-10 font-medium opacity-90">
                   {program.desc}
                 </p>
                 
-                <div className="flex flex-wrap items-center gap-2 mt-auto">
+                <div className="flex flex-wrap items-center gap-3 mt-auto relative z-10">
                   {program.tags.duration && (
-                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
-                      <Clock className="w-3 h-3 opacity-70 text-brand" />
+                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-xs font-bold bg-white/5 dark:bg-brand/10 text-gray-700 dark:text-brand px-3.5 py-2.5 rounded-xl border border-brand/10 transition-all duration-500 group-hover:border-brand/30">
+                      <Clock className="w-4 h-4 opacity-100" />
                       {program.tags.duration}
                     </span>
                   )}
                   {program.tags.people && (
-                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1 text-[10px] font-medium bg-gray-100 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-2 py-1 rounded-md">
-                      <Users className="w-3 h-3 opacity-70 text-brand" />
+                    <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-xs font-bold bg-white/5 dark:bg-brand/10 text-gray-700 dark:text-brand px-3.5 py-2.5 rounded-xl border border-brand/10 transition-all duration-500 group-hover:border-brand/30">
+                      <Users className="w-4 h-4 opacity-100" />
                       {program.tags.people}
                     </span>
                   )}
