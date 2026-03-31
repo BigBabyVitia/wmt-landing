@@ -26,7 +26,7 @@ const overviewPrograms = [
   },
   {
     id: "business-2",
-    title: "Бизнес 2.0",
+    title: "ИИ-архитектура бизнеса",
     desc: "когда нужен глубокий пересмотар стратегии и операционной модели под ИИ.",
     tags: { format: "Офлайн", duration: "2 дня", people: "до 15 человек" }
   },
@@ -75,10 +75,10 @@ const programs = [
   },
   {
     id: "business-2",
-    title: "Бизнес 2.0",
+    title: "ИИ-архитектура бизнеса",
     tagline: "Глубокий пересмотр стратегии и операционной модели под ИИ",
     desc: "Когда обзорной встречи мало. Глубокая стратегия с топ-командой: пересборка экономики, ролей и бизнес-модели под новую ИИ-реальность.",
-    diff: "Системный ИИ даёт план на квартал. Бизнес 2.0 перестраивает фундамент: как компания будет работать и зарабатывать через два года.",
+    diff: "Системный ИИ даёт план на квартал. ИИ-архитектура бизнеса перестраивает фундамент: как компания будет работать и зарабатывать через два года.",
     results: [
       { title: "Модель 2.0", desc: "Обновленная операционная структура компании под ИИ.", icon: Workflow },
       { title: "ROI-кейсы", desc: "Список точек, где ИИ создает кратный рост эффективности.", icon: TrendingUp },
@@ -114,9 +114,12 @@ export function Executive() {
   const statusTags = signalsData.map((s, i) => (
     <div 
       key={i} 
-      className="group relative bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md"
+      className="group relative bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]"
     >
-      <h3 className="text-white font-semibold text-[15px] md:text-xl relative z-10 leading-[1.3] max-w-[320px]">
+      <div className="absolute top-2 md:top-4 right-4 md:right-6 text-white/[0.02] font-black text-6xl md:text-8xl select-none pointer-events-none group-hover:text-white/[0.04] transition-colors duration-500">
+        0{i + 1}
+      </div>
+      <h3 className="text-white font-medium text-[15px] md:text-[18px] relative z-10 leading-[1.4] max-w-[90%] md:max-w-[320px] line-clamp-2">
         {s.title}
       </h3>
     </div>
