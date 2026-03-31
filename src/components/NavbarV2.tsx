@@ -13,7 +13,6 @@ const newLinks = [
   { label: "Для руководителей", to: "/executive" },
   { label: "Для команд", to: "/teams" },
   { label: "Личный ИИ", to: "/personal-ai" },
-  { label: "Все форматы", to: "/all-formats" },
 ]
 
 const classicLinks = [

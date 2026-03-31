@@ -53,7 +53,6 @@ const navCards = [
   { label: "Для руководителей", to: "/executive" },
   { label: "Для команд", to: "/teams" },
   { label: "Личный ИИ", to: "/personal-ai" },
-  { label: "Сравнить все программы", to: "/all-formats" },
 ]
 
 export function Proof() {
@@ -328,9 +327,7 @@ function ForwardSection() {
           <p className="text-gray-500 dark:text-gray-400 dark:text-gray-500 mb-6">Если нужно показать коллегам или руководству, кто стоит за&nbsp;WMT&nbsp;AI и&nbsp;на&nbsp;чём это построено, перешлите эту страницу.</p>
           <div className="bg-gray-50 dark:bg-[hsl(220,18%,10%)] rounded-2xl p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-500 hover:border-gray-300 dark:hover:border-white/20 hover:shadow-lg hover:shadow-gray-200/50 hover:-translate-y-1">
             <p className="text-gray-600 dark:text-gray-400 dark:text-gray-500 text-lg mb-6">Здесь собрано главное: основатель, клиенты, академическое признание, публикации, подкаст, выступления. Если нужна карта для сравнения всех программ&nbsp;&mdash; она на&nbsp;отдельной странице.</p>
-            <Link to="/all-formats" className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:underline">
-              Открыть карту всех программ <ArrowRight className="w-4 h-4" />
-            </Link>
+            
           </div>
         </div>
       </div>

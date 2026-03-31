@@ -127,11 +127,18 @@
     animation: text-glow 10s ease-in-out infinite;
   }
 
-  /* Line-draw animation for format card SVGs */
-  .format-svg-path {
-    transition: stroke-dashoffset 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  @keyframes text-shimmer {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
   }
-  .format-active .format-svg-path {
-    stroke-dashoffset: 0 !important;
+  .text-gradient-shimmer {
+    background: linear-gradient(to right, #ff5331, #ff7a5c, #ff5331);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    animation: text-shimmer 8s ease-in-out infinite;
   }
 }

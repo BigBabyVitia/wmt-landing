@@ -1,5 +1,4 @@
 import { ArrowRight, MapPin, Zap, Target, Bot, Compass, Terminal, Shield, Sparkles, UserCheck, Users, Radio, UserPlus } from "lucide-react"
-import { Link } from "react-router-dom"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
@@ -350,9 +349,9 @@ function AvailabilityDashboard() {
                       <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_2s_infinite]" />
                       Обсудить ваш проект
                     </a>
-                    <Link to="/executive" className="inline-flex items-center justify-center gap-2 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white bg-gray-50 dark:bg-white/5 rounded-2xl px-10 py-5 font-bold hover:border-brand/30 transition-all duration-300 whitespace-nowrap">
+                    <a href="#contact" className="inline-flex items-center justify-center gap-2 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white bg-gray-50 dark:bg-white/5 rounded-2xl px-10 py-5 font-bold hover:border-brand/30 transition-all duration-300 whitespace-nowrap">
                       Для корпораций <ArrowRight className="w-5 h-5 ml-1" />
-                    </Link>
+                    </a>
                  </div>
               </div>
 

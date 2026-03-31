@@ -227,9 +227,7 @@ function HeroVideo() {
           <a href="#directions" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-semibold hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
             Узнать, что подойдёт
           </a>
-          <Link to="/all-formats" className="bg-white text-gray-900 rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
-            Сравнить программы
-          </Link>
+          
         </div>
 
       </div>
@@ -296,9 +294,7 @@ function HeroWebGL() {
           <a href="#directions" className="bg-white dark:bg-[hsl(220,20%,7%)] text-gray-900 dark:text-white rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-semibold hover:bg-gray-100 dark:hover:bg-[hsl(220,18%,14%)] transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
             Узнать, что подойдёт
           </a>
-          <Link to="/all-formats" className="bg-white text-gray-900 rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
-            Сравнить программы
-          </Link>
+          
         </div>
 
       </div>

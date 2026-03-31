@@ -1,5 +1,4 @@
 import { ArrowRight, Clock, Users, Layers, Zap, ListTodo, ShieldAlert, Map, Workflow, TrendingUp, Users2, Component, Award, ShieldCheck, Target } from "lucide-react"
-import { Link } from "react-router-dom"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
 import { useScrollVisible } from "@/hooks/useScrollVisible"
@@ -315,12 +314,11 @@ function BridgeSection() {
             <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 mb-8 md:mb-10 font-medium leading-relaxed">
               Управленческий старт нужен ради следующего шага. Команды идут в сборку, функции — в пилоты, компания — в волну перемен.
             </p>
-            <Link
-              to="/teams"
+            <a href="#contact"
               className="inline-flex items-center gap-3 bg-brand text-white rounded-full px-8 md:px-10 py-4 md:py-4 font-bold transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-brand/20 text-sm md:text-base w-full sm:w-auto justify-center"
             >
               Программы для команд <ArrowRight className="w-5 h-5 ml-1" />
-            </Link>
+            </a>
           </div>
         </div>
       </div>

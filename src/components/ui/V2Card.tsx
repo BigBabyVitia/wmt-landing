@@ -53,12 +53,12 @@ export function V2Card({
         }}
       />
 
-      {/* Background Grid Pattern with fade-out mask - balanced visibility */}
+      {/* Background Grid Pattern with fade-out mask - strengthened */}
       <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.6] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_20%,transparent_100%)]" 
+        className="absolute inset-0 pointer-events-none opacity-[0.8] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_40%,transparent_100%)]" 
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(128,128,128,0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(128,128,128,0.18) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px',
+          backgroundImage: `linear-gradient(to right, rgba(160,160,160,0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(160,160,160,0.18) 1px, transparent 1px)`,
+          backgroundSize: '64px 64px',
           backgroundPosition: 'center center'
         }}
       />
@@ -66,7 +66,7 @@ export function V2Card({
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-[2rem] md:rounded-[2.5rem] opacity-0 transition duration-500 group-hover:opacity-100"
         style={{
-          background: useMotionTemplate`radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.18), transparent 80%)`,
+          background: useMotionTemplate`radial-gradient(650px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.2), transparent 80%)`,
         }}
       />
       

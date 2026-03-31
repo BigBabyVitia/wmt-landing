@@ -1,5 +1,4 @@
 import { ArrowRight, Clock, Users, Zap, CheckCircle2 } from "lucide-react"
-import { Link } from "react-router-dom"
 import { TrustStrip } from "@/components/TrustStrip"
 import { FreePlatform } from "@/components/FreePlatform"
 import { MainCta } from "@/components/MainCta"
@@ -200,9 +199,9 @@ function BuilderFormats() {
                 <span key={i} className="text-[12px] text-gray-700 dark:text-gray-300 bg-gray-100 dark:bg-white/10 px-3 py-1.5 rounded-md font-medium">{t}</span>
               ))}
             </div>
-            <Link to="/builder-day" className="inline-flex items-center gap-2 text-brand font-medium hover:text-brand/80 transition-colors mt-auto relative z-10">
+            <a href="#contact" className="inline-flex items-center gap-2 text-brand font-medium hover:text-brand/80 transition-colors mt-auto relative z-10">
               Подробнее про Builder Day <ArrowRight className="w-4 h-4" />
-            </Link>
+            </a>
           </V2Card>
 
           <V2Card visible={visible} index={1} contentClassName="!p-6 md:!p-10">

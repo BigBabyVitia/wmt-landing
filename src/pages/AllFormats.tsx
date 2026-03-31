@@ -13,7 +13,7 @@ const criteria = [
 
 const execPrograms = [
   { name: "Системный ИИ", audience: "Собственник или генеральный директор, которому нужен безопасный первый ход", result: "Стратегия ИИвизации и план на первые 90 дней", format: "Индивидуальная работа с основателем WMT AI", next: "Запуск практических программ для команды", proof: "50+ проектов, клиенты от Газпром Медиа до T1", },
-  { name: "Бизнес 2.0", audience: "Управленческая команда, которой нужен стратегический пересмотр бизнеса через призму ИИ", result: "Пересмотр бизнес-модели и операционной логики", format: "Рабочие сессии с топ-командой", next: "Конкретные проекты трансформации", },
+  { name: "ИИ-архитектура бизнеса", audience: "Управленческая команда, которой нужен стратегический пересмотр бизнеса через призму ИИ", result: "Пересмотр бизнес-модели и операционной логики", format: "Рабочие сессии с топ-командой", next: "Конкретные проекты трансформации", },
   { name: "ИИ-марафон для топ-менеджеров", audience: "Управленческая команда, которая уже понимает тему, но не перешла в практику", result: "Месяц практики: руководители работают с ИИ, а не только обсуждают его", format: "Месячная программа (8 модулей)", next: "Масштабирование на компанию", },
 ]
 
@@ -38,16 +38,16 @@ const navCards = [
 
 export function AllFormats() {
   return (
-    <>
+    <div className="bg-white dark:bg-black text-gray-900 dark:text-white min-h-screen transition-colors duration-300">
       <V2Hero 
         label="Все форматы"
         title={<>Все форматы WMT AI. <em className="not-italic text-brand font-bold">Карта решений.</em></>}
-        description="Здесь собраны все программы WMT AI — от первого хода генерального директора до корпоративной волны на сотни человек. Эта страница создана как навигатор: выберите блок по своей задаче и перешлите коллегам."
+        description="Здесь собраны все программы WMT AI — от первого хода генерального директора до корпоративной волны на сотни человек. Выберите блок по своей задаче."
         buttons={
           <div className="grid grid-cols-2 sm:flex sm:flex-row gap-3">
-            <a href="#exec" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-white rounded-xl px-4 py-2 text-xs font-bold transition-all border border-white/20 backdrop-blur-md shadow-lg">РУКОВОДИТЕЛЯМ</a>
-            <a href="#teams" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-white rounded-xl px-4 py-2 text-xs font-bold transition-all border border-white/20 backdrop-blur-md shadow-lg">КОМАНДАМ</a>
-            <a href="#builder" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-white rounded-xl px-4 py-2 text-xs font-bold transition-all border border-white/20 backdrop-blur-md shadow-lg">СБОРЩИКАМ</a>
+            <a href="#exec" className="inline-flex items-center justify-center gap-2 bg-brand text-white hover:bg-[#e64627] rounded-xl px-6 py-2.5 text-xs font-bold transition-all shadow-lg shadow-brand/20 uppercase tracking-wider">РУКОВОДИТЕЛЯМ</a>
+            <a href="#teams" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-gray-900 dark:text-white rounded-xl px-6 py-2.5 text-xs font-bold transition-all border border-gray-200 dark:border-white/20 uppercase tracking-wider">КОМАНДАМ</a>
+            <a href="#builder" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-gray-900 dark:text-white rounded-xl px-6 py-2.5 text-xs font-bold transition-all border border-gray-200 dark:border-white/20 uppercase tracking-wider">СБОРЩИКАМ</a>
           </div>
         }
       />
@@ -60,30 +60,30 @@ export function AllFormats() {
       <TrustSignal />
       <NavSection />
       <MainCta />
-    </>
+    </div>
   )
 }
 
 function CriteriaSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-300 border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Как выбрать программу</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 font-medium">Ответьте на три вопроса, чтобы сузить фокус.</p>
+        <div className={`mb-12 md:mb-16 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-2xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">Как выбрать программу</h2>
+          <p className="text-base md:text-xl text-gray-500 dark:text-white/60 max-w-3xl font-medium leading-relaxed">Ответьте на три вопроса, чтобы сузить фокус.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {criteria.map((c, idx) => (
             <V2Card
               key={idx}
               visible={visible}
               index={idx}
-              delayMult={100}
-              className="!p-8 !rounded-2xl hover:border-brand/30 hover:shadow-brand/10 hover:-translate-y-1"
+              className="h-full"
+              contentClassName="p-8"
             >
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-3 relative z-10">{c.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-[15px] leading-relaxed relative z-10">{c.desc}</p>
+              <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-4 relative z-10 leading-tight">{c.title}</h3>
+              <p className="text-gray-600 dark:text-white/50 text-[15px] leading-relaxed relative z-10">{c.desc}</p>
             </V2Card>
           ))}
         </div>
@@ -95,24 +95,23 @@ function CriteriaSection() {
 function ExecSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Для собственников и топ-команды</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400">Три программы для старта сверху. От первого разговора до полного пересмотра стратегии.</p>
+          <h2 className="text-2xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Для собственников и топ-команды</h2>
+          <p className="text-base md:text-xl text-gray-500 dark:text-white/60 leading-relaxed">Три программы для старта сверху. От первого разговора до полного пересмотра стратегии.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {execPrograms.map((p, idx) => (
-            <V2Card key={idx} visible={visible} index={idx} className="!p-6 !rounded-2xl group flex flex-col h-full hover:border-brand/30 hover:-translate-y-1">
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 relative z-10 group-hover:text-brand transition-colors">{p.name}</h3>
-              <div className="space-y-4 text-sm relative z-10 flex-1">
-                <div><span className="text-gray-400 dark:text-gray-500 font-medium block mb-1">Для кого:</span> <span className="text-gray-700 dark:text-gray-200 leading-snug">{p.audience}</span></div>
-                <div><span className="text-gray-400 dark:text-gray-500 font-medium block mb-1">Метрика успеха (Результат):</span> <span className="text-gray-700 dark:text-gray-200 leading-snug">{p.result}</span></div>
-                <div><span className="text-gray-400 dark:text-gray-500 font-medium block mb-1">Формат:</span> <span className="text-gray-700 dark:text-gray-200 leading-snug">{p.format}</span></div>
-                <div><span className="text-gray-400 dark:text-gray-500 font-medium block mb-1">Следующий шаг:</span> <span className="text-gray-700 dark:text-gray-200 leading-snug">{p.next}</span></div>
+            <V2Card key={idx} visible={visible} index={idx} className="h-full group" contentClassName="p-6 md:p-8">
+              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 relative z-10 group-hover:text-brand transition-colors leading-tight">{p.name}</h3>
+              <div className="space-y-5 text-[13px] md:text-sm relative z-10 flex-1">
+                <div><span className="text-gray-400 dark:text-white/30 font-bold uppercase tracking-wider text-[10px] block mb-1.5">Для кого</span> <span className="text-gray-700 dark:text-white/70 leading-snug font-medium">{p.audience}</span></div>
+                <div><span className="text-gray-400 dark:text-white/30 font-bold uppercase tracking-wider text-[10px] block mb-1.5">Результат</span> <span className="text-gray-700 dark:text-white/70 leading-snug font-medium">{p.result}</span></div>
+                <div><span className="text-gray-400 dark:text-white/30 font-bold uppercase tracking-wider text-[10px] block mb-1.5">Формат</span> <span className="text-gray-700 dark:text-white/70 leading-snug font-medium">{p.format}</span></div>
               </div>
-              <div className="mt-6 pt-4 border-t border-gray-100 dark:border-white/[0.06] relative z-10">
-                <Link to="/executive" className="inline-flex items-center gap-1.5 text-brand font-medium text-[13px] hover:underline uppercase tracking-wider">Отрыть страницу <ArrowRight className="w-3.5 h-3.5" /></Link>
+              <div className="mt-8 pt-6 border-t border-gray-100 dark:border-white/10 relative z-10">
+                <Link to="/executive" className="inline-flex items-center gap-2 text-brand font-bold text-[13px] hover:translate-x-1 transition-all uppercase tracking-wider">Страница формата <ArrowRight className="w-4 h-4" /></Link>
               </div>
             </V2Card>
           ))}
@@ -126,26 +125,26 @@ function TeamFormats() {
   const { ref, visible } = useScrollVisible()
   const groups = ["A. Ранние практические программы", "B. Масштабирование"]
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Для команд: пилоты, профи и волна перестройки</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 font-medium">Программы для тех, кто двигает изменения изнутри руками.</p>
+        <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-2xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Для команд: пилоты и волна перестройки</h2>
+          <p className="text-base md:text-xl text-gray-500 dark:text-white/60 leading-relaxed">Программы для тех, кто двигает изменения изнутри руками.</p>
         </div>
         {groups.map((group, groupIdx) => {
           const groupPrograms = teamPrograms.filter(p => p.group === group)
           if (groupPrograms.length === 0) return null
           return (
-            <div key={group} className="mb-12">
-              <div className={`text-sm font-bold text-brand uppercase tracking-wider mb-6 pb-2 border-b border-brand/20 dark:border-white/10 opacity-0 ${visible ? "animate-fade-rise" : ""}`} style={{ animationDelay: `${groupIdx * 200}ms`, animationFillMode: "forwards" }}>{group}</div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div key={group} className="mb-16 last:mb-0">
+              <div className={`text-[11px] font-bold text-brand uppercase tracking-[0.2em] mb-8 pb-3 border-b border-brand/20 dark:border-white/10 opacity-0 ${visible ? "animate-fade-rise" : ""}`} style={{ animationDelay: `${groupIdx * 200}ms`, animationFillMode: "forwards" }}>{group}</div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                 {groupPrograms.map((p, idx) => (
-                  <V2Card key={idx} visible={visible} index={idx} className="!p-6 !rounded-2xl group flex flex-col h-full hover:border-brand/30 hover:-translate-y-1">
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-4 relative z-10 group-hover:text-brand transition-colors">{p.name}</h3>
-                    <div className="space-y-4 text-sm relative z-10 flex-1">
-                      <div><span className="text-gray-400 dark:text-gray-500 font-medium block mb-1">Для кого:</span> <span className="text-gray-700 dark:text-gray-200 leading-snug">{p.audience}</span></div>
-                      <div><span className="text-gray-400 dark:text-gray-500 font-medium block mb-1">Артефакт (Результат):</span> <span className="text-gray-700 dark:text-gray-200 leading-snug">{p.result}</span></div>
-                      <div><span className="text-gray-400 dark:text-gray-500 font-medium block mb-1">Формат:</span> <span className="text-gray-700 dark:text-gray-200 leading-snug">{p.format}</span></div>
+                  <V2Card key={idx} visible={visible} index={idx} className="h-full group" contentClassName="p-6 md:p-8">
+                    <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 relative z-10 group-hover:text-brand transition-colors leading-tight">{p.name}</h3>
+                    <div className="space-y-5 text-[13px] md:text-sm relative z-10 flex-1">
+                      <div><span className="text-gray-400 dark:text-white/30 font-bold uppercase tracking-wider text-[10px] block mb-1.5">Для кого</span> <span className="text-gray-700 dark:text-white/70 leading-snug font-medium">{p.audience}</span></div>
+                      <div><span className="text-gray-400 dark:text-white/30 font-bold uppercase tracking-wider text-[10px] block mb-1.5">Результат</span> <span className="text-gray-700 dark:text-white/70 leading-snug font-medium">{p.result}</span></div>
+                      <div><span className="text-gray-400 dark:text-white/30 font-bold uppercase tracking-wider text-[10px] block mb-1.5">Формат</span> <span className="text-gray-700 dark:text-white/70 leading-snug font-medium">{p.format}</span></div>
                     </div>
                   </V2Card>
                 ))}
@@ -161,25 +160,25 @@ function TeamFormats() {
 function BuilderSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Разработка агентов (Builders)</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400">Форматы для подготовленных команд, которым нужен свой агент без написания кода.</p>
+          <h2 className="text-2xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Разработка агентов (Builders)</h2>
+          <p className="text-base md:text-xl text-gray-500 dark:text-white/60 leading-relaxed max-w-3xl">Форматы для подготовленных команд, которым нужен свой агент без написания кода.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {builderPrograms.map((p, idx) => (
-            <V2Card key={idx} visible={visible} index={idx} className="!p-8 !rounded-2xl hover:border-brand/30 hover:-translate-y-1 group">
-              <span className="inline-block text-xs font-semibold text-brand bg-brand/10 uppercase tracking-wider mb-3 px-3 py-1 rounded-full relative z-10">{p.format}</span>
-              <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2 relative z-10 group-hover:text-brand transition-colors">{p.name}</h3>
-              <p className="text-gray-500 dark:text-gray-400 text-[15px] mb-6 relative z-10">{p.desc}</p>
+            <V2Card key={idx} visible={visible} index={idx} className="h-full group" contentClassName="p-8 md:p-10">
+              <span className="inline-block text-[10px] font-bold text-brand bg-brand/5 border border-brand/10 uppercase tracking-[0.2em] mb-4 px-3 py-1 rounded-full relative z-10">{p.format}</span>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3 relative z-10 group-hover:text-brand transition-colors leading-tight">{p.name}</h3>
+              <p className="text-gray-500 dark:text-white/50 text-base mb-8 relative z-10 leading-relaxed">{p.desc}</p>
               
-              <div className="space-y-3 text-sm relative z-10 flex-1">
-                <div className="border-l-2 border-brand/30 pl-3 py-0.5"><span className="text-gray-400 dark:text-gray-500 font-medium block mb-0.5">Для кого:</span> <span className="text-gray-700 dark:text-gray-200">{p.audience}</span></div>
-                <div className="border-l-2 border-brand/30 pl-3 py-0.5"><span className="text-gray-400 dark:text-gray-500 font-medium block mb-0.5">Результат:</span> <span className="text-gray-700 dark:text-gray-200">{p.result}</span></div>
+              <div className="space-y-4 text-sm relative z-10 flex-1">
+                <div className="border-l-2 border-brand/20 pl-4 py-0.5"><span className="text-gray-400 dark:text-white/30 font-bold uppercase tracking-wider text-[10px] block mb-1">Для кого</span> <span className="text-gray-700 dark:text-white/70 font-medium">{p.audience}</span></div>
+                <div className="border-l-2 border-brand/20 pl-4 py-0.5"><span className="text-gray-400 dark:text-white/30 font-bold uppercase tracking-wider text-[10px] block mb-1">Результат</span> <span className="text-gray-700 dark:text-white/70 font-medium">{p.result}</span></div>
               </div>
-              <div className="mt-8 relative z-10">
-                <Link to={p.link || "#contact"} className="inline-flex items-center gap-1.5 text-brand font-medium text-sm hover:underline">
+              <div className="mt-10 relative z-10">
+                <Link to={p.link || "#contact"} className="inline-flex items-center gap-2 text-brand font-bold text-sm hover:translate-x-1 transition-all uppercase tracking-wider">
                   Узнать детали <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -194,28 +193,28 @@ function BuilderSection() {
 function PersonalSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-4xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">Для себя лично и платформенное обучение</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400">Личный офлайн-интенсив и база знаний в платформе.</p>
+        <div className={`mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-2xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Для себя лично и платформа</h2>
+          <p className="text-base md:text-xl text-gray-500 dark:text-white/60 leading-relaxed">Личный офлайн-интенсив и база знаний в платформе.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <V2Card visible={visible} index={0} className="!p-8 !rounded-2xl hover:border-brand/30 hover:-translate-y-1">
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3 relative z-10">Личный ИИ</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm mb-6 relative z-10">Двухдневный офлайн-интенсив для руководителя, который хочет пройти перестройку сам.</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <V2Card visible={visible} index={0} className="h-full" contentClassName="p-8 md:p-10">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 relative z-10 leading-tight">Личный ИИ</h3>
+            <p className="text-gray-500 dark:text-white/50 text-base mb-8 relative z-10 leading-relaxed">Двухдневный офлайн-интенсив для руководителя, который хочет пройти перестройку сам.</p>
             <div className="mt-auto relative z-10">
-              <Link to="/personal-ai" className="inline-flex items-center gap-1.5 text-brand font-medium hover:underline text-sm uppercase tracking-wider">
+              <Link to="/personal-ai" className="inline-flex items-center gap-2 text-brand font-bold hover:translate-x-1 transition-all text-sm uppercase tracking-wider">
                 Подробнее <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </V2Card>
           
-          <V2Card visible={visible} index={1} className="!p-8 !rounded-2xl hover:border-brand/30 hover:-translate-y-1">
-            <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3 relative z-10">Платформа WMT AI</h3>
-            <p className="text-gray-500 dark:text-gray-400 text-sm mb-6 relative z-10">Онлайн-библиотека из 22 уроков для базовой теоретической подготовки.</p>
+          <V2Card visible={visible} index={1} className="h-full" contentClassName="p-8 md:p-10">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 relative z-10 leading-tight">Платформа WMT AI</h3>
+            <p className="text-gray-500 dark:text-white/50 text-base mb-8 relative z-10 leading-relaxed">Онлайн-библиотека из 22 уроков для базовой теоретической подготовки.</p>
             <div className="mt-auto relative z-10">
-              <a href="https://transformation.wmtunnel.ru" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-brand font-medium hover:underline text-sm uppercase tracking-wider">
+              <a href="https://transformation.wmtunnel.ru" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-brand font-bold hover:translate-x-1 transition-all text-sm uppercase tracking-wider">
                 Вход на платформу <ArrowRight className="w-4 h-4" />
               </a>
             </div>
@@ -229,16 +228,16 @@ function PersonalSection() {
 function TrustSignal() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <div className={`relative bg-white dark:bg-white/[0.03] rounded-[2.5rem] p-10 md:p-14 border border-gray-100 dark:border-white/[0.06] overflow-hidden transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`relative bg-gray-50 dark:bg-white/[0.02] backdrop-blur-xl rounded-[2.5rem] p-10 md:p-20 border border-gray-200 dark:border-white/[0.08] overflow-hidden transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="absolute top-0 right-1/4 -translate-y-1/2 w-64 h-64 bg-brand/5 blur-[80px] pointer-events-none rounded-full" />
-          <h2 className="text-3xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 relative z-10">Нужно переслать это руководству?</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 font-medium mb-6 relative z-10">Эта страница работает как карта. Если нужны доказательства экспертизы — они собраны отдельно.</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-8 relative z-10">
-            <p className="text-gray-600 dark:text-gray-400 leading-relaxed text-[15px]">На странице доказательств: кто ведёт программы, 50+ клиентов, академическое признание от Stanford Global Studies, публикации и подкаст. Всё проверяемое.</p>
-            <Link to="/proof" className="inline-flex items-center justify-center md:justify-start gap-2 text-brand font-medium hover:underline text-lg">
-              Доказательства экспертизы <ArrowRight className="w-5 h-5" />
+          <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6 relative z-10 leading-tight">Нужно переслать это руководству?</h2>
+          <p className="text-lg md:text-xl text-gray-500 dark:text-white/60 font-medium mb-10 relative z-10 leading-relaxed">Эта страница работает как карта. Если нужны доказательства экспертизы — они собраны отдельно.</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 relative z-10">
+            <p className="text-gray-600 dark:text-white/50 leading-relaxed text-base md:text-lg font-medium">На странице доказательств: кто ведёт программы, 50+ клиентов, академическое признание от Stanford Global Studies, публикации и подкаст. Всё проверяемое.</p>
+            <Link to="/proof" className="inline-flex items-center justify-center md:justify-start gap-3 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-xl shadow-brand/20 hover:-translate-y-0.5">
+              Доказательства экспертизы <ArrowRight className="w-5 h-5 ml-1" />
             </Link>
           </div>
         </div>
@@ -250,16 +249,16 @@ function TrustSignal() {
 function NavSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-12 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-3xl font-semibold text-gray-900 dark:text-white mb-4">Выберите точечное направление</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400">Быстрая ссылка на нужную страницу.</p>
+          <h2 className="text-2xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4 leading-tight">Выберите точечное направление</h2>
+          <p className="text-base md:text-lg text-gray-500 dark:text-white/60 font-medium">Быстрая ссылка на нужную страницу.</p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {navCards.map((c, idx) => (
-            <Link key={idx} to={c.to} className={`bg-gray-50/80 dark:bg-white/[0.03] rounded-xl p-5 border border-gray-100 dark:border-white/[0.06] hover:border-brand/30 dark:hover:border-brand/20 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? `${idx * 80}ms` : "0ms" }}>
-              <span className="text-sm font-medium text-gray-900 dark:text-white group-hover:text-brand transition-colors text-center block">{c.label}</span>
+            <Link key={idx} to={c.to} className={`bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-6 border border-gray-200 dark:border-white/10 hover:border-brand/30 transition-all duration-300 group ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? `${idx * 80}ms` : "0ms" }}>
+              <span className="text-sm font-bold text-gray-900 dark:text-white group-hover:text-brand transition-colors text-center block uppercase tracking-wider">{c.label}</span>
             </Link>
           ))}
         </div>

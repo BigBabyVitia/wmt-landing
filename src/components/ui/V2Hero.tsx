@@ -3,15 +3,16 @@ import { NavbarV2 } from "@/components/NavbarV2"
 import { motion } from "framer-motion"
 
 interface V2HeroProps {
-  label: string
+  label: ReactNode
   title: ReactNode
   description: ReactNode
   buttons?: ReactNode
   tags?: ReactNode[]
+  tagsTitle?: string
   layout?: "split" | "centered" | "mosaic"
 }
 
-export function V2Hero({ label, title, description, buttons, tags, layout = "mosaic" }: V2HeroProps) {
+export function V2Hero({ label, title, description, buttons, tags, tagsTitle, layout = "mosaic" }: V2HeroProps) {
   const isCentered = layout === "centered"
   const isMosaic = layout === "mosaic"
 
@@ -38,19 +39,19 @@ export function V2Hero({ label, title, description, buttons, tags, layout = "mos
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="inline-block text-[10px] sm:text-sm font-bold text-white/40 tracking-[0.2em] uppercase mb-4 sm:mb-6"
+              className="inline-block text-[10px] sm:text-sm font-bold text-white/40 tracking-[0.2em] uppercase mb-2 sm:mb-4"
             >
               {label}
             </motion.span>
             
             {/* Remove orange highlight on mobile via CSS override */}
             <div className={`[&_em]:not-italic [&_em]:text-white sm:[&_em]:text-brand [&_em]:font-bold ${isCentered ? "text-center" : "text-left"}`}>
-              <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] font-bold text-white tracking-tight animate-fade-rise">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl leading-[1.1] font-bold text-white tracking-tight animate-fade-rise">
                 {title}
               </h1>
             </div>
             
-            <div className={`text-white/70 text-sm sm:text-lg md:text-xl mt-6 sm:mt-10 leading-relaxed font-medium animate-fade-rise-delay ${isCentered ? "mx-auto text-center" : "max-w-2xl text-left"}`}>
+            <div className={`text-white/70 text-sm sm:text-base md:text-lg mt-4 sm:mt-6 leading-relaxed font-medium animate-fade-rise-delay ${isCentered ? "mx-auto text-center" : "max-w-7xl text-left"}`}>
               <div className="hidden sm:block">{description}</div>
               <div className="block sm:hidden text-white/60 leading-snug italic">
                 {description}
@@ -58,7 +59,7 @@ export function V2Hero({ label, title, description, buttons, tags, layout = "mos
             </div>
             
             {buttons && (
-              <div className={`mt-8 sm:mt-12 flex flex-wrap gap-4 sm:gap-5 animate-fade-rise-delay-2 ${isCentered ? "justify-center" : ""}`}>
+              <div className={`mt-6 sm:mt-8 flex flex-wrap gap-4 sm:gap-5 animate-fade-rise-delay-2 ${isCentered ? "justify-center" : ""}`}>
                 {buttons}
               </div>
             )}
@@ -92,12 +93,21 @@ export function V2Hero({ label, title, description, buttons, tags, layout = "mos
 
         {/* Mosaic layout tags (bottom row) */}
         {tags && tags.length > 0 && isMosaic && (
-          <div 
-            className={`mt-10 sm:mt-16 flex overflow-x-auto sm:grid gap-4 animate-fade-rise-delay-2 -mx-6 px-6 sm:mx-0 sm:px-0 items-stretch ${
-              tags.length === 3 ? "sm:grid-cols-3 lg:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"
-            }`}
-            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-          >
+          <div className="mt-10 sm:mt-12">
+            {tagsTitle && (
+              <div className="mb-8 block animate-fade-rise-delay-2">
+                <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white/40">
+                  {tagsTitle}
+                </span>
+                <div className="h-px w-8 bg-brand/30 mt-3 rounded-full" />
+              </div>
+            )}
+            <div 
+              className={`flex overflow-x-auto sm:grid gap-4 animate-fade-rise-delay-2 -mx-6 px-6 sm:mx-0 sm:px-0 items-stretch ${
+                tags.length === 3 ? "sm:grid-cols-3 lg:grid-cols-3" : "sm:grid-cols-2 lg:grid-cols-4"
+              }`}
+              style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+            >
             <style dangerouslySetInnerHTML={{ __html: `
               .overflow-x-auto::-webkit-scrollbar { display: none; }
             `}} />
@@ -122,8 +132,9 @@ export function V2Hero({ label, title, description, buttons, tags, layout = "mos
               )
             })}
           </div>
-        )}
-      </div>
-    </section>
+        </div>
+      )}
+    </div>
+  </section>
   )
 }
