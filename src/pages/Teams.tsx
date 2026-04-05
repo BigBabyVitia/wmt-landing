@@ -6,12 +6,44 @@ import { useScrollVisible } from "@/hooks/useScrollVisible"
 import { V2Hero } from "@/components/ui/V2Hero"
 import { V2Card } from "@/components/ui/V2Card"
 
-const situations = [
-  { title: "Нужно ядро практиков", desc: "Команда собирает первых агентов на своих задачах и становится ядром AI-трансформации компании.", format: "Мышление 2.0" },
-  { title: "Пора расширять практику", desc: "Широкий практический формат для компании: от базовых навыков ИИ до первых агентов и рабочих сценариев.", format: "ИИ Волна" },
-  { title: "Нужна быстрая сборка", desc: "Есть собранная команда и конкретная задача. Нужен рабочий день, чтобы собрать первого агента.", format: "Агенты за 1 день" },
-  { title: "Нужна продвинутая сборка", desc: "Группа хочет глубоко погрузиться в RAG, multi-agent и n8n для сложных решений.", format: "Мастерская AI-агентов" },
-  { title: "Нужен гибкий формат", desc: "Запрос на индивидуальную программу под специфические задачи и график команды.", format: "Индивидуальная программа" },
+const teamsSignalsData = [
+  { title: "Каркас AI-трансформации уже собран — теперь его нужно перевести в практику команд" },
+  { title: "Компании нужно собрать ядро сильных практиков, которые будут тянуть тему дальше внутри" },
+  { title: "Локальная польза уже есть — теперь её нужно масштабировать на процессы, подразделения и команду" },
+]
+
+const overviewPrograms = [
+  {
+    id: "mindset-2",
+    title: "Мышление 2.0",
+    desc: "Команда собирает первых агентов на своих задачах и становится ядром AI-трансформации",
+    tags: { format: "Офлайн", duration: "1–1,5 дня / 10 ч", people: "10–30 человек" }
+  },
+  {
+    id: "ai-wave",
+    title: "ИИ Волна",
+    desc: "Широкий практический формат для компании: от базовых навыков ИИ до первых агентов и рабочих сценариев",
+    tags: { format: "Онлайн", duration: "8 мод / Месяц", people: "Широкая группа" }
+  },
+  {
+    id: "builder-day",
+    title: "Агенты за 1 день",
+    desc: "За один день команда собирает рабочего агента и формирует навык сборки",
+    tags: { format: "Офлайн", duration: "1 день / 5 ч", people: "до 50 человек" }
+  },
+  {
+    id: "ai-mastery",
+    title: "Мастерская AI-агентов",
+    desc: "Малая группа глубоко разбирает Claude и n8n, собирает агентов под реальные процессы компании",
+    tags: { format: "Онлайн / Офлайн", duration: "4 зан × 1,5 ч", people: "до 6 человек" }
+  },
+  {
+    id: "custom-team",
+    title: "Индивидуальная программа под команду",
+    desc: "Собираем программу AI-трансформации под ваши задачи, команду, процессы и нужный масштаб внедрения.",
+    tags: { format: "Онлайн / Офлайн", duration: "По запросу", people: "Под ваш состав" },
+    isCorporate: true
+  }
 ]
 
 const programs = [
@@ -103,20 +135,39 @@ const programs = [
 ]
 
 export function Teams() {
+  const statusTags = teamsSignalsData.map((s, i) => (
+    <div 
+      key={i} 
+      className="group relative bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]"
+    >
+      <h3 className="text-white font-medium text-[15px] md:text-xl relative z-10 leading-[1.3] max-w-[90%] md:max-w-[320px]">
+        {s.title}
+      </h3>
+    </div>
+  ))
+
   return (
     <>
       <V2Hero 
-        label="Для команд"
-        title="Практические форматы ИИвизации для команд и компаний"
-        description="Здесь собраны все практические форматы WMT AI — от первого пилота до продвинутой сборки агентов. Они связаны между собой и подбираются под текущую ситуацию компании."
+        layout="mosaic"
+        label="Для подразделений, команд и внутренних драйверов изменений"
+        title={<><span className="text-brand">AI-трансформация</span> для команд: от практики к масштабированию</>}
+        description="Здесь собраны программы WMT AI, которые помогают командам освоить ИИ на реальных задачах, собрать сильное внутреннее ядро и масштабировать рабочие подходы на процессы и подразделения компании."
+        tagsTitle="Когда компании нужен слой практики и масштабирования:"
+        tags={statusTags}
         buttons={
-          <a href="#contact" className="inline-flex items-center gap-2 bg-white text-gray-900 rounded-full px-8 py-4 font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5">
-            Подобрать программу <ArrowRight className="w-5 h-5" />
-          </a>
+          <>
+            <a href="#programs" className="inline-flex items-center gap-2 bg-white text-gray-900 rounded-full px-8 py-4 font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5">
+              К программам для команд <ArrowRight className="w-5 h-5" />
+            </a>
+            <a href="#contact" className="inline-flex items-center gap-2 bg-transparent text-white border border-white/20 rounded-full px-8 py-4 font-semibold hover:bg-white/5 transition-all duration-300">
+              Обсудить задачу
+            </a>
+          </>
         }
       />
 
-      <SituationsSection />
+      <ProgramsOverviewSection />
 
       {programs.map((p, i) => (
         <TeamProgramSection key={i} program={p} index={i} />
@@ -129,30 +180,109 @@ export function Teams() {
   )
 }
 
-function SituationsSection() {
+function ProgramsOverviewSection() {
   const { ref, visible } = useScrollVisible()
+
+  const scrollToProgram = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: "smooth"
+      });
+    }
+  };
+
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Какая ситуация у вашей компании сейчас</h2>
-          <p className="text-lg text-gray-500 dark:text-gray-400 max-w-3xl">Практический формат зависит от того, где компания находится. Узнайте свою ситуацию — и ниже увидите, что подходит.</p>
+        <div className={`mb-10 md:mb-16 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Линейка программ для команд</h2>
+          <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 max-w-5xl font-medium leading-relaxed">От сборки первых агентов до масштабирования AI-привычек на процессы подразделений.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {situations.map((s, idx) => (
-            <V2Card
-              key={idx}
-              visible={visible}
-              index={idx}
-              delayMult={120}
-              className="flex flex-col gap-4 border-gray-100 dark:border-white/[0.06] hover:border-brand/30 hover:shadow-brand/10 hover:-translate-y-1 transition-all duration-500"
-              contentClassName="!p-6 md:!p-10"
-            >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 relative z-10">{s.title}</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed mb-4 flex-1 relative z-10">{s.desc}</p>
-              <span className="text-brand font-semibold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all mt-auto relative z-10">&rarr; {s.format}</span>
-            </V2Card>
-          ))}
+        
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+          {overviewPrograms.map((program, idx) => {
+            const isPersonal = (program as any).isPersonal;
+            const isCorporate = (program as any).isCorporate;
+            const isHighlighted = isPersonal || isCorporate;
+
+            let cardClassName = "flex flex-col border border-gray-100 dark:border-white/[0.06] !rounded-[1.5rem] group/card hover:border-brand/20 shrink-0 !bg-gray-50/80 dark:!bg-white/[0.04]";
+            let titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight transition-colors duration-300 group-hover/card:text-brand";
+
+            if (isHighlighted) {
+              cardClassName = "flex flex-col !rounded-[1.5rem] group/card shadow-2xl shadow-brand/10 hover:shadow-brand/20 transform-gpu border border-brand/30 !bg-[#181413] shrink-0";
+              titleClassName = "font-bold text-white text-base sm:text-lg lg:text-xl leading-tight relative z-10 transition-colors duration-300";
+            }
+
+            const tagClass = isHighlighted 
+              ? "shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-medium bg-transparent text-brand px-3.5 py-1.5 rounded-full border border-brand/25 transition-colors hover:bg-brand/5"
+              : "shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-medium bg-transparent text-gray-700 dark:text-white/60 px-3.5 py-1.5 rounded-full border border-gray-200/60 dark:border-white/10 transition-colors hover:bg-gray-50/50 dark:hover:bg-white/5";
+
+            const processText = (text: string) => {
+              if (text) {
+                return text.replace("занятий", "зан.").replace("человек", "чел.").replace("участников", "уч.");
+              }
+              return text;
+            };
+
+            return (
+              <V2Card
+                key={idx}
+                visible={visible}
+                index={idx}
+                className={`${cardClassName} cursor-pointer active:scale-[0.98] transition-all duration-700`}
+                contentClassName="!p-5 sm:!p-6 md:!p-7 flex flex-col h-full content-start"
+                onClick={() => {
+                  scrollToProgram(program.id);
+                }}
+              >
+                {isHighlighted && (
+                  <div className="absolute inset-0 z-0 pointer-events-none rounded-[1.5rem] overflow-hidden">
+                    <div className="absolute inset-0 bg-[#0f0e0d]" />
+                    <div className="absolute inset-0 shadow-[inset_0_0_15px_0_rgba(255,83,49,0.3),inset_0_0_50px_0_rgba(255,83,49,0.15)] group-hover/card:shadow-[inset_0_0_20px_0_rgba(255,83,49,0.4),inset_0_0_80px_0_rgba(255,83,49,0.2)] transition-shadow duration-700 rounded-[1.5rem]" />
+                    <div className="absolute inset-0 mix-blend-screen opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(255,83,49,0.3) 0%, rgba(255,83,49,0.05) 30%, transparent 60%)' }} />
+                    <div className="absolute inset-0 mix-blend-screen opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 100% 100%, rgba(255,42,95,0.15) 0%, transparent 40%)' }} />
+                    <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E")' }} />
+                  </div>
+                )}
+                
+                <div className="mb-4 relative z-10 text-left">
+                   {program.tags.format && (
+                     <span className="block text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.2em] mb-3 opacity-100 text-brand">
+                       {program.tags.format.replace(" / ", " • ")}
+                     </span>
+                   )}
+                   <h5 className={titleClassName}>{program.title}</h5>
+                </div>
+                
+                {program.desc && (
+                  <p className={`text-[13.5px] sm:text-[15px] mb-6 relative z-10 font-medium text-left leading-relaxed ${isHighlighted ? 'text-white/70' : 'text-gray-600 dark:text-white/50'}`}>
+                    {program.desc}
+                  </p>
+                )}
+                
+                <div className="flex flex-wrap items-center mt-auto relative z-10 gap-3">
+                  {program.tags.duration && (
+                     <span className={tagClass}>
+                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                       <span className="translate-y-[0.5px]">{processText(program.tags.duration)}</span>
+                     </span>
+                  )}
+                  {program.tags.people && (
+                     <span className={tagClass}>
+                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                       <span className="translate-y-[0.5px]">{processText(program.tags.people)}</span>
+                     </span>
+                  )}
+                </div>
+              </V2Card>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -165,7 +295,7 @@ function TeamProgramSection({ program: p, index }: any) {
   const bg = isEven ? "bg-white dark:bg-black" : "bg-gray-50/50 dark:bg-white/[0.02]"
 
   return (
-    <section ref={ref} className={`py-16 md:py-32 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden text-left`}>
+    <section id={p.id} ref={ref} className={`py-16 md:py-32 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden text-left`}>
       <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand/[0.03] blur-[120px] pointer-events-none rounded-full" />
       
       <div className="max-w-7xl mx-auto relative z-10">
