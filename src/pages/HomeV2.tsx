@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, lazy, Suspense } from "react"
+import React, { useEffect, useRef, useState, lazy, Suspense } from "react"
 import { ArrowRight } from "lucide-react"
 import { Link } from "react-router-dom"
 import { NavbarV2 } from "@/components/NavbarV2"
@@ -472,7 +472,7 @@ const teaserData = [
       {
         title: "Персональная работа с ИИ",
         desc: "Глубокий персональный формат под ваши задачи: от первых шагов в ИИ до стратегии, рабочих сценариев и сопровождения.",
-        tags: { format: "Онлайн / Офлайн", duration: "По запросу", people: "1 человек" },
+        tags: { format: "Онлайн / Офлайн", duration: "По запросу" },
         isPersonal: true
       },
       {
@@ -495,22 +495,22 @@ const teaserData = [
       {
         title: "Мышление 2.0",
         desc: "Команда собирает первых агентов на своих задачах и становится ядром AI-трансформации",
-        tags: { format: "Офлайн", duration: "1–1,5 дня / 10 ч", people: "10–30 человек", practice: "80% практики" }
+        tags: { format: "Офлайн", duration: "1–1,5 дня / 10 ч", people: "10–30 человек" }
       },
       {
         title: "ИИ Волна",
         desc: "Широкий практический формат для компании: от базовых навыков ИИ до первых агентов и рабочих сценариев",
-        tags: { format: "Онлайн", duration: "8 мод / Месяц", people: "Широкая группа", practice: "80% практики" }
+        tags: { format: "Онлайн", duration: "8 мод / Месяц", people: "Широкая группа" }
       },
       {
         title: "Агенты за 1 день",
         desc: "За один день команда собирает рабочего агента и формирует навык сборки",
-        tags: { format: "Офлайн", duration: "1 день / 5 ч", people: "до 50 человек", practice: "80–85% практики" }
+        tags: { format: "Офлайн", duration: "1 день / 5 ч", people: "до 50 человек" }
       },
       {
         title: "Мастерская AI-агентов",
         desc: "Малая группа глубоко разбирает Claude и n8n, собирает агентов под реальные процессы компании",
-        tags: { format: "Онлайн / Офлайн", duration: "4 зан × 1,5 ч", people: "до 6 человек", practice: "3–5 агентов" }
+        tags: { format: "Онлайн / Офлайн", duration: "4 зан × 1,5 ч", people: "до 6 человек" }
       },
       {
         title: "Индивидуальная программа под команду",
@@ -535,12 +535,12 @@ const teaserData = [
       {
         title: "Стратегическая сессия",
         desc: "Сжатый формат для построения плана и решения острых задач",
-        tags: { format: "Офлайн / Онлайн", duration: "4 часа", people: "1 человек" }
+        tags: { format: "Офлайн / Онлайн", duration: "4 часа" }
       },
       {
         title: "Персональный трек для руководителя",
         desc: "Полное погружение с собственной стратегией и сборкой агента под ваши задачи. Глубокое изучение проблем и разработка персональной программы внедрения.",
-        tags: { format: "Офлайн", duration: "2 дня", people: "1 человек" },
+        tags: { format: "Офлайн", duration: "2 дня" },
         isPersonal: true
       }
     ],
@@ -603,7 +603,7 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-500 group-hover:opacity-100 z-10"
         style={{
-          background: useMotionTemplate`radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.22), transparent 80%)`,
+          background: useMotionTemplate`radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.18) 0%, rgba(255, 83, 49, 0.06) 50%, transparent 100%)`,
         }}
       />
       
@@ -640,73 +640,95 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
 
         {items && items.length > 0 && (
           <div className="w-full">
-            <h4 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 md:mb-5 text-center xl:text-left">
-              {personalSteps ? "Доступные форматы" : "Программы"}
-            </h4>
-            <div className={`grid grid-cols-1 gap-2 md:gap-4 ${personalSteps ? "sm:grid-cols-2 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
+            <div className={`grid grid-cols-1 gap-2 md:gap-4 ${personalSteps && items.length === 2 ? "sm:grid-cols-3" : personalSteps ? "sm:grid-cols-2 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
               {items.map((item: any, idx: number) => {
                 const isPersonal = item.isPersonal;
                 const isCorporate = item.isCorporate;
                 const isHighlighted = isPersonal || isCorporate;
                 
+                // Custom span logic for the 1/3 + 2/3 layout
+                const isTwoItemPersonal = personalSteps && items.length === 2;
+                const itemSpanClass = isTwoItemPersonal ? (idx === 0 ? "sm:col-span-1" : "sm:col-span-2") : "";
+                
                 // Base class for all cards to ensure unified size and look (more compact now)
-                let cardClassName = "flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/20 transition-all duration-300 h-full overflow-hidden";
+                let cardClassName = `flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/20 transition-all duration-300 h-full overflow-hidden ${itemSpanClass}`;
                 let titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight transition-colors duration-300 group-hover/card:text-brand";
                 
                 if (isHighlighted) {
-                  // Enhanced but neat style for highlighted cards
-                  cardClassName = "flex flex-col bg-white/5 dark:bg-white/[0.03] backdrop-blur-xl border border-brand/30 rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/60 transition-all duration-700 shadow-2xl shadow-brand/10 overflow-hidden h-full";
-                  // Keep headline white as requested, just embolden if needed
-                  titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight";
+                  // Premium dark card with inner perimeter glow (glow spreading from edges)
+                  cardClassName = `flex flex-col rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card transition-all duration-700 shadow-2xl shadow-brand/10 hover:shadow-brand/20 overflow-hidden h-full transform-gpu border border-brand/30 bg-[#181413] ${itemSpanClass}`;
+                  titleClassName = "font-bold text-white text-base sm:text-lg lg:text-xl leading-tight relative z-10 transition-colors duration-300";
                 }
+
+                // Premium Tag Styling
+                const tagClass = isHighlighted 
+                  ? "shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-medium bg-transparent text-brand px-3.5 py-1.5 rounded-full border border-brand/25 transition-colors hover:bg-brand/5"
+                  : "shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-medium bg-transparent text-gray-700 dark:text-white/60 px-3.5 py-1.5 rounded-full border border-gray-200/60 dark:border-white/10 transition-colors hover:bg-gray-50/50 dark:hover:bg-white/5";
+
+                const processText = (text: string) => {
+                  if (text) {
+                    return text.replace("занятий", "зан.").replace("человек", "чел.").replace("участников", "уч.");
+                  }
+                  return text;
+                };
 
                 return (
                   <div key={idx} className={cardClassName}>
                     {isHighlighted && (
-                      <>
-                        {/* Subtle inner glow for highlighted cards */}
+                      <div className="absolute inset-0 z-0 pointer-events-none rounded-[1.5rem] overflow-hidden">
+                        {/* 1. Base Dark Background - pure black/dark gray to ensure perfect contrast in the center */}
+                        <div className="absolute inset-0 bg-[#0f0e0d]" />
+                        
+                        {/* 2. Strict Perimeter Glow via Box Shadow 
+                            This guarantees the center remains completely dark because the shadow only reaches inward exactly where specified. */}
+                        <div className="absolute inset-0 shadow-[inset_0_0_15px_0_rgba(255,83,49,0.3),inset_0_0_50px_0_rgba(255,83,49,0.15)] group-hover/card:shadow-[inset_0_0_20px_0_rgba(255,83,49,0.4),inset_0_0_80px_0_rgba(255,83,49,0.2)] transition-shadow duration-700 rounded-[1.5rem]" />
+                        
+                        {/* 3. Creative organic accents on corners
+                            Using transparent radial gradients. They peak in the corners and fade to absolutely 0, guaranteeing pure black in the center */}
+                        <div className="absolute inset-0 mix-blend-screen opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(255,83,49,0.3) 0%, rgba(255,83,49,0.05) 30%, transparent 60%)' }} />
+                        <div className="absolute inset-0 mix-blend-screen opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 100% 100%, rgba(255,42,95,0.15) 0%, transparent 40%)' }} />
+                        
+                        {/* 4. Subtle noise texture */}
                         <div 
-                          className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_30%_20%,rgba(255,83,49,0.15)_0%,transparent_70%)] z-0 transition-opacity duration-700" 
+                          className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
+                          style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E")' }} 
                         />
-                         <div 
-                          className="absolute -bottom-24 -right-24 w-64 h-64 pointer-events-none bg-brand/10 blur-[80px] rounded-full z-0 opacity-50 group-hover/card:opacity-80 transition-all duration-1000" 
-                        />
-                      </>
+                      </div>
                     )}
                     
                     <div className="mb-4 relative z-10 text-left">
                        {item.tags && item.tags.format && (
-                         <span className="block text-[9px] sm:text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-1.5 opacity-90">
-                           {item.tags.format}
+                         <span className="block text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.2em] mb-3 opacity-100 text-brand">
+                           {item.tags.format.replace(" / ", " • ")}
                          </span>
                        )}
                        <h5 className={titleClassName}>{item.title}</h5>
                     </div>
                     
                     {item.desc && (
-                      <p className="text-gray-600 dark:text-white/50 text-sm sm:text-base leading-relaxed mb-6 relative z-10 font-medium text-left leading-relaxed">
+                      <p className={`text-[13.5px] sm:text-[15px] mb-6 relative z-10 font-medium text-left leading-relaxed ${isHighlighted ? 'text-white/70' : 'text-gray-600 dark:text-white/50'}`}>
                         {item.desc}
                       </p>
                     )}
                     
                     {item.tags && (
-                      <div className="flex flex-wrap items-center gap-3 mt-auto relative z-10">
+                      <div className="flex flex-wrap items-center mt-auto relative z-10 gap-3">
                         {item.tags.duration && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold bg-gray-100/50 dark:bg-white/[0.04] text-gray-700 dark:text-brand px-3 py-1.5 rounded-xl border border-gray-200/50 dark:border-brand/10">
-                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-80"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                             {item.tags.duration}
+                           <span className={tagClass}>
+                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                             <span className="translate-y-[0.5px]">{processText(item.tags.duration)}</span>
                            </span>
                         )}
                         {item.tags.people && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold bg-gray-100/50 dark:bg-white/[0.04] text-gray-700 dark:text-brand px-3 py-1.5 rounded-xl border border-gray-200/50 dark:border-brand/10">
-                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-80"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                             {item.tags.people}
+                           <span className={tagClass}>
+                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                             <span className="translate-y-[0.5px]">{processText(item.tags.people)}</span>
                            </span>
                         )}
                         {item.tags.practice && (
-                           <span className="shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[9px] sm:text-[10px] font-bold bg-gray-100/50 dark:bg-white/[0.04] text-gray-700 dark:text-brand px-3 py-1.5 rounded-xl border border-gray-200/50 dark:border-brand/10">
-                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-80"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
-                             {item.tags.practice}
+                           <span className={tagClass}>
+                             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+                             <span className="translate-y-[0.5px]">{processText(item.tags.practice)}</span>
                            </span>
                         )}
                       </div>

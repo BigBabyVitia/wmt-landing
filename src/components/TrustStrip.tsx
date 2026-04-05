@@ -113,7 +113,7 @@ export function TrustStrip() {
                       <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-1 block">Ближайшая дата</span>
                       <span className="text-lg font-bold text-gray-900 dark:text-white">31 марта 2026, Москва</span>
                     </div>
-                    <a href="https://wmtaichnica.ru/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-gray-900 dark:bg-white text-white dark:text-black hover:bg-black dark:hover:bg-gray-100 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
+                    <a href="https://ost-iichnica.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
                       Смотреть сайт шоу <ArrowRight className="w-4 h-4" />
                     </a>
                   </div>
