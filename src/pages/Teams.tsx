@@ -132,7 +132,7 @@ export function Teams() {
 function SituationsSection() {
   const { ref, visible } = useScrollVisible()
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
+    <section ref={ref} className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6">Какая ситуация у вашей компании сейчас</h2>
@@ -162,7 +162,7 @@ function SituationsSection() {
 function TeamProgramSection({ program: p, index }: any) {
   const { ref, visible } = useScrollVisible()
   const isEven = index % 2 === 0
-  const bg = isEven ? "bg-white dark:bg-black" : "bg-gray-50/50 dark:bg-[hsl(220,20%,7%)]"
+  const bg = isEven ? "bg-white dark:bg-black" : "bg-gray-50/50 dark:bg-white/[0.02]"
 
   return (
     <section ref={ref} className={`py-16 md:py-32 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden text-left`}>

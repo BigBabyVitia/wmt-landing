@@ -1,4 +1,3 @@
-import { useState } from "react"
 import { ArrowRight, Clock, Users, Layers, Zap, ListTodo, ShieldAlert, Map, Workflow, TrendingUp, Users2, Component, Award, ShieldCheck, Target } from "lucide-react"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
@@ -326,7 +325,7 @@ function ProgramsOverviewSection() {
   )
 }
 
-function ProgramSectionClassic({ program: p, index }: any) {
+export function ProgramSectionClassic({ program: p, index }: any) {
   const { ref, visible } = useScrollVisible()
   const isEven = index % 2 === 0
   const bg = isEven ? "bg-gray-50/50 dark:bg-white/[0.02]" : "bg-white dark:bg-black"
@@ -445,7 +444,7 @@ function BridgeSection() {
   )
 }
 
-function ProgramSectionSplit({ program: p, index }: any) {
+export function ProgramSectionSplit({ program: p, index }: any) {
   const { ref, visible } = useScrollVisible()
   const isEven = index % 2 === 0
   const bg = isEven ? "bg-gray-50/50 dark:bg-white/[0.02]" : "bg-white dark:bg-black"
@@ -612,7 +611,7 @@ function ProgramSectionBento({ program: p, index }: any) {
   )
 }
 
-function ProgramSectionPathway({ program: p, index }: any) {
+export function ProgramSectionPathway({ program: p, index }: any) {
   const { ref, visible } = useScrollVisible()
   const isEven = index % 2 === 0
   const bg = isEven ? "bg-gray-50/50 dark:bg-white/[0.02]" : "bg-white dark:bg-black"
