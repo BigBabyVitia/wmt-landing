@@ -1,4 +1,4 @@
-import { ArrowRight, Clock, Users, Zap, Target, Bot, Compass, Terminal, CheckCircle2, Sparkles, Shield } from "lucide-react"
+import { ArrowRight, Clock, Users, Zap, Target, CheckCircle2, Sparkles, Shield } from "lucide-react"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
 import { FitAssessment } from "@/components/sections/FitAssessment"
