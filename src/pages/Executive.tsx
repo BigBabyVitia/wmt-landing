@@ -358,7 +358,7 @@ export function ProgramSectionClassic({ program: p, index }: any) {
                     <div className="relative">
                       <span className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-2 block opacity-80">В каких случаях полезно</span>
                       <p className="text-gray-900 dark:text-white text-base md:text-xl leading-relaxed font-medium">
-                        {p.when.replace(/^Когда /i, "")}
+                        {p.when.replace(/^Когда /i, "").replace(/^./, (c: string) => c.toUpperCase())}
                       </p>
                     </div>
                   )}
@@ -476,7 +476,7 @@ export function ProgramSectionSplit({ program: p, index }: any) {
                 <div className="relative p-6 sm:p-8 bg-gray-50 dark:bg-white/[0.02] border border-gray-100 dark:border-white/[0.05] rounded-3xl mb-8">
                   <h4 className="text-[10px] sm:text-xs font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-4">Для каких задач подходит</h4>
                   <p className="text-gray-900 dark:text-gray-200 text-sm md:text-base leading-relaxed font-medium">
-                    {p.when.replace(/^Когда /i, "")}
+                    {p.when.replace(/^Когда /i, "").replace(/^./, (c: string) => c.toUpperCase())}
                   </p>
                 </div>
               )}
@@ -556,7 +556,7 @@ function ProgramSectionBento({ program: p, index }: any) {
               <div className="flex-1 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-[2rem] p-6 sm:p-8 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_10px_rgba(0,0,0,0.02)] transition-colors hover:border-gray-200 dark:hover:border-white/20">
                 <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-4">Ситуация и Задача</h4>
                 <p className="text-gray-900 dark:text-white text-[14px] sm:text-[15px] leading-relaxed font-medium max-w-sm mb-0">
-                  {p.when ? p.when.replace(/^Когда /i, "") : "Поиск новых точек роста и архитектурных решений."}
+                  {p.when ? p.when.replace(/^Когда /i, "").replace(/^./, (c: string) => c.toUpperCase()) : "Поиск новых точек роста и архитектурных решений."}
                 </p>
               </div>
               
@@ -640,7 +640,7 @@ export function ProgramSectionPathway({ program: p, index }: any) {
               <div className="flex-1 bg-white dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.06] p-6 md:p-8 rounded-[2rem] shadow-sm transform-gpu hover:-translate-y-1 transition-all duration-300">
                 <span className="text-[9px] md:text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-4 block">Ситуация «До»</span>
                 <p className="text-gray-900 dark:text-white text-[15px] md:text-base leading-relaxed font-medium">
-                  {p.when ? p.when.replace(/^Когда /i, "") : "Потребность в трансформации и поиске новых точек роста."}
+                  {p.when ? p.when.replace(/^Когда /i, "").replace(/^./, (c: string) => c.toUpperCase()) : "Потребность в трансформации и поиске новых точек роста."}
                 </p>
               </div>
             </div>
