@@ -529,8 +529,8 @@ const teaserData = [
   {
     id: "personal-teaser",
     title: "ИИ под ваши личные задачи",
-    desc: "Можно усилить свои навыки работы с ИИ через готовый практикум или собрать персональный формат под ваш запрос — от личной прокачки и настройки инструментов до глубокой one-to-one работы.",
-    mobileDesc: "Собственный формат под ваш запрос: от прокачки инструментов до глубокой one-to-one работы.",
+    desc: "Прокачайте ваши навыки работы с ИИ: от настройки инструментов и первых промтов до разработки персональных стратегий",
+    mobileDesc: "Персональный ИИ-трек: от первых промтов до разработки продвинутых стратегий.",
     personalSteps: [
       { title: "1. Изучение", desc: "Анализируем ваш опыт, задачи и текущие боли в работе." },
       { title: "2. Подготовка", desc: "Разрабатываем индивидуальный трек и готовим персональные инструкции." },
@@ -630,8 +630,7 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
           <div className="w-full mb-0 sm:mb-2">
             <h4 className="text-[10px] font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 md:mb-5 text-center xl:text-left">Процесс</h4>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 md:gap-4 relative">
-               {/* Соединительная линия (только на десктопе) */}
-               <div className="hidden sm:block absolute top-[28px] left-[15%] right-[15%] h-[1px] bg-brand/30 z-0 border-t border-dashed border-brand/50" />
+               {/* Пунктирная линия убрана для чистоты дизайна */}
                
                {personalSteps.map((step: any, idx: number) => (
                   <div key={idx} className="flex flex-col gap-0.5 p-3 md:p-5 relative z-10 sm:items-center sm:text-center bg-transparent border border-brand/10 dark:border-brand/[0.05] rounded-xl sm:rounded-2xl">

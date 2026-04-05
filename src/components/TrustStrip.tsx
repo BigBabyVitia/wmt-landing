@@ -8,6 +8,7 @@ export function TrustStrip() {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
   const [isCertModalOpen, setIsCertModalOpen] = useState(false)
+  const [iichnicaVariant, setIichnicaVariant] = useState<"text" | "bg" | "banner">("text")
 
   useEffect(() => {
     const el = ref.current
@@ -88,36 +89,156 @@ export function TrustStrip() {
                 </div>
               </div>
 
-              {/* Iichnica Card (New) */}
-              <div className="lg:col-span-12 bg-white dark:bg-white/[0.03] rounded-[2.5rem] p-8 md:p-12 border border-gray-100 dark:border-white/[0.06] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none overflow-hidden relative group transition-all duration-500 hover:border-brand/35">
-                {/* Decorative background blur */}
-                <div className="absolute -top-12 -right-12 w-64 h-64 bg-brand/5 blur-[80px] rounded-full group-hover:bg-brand/10 transition-colors duration-700" />
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center relative z-10">
-                  <div className="lg:col-span-1 text-center md:text-left">
-                    <img src="/logos/wmtaichnica.svg" alt="ИИЧНИЦА SHOW" className="h-14 md:h-18 lg:h-20 w-auto mb-6 mx-auto md:mx-0 dark:invert-[0.1] active:scale-95 transition-transform" />
-                    <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
-                      Собственное мероприятие WMT&nbsp;AI для лидеров бизнеса. Проводится дважды в&nbsp;год в&nbsp;Москве.
-                    </p>
-                  </div>
-                  
-                  <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-gray-100 dark:border-white/10 py-6 md:py-0 md:px-8">
-                    <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight tracking-tight">От ИИ-игрушек к&nbsp;AI-трансформации</h4>
-                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
-                      Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
-                    </p>
-                  </div>
-                  
-                  <div className="lg:col-span-1 flex flex-col items-center lg:items-end gap-5">
-                    <div className="text-center lg:text-right">
-                      <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-1 block">Ближайшая дата</span>
-                      <span className="text-lg font-bold text-gray-900 dark:text-white">31 марта 2026, Москва</span>
+              {/* Variant toggle — outside the card */}
+              <div className="lg:col-span-12 flex justify-center mt-2 -mb-2">
+                <div className="inline-flex bg-gray-100 dark:bg-white/[0.06] rounded-full p-1 border border-gray-200 dark:border-white/10 flex-wrap justify-center gap-0.5">
+                  {(["text", "bg", "banner"] as const).map((v) => (
+                    <button
+                      key={v}
+                      onClick={() => setIichnicaVariant(v)}
+                      className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 whitespace-nowrap ${
+                        iichnicaVariant === v
+                          ? "bg-white dark:bg-white/15 text-gray-900 dark:text-white shadow-sm"
+                          : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
+                      }`}
+                    >
+                      {{ text: "Текст", bg: "A: Фон", banner: "B: Баннер" }[v]}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* ═══ Iichnica Card ═══ */}
+              <div className="lg:col-span-12 relative">
+
+                {/* ── Variant: TEXT (original) ── */}
+                <div
+                  className={`transition-all duration-500 ${
+                    iichnicaVariant === "text"
+                      ? "opacity-100 relative"
+                      : "opacity-0 absolute inset-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="bg-white dark:bg-white/[0.03] rounded-[2.5rem] p-8 md:p-12 border border-gray-100 dark:border-white/[0.06] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none overflow-hidden relative group transition-all duration-500 hover:border-brand/35">
+                    <div className="absolute -top-12 -right-12 w-64 h-64 bg-brand/5 blur-[80px] rounded-full group-hover:bg-brand/10 transition-colors duration-700" />
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center relative z-10">
+                      <div className="lg:col-span-1 text-center md:text-left">
+                        <img src="/logos/wmtaichnica.svg" alt="ИИЧНИЦА SHOW" className="h-14 md:h-18 lg:h-20 w-auto mb-6 mx-auto md:mx-0 dark:invert-[0.1] active:scale-95 transition-transform" />
+                        <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed font-medium">
+                          Собственное мероприятие WMT&nbsp;AI для лидеров бизнеса. Проводится дважды в&nbsp;год в&nbsp;Москве.
+                        </p>
+                      </div>
+                      <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-gray-100 dark:border-white/10 py-6 md:py-0 md:px-8">
+                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight tracking-tight">От ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                          Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
+                        </p>
+                      </div>
+                      <div className="lg:col-span-1 flex flex-col items-center lg:items-end gap-5">
+                        <div className="text-center lg:text-right">
+                          <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-1 block">Ближайшая дата</span>
+                          <span className="text-lg font-bold text-gray-900 dark:text-white">31 марта 2026, Москва</span>
+                        </div>
+                        <a href="https://ost-iichnica.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
+                          Смотреть сайт шоу <ArrowRight className="w-4 h-4" />
+                        </a>
+                      </div>
                     </div>
-                    <a href="https://ost-iichnica.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
-                      Смотреть сайт шоу <ArrowRight className="w-4 h-4" />
-                    </a>
                   </div>
                 </div>
+
+                {/* ── Variant A: BACKGROUND photo with overlay ── */}
+                <div
+                  className={`transition-all duration-500 ${
+                    iichnicaVariant === "bg"
+                      ? "opacity-100 relative"
+                      : "opacity-0 absolute inset-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="rounded-[2.5rem] overflow-hidden relative group transition-all duration-500 hover:shadow-xl hover:shadow-brand/10">
+                    {/* Background photo */}
+                    <img
+                      src="/events/iichnica-1.jpg"
+                      alt=""
+                      className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-1000"
+                    />
+                    {/* Dark overlay gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/65 to-black/45" />
+                    {/* Content — same 3-column structure as text variant */}
+                    <div className="relative z-10 p-8 md:p-12">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-center">
+                        <div className="lg:col-span-1 text-center md:text-left">
+                          <img src="/logos/wmtaichnica.svg" alt="ИИЧНИЦА SHOW" className="h-14 md:h-18 lg:h-20 w-auto mb-6 mx-auto md:mx-0 dark:invert-[0.1] active:scale-95 transition-transform" />
+                          <p className="text-sm text-white/70 leading-relaxed font-medium">
+                            Собственное мероприятие WMT&nbsp;AI для лидеров бизнеса. Проводится дважды в&nbsp;год в&nbsp;Москве.
+                          </p>
+                        </div>
+                        <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-white/15 py-6 md:py-0 md:px-8">
+                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">От ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                          <p className="text-sm text-white/60 leading-relaxed">
+                            Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
+                          </p>
+                        </div>
+                        <div className="lg:col-span-1 flex flex-col items-center lg:items-end gap-5">
+                          <div className="text-center lg:text-right">
+                            <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] mb-1 block">Ближайшая дата</span>
+                            <span className="text-lg font-bold text-white">31 марта 2026, Москва</span>
+                          </div>
+                          <a href="https://ost-iichnica.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
+                            Смотреть сайт шоу <ArrowRight className="w-4 h-4" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── Variant B: Full photo background + content overlay at bottom ── */}
+                <div
+                  className={`transition-all duration-500 ${
+                    iichnicaVariant === "banner"
+                      ? "opacity-100 relative"
+                      : "opacity-0 absolute inset-0 pointer-events-none"
+                  }`}
+                >
+                  <div className="rounded-[2.5rem] overflow-hidden relative group transition-all duration-500 hover:shadow-xl hover:shadow-brand/10">
+                    {/* Full background photo */}
+                    <img
+                      src="/events/iichnica-1.jpg"
+                      alt="ИИчница — конференция WMT AI"
+                      className="w-full h-[320px] md:h-[400px] object-cover object-[center_30%] group-hover:scale-[1.03] transition-transform duration-1000"
+                    />
+                    {/* Gradient overlay from bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10" />
+                    {/* Content pinned to bottom */}
+                    <div className="absolute bottom-0 left-0 right-0 z-10 p-8 md:p-12">
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-end">
+                        <div className="lg:col-span-1 text-center md:text-left">
+                          <img src="/logos/wmtaichnica.svg" alt="ИИЧНИЦА SHOW" className="h-14 md:h-18 lg:h-20 w-auto mb-4 mx-auto md:mx-0 dark:invert-[0.1] active:scale-95 transition-transform" />
+                          <p className="text-sm text-white/70 leading-relaxed font-medium">
+                            Собственное мероприятие WMT&nbsp;AI для лидеров бизнеса. Проводится дважды в&nbsp;год в&nbsp;Москве.
+                          </p>
+                        </div>
+                        <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-white/15 py-6 md:py-0 md:px-8">
+                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">От ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                          <p className="text-sm text-white/60 leading-relaxed">
+                            Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
+                          </p>
+                        </div>
+                        <div className="lg:col-span-1 flex flex-col items-center lg:items-end gap-5">
+                          <div className="text-center lg:text-right">
+                            <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] mb-1 block">Ближайшая дата</span>
+                            <span className="text-lg font-bold text-white">31 марта 2026, Москва</span>
+                          </div>
+                          <a href="https://ost-iichnica.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
+                            Смотреть сайт шоу <ArrowRight className="w-4 h-4" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
           </div>
