@@ -52,6 +52,8 @@ const programs = [
     badge: "Команда",
     title: "Мышление 2.0",
     tagline: "Команда собирает первых агентов на своих задачах",
+    when: "Когда компании нужно собрать сильную команду, которая сможет работать с ИИ руками, создавать рабочие решения на своих задачах и становиться внутренней опорой AI-трансформации.",
+    result: "Участники настраивают своё ИИ-рабочее место, собирают первого агента, решают бизнес-кейс компании и выходят с личным планом на 30 дней. Компания получает практиков, которая уверенно развивает AI-подход внутри бизнеса",
     desc: "Команда собирает первых агентов на своих задачах и становится ядром AI-трансформации. Участники берут реальные задачи компании, собирают агентов, проверяют гипотезы и уходят с рабочими артефактами. После этого внутри компании появляются свои люди-носители навыка — те, кто может продолжить тему без внешней поддержки.",
     params: [
       { label: "Длительность", value: "1–1,5 дня / 10 ч", icon: Clock },
@@ -69,6 +71,8 @@ const programs = [
     badge: "Масштаб",
     title: "ИИ Волна",
     tagline: "Широкий практический формат для всей компании",
+    when: "Когда компании нужно развернуть AI-практику на широкую группу сотрудников - по ролям, функциям и регулярным задачам, чтобы ИИ начал работать не у единиц, а в масштабе всей команды.",
+    result: "Компания получает управляемую волну AI-практики: сотрудники осваивают инструменты, начинают использовать ИИ в работе, а руководство получает видимость прогресса и рабочую привычку использования ИИ в процессах.",
     desc: "Широкий практический формат для компании: от базовых навыков ИИ до первых агентов и рабочих сценариев. Участники работают по ролям, собирают агентов под свои задачи, фиксируют результаты. Руководство видит прогресс, получает отчётность и понимает, кто действительно двигает тему. После программы компания получает рабочую привычку использования ИИ в десятках процессов.",
     params: [
       { label: "Срок", value: "8 мод / Месяц", icon: Clock },
@@ -86,6 +90,8 @@ const programs = [
     badge: "Сборка",
     title: "Агенты за 1 день",
     tagline: "За один день команда собирает рабочего агента",
+    when: "Когда у компании уже есть подготовленная команда и конкретная задача, под которую нужно за один интенсивный день собрать рабочего агента и понять, как повторять эту сборку дальше.",
+    result: "Команда уходит с рабочим AI-агентом, настроенным workflow, подключённой логикой и алгоритмом повторной сборки за 30–60 минут под новые задачи.",
     desc: "Практический интенсив для собранной команды с конкретной задачей. Каждый участник проходит через 5 блоков сборки: от выбора мозга модели до финального интерфейса. На выходе — рабочий агент, настроенный n8n workflow и алгоритм пересборки. Мини-группы по 3–4 человека работают над реальными сценариями компании.",
     params: [
       { label: "Длительность", value: "1 день / 5 ч", icon: Clock },
@@ -103,6 +109,8 @@ const programs = [
     badge: "Продвинуто",
     title: "Мастерская AI-агентов",
     tagline: "Глубокий разбор Claude и n8n под процессы компании",
+    when: "Когда компании нужна малая продвинутая группа, которая глубоко разберётся в Claude, n8n, агентных workflow, памяти, RAG и сможет самостоятельно собирать рабочие автоматизации под реальные процессы.",
+    result: "Участники уверенно владеют Claude и n8n, собирают 3–5 рабочих агентов и автоматизаций своими руками и понимают, как проектировать новые решения под любую следующую задачу.",
     desc: "Малая группа до 6 человек. 4 занятия по 1,5 часа. Последовательное погружение: экосистема Claude, основы n8n, AI-агенты в n8n, продвинутая сборка с RAG, memory, multi-agent и error handling. Идеально для тех, кто готов стать внутренним архитектором ИИ-решений и внедрять сложные цепочки автоматизации.",
     params: [
       { label: "Срок", value: "4 зан × 1,5 ч", icon: Clock },
@@ -120,6 +128,8 @@ const programs = [
     badge: "Персонально",
     title: "Индивидуальная программа под команду",
     tagline: "Программа под ваши задачи, процессы и масштаб",
+    when: "Когда AI-трансформация команды требует собственной программы: с учётом целей бизнеса, состава участников, уровня зрелости, процессов и того результата, который компания хочет получить на уровне практики и масштабирования.",
+    result: "Компания получает индивидуально собранную программу под свой контекст, а руководство и команда — формат, который точно соответствует их задачам и даёт следующий сильный шаг в AI-трансформации.",
     desc: "Собираем программу AI-трансформации под ваши задачи, команду, процессы и нужный масштаб внедрения. Мы проводим предварительный аудит, интервьюируем ключевых участников и собираем формат, который даст максимальный эффект именно вашему подразделению.",
     params: [
       { label: "Формат", value: "Онлайн / Офлайн", icon: Clock },
@@ -292,67 +302,85 @@ function ProgramsOverviewSection() {
 function TeamProgramSection({ program: p, index }: any) {
   const { ref, visible } = useScrollVisible()
   const isEven = index % 2 === 0
-  const bg = isEven ? "bg-white dark:bg-black" : "bg-gray-50/50 dark:bg-white/[0.02]"
+  const bg = isEven ? "bg-gray-50/50 dark:bg-white/[0.02]" : "bg-white dark:bg-black"
+
+  const tagClass = "shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-bold bg-brand/5 text-brand px-4 py-2 rounded-full border border-brand/20 transition-colors hover:bg-brand/10 shadow-[inset_0_0_10px_rgba(255,83,49,0.05)]";
 
   return (
-    <section id={p.id} ref={ref} className={`py-16 md:py-32 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden text-left`}>
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand/[0.03] blur-[120px] pointer-events-none rounded-full" />
-      
+    <section id={p.id} ref={ref} className={`py-16 md:py-24 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden`}>
+      <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand/[0.03] blur-[120px] pointer-events-none rounded-full" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
           
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-20 items-start text-left">
-            {/* Left Column: Content */}
-            <div className="lg:col-span-7">
-              <div className="mb-8 md:mb-10 text-left">
-                <span className="inline-block text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-brand uppercase mb-4 md:mb-6">{p.badge}</span>
-                <h2 className="text-2xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-3 md:mb-4 leading-tight">{p.title}</h2>
-                <p className="text-base md:text-xl text-brand font-medium tracking-tight mb-6 md:mb-8 leading-relaxed">{p.tagline}</p>
-                
-                <div className="flex flex-wrap items-center gap-2 mb-8 md:mb-10">
-                  {p.params.map((param: any, i: number) => (
-                    <div key={i} className="flex items-center gap-1.5 bg-white/50 dark:bg-white/[0.05] border border-gray-100 dark:border-white/10 px-3 py-1.5 md:px-4 md:py-2 rounded-full">
-                      <param.icon className="w-3 md:w-3.5 h-3 md:h-3.5 text-brand/70" />
-                      <span className="text-[10px] md:text-xs font-semibold text-gray-600 dark:text-gray-400 uppercase tracking-wide">{param.value}</span>
-                    </div>
-                  ))}
-                </div>
+          <div className="mb-12 md:mb-16">
+            <span className="inline-block text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-brand uppercase bg-brand/5 px-2.5 py-0.5 rounded-full border border-brand/10 mb-4">{p.badge}</span>
+            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white leading-tight mb-3">{p.title}</h2>
+            <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 font-medium tracking-tight mb-8 max-w-3xl">{p.tagline}</p>
+            
+            <div className="flex flex-wrap items-center gap-3">
+              {p.params.map((param: any, i: number) => (
+                <span key={i} className={tagClass}>
+                  <param.icon className="w-3.5 h-3.5 opacity-90" />
+                  <span className="translate-y-[0.5px] uppercase tracking-wider text-[10px] sm:text-[11px]">{param.value}</span>
+                </span>
+              ))}
+            </div>
+          </div>
 
-                <p className="text-[15px] md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed mb-8 md:mb-10">{p.desc}</p>
-                
-                <div className="flex">
-                  <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-[#e64627] hover:scale-[1.03] transition-all duration-300 text-sm md:text-base shadow-xl shadow-brand/20 w-full sm:w-auto">
-                    Узнать детали <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
-                  </a>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-min">
+            {/* Context Box */}
+            <div className={`col-span-1 md:col-span-5 flex flex-col gap-4 sm:gap-6`}>
+              {/* Box 1 */}
+              <div className="flex-1 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-[2rem] p-6 sm:p-8 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_10px_rgba(0,0,0,0.02)] transition-colors hover:border-gray-200 dark:hover:border-white/20">
+                <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-4">Ситуация и Задача</h4>
+                <p className="text-gray-900 dark:text-white text-[14px] sm:text-[15px] leading-relaxed font-medium max-w-sm mb-0">
+                  {p.when ? p.when.replace(/^Когда /i, "") : "Поиск новых точек роста и архитектурных решений."}
+                </p>
+              </div>
+              
+              {/* Box 2 */}
+              <div className="flex-1 bg-gradient-to-b from-brand/5 to-transparent dark:from-brand/[0.08] dark:to-transparent border border-brand/10 dark:border-brand/20 rounded-[2rem] p-6 sm:p-8 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_15px_rgba(255,83,49,0.04)] transition-colors hover:border-brand/30">
+                <h4 className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-4">Главный эффект</h4>
+                <p className="text-gray-800 dark:text-gray-200 text-[14px] sm:text-[15px] leading-relaxed font-medium max-w-sm mb-6">
+                  {p.result || "Трансформация управленческого мышления и процессов."}
+                </p>
+                <a href="#contact" className="mt-auto inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 py-3 font-bold hover:bg-[#e64627] hover:scale-[1.02] shadow-xl shadow-brand/20 transition-all duration-300 text-xs sm:text-sm max-w-full">
+                  Обсудить задачу <ArrowRight className="w-4 h-4 ml-1" />
+                </a>
               </div>
             </div>
 
-            {/* Right Column: Artifacts Card */}
-            <div className="lg:col-span-5 lg:pt-[42px] mt-8 lg:mt-0">
-              <div className="bg-white dark:bg-white/[0.03] backdrop-blur-sm border border-gray-100 dark:border-white/[0.06] rounded-[2.5rem] md:rounded-[3rem] p-6 md:p-10 md:pt-8 shadow-sm relative overflow-hidden group hover:border-brand/20 transition-all duration-500">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand/5 blur-[60px] rounded-full -translate-y-1/2 translate-x-1/2" />
-                
-                <div className="mb-6 md:mb-10 relative z-10 text-left">
-                  <span className="text-[9px] md:text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-2 block">Результаты уровня</span>
-                  <div className="h-px w-10 md:w-12 bg-brand/30 rounded-full" />
-                </div>
-                
-                <div className="space-y-6 md:space-y-10 relative z-10">
-                  {p.results.map((r: any, i: number) => (
-                    <div key={i} className="flex gap-4 md:gap-6 group/item text-left">
-                      <div className="flex-shrink-0 w-10 h-10 md:w-14 md:h-14 rounded-[1.25rem] bg-gray-50 dark:bg-white/[0.05] border border-gray-100 dark:border-white/10 flex items-center justify-center text-brand group-hover/item:scale-110 transition-all duration-500 shadow-sm">
-                        <r.icon className="w-5 h-5 md:w-7 md:h-7" />
+            {/* Results Grid Box */}
+            <V2Card 
+              visible={visible}
+              className="col-span-1 md:col-span-7 !bg-[#111] dark:!bg-black/90 border border-gray-900 dark:border-white/[0.08] !rounded-[2rem] flex flex-col relative overflow-hidden group"
+              contentClassName="!p-6 sm:!p-8 flex flex-col h-full w-full relative z-10"
+            >
+               <h4 className="text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] mb-6 relative z-10 w-full">Ключевые артефакты</h4>
+               
+               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
+                 {p.results.map((r: any, i: number) => (
+                    <div key={i} className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-[1.5rem] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+                      <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center mb-4 border border-brand/20">
+                        <r.icon className="w-5 h-5 text-brand drop-shadow-sm" />
                       </div>
-                      <div className="flex flex-col justify-center text-left">
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-1 leading-snug text-[15px] md:text-lg text-left">{r.title}</h5>
-                        <p className="text-[13px] md:text-sm text-gray-500 dark:text-gray-400 leading-relaxed text-left">{r.desc}</p>
-                      </div>
+                      <h5 className="font-semibold text-white text-base mb-2">{r.title}</h5>
+                      <p className="text-[13px] text-white/60 leading-relaxed font-medium">{r.desc}</p>
                     </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+                 ))}
+                 
+                 {p.diff && (
+                   <div className="sm:col-span-2 mt-2 bg-white/[0.02] backdrop-blur-xl border-l-4 border-brand border-y border-r border-white/5 p-5 rounded-[1.5rem] shadow-sm">
+                     <h4 className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
+                       <Zap className="w-3.5 h-3.5" /> Отличие программы
+                     </h4>
+                     <p className="text-white/80 text-[13px] sm:text-sm leading-relaxed font-medium">
+                       {p.diff}
+                     </p>
+                   </div>
+                 )}
+               </div>
+            </V2Card>
           </div>
 
         </div>
