@@ -95,7 +95,7 @@ export function V2Hero({ label, title, description, buttons, tags, tagsTitle, la
         {tags && tags.length > 0 && isMosaic && (
           <div className="mt-10 sm:mt-12">
             {tagsTitle && (
-              <div className="mb-8 block animate-fade-rise-delay-2">
+              <div className="mb-4 block animate-fade-rise-delay-2">
                 <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-white/40">
                   {tagsTitle}
                 </span>
