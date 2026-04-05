@@ -8,7 +8,9 @@ export function TrustStrip() {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
   const [isCertModalOpen, setIsCertModalOpen] = useState(false)
-  const [iichnicaVariant, setIichnicaVariant] = useState<"text" | "bg" | "banner">("text")
+  // Variant toggle archived — currently using "banner" only.
+  // To restore: uncomment the toggle and the useState below, then remove false && guards from archived variants.
+  // const [iichnicaVariant, setIichnicaVariant] = useState<"text" | "bg" | "banner">("banner")
 
   useEffect(() => {
     const el = ref.current
@@ -89,7 +91,7 @@ export function TrustStrip() {
                 </div>
               </div>
 
-              {/* Variant toggle — outside the card */}
+              {/* ── Variant toggle (ARCHIVED — uncomment to restore) ──
               <div className="lg:col-span-12 flex justify-center mt-2 -mb-2">
                 <div className="inline-flex bg-gray-100 dark:bg-white/[0.06] rounded-full p-1 border border-gray-200 dark:border-white/10 flex-wrap justify-center gap-0.5">
                   {(["text", "bg", "banner"] as const).map((v) => (
@@ -107,17 +109,15 @@ export function TrustStrip() {
                   ))}
                 </div>
               </div>
+              */}
 
               {/* ═══ Iichnica Card ═══ */}
               <div className="lg:col-span-12 relative">
 
-                {/* ── Variant: TEXT (original) ── */}
-                <div
-                  className={`transition-all duration-500 ${
-                    iichnicaVariant === "text"
-                      ? "opacity-100 relative"
-                      : "opacity-0 absolute inset-0 pointer-events-none"
-                  }`}
+                {/* ══ ARCHIVED: Variant TEXT (original) ══
+                   To restore: remove the `false &&` guard and re-enable the toggle above. */}
+                {false && (
+                <div className="opacity-100 relative"
                 >
                   <div className="bg-white dark:bg-white/[0.03] rounded-[2.5rem] p-8 md:p-12 border border-gray-100 dark:border-white/[0.06] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none overflow-hidden relative group transition-all duration-500 hover:border-brand/35">
                     <div className="absolute -top-12 -right-12 w-64 h-64 bg-brand/5 blur-[80px] rounded-full group-hover:bg-brand/10 transition-colors duration-700" />
@@ -146,14 +146,12 @@ export function TrustStrip() {
                     </div>
                   </div>
                 </div>
+                )}
 
-                {/* ── Variant A: BACKGROUND photo with overlay ── */}
-                <div
-                  className={`transition-all duration-500 ${
-                    iichnicaVariant === "bg"
-                      ? "opacity-100 relative"
-                      : "opacity-0 absolute inset-0 pointer-events-none"
-                  }`}
+                {/* ══ ARCHIVED: Variant A — BACKGROUND photo with overlay ══
+                   To restore: remove the `false &&` guard and re-enable the toggle above. */}
+                {false && (
+                <div className="opacity-100 relative"
                 >
                   <div className="rounded-[2.5rem] overflow-hidden relative group transition-all duration-500 hover:shadow-xl hover:shadow-brand/10">
                     {/* Background photo */}
@@ -192,14 +190,10 @@ export function TrustStrip() {
                     </div>
                   </div>
                 </div>
+                )}
 
-                {/* ── Variant B: Full photo background + content overlay at bottom ── */}
-                <div
-                  className={`transition-all duration-500 ${
-                    iichnicaVariant === "banner"
-                      ? "opacity-100 relative"
-                      : "opacity-0 absolute inset-0 pointer-events-none"
-                  }`}
+                {/* ── Active Variant: B — Banner ── */}
+                <div className="opacity-100 relative"
                 >
                   <div className="rounded-[2.5rem] overflow-hidden relative group transition-all duration-500 hover:shadow-xl hover:shadow-brand/10">
                     {/* Full background photo */}
