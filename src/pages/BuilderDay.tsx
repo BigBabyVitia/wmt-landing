@@ -75,7 +75,7 @@ function BlockCard({ b, idx, visible }: { b: any, idx: number, visible: boolean 
         }}
       />
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 transition duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition duration-500 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`radial-gradient(500px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.15), transparent 80%)`,
         }}

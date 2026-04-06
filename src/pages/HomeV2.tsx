@@ -540,12 +540,12 @@ const teaserData = [
       {
         title: "Стратегическая сессия",
         desc: "Сжатый формат для построения плана и решения острых задач",
-        tags: { format: "Офлайн / Онлайн", duration: "4 часа" }
+        tags: { format: "Офлайн / Онлайн", duration: "индивидуально" }
       },
       {
         title: "Персональный трек для руководителя",
         desc: "Полное погружение с собственной стратегией и сборкой агента под ваши задачи. Глубокое изучение проблем и разработка персональной программы внедрения.",
-        tags: { format: "Офлайн", duration: "2 дня" },
+        tags: { format: "Офлайн", duration: "индивидуально" },
         isPersonal: true
       }
     ],
@@ -606,7 +606,7 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
       />
 
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[2.5rem] opacity-0 transition duration-500 group-hover:opacity-100 z-10"
+        className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition duration-500 group-hover:opacity-100 z-10"
         style={{
           background: useMotionTemplate`radial-gradient(800px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.18) 0%, rgba(255, 83, 49, 0.06) 50%, transparent 100%)`,
         }}

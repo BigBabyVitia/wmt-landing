@@ -74,7 +74,7 @@ function AssessmentCard({ fits, items }: { fits: boolean, items: any[] }) {
       />
 
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[2rem] opacity-0 transition duration-500 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition duration-500 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, ${fits ? 'rgba(255, 83, 49, 0.15)' : 'rgba(255, 255, 255, 0.05)'}, transparent 80%)`,
         }}

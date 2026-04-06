@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { ArrowRight, Clock, Users, Zap, Target, CheckCircle2, Sparkles, Shield } from "lucide-react"
 import { TrustStrip } from "@/components/TrustStrip"
 import { MainCta } from "@/components/MainCta"
@@ -29,13 +30,13 @@ const overviewPrograms = [
     id: "strategy-session",
     title: "Стратегическая сессия",
     desc: "Сжатый формат для построения плана, решения острых вопросов и определения первого шага в ИИ",
-    tags: { format: "Офлайн / Онлайн", duration: "4 часа", people: "1 человек" }
+    tags: { format: "Офлайн / Онлайн", duration: "индивидуально", people: "1 человек" }
   },
   {
     id: "personal-track",
     title: "Персональный трек",
     desc: "Полное погружение с разработкой индивидуальной программы, сборкой стратегии и рабочего агента под ваши задачи",
-    tags: { format: "Офлайн", duration: "от 2 дней", people: "1 человек" },
+    tags: { format: "Офлайн", duration: "индивидуально", people: "1 человек" },
     isPersonal: true,
   },
 ]
@@ -45,11 +46,13 @@ const programs = [
     id: "strategy-session",
     badge: "Быстрый старт",
     title: "Стратегическая сессия",
-    tagline: "За 4 часа — план, приоритеты и первый шаг",
+    tagline: "Индивидуальный формат — план, приоритеты и первый шаг",
     when: "Когда нужно быстро разобраться в ландшафте ИИ, определить, где он даст максимальный эффект вашему бизнесу, и уйти с конкретным планом действий, а не с общими рекомендациями.",
+    whenBullets: ["Вам нужно быстро разобраться в ландшафте ИИ", "Определить, где он даст максимальный эффект бизнесу", "Уйти с конкретным планом действий, а не рекомендациями"],
     result: "Вы уходите с чёткой картой приоритетов, персональным roadmap на 90 дней и пониманием, какой первый шаг даст вам максимальный результат.",
+    resultBullets: ["Вы уходите с чёткой картой приоритетов", "Получаете персональный roadmap на 90 дней", "Понимаете, какой первый шаг даст максимальный результат"],
     params: [
-      { label: "Длительность", value: "4 часа", icon: Clock },
+      { label: "Длительность", value: "индивидуально", icon: Clock },
       { label: "Формат", value: "Офлайн / Онлайн", icon: Target },
       { label: "Участник", value: "1 человек", icon: Users },
     ],
@@ -65,9 +68,11 @@ const programs = [
     title: "Персональный трек",
     tagline: "Индивидуальная программа, стратегия и рабочий агент — под ваш кейс",
     when: "Когда вам нужна не лекция, а полная перестройка — от аудита ваших процессов до работающего ИИ-агента и стратегии, собранных лично под ваш контекст и задачи.",
+    whenBullets: ["Вам нужна не лекция, а полная перестройка компетенций", "От аудита ваших процессов до работающего ИИ-агента", "Стратегия, собранная лично под ваш контекст и задачи"],
     result: "Вы уходите с полностью готовым инструментарием: персональная стратегия, библиотека промптов, рабочий ИИ-агент и навык самостоятельного развития без внешней зависимости.",
+    resultBullets: ["Вы уходите с полностью готовым ИИ-инструментарием", "Получаете персональную стратегию и рабочего ИИ-агента", "Формируете навык самостоятельного развития без внешних команд"],
     params: [
-      { label: "Срок", value: "от 2 дней", icon: Clock },
+      { label: "Срок", value: "индивидуально", icon: Clock },
       { label: "Практика", value: "100% под ваш кейс", icon: Zap },
       { label: "Участник", value: "1 человек", icon: Users },
     ],
@@ -103,7 +108,7 @@ export function PersonalAI() {
         layout="mosaic"
         label="Личный ИИ — персональные форматы"
         title={<>Персональная <em className="not-italic text-brand font-bold">ИИ-трансформация</em> под ваши задачи</>}
-        description="Два формата для тех, кто хочет пройти тему ИИ глубоко и лично: от стратегической сессии за 4 часа до полного погружения с разработкой персональной программы, сборкой стратегии и рабочего агента."
+        description="Два формата для тех, кто хочет пройти тему ИИ глубоко и лично: от стратегической сессии до полного погружения с разработкой персональной программы, сборкой стратегии и рабочего агента."
         tagsTitle="Когда нужен личный формат:"
         tags={statusTags}
         buttons={
@@ -235,88 +240,162 @@ function ProgramsOverviewSection() {
 
 function PersonalProgramSection({ program: p, index }: any) {
   const { ref, visible } = useScrollVisible()
+  const [layoutVariant] = useState<'classic' | 'modern'>('modern')
   const isEven = index % 2 === 0
   const bg = isEven ? "bg-gray-50/50 dark:bg-white/[0.02]" : "bg-white dark:bg-black"
 
-  const tagClass = "shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-bold bg-brand/5 text-brand px-4 py-2 rounded-full border border-brand/20 transition-colors hover:bg-brand/10 shadow-[inset_0_0_10px_rgba(255,83,49,0.05)]";
+  const tagClass = "shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-[10px] sm:text-[11px] font-bold bg-brand/5 text-brand px-3 py-1.5 rounded-full border border-brand/20 transition-colors hover:bg-brand/10 shadow-[inset_0_0_10px_rgba(255,83,49,0.05)]";
 
   return (
-    <section id={p.id} ref={ref} className={`py-16 md:py-24 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden`}>
+    <section id={p.id} ref={ref} className={`py-8 md:py-10 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden`}>
       <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-brand/[0.03] blur-[120px] pointer-events-none rounded-full" />
       <div className="max-w-7xl mx-auto relative z-10">
         <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"}`}>
           
-          <div className="mb-12 md:mb-16">
-            <span className="inline-block text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-brand uppercase bg-brand/5 px-2.5 py-0.5 rounded-full border border-brand/10 mb-4">{p.badge}</span>
-            <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white leading-tight mb-3">{p.title}</h2>
-            <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 font-medium tracking-tight mb-8 max-w-3xl">{p.tagline}</p>
-            
-            <div className="flex flex-wrap items-center gap-3">
-              {p.params.map((param: any, i: number) => (
-                <span key={i} className={tagClass}>
-                  <param.icon className="w-3.5 h-3.5 opacity-90" />
-                  <span className="translate-y-[0.5px] uppercase tracking-wider text-[10px] sm:text-[11px]">{param.value}</span>
-                </span>
-              ))}
+          <div className="mb-4 md:mb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div className="flex-1">
+              <span className="inline-block text-[9px] md:text-[10px] font-bold tracking-[0.2em] text-brand uppercase bg-brand/5 px-2.5 py-0.5 rounded-full border border-brand/10 mb-2">{p.badge}</span>
+              <h2 className="text-2xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white leading-tight mb-1">{p.title}</h2>
+              <p className="text-base md:text-lg text-gray-500 dark:text-gray-400 font-medium tracking-tight mb-3 max-w-3xl leading-relaxed">{p.tagline}</p>
+              
+              <div className="flex flex-wrap items-center gap-2.5">
+                {p.params.map((param: any, i: number) => (
+                  <span key={i} className={tagClass}>
+                    <param.icon className="w-3 h-3 opacity-90" />
+                    <span className="translate-y-[0.5px] uppercase tracking-wider text-[9px] sm:text-[10px]">{param.value}</span>
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 shrink-0 self-start md:self-end">
+              <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 py-3.5 md:py-3 font-bold hover:bg-[#e64627] hover:scale-[1.02] shadow-xl shadow-brand/20 transition-all duration-300 text-sm md:text-base">
+                Обсудить задачу <ArrowRight className="w-4 h-4 ml-1" />
+              </a>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-5 auto-rows-min">
-            {/* Context Box */}
-            <div className="col-span-1 md:col-span-5 flex flex-col gap-4 sm:gap-6">
-              <div className="flex-1 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-[2rem] p-6 sm:p-8 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_10px_rgba(0,0,0,0.02)] transition-colors hover:border-gray-200 dark:hover:border-white/20">
-                <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-4">Ситуация и Задача</h4>
-                <p className="text-gray-900 dark:text-white text-[14px] sm:text-[15px] leading-relaxed font-medium max-w-sm mb-0">
-                  {p.when ? p.when.replace(/^Когда /i, "").replace(/^./, (c: string) => c.toUpperCase()) : ""}
-                </p>
+          {layoutVariant === 'classic' && (
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-min">
+              <div className={`col-span-1 md:col-span-5 flex flex-col gap-4`}>
+                <div className="flex-1 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-[2rem] p-5 sm:p-7 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_10px_rgba(0,0,0,0.02)] transition-colors hover:border-gray-200 dark:hover:border-white/20">
+                  <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-3">Ситуация и Задача</h4>
+                  <p className="text-gray-900 dark:text-white text-[14px] sm:text-[15px] leading-relaxed font-medium max-w-sm mb-0">
+                    {p.when ? p.when.replace(/^Когда /i, "").replace(/^./, (c: string) => c.toUpperCase()) : "Поиск новых точек роста."}
+                  </p>
+                </div>
+                
+                <div className="flex-1 bg-gradient-to-b from-brand/5 to-transparent dark:from-brand/[0.08] dark:to-transparent border border-brand/10 dark:border-brand/20 rounded-[2rem] p-5 sm:p-7 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_15px_rgba(255,83,49,0.04)] transition-colors hover:border-brand/30">
+                  <h4 className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-3">Главный эффект</h4>
+                  <p className="text-gray-800 dark:text-gray-200 text-[14px] sm:text-[15px] leading-relaxed font-medium max-w-sm mb-4">
+                    {p.result}
+                  </p>
+                </div>
+              </div>
+
+              <V2Card 
+                visible={visible}
+                className="col-span-1 md:col-span-7 bg-gray-50 dark:!bg-black/90 border border-gray-200 dark:border-white/[0.08] !rounded-[2rem] flex flex-col relative overflow-hidden group shadow-sm dark:shadow-md"
+                contentClassName="!p-6 sm:!p-8 flex flex-col h-full w-full relative z-10"
+              >
+                 <h4 className="text-[10px] font-bold text-gray-500 dark:text-white/50 uppercase tracking-[0.2em] mb-6 relative z-10 w-full">Что вы получите</h4>
+                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
+                   {p.results.map((r: any, i: number) => (
+                      <div key={i} className="bg-white dark:bg-white/[0.02] backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-[1.5rem] p-5 shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+                        <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center mb-4 border border-brand/20">
+                          <r.icon className="w-5 h-5 text-brand drop-shadow-sm" />
+                        </div>
+                        <h5 className="font-semibold text-gray-900 dark:text-white text-base mb-2">{r.title}</h5>
+                        <p className="text-[13px] text-gray-600 dark:text-white/60 leading-relaxed font-medium">{r.desc}</p>
+                      </div>
+                   ))}
+                 </div>
+              </V2Card>
+            </div>
+          )}
+
+          {layoutVariant === 'modern' && (
+            <div className="flex flex-col gap-3">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
+                 {/* Card 1: Situation & Task */}
+                 <div className="col-span-1 md:col-span-7 bg-white/50 dark:bg-white/[0.03] backdrop-blur-sm border border-gray-100 dark:border-white/10 rounded-[2rem] p-5 md:p-6 transition-all hover:border-brand/30 shadow-sm group/context">
+                    <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand/60"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Ситуация и Задача
+                    </h4>
+                    
+                    <div className="space-y-3">
+                      <p className="text-gray-900 dark:text-white text-lg md:text-xl font-bold tracking-tight leading-tight mb-3">
+                        {p.tagline.split(':')[0] || 'Системное решение задачи'}
+                      </p>
+                      
+                      <ul className="space-y-2">
+                        {(p.whenBullets || [p.when]).map((bullet: string, i: number) => (
+                          <li key={i} className="flex items-start gap-3 text-gray-600 dark:text-gray-400 group-hover/context:text-gray-900 dark:group-hover/context:text-white transition-colors duration-300">
+                            <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-brand shrink-0" />
+                            <span className="text-[14px] md:text-[15px] font-medium leading-relaxed">{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                 </div>
+
+                 {/* Card 2: Main Effect */}
+                 <div className="col-span-1 md:col-span-5 bg-gradient-to-br from-brand/10 via-brand/[0.02] to-transparent border border-brand/20 rounded-[2rem] p-5 md:p-6 flex flex-col shadow-sm group/effect">
+                    <h4 className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
+                       <Zap className="w-3.5 h-3.5 text-brand" /> Главный эффект
+                    </h4>
+                    
+                    <div className="flex-1 space-y-4">
+                      <p className="text-gray-900 dark:text-white text-lg font-bold tracking-tight leading-snug">
+                        {p.result.split(',')[0]}
+                      </p>
+                      
+                      <ul className="space-y-2 mb-4">
+                        {(p.resultBullets || []).map((bullet: string, i: number) => (
+                          <li key={i} className="flex items-start gap-2.5 text-gray-700 dark:text-gray-300">
+                            <CheckCircle2 className="w-4 h-4 text-brand mt-1 shrink-0" />
+                            <span className="text-[13.5px] md:text-[14.5px] font-semibold leading-snug">{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                 </div>
               </div>
               
-              <div className="flex-1 bg-gradient-to-b from-brand/5 to-transparent dark:from-brand/[0.08] dark:to-transparent border border-brand/10 dark:border-brand/20 rounded-[2rem] p-6 sm:p-8 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_15px_rgba(255,83,49,0.04)] transition-colors hover:border-brand/30">
-                <h4 className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-4">Главный эффект</h4>
-                <p className="text-gray-800 dark:text-gray-200 text-[14px] sm:text-[15px] leading-relaxed font-medium max-w-sm mb-6">
-                  {p.result}
-                </p>
-                <a href="#contact" className="mt-auto inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 py-3 font-bold hover:bg-[#e64627] hover:scale-[1.02] shadow-xl shadow-brand/20 transition-all duration-300 text-xs sm:text-sm max-w-full">
-                  Обсудить задачу <ArrowRight className="w-4 h-4 ml-1" />
-                </a>
-              </div>
-            </div>
-
-            {/* Results Grid Box */}
-            <V2Card 
-              visible={visible}
-              className="col-span-1 md:col-span-7 bg-gray-50 dark:!bg-black/90 border border-gray-200 dark:border-white/[0.08] !rounded-[2rem] flex flex-col relative overflow-hidden group shadow-sm dark:shadow-lg"
-              contentClassName="!p-6 sm:!p-8 flex flex-col h-full w-full relative z-10"
-            >
-               <h4 className="text-[10px] font-bold text-gray-500 dark:text-white/50 uppercase tracking-[0.2em] mb-6 relative z-10 w-full">Что вы получите</h4>
-               
-               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
-                 {p.results.map((r: any, i: number) => (
-                    <div key={i} className="bg-white dark:bg-white/[0.02] backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-[1.5rem] p-5 shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
-                      <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center mb-4 border border-brand/20">
-                        <r.icon className="w-5 h-5 text-brand drop-shadow-sm" />
+              <V2Card 
+                visible={visible}
+                className="bg-gray-50 dark:!bg-black/90 border border-gray-200 dark:border-white/[0.08] !rounded-[2rem] flex flex-col relative overflow-hidden group shadow-sm"
+                contentClassName="!p-5 md:!p-6 flex flex-col h-full w-full relative z-10"
+              >
+                 <h4 className="text-[10px] font-bold text-gray-500 dark:text-white/50 uppercase tracking-[0.2em] mb-4 relative z-10 w-full">Что вы получите</h4>
+                 <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-${Math.min(p.results.length, 3)} gap-3 relative z-10`}>
+                   {p.results.map((r: any, i: number) => (
+                      <div key={i} className="bg-white dark:bg-white/[0.02] backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-[1.5rem] p-4 shadow-sm dark:shadow-md transition-transform duration-500 hover:scale-[1.02]">
+                        <div className="w-8 h-8 rounded-xl bg-brand/10 flex items-center justify-center mb-3 border border-brand/20">
+                          <r.icon className="w-4 h-4 text-brand drop-shadow-sm" />
+                        </div>
+                        <h5 className="font-bold text-gray-900 dark:text-white text-[15px] mb-1.5">{r.title}</h5>
+                        <p className="text-[13px] text-gray-600 dark:text-white/60 leading-relaxed font-medium">{r.desc}</p>
                       </div>
-                      <h5 className="font-semibold text-gray-900 dark:text-white text-base mb-2">{r.title}</h5>
-                      <p className="text-[13px] text-gray-600 dark:text-white/60 leading-relaxed font-medium">{r.desc}</p>
-                    </div>
-                 ))}
-               </div>
-            </V2Card>
-          </div>
+                   ))}
+                 </div>
+              </V2Card>
+            </div>
+          )}
 
           {/* Steps section (only for personal track) */}
           {p.steps && p.steps.length > 0 && (
-            <div className="mt-8 md:mt-12">
-              <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-6">Как проходит работа</h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+            <div className="mt-6 md:mt-8">
+              <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-4">Как проходит работа</h4>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 {p.steps.map((step: any, idx: number) => (
                   <div 
                     key={idx}
-                    className="group/step bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.08] rounded-[2rem] p-6 sm:p-8 transition-all duration-500 hover:border-brand/30"
+                    className="group/step bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/[0.08] rounded-[1.5rem] p-5 sm:p-7 transition-all duration-500 hover:border-brand/30 shadow-sm"
                   >
-                    <span className="text-brand font-bold text-xs tracking-[0.2em] uppercase mb-3 block">{step.badge}</span>
-                    <h5 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover/step:text-brand transition-colors duration-300">{step.title}</h5>
-                    <p className="text-gray-500 dark:text-white/50 text-sm leading-relaxed">{step.desc}</p>
+                    <span className="text-brand font-bold text-xs tracking-[0.2em] uppercase mb-2 block">{step.badge}</span>
+                    <h5 className="text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover/step:text-brand transition-colors duration-300">{step.title}</h5>
+                    <p className="text-gray-500 dark:text-white/50 text-[13px] leading-relaxed font-medium">{step.desc}</p>
                   </div>
                 ))}
               </div>
@@ -328,6 +407,7 @@ function PersonalProgramSection({ program: p, index }: any) {
     </section>
   )
 }
+
 
 function AvailabilitySection() {
   const { ref, visible } = useScrollVisible()
