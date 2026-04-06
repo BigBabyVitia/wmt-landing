@@ -32,7 +32,7 @@ export function FitAssessment({ items, title = "Подходит / Не подх
 
   return (
     <div ref={ref} className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-      <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-white mb-10 md:mb-16 leading-tight max-w-4xl">
+      <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-10 md:mb-16 leading-tight max-w-4xl">
         {title}
       </h2>
       
@@ -55,8 +55,8 @@ function AssessmentCard({ fits, items }: { fits: boolean, items: any[] }) {
   }
 
   const baseClasses = fits 
-    ? "bg-black border-white/10 hover:border-brand/30" 
-    : "bg-black border-white/5 opacity-80 hover:opacity-100 hover:border-white/20"
+    ? "bg-gray-50 dark:bg-black border-gray-200 dark:border-white/10 hover:border-brand/30" 
+    : "bg-gray-50 dark:bg-black border-gray-200 dark:border-white/5 opacity-80 hover:opacity-100 hover:border-gray-400 dark:hover:border-white/20"
 
   return (
     <div
@@ -80,7 +80,7 @@ function AssessmentCard({ fits, items }: { fits: boolean, items: any[] }) {
         }}
       />
 
-      <h3 className="text-xl md:text-2xl font-semibold text-white mb-8 flex items-center gap-3 relative z-10">
+      <h3 className="text-xl md:text-2xl font-semibold text-gray-900 dark:text-white mb-8 flex items-center gap-3 relative z-10">
         {fits ? "Подходит, если" : "Не подходит, если"}
       </h3>
       
@@ -90,9 +90,9 @@ function AssessmentCard({ fits, items }: { fits: boolean, items: any[] }) {
             {fits ? (
               <CheckCircle2 className="w-5 h-5 text-brand shrink-0 mt-0.5" />
             ) : (
-              <XCircle className="w-5 h-5 text-white/40 shrink-0 mt-0.5" />
+              <XCircle className="w-5 h-5 text-gray-400 dark:text-white/40 shrink-0 mt-0.5" />
             )}
-            <p className={`${fits ? 'text-white/80' : 'text-white/60'} text-base md:text-lg leading-relaxed`}>
+            <p className={`${fits ? 'text-gray-700 dark:text-white/80' : 'text-gray-500 dark:text-white/60'} text-base md:text-lg leading-relaxed`}>
               {item.text}
             </p>
           </div>

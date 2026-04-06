@@ -126,25 +126,25 @@ export function ForManagers() {
                    <div className="p-3 bg-brand/10 border border-brand/20 rounded-2xl">
                     <Target className="w-8 h-8 text-brand" />
                    </div>
-                   <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest leading-none">Формат 01</span>
+                   <span className="text-gray-400 dark:text-white/40 text-[10px] font-bold uppercase tracking-widest leading-none">Формат 01</span>
                 </div>
                 <h3 className="text-2xl font-bold mb-4">Стратегическая сессия</h3>
                 <p className="text-gray-500 mb-8 leading-relaxed">Быстрое погружение, live-демо и формирование road-map на 90 дней.</p>
                 <div className="space-y-4 mb-10">
-                  <div className="flex justify-between border-b border-white/5 pb-2">
+                  <div className="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
                     <span className="text-sm text-gray-400">Длительность</span>
                     <span className="text-sm font-semibold">1.5–2 часа</span>
                   </div>
-                  <div className="flex justify-between border-b border-white/5 pb-2">
+                  <div className="flex justify-between border-b border-gray-200 dark:border-white/5 pb-2">
                     <span className="text-sm text-gray-400">Участники</span>
                     <span className="text-sm font-semibold">до 15 человек</span>
                   </div>
                   <div className="flex justify-between pb-2">
                     <span className="text-sm text-gray-400">Бюджет</span>
-                    <span className="text-sm font-bold text-white">от 350 тыс. руб.</span>
+                    <span className="text-sm font-bold text-gray-900 dark:text-white">от 350 тыс. руб.</span>
                   </div>
                 </div>
-                <a href="#contact" className="inline-flex w-full items-center justify-center bg-white/5 border border-white/10 text-white rounded-2xl px-8 py-4 font-bold hover:bg-white/10 transition-all">
+                <a href="#contact" className="inline-flex w-full items-center justify-center bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-2xl px-8 py-4 font-bold hover:bg-gray-200 dark:hover:bg-white/10 transition-all">
                   Забронировать дату
                 </a>
               </div>
@@ -161,17 +161,17 @@ export function ForManagers() {
                 <h3 className="text-2xl font-bold mb-4">Цифровой каркас</h3>
                 <p className="text-gray-500 mb-8 leading-relaxed">Построение архитектуры, аудит процессов и запуск первого работающего пилота.</p>
                 <div className="space-y-4 mb-10 relative z-10">
-                  <div className="flex justify-between border-b border-white/10 pb-2">
+                  <div className="flex justify-between border-b border-gray-200 dark:border-white/10 pb-2">
                     <span className="text-sm text-gray-400">Длительность</span>
                     <span className="text-sm font-semibold">1–2 дня</span>
                   </div>
-                  <div className="flex justify-between border-b border-white/10 pb-2">
+                  <div className="flex justify-between border-b border-gray-200 dark:border-white/10 pb-2">
                     <span className="text-sm text-gray-400">Участники</span>
                     <span className="text-sm font-semibold">до 30 человек</span>
                   </div>
                   <div className="flex justify-between pb-2">
                     <span className="text-sm text-gray-400">Бюджет</span>
-                    <span className="text-sm font-bold text-white">от 900 тыс. руб.</span>
+                    <span className="text-sm font-bold text-gray-900 dark:text-white">от 900 тыс. руб.</span>
                   </div>
                 </div>
                 <a href="#contact" className="inline-flex w-full items-center justify-center bg-brand text-white rounded-2xl px-8 py-4 font-bold hover:bg-[#fb4119] transition-all shadow-xl shadow-brand/20">
@@ -188,21 +188,21 @@ export function ForManagers() {
                     alt="Игорь Никитин"
                     className="w-44 h-44 lg:w-56 lg:h-56 object-cover object-top rounded-3xl"
                   />
-                  <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-3xl" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-gray-200 dark:ring-white/10 rounded-3xl" />
                 </div>
                 <div className="flex flex-col justify-between flex-1 gap-6 text-center lg:text-left">
                     <div>
-                        <h3 className="text-2xl md:text-3xl font-bold text-white leading-tight">Игорь Никитин</h3>
+                        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white leading-tight">Игорь Никитин</h3>
                         <p className="text-brand font-bold uppercase tracking-widest text-xs mt-2">Фаундер WMT AI</p>
                     </div>
                     <div className="flex flex-col gap-4">
-                      <div className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 transition-all hover:bg-white/[0.08]">
+                      <div className="flex items-start gap-4 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 transition-all hover:bg-gray-200 dark:hover:bg-white/[0.08]">
                         <span className="text-xl shrink-0 mt-0.5">🏆</span>
-                        <p className="text-sm text-gray-400 font-medium leading-relaxed">Победитель глобального конкурса Anthropic — единственный в мире</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 font-medium leading-relaxed">Победитель глобального конкурса Anthropic — единственный в мире</p>
                       </div>
-                      <div className="flex items-start gap-4 bg-white/5 border border-white/10 rounded-2xl px-6 py-4 transition-all hover:bg-white/[0.08]">
+                      <div className="flex items-start gap-4 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl px-6 py-4 transition-all hover:bg-gray-200 dark:hover:bg-white/[0.08]">
                         <span className="text-xl shrink-0 mt-0.5">🎓</span>
-                        <p className="text-sm text-gray-400 font-medium leading-relaxed">Эксклюзивное право обучения 100 специалистов от создателей Claude</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 font-medium leading-relaxed">Эксклюзивное право обучения 100 специалистов от создателей Claude</p>
                       </div>
                     </div>
                 </div>
@@ -253,11 +253,11 @@ function DigitalSkeletonSection() {
               <Box className="w-4 h-4 text-brand" />
               <span className="text-brand text-[10px] font-bold uppercase tracking-widest italic">ИНТЕНСИВ 2 ДНЯ</span>
             </div>
-            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-white mb-8 leading-tight">
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight text-gray-900 dark:text-white mb-8 leading-tight">
               «Цифровой каркас»: <br />
-              <span className="text-white/40 italic">Архитектура и первый пилот</span>
+              <span className="text-gray-400 dark:text-white/40 italic">Архитектура и первый пилот</span>
             </h2>
-            <p className="text-white/50 text-xl md:text-2xl leading-relaxed max-w-2xl italic">
+            <p className="text-gray-500 dark:text-white/50 text-xl md:text-2xl leading-relaxed max-w-2xl italic">
               Переход от стратегии к реальности. Построение фундамента ИИ-трансформации вашей компании за 2 дня.
             </p>
           </div>
@@ -284,7 +284,7 @@ function DigitalSkeletonSection() {
             {/* Features Part */}
             <div className="lg:col-span-7 flex flex-col justify-between">
               <div 
-                className="relative group bg-white/[0.02] border border-white/[0.08] rounded-[3rem] p-8 md:p-12 transition-all duration-700 hover:border-brand/40 overflow-hidden flex-1 h-full"
+                className="relative group bg-gray-50 dark:bg-white/[0.02] border border-gray-200 dark:border-white/[0.08] rounded-[3rem] p-8 md:p-12 transition-all duration-700 hover:border-brand/40 overflow-hidden flex-1 h-full"
                 onMouseMove={handleMouseMove}
               >
                  {/* Grid Pattern */}
@@ -308,12 +308,12 @@ function DigitalSkeletonSection() {
                   <div className="relative z-10 space-y-10 h-full flex flex-col justify-center">
                     {features.map((f, i) => (
                       <div key={i} className="flex gap-6 group/item">
-                         <div className="p-4 bg-white/5 border border-white/10 rounded-2xl shrink-0 group-hover/item:border-brand/40 transition-colors">
+                         <div className="p-4 bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 rounded-2xl shrink-0 group-hover/item:border-brand/40 transition-colors">
                             <div className="text-brand">{f.icon}</div>
                          </div>
                          <div className="space-y-2">
-                            <h4 className="text-xl font-bold text-white group-hover/item:text-brand transition-colors">{f.title}</h4>
-                            <p className="text-white/50 leading-relaxed text-base">{f.desc}</p>
+                            <h4 className="text-xl font-bold text-gray-900 dark:text-white group-hover/item:text-brand transition-colors">{f.title}</h4>
+                            <p className="text-gray-500 dark:text-white/50 leading-relaxed text-base">{f.desc}</p>
                          </div>
                       </div>
                     ))}

@@ -660,8 +660,8 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
                 
                 if (isHighlighted) {
                   // Premium dark card with inner perimeter glow (glow spreading from edges)
-                  cardClassName = `flex flex-col rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card transition-all duration-700 shadow-2xl shadow-brand/10 hover:shadow-brand/20 overflow-hidden h-full transform-gpu border border-brand/30 bg-[#181413] ${itemSpanClass}`;
-                  titleClassName = "font-bold text-white text-base sm:text-lg lg:text-xl leading-tight relative z-10 transition-colors duration-300";
+                  cardClassName = `flex flex-col rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card transition-all duration-700 shadow-none dark:shadow-2xl dark:shadow-brand/10 dark:hover:shadow-brand/20 overflow-hidden h-full transform-gpu border border-brand/30 bg-white dark:bg-[#181413] ${itemSpanClass}`;
+                  titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight relative z-10 transition-colors duration-300";
                 }
 
                 // Premium Tag Styling
@@ -681,20 +681,20 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
                     {isHighlighted && (
                       <div className="absolute inset-0 z-0 pointer-events-none rounded-[1.5rem] overflow-hidden">
                         {/* 1. Base Dark Background - pure black/dark gray to ensure perfect contrast in the center */}
-                        <div className="absolute inset-0 bg-[#0f0e0d]" />
+                        <div className="absolute inset-0 bg-white dark:bg-[#0f0e0d]" />
                         
                         {/* 2. Strict Perimeter Glow via Box Shadow 
                             This guarantees the center remains completely dark because the shadow only reaches inward exactly where specified. */}
-                        <div className="absolute inset-0 shadow-[inset_0_0_15px_0_rgba(255,83,49,0.3),inset_0_0_50px_0_rgba(255,83,49,0.15)] group-hover/card:shadow-[inset_0_0_20px_0_rgba(255,83,49,0.4),inset_0_0_80px_0_rgba(255,83,49,0.2)] transition-shadow duration-700 rounded-[1.5rem]" />
+                        <div className="absolute inset-0 shadow-[inset_0_0_30px_0_rgba(255,83,49,0.15),inset_0_0_80px_0_rgba(255,83,49,0.05)] dark:shadow-[inset_0_0_15px_0_rgba(255,83,49,0.3),inset_0_0_50px_0_rgba(255,83,49,0.15)] group-hover/card:shadow-[inset_0_0_40px_0_rgba(255,83,49,0.25),inset_0_0_100px_0_rgba(255,83,49,0.1)] dark:group-hover/card:shadow-[inset_0_0_20px_0_rgba(255,83,49,0.4),inset_0_0_80px_0_rgba(255,83,49,0.2)] transition-shadow duration-700 rounded-[1.5rem]" />
                         
                         {/* 3. Creative organic accents on corners
                             Using transparent radial gradients. They peak in the corners and fade to absolutely 0, guaranteeing pure black in the center */}
-                        <div className="absolute inset-0 mix-blend-screen opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(255,83,49,0.3) 0%, rgba(255,83,49,0.05) 30%, transparent 60%)' }} />
-                        <div className="absolute inset-0 mix-blend-screen opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 100% 100%, rgba(255,42,95,0.15) 0%, transparent 40%)' }} />
+                        <div className="absolute inset-0 dark:mix-blend-screen opacity-100 dark:opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(255,83,49,0.15) 0%, rgba(255,83,49,0.03) 30%, transparent 60%)' }} />
+                        <div className="absolute inset-0 dark:mix-blend-screen opacity-100 dark:opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 100% 100%, rgba(255,83,49,0.1) 0%, transparent 40%)' }} />
                         
                         {/* 4. Subtle noise texture */}
                         <div 
-                          className="absolute inset-0 opacity-[0.04] mix-blend-overlay"
+                          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04] mix-blend-overlay"
                           style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E")' }} 
                         />
                       </div>
@@ -710,7 +710,7 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
                     </div>
                     
                     {item.desc && (
-                      <p className={`text-[13.5px] sm:text-[15px] mb-6 relative z-10 font-medium text-left leading-relaxed ${isHighlighted ? 'text-white/70' : 'text-gray-600 dark:text-white/50'}`}>
+                      <p className={`text-[13.5px] sm:text-[15px] mb-6 relative z-10 font-medium text-left leading-relaxed ${isHighlighted ? 'text-gray-600 dark:text-white/70' : 'text-gray-600 dark:text-white/50'}`}>
                         {item.desc}
                       </p>
                     )}

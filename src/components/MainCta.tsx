@@ -29,7 +29,7 @@ export function MainCta() {
   }
 
   return (
-    <section id="contact" className="relative bg-background text-foreground w-full overflow-hidden transition-colors duration-500">
+    <section id="contact" className="relative bg-[#050505] text-white w-full overflow-hidden transition-colors duration-500">
 
       {/* Ambient purple glow — covers entire section background */}
       <div className="absolute inset-0 z-0 pointer-events-none"
@@ -39,7 +39,7 @@ export function MainCta() {
       />
 
       {/* LightRays Animation Layer */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-50 dark:opacity-100">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-100">
         <LightRays
           raysOrigin="top-center"
           raysColor="#ee4f2f"
@@ -60,10 +60,10 @@ export function MainCta() {
 
           {/* Left Column: Text + Manager contacts */}
           <div className="w-full max-w-xl mt-0">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 text-gray-900 dark:text-white">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 text-white">
               Готовы обсудить<br /> вашу задачу?
             </h2>
-            <p className="text-gray-600 dark:text-gray-300 text-lg lg:text-xl leading-relaxed mb-12">
+            <p className="text-gray-300 text-lg lg:text-xl leading-relaxed mb-12">
               Оставьте заявку — мы свяжемся в течение дня и подготовим расчёт для вашей команды.
             </p>
 
@@ -73,64 +73,64 @@ export function MainCta() {
                 <img
                   src="/experts/danilchik.jpg"
                   alt="Данильчик Анастасия"
-                  className="w-16 h-16 rounded-full object-cover object-top border border-gray-200 dark:border-white/10"
+                  className="w-16 h-16 rounded-full object-cover object-top border border-white/10"
                 />
                 <div>
-                  <p className="text-xl font-semibold text-gray-900 dark:text-white">Данильчик Анастасия</p>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">Координатор программ обучения WMT</p>
+                  <p className="text-xl font-semibold text-white">Данильчик Анастасия</p>
+                  <p className="text-sm text-gray-400 mt-1">Координатор программ обучения WMT</p>
                 </div>
               </div>
               <div className="flex flex-col space-y-3">
-                <a href="tel:+79911369196" className="flex items-center gap-3 text-brand font-semibold text-base hover:text-gray-900 dark:hover:text-white transition-colors group">
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 group-hover:bg-brand/20 transition-colors">
+                <a href="tel:+79911369196" className="flex items-center gap-3 text-brand font-semibold text-base hover:text-white transition-colors group">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 group-hover:bg-brand/20 transition-colors">
                     <Phone className="w-5 h-5" />
                   </span>
                   +7 991 136 91 96
                 </a>
-                <a href="https://t.me/DanilchikWMT" className="flex items-center gap-3 text-brand font-semibold text-base hover:text-gray-900 dark:hover:text-white transition-colors group">
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 group-hover:bg-brand/20 transition-colors">
+                <a href="https://t.me/DanilchikWMT" className="flex items-center gap-3 text-brand font-semibold text-base hover:text-white transition-colors group">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 group-hover:bg-brand/20 transition-colors">
                     <Send className="w-5 h-5" />
                   </span>
                   @DanilchikWMT
                 </a>
-                <a href="mailto:adanilchik@wmtgroup.ru" className="flex items-center gap-3 text-brand font-semibold text-base hover:text-gray-900 dark:hover:text-white transition-colors group">
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-gray-100 dark:bg-white/10 group-hover:bg-brand/20 transition-colors">
+                <a href="mailto:adanilchik@wmtgroup.ru" className="flex items-center gap-3 text-brand font-semibold text-base hover:text-white transition-colors group">
+                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 group-hover:bg-brand/20 transition-colors">
                     <Mail className="w-5 h-5" />
                   </span>
                   adanilchik@wmtgroup.ru
                 </a>
               </div>
-              <p className="text-gray-400 dark:text-gray-500 italic text-sm">Отвечаем за 2 часа в рабочее время.<br />Предложение с бюджетом отправим за 24 часа.</p>
+              <p className="text-gray-500 italic text-sm">Отвечаем за 2 часа в рабочее время.<br />Предложение с бюджетом отправим за 24 часа.</p>
             </div>
           </div>
 
           {/* Right Column: Form */}
-          <div className="bg-gray-50 dark:bg-white/5 backdrop-blur-xl p-8 lg:p-12 rounded-3xl w-full lg:max-w-[550px] ml-auto border border-gray-100 dark:border-white/10">
+          <div className="bg-white/5 backdrop-blur-xl p-8 lg:p-12 rounded-3xl w-full lg:max-w-[550px] ml-auto border border-white/10">
             {status === "success" ? (
               <div className="flex flex-col items-center justify-center py-12 text-center animate-in fade-in zoom-in duration-500">
                 <CheckCircle2 className="w-20 h-20 text-green-500 mb-6" />
                 <h3 className="text-2xl font-bold mb-4">Заявка отправлена!</h3>
-                <p className="text-gray-600 dark:text-gray-400">Спасибо за обращение. Мы скоро с вами свяжемся.</p>
+                <p className="text-gray-400">Спасибо за обращение. Мы скоро с вами свяжемся.</p>
               </div>
             ) : (
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">ФИО</label>
-                  <input name="name" type="text" placeholder="Ваши имя и фамилия" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                  <label className="block text-sm font-semibold mb-2 text-gray-200">ФИО</label>
+                  <input name="name" type="text" placeholder="Ваши имя и фамилия" className="w-full bg-black/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Email</label>
-                    <input name="email" type="email" placeholder="work@company.ru" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                    <label className="block text-sm font-semibold mb-2 text-gray-200">Email</label>
+                    <input name="email" type="email" placeholder="work@company.ru" className="w-full bg-black/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Телефон</label>
-                    <input name="phone" type="tel" placeholder="+7 (999) 000-00-00" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                    <label className="block text-sm font-semibold mb-2 text-gray-200">Телефон</label>
+                    <input name="phone" type="tel" placeholder="+7 (999) 000-00-00" className="w-full bg-black/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-200">Компания</label>
-                  <input name="company" type="text" placeholder="Название организации" className="w-full bg-white dark:bg-black/50 border border-gray-200 dark:border-white/10 rounded-xl p-5 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
+                  <label className="block text-sm font-semibold mb-2 text-gray-200">Компания</label>
+                  <input name="company" type="text" placeholder="Название организации" className="w-full bg-black/50 border border-white/10 rounded-xl p-5 text-white placeholder-gray-600 focus:outline-none focus:border-brand transition-colors" required />
                 </div>
                 <button
                   disabled={status === "loading"}
@@ -148,7 +148,7 @@ export function MainCta() {
                 {status === "error" && (
                   <p className="text-red-500 text-sm text-center mt-4">Произошла ошибка. Пожалуйста, попробуйте еще раз.</p>
                 )}
-                <p className="text-xs text-gray-400 dark:text-gray-500 text-center mt-6">
+                <p className="text-xs text-gray-500 text-center mt-6">
                   Нажимая кнопку, вы подтверждаете согласие на обработку персональных данных.
                 </p>
               </form>

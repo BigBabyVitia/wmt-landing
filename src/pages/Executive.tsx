@@ -169,7 +169,7 @@ export function Executive() {
   const statusTags = signalsData.map((s, i) => (
     <div 
       key={i} 
-      className="group relative bg-black/40 backdrop-blur-xl border border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]"
+      className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]"
     >
       <h3 className="text-white font-medium text-[15px] md:text-xl relative z-10 leading-[1.3] max-w-[90%] md:max-w-[320px]">
         {s.title}
@@ -251,8 +251,8 @@ function ProgramsOverviewSection() {
             let titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight transition-colors duration-300 group-hover/card:text-brand";
 
             if (isHighlighted) {
-              cardClassName = "flex flex-col !rounded-[1.5rem] group/card shadow-2xl shadow-brand/10 hover:shadow-brand/20 transform-gpu border border-brand/30 !bg-[#181413] shrink-0";
-              titleClassName = "font-bold text-white text-base sm:text-lg lg:text-xl leading-tight relative z-10 transition-colors duration-300";
+              cardClassName = "flex flex-col !rounded-[1.5rem] group/card shadow-none dark:shadow-2xl dark:shadow-brand/10 dark:hover:shadow-brand/20 transform-gpu border border-brand/30 bg-white dark:!bg-[#181413] shrink-0";
+              titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight relative z-10 transition-colors duration-300";
             }
 
             const tagClass = isHighlighted 
@@ -279,11 +279,11 @@ function ProgramsOverviewSection() {
               >
                 {isHighlighted && (
                   <div className="absolute inset-0 z-0 pointer-events-none rounded-[1.5rem] overflow-hidden">
-                    <div className="absolute inset-0 bg-[#0f0e0d]" />
-                    <div className="absolute inset-0 shadow-[inset_0_0_15px_0_rgba(255,83,49,0.3),inset_0_0_50px_0_rgba(255,83,49,0.15)] group-hover/card:shadow-[inset_0_0_20px_0_rgba(255,83,49,0.4),inset_0_0_80px_0_rgba(255,83,49,0.2)] transition-shadow duration-700 rounded-[1.5rem]" />
-                    <div className="absolute inset-0 mix-blend-screen opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(255,83,49,0.3) 0%, rgba(255,83,49,0.05) 30%, transparent 60%)' }} />
-                    <div className="absolute inset-0 mix-blend-screen opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 100% 100%, rgba(255,42,95,0.15) 0%, transparent 40%)' }} />
-                    <div className="absolute inset-0 opacity-[0.04] mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E")' }} />
+                    <div className="absolute inset-0 bg-white dark:bg-[#0f0e0d]" />
+                    <div className="absolute inset-0 shadow-[inset_0_0_30px_0_rgba(255,83,49,0.15),inset_0_0_80px_0_rgba(255,83,49,0.05)] dark:shadow-[inset_0_0_15px_0_rgba(255,83,49,0.3),inset_0_0_50px_0_rgba(255,83,49,0.15)] group-hover/card:shadow-[inset_0_0_40px_0_rgba(255,83,49,0.25),inset_0_0_100px_0_rgba(255,83,49,0.1)] dark:group-hover/card:shadow-[inset_0_0_20px_0_rgba(255,83,49,0.4),inset_0_0_80px_0_rgba(255,83,49,0.2)] transition-shadow duration-700 rounded-[1.5rem]" />
+                    <div className="absolute inset-0 dark:mix-blend-screen opacity-100 dark:opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(255,83,49,0.15) 0%, rgba(255,83,49,0.03) 30%, transparent 60%)' }} />
+                    <div className="absolute inset-0 dark:mix-blend-screen opacity-100 dark:opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 100% 100%, rgba(255,83,49,0.1) 0%, transparent 40%)' }} />
+                    <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04] mix-blend-overlay" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E")' }} />
                   </div>
                 )}
                 
@@ -297,7 +297,7 @@ function ProgramsOverviewSection() {
                 </div>
                 
                 {program.desc && (
-                  <p className={`text-[13.5px] sm:text-[15px] mb-6 relative z-10 font-medium text-left leading-relaxed ${isHighlighted ? 'text-white/70' : 'text-gray-600 dark:text-white/50'}`}>
+                  <p className={`text-[13.5px] sm:text-[15px] mb-6 relative z-10 font-medium text-left leading-relaxed ${isHighlighted ? 'text-gray-600 dark:text-white/70' : 'text-gray-600 dark:text-white/50'}`}>
                     {program.desc}
                   </p>
                 )}
@@ -575,28 +575,28 @@ function ProgramSectionBento({ program: p, index }: any) {
             {/* Results Grid Box */}
             <V2Card 
               visible={visible}
-              className="col-span-1 md:col-span-7 !bg-[#111] dark:!bg-black/90 border border-gray-900 dark:border-white/[0.08] !rounded-[2rem] flex flex-col relative overflow-hidden group"
+              className="col-span-1 md:col-span-7 bg-gray-50 dark:!bg-black/90 border border-gray-200 dark:border-white/[0.08] !rounded-[2rem] flex flex-col relative overflow-hidden group shadow-sm dark:shadow-lg"
               contentClassName="!p-6 sm:!p-8 flex flex-col h-full w-full relative z-10"
             >
-               <h4 className="text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] mb-6 relative z-10 w-full">Ключевые артефакты</h4>
+               <h4 className="text-[10px] font-bold text-gray-500 dark:text-white/50 uppercase tracking-[0.2em] mb-6 relative z-10 w-full">Ключевые артефакты</h4>
                
                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 relative z-10">
                  {p.results.map((r: any, i: number) => (
-                    <div key={i} className="bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-[1.5rem] p-5 shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
+                    <div key={i} className="bg-white dark:bg-white/[0.02] backdrop-blur-xl border border-gray-100 dark:border-white/10 rounded-[1.5rem] p-5 shadow-sm dark:shadow-[0_4px_24px_rgba(0,0,0,0.2)]">
                       <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center mb-4 border border-brand/20">
                         <r.icon className="w-5 h-5 text-brand drop-shadow-sm" />
                       </div>
-                      <h5 className="font-semibold text-white text-base mb-2">{r.title}</h5>
-                      <p className="text-[13px] text-white/60 leading-relaxed font-medium">{r.desc}</p>
+                      <h5 className="font-semibold text-gray-900 dark:text-white text-base mb-2">{r.title}</h5>
+                      <p className="text-[13px] text-gray-600 dark:text-white/60 leading-relaxed font-medium">{r.desc}</p>
                     </div>
                  ))}
                  
                  {p.diff && (
-                   <div className="sm:col-span-2 mt-2 bg-white/[0.02] backdrop-blur-xl border-l-4 border-brand border-y border-r border-white/5 p-5 rounded-[1.5rem] shadow-sm">
+                   <div className="sm:col-span-2 mt-2 bg-white dark:bg-white/[0.02] backdrop-blur-xl border-l-4 border-brand border-y border-r border-gray-100 dark:border-white/5 p-5 rounded-[1.5rem] shadow-sm dark:shadow-sm">
                      <h4 className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-2 flex items-center gap-2">
                        <Zap className="w-3.5 h-3.5" /> Отличие программы
                      </h4>
-                     <p className="text-white/80 text-[13px] sm:text-sm leading-relaxed font-medium">
+                     <p className="text-gray-800 dark:text-white/80 text-[13px] sm:text-sm leading-relaxed font-medium">
                        {p.diff}
                      </p>
                    </div>
@@ -615,7 +615,7 @@ export function ProgramSectionPathway({ program: p, index }: any) {
   const { ref, visible } = useScrollVisible()
   const isEven = index % 2 === 0
   const bg = isEven ? "bg-gray-50/50 dark:bg-white/[0.02]" : "bg-white dark:bg-black"
-  const tagClass = "shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium bg-black/20 text-white px-3 py-1.5 rounded-full border border-white/10";
+  const tagClass = "shrink-0 whitespace-nowrap inline-flex items-center gap-1.5 text-[10px] sm:text-[11px] font-medium bg-gray-900/20 dark:bg-black/20 text-gray-900 dark:text-white px-3 py-1.5 rounded-full border border-gray-300 dark:border-white/10";
 
   return (
     <section id={p.id} ref={ref} className={`py-20 md:py-32 px-4 sm:px-6 md:px-12 ${bg} border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-500 relative overflow-hidden`}>
@@ -672,7 +672,7 @@ export function ProgramSectionPathway({ program: p, index }: any) {
                 <div className="absolute inset-0 rounded-full bg-brand/5 animate-pulse" />
                 Б
               </div>
-              <div className="flex-1 bg-[#111] dark:bg-black border border-gray-800 dark:border-white/[0.08] p-6 md:p-8 rounded-[2rem] shadow-xl text-white">
+              <div className="flex-1 bg-gray-900 dark:bg-black border border-gray-800 dark:border-white/[0.08] p-6 md:p-8 rounded-[2rem] shadow-xl text-white">
                 <span className="text-[9px] md:text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-4 block">Что получает компания</span>
                 <p className="text-gray-300 text-[14px] md:text-[15px] leading-relaxed mb-8 font-medium">
                   {p.result}
