@@ -313,13 +313,13 @@ function ProgramsOverviewSection() {
                   {program.tags.duration && (
                      <span className={tagClass}>
                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-                       <span className="translate-y-[0.5px]">{processText(program.tags.duration)}</span>
+                       <span className="translate-y-[-1px]">{processText(program.tags.duration)}</span>
                      </span>
                   )}
                   {program.tags.people && (
                      <span className={tagClass}>
                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="opacity-90"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                       <span className="translate-y-[0.5px]">{processText(program.tags.people)}</span>
+                       <span className="translate-y-[-1px]">{processText(program.tags.people)}</span>
                      </span>
                   )}
                 </div>
@@ -474,7 +474,7 @@ function ProgramSectionBento({ program: p, index }: any) {
                 {p.params.map((param: any, i: number) => (
                   <span key={i} className={tagClass}>
                     <param.icon className="w-3 h-3 opacity-90" />
-                    <span className="translate-y-[0.5px] uppercase tracking-wider text-[9px] sm:text-[10px]">{param.value}</span>
+                    <span className="translate-y-[-1px] uppercase tracking-wider text-[9px] sm:text-[10px]">{param.value}</span>
                   </span>
                 ))}
               </div>
@@ -669,7 +669,7 @@ export function ProgramSectionPathway({ program: p, index }: any) {
                   {p.params.map((param: any, i: number) => (
                     <span key={i} className={tagClass}>
                       <param.icon className="w-3.5 h-3.5 opacity-90" />
-                      <span className="uppercase tracking-wider font-bold translate-y-[0.5px]">{param.value}</span>
+                      <span className="uppercase tracking-wider font-bold translate-y-[-1px]">{param.value}</span>
                     </span>
                   ))}
                 </div>
