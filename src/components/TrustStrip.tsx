@@ -129,18 +129,18 @@ export function TrustStrip() {
                         </p>
                       </div>
                       <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-gray-100 dark:border-white/10 py-6 md:py-0 md:px-8">
-                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight tracking-tight">От ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight tracking-tight">Итоги: от ИИ-игрушек к&nbsp;AI-трансформации</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                           Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
                         </p>
                       </div>
                       <div className="lg:col-span-1 flex flex-col items-center lg:items-end gap-5">
                         <div className="text-center lg:text-right">
-                          <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-1 block">Ближайшая дата</span>
+                          <span className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-1 block">Прошедшее событие</span>
                           <span className="text-lg font-bold text-gray-900 dark:text-white">31 марта 2026, Москва</span>
                         </div>
                         <a href="https://ost-iichnica.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
-                          Смотреть сайт шоу <ArrowRight className="w-4 h-4" />
+                          Посмотреть как это было <ArrowRight className="w-4 h-4" />
                         </a>
                       </div>
                     </div>
@@ -172,18 +172,18 @@ export function TrustStrip() {
                           </p>
                         </div>
                         <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-white/15 py-6 md:py-0 md:px-8">
-                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">От ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">Итоги: от ИИ-игрушек к&nbsp;AI-трансформации</h4>
                           <p className="text-sm text-white/60 leading-relaxed">
                             Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
                           </p>
                         </div>
                         <div className="lg:col-span-1 flex flex-col items-center lg:items-end gap-5">
                           <div className="text-center lg:text-right">
-                            <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] mb-1 block">Ближайшая дата</span>
+                            <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] mb-1 block">Прошедшее событие</span>
                             <span className="text-lg font-bold text-white">31 марта 2026, Москва</span>
                           </div>
                           <a href="https://ost-iichnica.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
-                            Смотреть сайт шоу <ArrowRight className="w-4 h-4" />
+                            Посмотреть как это было <ArrowRight className="w-4 h-4" />
                           </a>
                         </div>
                       </div>
@@ -214,18 +214,18 @@ export function TrustStrip() {
                           </p>
                         </div>
                         <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-white/15 py-6 md:py-0 md:px-8">
-                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">От ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">Итоги: от ИИ-игрушек к&nbsp;AI-трансформации</h4>
                           <p className="text-sm text-white/60 leading-relaxed">
                             Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
                           </p>
                         </div>
                         <div className="lg:col-span-1 flex flex-col items-center lg:items-end gap-5">
                           <div className="text-center lg:text-right">
-                            <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] mb-1 block">Ближайшая дата</span>
+                            <span className="text-[10px] font-bold text-white/50 uppercase tracking-[0.2em] mb-1 block">Прошедшее событие</span>
                             <span className="text-lg font-bold text-white">31 марта 2026, Москва</span>
                           </div>
                           <a href="https://ost-iichnica.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 rounded-full px-6 pt-[12px] pb-[14px] text-sm font-bold transition-all hover:-translate-y-0.5">
-                            Смотреть сайт шоу <ArrowRight className="w-4 h-4" />
+                            Посмотреть как это было <ArrowRight className="w-4 h-4" />
                           </a>
                         </div>
                       </div>

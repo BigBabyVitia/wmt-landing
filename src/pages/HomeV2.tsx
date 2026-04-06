@@ -520,7 +520,8 @@ const teaserData = [
       {
         title: "Индивидуальная программа под команду",
         desc: "Собираем программу AI-трансформации под ваши задачи, команду, процессы и нужный масштаб внедрения.",
-        tags: { format: "Онлайн / Офлайн", duration: "По запросу", people: "Под ваш состав" }
+        tags: { format: "Онлайн / Офлайн", duration: "По запросу", people: "Под ваш состав" },
+        isCorporate: true
       }
     ],
     link: "/teams",
@@ -554,19 +555,6 @@ const teaserData = [
   }
 ];
 
-export function DirectionTeasersCards() {
-  return (
-    <section className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] relative overflow-hidden border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-brand/5 blur-[120px] rounded-full pointer-events-none" />
-      
-      <div className="max-w-7xl mx-auto flex flex-col gap-10 relative z-10 text-center">
-        {teaserData.map((teaser, i) => (
-          <TeaserCard key={teaser.id} {...teaser} index={i} />
-        ))}
-      </div>
-    </section>
-  );
-}
 
 function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, link, linkText, index }: any) {
   const { ref, visible } = useScrollVisible(0.15);
@@ -578,6 +566,16 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
   }
+
+  const [isDark, setIsDark] = useState(false);
+  useEffect(() => {
+    setIsDark(document.documentElement.classList.contains('dark'));
+    const observer = new MutationObserver(() => {
+      setIsDark(document.documentElement.classList.contains('dark'));
+    });
+    observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div
@@ -646,25 +644,15 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
           <div className="w-full">
             <div className={`grid grid-cols-1 gap-2 md:gap-4 ${personalSteps && items.length === 2 ? "sm:grid-cols-3" : personalSteps ? "sm:grid-cols-2 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
               {items.map((item: any, idx: number) => {
-                const isPersonal = item.isPersonal;
-                const isCorporate = item.isCorporate;
-                const isHighlighted = isPersonal || isCorporate;
+                const isHighlighted = item.isPersonal || item.isCorporate;
                 
                 // Custom span logic for the 1/3 + 2/3 layout
                 const isTwoItemPersonal = personalSteps && items.length === 2;
                 const itemSpanClass = isTwoItemPersonal ? (idx === 0 ? "sm:col-span-1" : "sm:col-span-2") : "";
                 
-                // Base class for all cards to ensure unified size and look (more compact now)
-                let cardClassName = `flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/20 transition-all duration-300 h-full overflow-hidden ${itemSpanClass}`;
-                let titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight transition-colors duration-300 group-hover/card:text-brand";
-                
-                if (isHighlighted) {
-                  // Premium dark card with inner perimeter glow (glow spreading from edges)
-                  cardClassName = `flex flex-col rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card transition-all duration-700 shadow-none dark:shadow-2xl dark:shadow-brand/10 dark:hover:shadow-brand/20 overflow-hidden h-full transform-gpu border border-brand/30 bg-white dark:bg-[#181413] ${itemSpanClass}`;
-                  titleClassName = "font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight relative z-10 transition-colors duration-300";
-                }
+                const cardClassName = `flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/20 transition-all duration-300 h-full overflow-hidden ${itemSpanClass} ${isHighlighted ? "border-brand/30 bg-white dark:bg-[#181413]" : ""}`;
+                const titleClassName = `font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight transition-colors duration-300 ${isHighlighted ? "group-hover/card:text-brand" : ""}`;
 
-                // Premium Tag Styling
                 const tagClass = isHighlighted 
                   ? "shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-medium bg-transparent text-brand px-3.5 py-1.5 rounded-full border border-brand/25 transition-colors hover:bg-brand/5"
                   : "shrink-0 whitespace-nowrap inline-flex items-center gap-2 text-[11px] sm:text-[12px] font-medium bg-transparent text-gray-700 dark:text-white/60 px-3.5 py-1.5 rounded-full border border-gray-200/60 dark:border-white/10 transition-colors hover:bg-gray-50/50 dark:hover:bg-white/5";
@@ -680,26 +668,35 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
                   <div key={idx} className={cardClassName}>
                     {isHighlighted && (
                       <div className="absolute inset-0 z-0 pointer-events-none rounded-[1.5rem] overflow-hidden">
-                        {/* 1. Base Dark Background - pure black/dark gray to ensure perfect contrast in the center */}
+                        {/* 1. Base Background */}
                         <div className="absolute inset-0 bg-white dark:bg-[#0f0e0d]" />
                         
-                        {/* 2. Strict Perimeter Glow via Box Shadow 
-                            This guarantees the center remains completely dark because the shadow only reaches inward exactly where specified. */}
-                        <div className="absolute inset-0 shadow-[inset_0_0_30px_0_rgba(255,83,49,0.15),inset_0_0_80px_0_rgba(255,83,49,0.05)] dark:shadow-[inset_0_0_15px_0_rgba(255,83,49,0.3),inset_0_0_50px_0_rgba(255,83,49,0.15)] group-hover/card:shadow-[inset_0_0_40px_0_rgba(255,83,49,0.25),inset_0_0_100px_0_rgba(255,83,49,0.1)] dark:group-hover/card:shadow-[inset_0_0_20px_0_rgba(255,83,49,0.4),inset_0_0_80px_0_rgba(255,83,49,0.2)] transition-shadow duration-700 rounded-[1.5rem]" />
+                        {/* 2. Light Theme - Premium Adapted Glow Overlay */}
+                        {!isDark && (
+                          <>
+                            {/* Inner saturated glow layers for depth */}
+                            <div className="absolute inset-0 shadow-[inset_0_0_20px_0_rgba(255,83,49,0.12),inset_0_0_60px_0_rgba(255,83,49,0.04)] group-hover/card:shadow-[inset_0_0_25px_0_rgba(255,83,49,0.18),inset_0_0_80px_0_rgba(255,83,49,0.08)] transition-shadow duration-700" />
+                            {/* Radial corner accents - mimicking dark theme but for light white surface */}
+                            <div className="absolute inset-0 opacity-40 group-hover/card:opacity-60 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(255,83,49,0.12) 0%, rgba(255,83,49,0.02) 40%, transparent 70%)' }} />
+                            <div className="absolute inset-0 opacity-40 group-hover/card:opacity-60 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 100% 100%, rgba(255,83,49,0.12) 0%, rgba(255,83,49,0.02) 40%, transparent 70%)' }} />
+                            <div className="absolute inset-0 opacity-0 group-hover/card:opacity-20 transition-opacity duration-700" style={{ background: 'radial-gradient(ellipse at 50% 0%, rgba(255,83,49,0.3) 0%, transparent 80%)' }} />
+                          </>
+                        )}
+
+                        {/* 2. Dark Theme - Original Intentional Glow */}
+                        <div className="absolute inset-0 hidden dark:block shadow-[inset_0_0_15px_0_rgba(255,83,49,0.3),inset_0_0_50px_0_rgba(255,83,49,0.15)] group-hover/card:shadow-[inset_0_0_20px_0_rgba(255,83,49,0.4),inset_0_0_80px_0_rgba(255,83,49,0.2)] transition-shadow duration-700 rounded-[1.5rem]" />
                         
-                        {/* 3. Creative organic accents on corners
-                            Using transparent radial gradients. They peak in the corners and fade to absolutely 0, guaranteeing pure black in the center */}
-                        <div className="absolute inset-0 dark:mix-blend-screen opacity-100 dark:opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(255,83,49,0.15) 0%, rgba(255,83,49,0.03) 30%, transparent 60%)' }} />
-                        <div className="absolute inset-0 dark:mix-blend-screen opacity-100 dark:opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 100% 100%, rgba(255,83,49,0.1) 0%, transparent 40%)' }} />
+                        {/* 3. Dark Theme - Corner accents */}
+                        <div className="absolute inset-0 hidden dark:block dark:mix-blend-screen opacity-100 dark:opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 0% 0%, rgba(255,83,49,0.2) 0%, rgba(255,83,49,0.05) 30%, transparent 60%)' }} />
+                        <div className="absolute inset-0 hidden dark:block dark:mix-blend-screen opacity-100 dark:opacity-80 group-hover/card:opacity-100 transition-opacity duration-700" style={{ background: 'radial-gradient(circle at 100% 100%, rgba(255,83,49,0.15) 0%, transparent 40%)' }} />
                         
-                        {/* 4. Subtle noise texture */}
+                        {/* 4. Subtle noise texture across all themes */}
                         <div 
-                          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.04] mix-blend-overlay"
-                          style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.85%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E")' }} 
+                          className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none mix-blend-overlay"
+                          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}
                         />
                       </div>
                     )}
-                    
                     <div className="mb-4 relative z-10 text-left">
                        {item.tags && item.tags.format && (
                          <span className="block text-[11px] sm:text-[12px] font-bold uppercase tracking-[0.2em] mb-3 opacity-100 text-brand">
@@ -761,7 +758,7 @@ function CombinedLevelsViewer() {
   const { ref, visible } = useScrollVisible()
 
   return (
-    <section ref={ref} id="directions" className="flex flex-col items-center pb-16 md:pb-24 border-t border-gray-100 dark:border-white/[0.06] bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] pt-16 md:pt-24 min-h-screen transition-colors duration-300">
+    <section ref={ref} id="directions" className="flex flex-col items-center pb-16 md:pb-24 border-t border-gray-100 dark:border-white/[0.06] bg-gray-50/50 dark:bg-[hsl(220,18%,5%)] pt-16 md:pt-24 min-h-screen transition-colors duration-300 relative">
       <div className="px-4 sm:px-6 md:px-12 w-full max-w-7xl mx-auto flex flex-col items-center">
         <div className={`w-full text-center xl:text-left mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl sm:text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 md:mb-6">
