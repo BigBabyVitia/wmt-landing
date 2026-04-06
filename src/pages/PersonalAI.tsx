@@ -107,7 +107,7 @@ export function PersonalAI() {
       <V2Hero 
         layout="mosaic"
         label="Личный ИИ — персональные форматы"
-        title={<>Персональная <em className="not-italic text-brand font-bold">ИИ-трансформация</em> под ваши задачи</>}
+        title={<>Ваша личная <em className="not-italic text-brand font-bold">ИИ-трансформация</em></>}
         description="Два формата для тех, кто хочет пройти тему ИИ глубоко и лично: от стратегической сессии до полного погружения с разработкой персональной программы, сборкой стратегии и рабочего агента."
         tagsTitle="Когда нужен личный формат:"
         tags={statusTags}
