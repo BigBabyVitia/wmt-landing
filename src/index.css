@@ -69,6 +69,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    /* Fluid root font-size: stays 16px on mobile/standard desktops, scales up
+       on large monitors so the whole Tailwind rem-based system (typography,
+       spacing, container widths) grows proportionally. */
+    font-size: clamp(16px, 14px + 0.25vw, 20px);
     @apply bg-background transition-colors duration-300;
   }
   html.dark {
