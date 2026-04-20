@@ -52,7 +52,7 @@ export function Proof() {
         <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest">Признание</span>
       </div>
       <h3 className="text-white font-medium text-[15px] md:text-xl relative z-10 leading-[1.3]">
-        Методология, подтверждённая <b>Stanford Global Studies</b>.
+        Методология, подтверждённая <b>Global Academic Standards</b>.
       </h3>
     </div>,
     <div key="t3" className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]">
@@ -91,8 +91,8 @@ export function Proof() {
       {/* ── FOUNDER SECTION ── */}
       <FounderSection />
 
-      {/* ── STANFORD SECTION ── */}
-      <StanfordSection />
+      {/* ── ACADEMIC RECOGNITION SECTION ── */}
+      <AcademicRecognitionSection />
 
       {/* ── MEDIA & PUBLICATIONS ── */}
       <PublicationsSection />
@@ -177,7 +177,7 @@ function FounderSection() {
   )
 }
 
-function StanfordSection() {
+function AcademicRecognitionSection() {
   const { ref, visible } = useScrollVisible()
   return (
     <section ref={ref} className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,20%,4%)] border-t border-gray-100 dark:border-white/[0.06] overflow-hidden">
@@ -193,7 +193,7 @@ function StanfordSection() {
               </div>
               <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
                 Методология подтверждена <br />
-                <span className="text-gray-400 dark:text-white/40">Stanford Global Studies</span>
+                <span className="text-gray-400 dark:text-white/40">Global Academic Standards</span>
               </h2>
               <p className="text-lg text-gray-600 dark:text-white/60 leading-relaxed mb-8 font-medium">
                 В марте 2026 года методология AI Transformation Methodology, на которой построены все программы WMT AI, получила официальное признание как Established Executive Education Program.
@@ -202,16 +202,16 @@ function StanfordSection() {
               <div className="flex flex-wrap gap-3">
                 <span className="bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 px-4 py-2 rounded-full text-xs font-bold text-gray-500 dark:text-white/40">Март 2026</span>
                 <span className="bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 px-4 py-2 rounded-full text-xs font-bold text-gray-500 dark:text-white/40">Practical Framework</span>
-                <span className="bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 px-4 py-2 rounded-full text-xs font-bold text-gray-500 dark:text-white/40">Stanford Global Studies</span>
+                <span className="bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 px-4 py-2 rounded-full text-xs font-bold text-gray-500 dark:text-white/40">Global Academic Standards</span>
               </div>
             </div>
 
             <div className="relative group cursor-pointer">
               <div className="absolute -inset-1 bg-brand/20 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-1000" />
-              <img 
-                src="/brand/certificate.jpg" 
-                alt="Stanford Certificate" 
-                className="relative w-full max-w-md mx-auto rounded-xl shadow-2xl border border-gray-200 dark:border-white/10 transform-gpu group-hover:-translate-y-1 transition-transform duration-500" 
+              <img
+                src="/brand/academic-recognition.png"
+                alt="Global Academic Standards"
+                className="relative w-full max-w-md mx-auto transform-gpu group-hover:-translate-y-1 transition-transform duration-500"
               />
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                 <span className="bg-white/90 dark:bg-black/80 backdrop-blur-md px-6 py-3 rounded-full text-sm font-bold shadow-xl border border-gray-200 dark:border-white/10">Увеличить</span>

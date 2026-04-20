@@ -236,7 +236,7 @@ function TrustSignal() {
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6 relative z-10 leading-tight">Нужно переслать это руководству?</h2>
           <p className="text-lg md:text-xl text-gray-500 dark:text-white/60 font-medium mb-10 relative z-10 leading-relaxed">Эта страница работает как карта. Если нужны доказательства экспертизы — они собраны отдельно.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 relative z-10">
-            <p className="text-gray-600 dark:text-white/50 leading-relaxed text-base md:text-lg font-medium">На странице доказательств: кто ведёт программы, 50+ клиентов, академическое признание от Stanford Global Studies, публикации и подкаст. Всё проверяемое.</p>
+            <p className="text-gray-600 dark:text-white/50 leading-relaxed text-base md:text-lg font-medium">На странице доказательств: кто ведёт программы, 50+ клиентов, академическое признание от Global Academic Standards, публикации и подкаст. Всё проверяемое.</p>
             <Link to="/proof" className="inline-flex items-center justify-center md:justify-start gap-3 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-xl shadow-brand/20 hover:-translate-y-0.5">
               Доказательства экспертизы <ArrowRight className="w-5 h-5 ml-1" />
             </Link>

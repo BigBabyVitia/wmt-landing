@@ -70,17 +70,17 @@ export function TrustStrip() {
                 </div>
               </div>
 
-              {/* Stanford Card */}
+              {/* Academic Recognition Card */}
               <div className="lg:col-span-4 bg-white dark:bg-white/[0.03] rounded-[2.5rem] p-8 md:p-10 border border-gray-100 dark:border-white/[0.06] shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none flex flex-col group relative transition-all duration-300 hover:border-brand/30">
                 <span className="text-xs font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider mb-6 text-center lg:text-left">Академическое признание</span>
                 <div className="flex-1 flex flex-col justify-center items-center text-center">
                   <div className="relative group/cert cursor-pointer" onClick={() => setIsCertModalOpen(true)}>
-                    <img src="/brand/certificate.jpg" alt="Stanford Certificate" className="w-full max-w-[280px] rounded-lg shadow-md mb-6 transition-all duration-300 border border-gray-100 dark:border-white/[0.06] group-hover/cert:shadow-xl group-hover/cert:-translate-y-1" />
+                    <img src="/brand/academic-recognition.png" alt="Global Academic Standards" className="w-full max-w-[280px] mb-6 transition-all duration-300 group-hover/cert:-translate-y-1" />
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/cert:opacity-100 transition-opacity duration-300">
                       <span className="bg-white/90 backdrop-blur-sm text-gray-900 text-sm font-medium px-4 py-2 rounded-full shadow-lg absolute -bottom-2 -translate-y-[20px]">Увеличить</span>
                     </div>
                   </div>
-                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight">Stanford Global Studies</h4>
+                  <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2 leading-tight">Global Academic Standards</h4>
                   <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed mb-6">
                     Наш фреймворк официально получил академическое признание и статус Executive программы.
                   </p>
@@ -273,10 +273,10 @@ export function TrustStrip() {
             >
               <X className="w-8 h-8" />
             </button>
-            <img 
-              src="/brand/certificate.jpg" 
-              alt="Stanford Certificate" 
-              className="max-h-[85vh] w-auto max-w-full rounded-sm shadow-2xl ring-1 ring-white/10" 
+            <img
+              src="/brand/academic-recognition.png"
+              alt="Global Academic Standards"
+              className="max-h-[85vh] w-auto max-w-full"
             />
           </div>
         </div>
