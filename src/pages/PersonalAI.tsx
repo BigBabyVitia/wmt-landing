@@ -33,6 +33,13 @@ const overviewPrograms = [
     tags: { format: "Офлайн / Онлайн", duration: "индивидуально", people: "1 человек" }
   },
   {
+    id: "personal-agents",
+    title: "Личные ИИ-агенты",
+    desc: "1-на-1: 7 занятий, ~12 часов практики. Собираем агентов в n8n, Claude Code и OpenClaw под ваши задачи",
+    tags: { format: "Онлайн / Офлайн", duration: "7 модулей / ~12 ч", people: "1 человек" },
+    isPersonal: true,
+  },
+  {
     id: "personal-track",
     title: "Персональный трек",
     desc: "Полное погружение с разработкой индивидуальной программы, сборкой стратегии и рабочего агента под ваши задачи",
@@ -60,6 +67,45 @@ const programs = [
       { title: "Карта приоритетов", desc: "Что даст результат, а что — пустая трата ресурсов.", icon: CheckCircle2 },
       { title: "Roadmap на 90 дней", desc: "Конкретный пошаговый план с дедлайнами и метриками.", icon: CheckCircle2 },
       { title: "Первый шаг", desc: "Определённый и обоснованный — можно начинать в понедельник.", icon: CheckCircle2 },
+    ],
+  },
+  {
+    id: "personal-agents",
+    badge: "Сборка под ваши задачи",
+    title: "Личные ИИ-агенты",
+    tagline: "Индивидуальная программа · 1 на 1 · 7 занятий · ~12 часов",
+    when: "Когда вам нужно не пройти курс, а собрать рабочих ИИ-агентов под свои реальные задачи — в n8n, Claude Code и OpenClaw — с глубоким разбором архитектуры, безопасности и multi-agent-сборки.",
+    whenBullets: [
+      "Нужно не пройти курс, а собрать рабочих агентов под свои задачи",
+      "Хочется освоить три платформы (n8n, Claude Code, OpenClaw) на своих данных",
+      "Важна 1-на-1 работа с преподавателем и гибкий темп",
+    ],
+    result: "Вы уходите с пониманием архитектуры агентов, рабочими агентами на трёх платформах под ваши задачи, multi-agent-системой с safety и алгоритмом сборки нового агента за 30–60 минут.",
+    resultBullets: [
+      "Рабочий агент в n8n с LLM, tools и памятью",
+      "Агент в Claude Code для сложной логики и работы с файлами",
+      "Агент в OpenClaw с RAG-базой по вашим документам",
+      "Multi-agent система с обработкой ошибок и защитой",
+      "Алгоритм самостоятельной сборки агента за 30–60 минут",
+    ],
+    params: [
+      { label: "Длительность", value: "7 модулей / ~12 ч", icon: Clock },
+      { label: "Формат", value: "Онлайн / Офлайн", icon: Target },
+      { label: "Участник", value: "1 человек", icon: Users },
+    ],
+    results: [
+      { title: "Архитектура агентов", desc: "Понимание изнутри: мозг, память, инструменты, оркестрация.", icon: CheckCircle2 },
+      { title: "Три платформы", desc: "Уверенная работа в n8n, Claude Code и OpenClaw на ваших задачах.", icon: CheckCircle2 },
+      { title: "Multi-agent", desc: "Собранная система с обработкой ошибок и защитой.", icon: CheckCircle2 },
+      { title: "Навык повторной сборки", desc: "Алгоритм нового агента за 30–60 минут — самостоятельно.", icon: CheckCircle2 },
+    ],
+    steps: [
+      { badge: "Занятие 1", title: "Три платформы — одна задача", desc: "Берём вашу задачу и решаем её тремя способами: n8n, Claude Code, OpenClaw. Видим разницу, выбираем инструмент. ~2 часа." },
+      { badge: "Занятия 2–3", title: "n8n: workflow и ИИ-агенты", desc: "Основы конструктора, интеграции, безопасность webhook. Подключаем LLM, tools, память. Боевой агент на ваших данных. ~3 часа." },
+      { badge: "Занятие 4", title: "Claude как экосистема", desc: "Промптинг, Projects, Cowork, Artifacts. Настраиваем рабочее пространство. ~1,5 часа." },
+      { badge: "Занятие 5", title: "Claude Code", desc: "Агент в терминале: код, файлы, многошаговые сценарии. Сборка под ваш сценарий. ~1,5 часа." },
+      { badge: "Занятие 6", title: "OpenClaw + RAG", desc: "Агент по вашим документам через MCP. Финальное сравнение трёх платформ. ~1,5 часа." },
+      { badge: "Занятие 7", title: "Боевая сборка", desc: "Multi-agent + safety + продакшн. Архитектура, стресс-тест на реальных данных. ~2 часа." },
     ],
   },
   {
@@ -106,9 +152,9 @@ export function PersonalAI() {
     <>
       <V2Hero 
         layout="mosaic"
-        label="Личный ИИ — персональные форматы"
+        label="Лидер ИИ — персональные форматы"
         title={<>Ваша личная <em className="not-italic text-brand font-bold">ИИ-трансформация</em></>}
-        description="Два формата для тех, кто хочет пройти тему ИИ глубоко и лично: от стратегической сессии до полного погружения с разработкой персональной программы, сборкой стратегии и рабочего агента."
+        description="Три формата для тех, кто хочет пройти тему ИИ глубоко и лично: от стратегической сессии до сборки личных ИИ-агентов и полного погружения с разработкой персональной программы."
         tagsTitle="Когда нужен личный формат:"
         tags={statusTags}
         buttons={
@@ -160,11 +206,11 @@ function ProgramsOverviewSection() {
     <section id="programs" ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-10 md:mb-16 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Два персональных формата</h2>
-          <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 max-w-5xl font-medium leading-relaxed">От сфокусированной сессии до полного персонального трека с разработкой программы и сборкой агента.</p>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Три персональных формата</h2>
+          <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 max-w-5xl font-medium leading-relaxed">От сфокусированной сессии до сборки личных ИИ-агентов и полного персонального трека с разработкой программы.</p>
         </div>
         
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {overviewPrograms.map((program, idx) => {
             const isPersonal = (program as any).isPersonal;
             const isHighlighted = isPersonal;
@@ -476,7 +522,7 @@ function BridgeSection() {
           <div className="relative z-10 max-w-4xl">
             <h2 className="text-2xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-6 leading-tight">Нужно перестроить целую команду?</h2>
             <p className="text-base md:text-xl text-gray-500 dark:text-gray-400 mb-8 md:mb-10 font-medium leading-relaxed">
-              Личный формат — для глубокой индивидуальной работы. Если ваша задача — обучить подразделение, собрать ядро практиков или запустить AI-трансформацию на уровне компании — для этого есть командные программы.
+              Личный формат — для глубокой индивидуальной работы. Если ваша задача — обучить подразделение, собрать ядро практиков или запустить ИИ-трансформацию на уровне компании — для этого есть командные программы.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/executive"

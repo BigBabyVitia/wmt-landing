@@ -21,7 +21,7 @@ export function Hero() {
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6 mt-4 sm:mt-12">
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[72px] leading-[1.05] tracking-tight max-w-[1000px] font-semibold text-white animate-fade-rise">
-          <em className="not-italic text-brand font-bold">AI-трансформация</em> бизнеса.<br /> От стратегии до результата
+          <em className="not-italic text-brand font-bold">ИИ-трансформация</em> бизнеса.<br /> От стратегии до результата
         </h1>
         
         <p className="text-gray-200 text-lg sm:text-lg md:text-lg lg:text-xl max-w-3xl mt-8 leading-relaxed animate-fade-rise-delay">

@@ -24,7 +24,7 @@ const events2025 = [
 const events2026 = [
   "Skolkovo — MBA, AI Shift (Курс для CEO)",
   "Skolkovo — Tandemocracy (Управление в эпоху ИИ)",
-  "VK Roundtable — Лидеры AI-рынка",
+  "VK Roundtable — Лидеры ИИ-рынка",
   "Центральный банк Армении — Стратегическая сессия для руководства",
 ]
 
@@ -269,7 +269,7 @@ function IichnicaSection() {
                 <img src="/logos/wmtaichnica.svg" alt="ИИЧНИЦА SHOW" className="h-16 md:h-20 w-auto mb-10 dark:invert-[0.1]" />
                 <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-8 tracking-tight leading-[1.1]">
                   Итоги: от ИИ-игрушек к <br />
-                  <span className="text-brand">AI-трансформации</span>
+                  <span className="text-brand">ИИ-трансформации</span>
                 </h2>
                 <p className="text-lg md:text-xl text-gray-600 dark:text-white/60 mb-10 leading-relaxed font-medium">
                   Собственное масштабное шоу WMT AI, которое мы проводим дважды в год. Живые подкасты, честные разборы кейсов и закрытый нетворкинг для C-level.
@@ -388,7 +388,7 @@ function NavBackSection() {
             {[
               { title: "Для руководителей", to: "/executive", desc: "Стратегия и архитектура" },
               { title: "Для команд", to: "/teams", desc: "Практика и внедрение" },
-              { title: "Личный ИИ", to: "/personal-ai", desc: "Глубокая работа 1-на-1" }
+              { title: "Лидер ИИ", to: "/personal-ai", desc: "Глубокая работа 1-на-1" }
             ].map((link, i) => (
               <Link 
                 key={i} 

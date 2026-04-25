@@ -19,21 +19,21 @@ const execPrograms = [
 ]
 
 const teamPrograms = [
-  { name: "Мышление 2.0", audience: "Компания, которой нужна команда-чемпион, ядро практиков", result: "10–30 человек, которые работают с ИИ и тянут остальных", format: "1–1,5 дня / 10 ч, 80% работы руками", next: "Масштабирование на компанию", group: "A. Ранние практические программы", proof: "Рабочий агент у каждого участника", },
-  { name: "ИИ Волна", audience: "Компания, готовая к широкому практическому охвату", result: "Масштабная перестройка работы в десятках процессов", format: "8 модулей / Месяц, 80% практики", next: "Углубление лучших команд через сборку", group: "B. Масштабирование", proof: "Под широкую группу всей компании", },
+  { name: "Мышление 2.0", audience: "Компания, которой нужна команда-чемпион, ядро практиков", result: "до 20 человек, которые работают с ИИ и тянут остальных", format: "1 день / 8 ч, 80% работы руками, Офлайн / Онлайн", next: "Масштабирование на компанию", group: "A. Ранние практические программы", proof: "Рабочий агент у каждого участника", },
+  { name: "ИИ-Марафон", audience: "Команда, готовая месяц работать со сквозной задачей до рабочего агента", result: "Рабочий ИИ-агент с RAG, инструментами и памятью под вашу задачу", format: "Онлайн, 9 модулей × 1,5 ч, до 12 человек", next: "Углубление лучших команд через Мастерскую", group: "B. Масштабирование", proof: "80% практики, сквозная задача через 9 блоков", },
   { name: "Индивидуальная программа", audience: "Команда под специфическую задачу или масштаб", result: "Программа, полностью адаптированная под ваш бизнес", format: "Онлайн / Офлайн под ваш график", next: "Внедрение ИИ в конкретные процессы", group: "C. Гибкие форматы", proof: "Решаем именно ваши проблемы", }
 ]
 
 const builderPrograms = [
-  { name: "Агенты за 1 день", desc: "За один день команда собирает рабочего агента и формирует навык сборки", audience: "Собранная команда с задачей", format: "Офлайн, 30–40 человек", result: "Рабочий агент, n8n workflow", threshold: "Нужна конкретная задача", next: "Углубление через Мастерскую", proof: "80–85% практики", link: "/builder-day", },
-  { name: "Мастерская AI-агентов", desc: "Малая группа глубоко разбирает Claude и n8n, собирает агентов под реальные процессы компании", audience: "Продвинутая малая группа", format: "Онлайн / Офлайн, до 6 участников", result: "3–5 агентов и автоматизаций", threshold: "Аппетит на сборку", next: "Самостоятельная разработка в компании", proof: "4 занятия по 1,5 часа", link: "", }
+  { name: "Агенты за 1 день", desc: "За один день команда собирает рабочего агента и формирует навык сборки", audience: "Собранная команда с задачей", format: "Офлайн, до 15 человек, 6 часов", result: "Рабочий агент, n8n workflow", threshold: "Нужна конкретная задача", next: "Углубление через Мастерскую", proof: "80–85% практики", link: "/builder-day", },
+  { name: "Мастерская ИИ-агентов", desc: "Малая группа из одной компании глубоко разбирает n8n, Claude и OpenClaw, собирает агентов под реальные процессы", audience: "Продвинутая малая группа из одной компании", format: "Онлайн, до 6 участников", result: "3–5 агентов и автоматизаций", threshold: "Аппетит на сборку", next: "Самостоятельная разработка в компании", proof: "7 модулей / ~12 часов практики", link: "", }
 ]
 
 const navCards = [
   { label: "Для руководителей", to: "/executive" },
   { label: "Для команд", to: "/teams" },
   { label: "Агенты за 1 день", to: "/builder-day" },
-  { label: "Личный ИИ", to: "/personal-ai" },
+  { label: "Лидер ИИ", to: "/personal-ai" },
   { label: "Доказательства", to: "/proof" },
 ]
 
@@ -200,9 +200,9 @@ function PersonalSection() {
           <h2 className="text-2xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Для себя лично и платформа</h2>
           <p className="text-base md:text-xl text-gray-500 dark:text-white/60 leading-relaxed">Личный офлайн-интенсив и база знаний в платформе.</p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           <V2Card visible={visible} index={0} className="h-full" contentClassName="p-8 md:p-10">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 relative z-10 leading-tight">Личный ИИ</h3>
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 relative z-10 leading-tight">Лидер ИИ</h3>
             <p className="text-gray-500 dark:text-white/50 text-base mb-8 relative z-10 leading-relaxed">Двухдневный офлайн-интенсив для руководителя, который хочет пройти перестройку сам.</p>
             <div className="mt-auto relative z-10">
               <Link to="/personal-ai" className="inline-flex items-center gap-2 text-brand font-bold hover:translate-x-1 transition-all text-sm uppercase tracking-wider">
@@ -210,8 +210,18 @@ function PersonalSection() {
               </Link>
             </div>
           </V2Card>
-          
+
           <V2Card visible={visible} index={1} className="h-full" contentClassName="p-8 md:p-10">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 relative z-10 leading-tight">Личные ИИ-агенты</h3>
+            <p className="text-gray-500 dark:text-white/50 text-base mb-8 relative z-10 leading-relaxed">1-на-1 с преподавателем: 7 занятий, ~12 часов практики. Собираем агентов в n8n, Claude Code и OpenClaw под ваши задачи.</p>
+            <div className="mt-auto relative z-10">
+              <Link to="/personal-ai#personal-agents" className="inline-flex items-center gap-2 text-brand font-bold hover:translate-x-1 transition-all text-sm uppercase tracking-wider">
+                Подробнее <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </V2Card>
+
+          <V2Card visible={visible} index={2} className="h-full" contentClassName="p-8 md:p-10">
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4 relative z-10 leading-tight">Платформа WMT AI</h3>
             <p className="text-gray-500 dark:text-white/50 text-base mb-8 relative z-10 leading-relaxed">Онлайн-библиотека из 22 уроков для базовой теоретической подготовки.</p>
             <div className="mt-auto relative z-10">

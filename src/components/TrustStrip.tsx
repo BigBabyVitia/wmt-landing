@@ -129,7 +129,7 @@ export function TrustStrip() {
                         </p>
                       </div>
                       <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-gray-100 dark:border-white/10 py-6 md:py-0 md:px-8">
-                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight tracking-tight">Итоги: от ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                        <h4 className="text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-3 leading-tight tracking-tight">Итоги: от ИИ-игрушек к&nbsp;ИИ-трансформации</h4>
                         <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                           Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
                         </p>
@@ -172,7 +172,7 @@ export function TrustStrip() {
                           </p>
                         </div>
                         <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-white/15 py-6 md:py-0 md:px-8">
-                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">Итоги: от ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">Итоги: от ИИ-игрушек к&nbsp;ИИ-трансформации</h4>
                           <p className="text-sm text-white/60 leading-relaxed">
                             Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
                           </p>
@@ -195,18 +195,20 @@ export function TrustStrip() {
                 {/* ── Active Variant: B — Banner ── */}
                 <div className="opacity-100 relative"
                 >
-                  <div className="rounded-[2.5rem] overflow-hidden relative group transition-all duration-500 hover:shadow-xl hover:shadow-brand/10">
-                    {/* Full background photo */}
-                    <img
-                      src="/events/iichnica-1.jpg"
-                      alt="ИИчница — конференция WMT AI"
-                      className="w-full h-[320px] md:h-[400px] object-cover object-[center_30%] group-hover:scale-[1.03] transition-transform duration-1000"
-                    />
-                    {/* Gradient overlay from bottom */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/10" />
-                    {/* Content pinned to bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 z-10 p-8 md:p-12">
-                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-end">
+                  <div className="rounded-[2.5rem] overflow-hidden relative group transition-all duration-500 hover:shadow-xl hover:shadow-brand/10 bg-black">
+                    {/* Background photo. On mobile — banner at top. On desktop — full background. */}
+                    <div className="relative md:absolute md:inset-0">
+                      <img
+                        src="/events/iichnica-1.jpg"
+                        alt="ИИчница — конференция WMT AI"
+                        className="block w-full h-[220px] md:h-full md:absolute md:inset-0 object-cover object-[center_30%] group-hover:scale-[1.03] transition-transform duration-1000"
+                      />
+                      {/* Gradient overlay — solid black for bottom 35% (mobile flush with content), softer fade on desktop */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black from-15% via-black/30 to-transparent md:from-black md:from-0% md:via-black/60 md:via-50% md:to-black/10" />
+                    </div>
+                    {/* Content. Mobile: flows below image. Desktop: pinned to bottom of image. */}
+                    <div className="relative z-10 p-6 md:p-12 md:absolute md:bottom-0 md:left-0 md:right-0 md:min-h-[400px] md:flex md:items-end">
+                      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 items-start md:items-end">
                         <div className="lg:col-span-1 text-center md:text-left">
                           <img src="/logos/wmtaichnica.svg" alt="ИИЧНИЦА SHOW" className="h-14 md:h-18 lg:h-20 w-auto mb-4 mx-auto md:mx-0 dark:invert-[0.1] active:scale-95 transition-transform" />
                           <p className="text-sm text-white/70 leading-relaxed font-medium">
@@ -214,7 +216,7 @@ export function TrustStrip() {
                           </p>
                         </div>
                         <div className="lg:col-span-1 text-center md:text-left border-y md:border-y-0 md:border-x border-white/15 py-6 md:py-0 md:px-8">
-                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">Итоги: от ИИ-игрушек к&nbsp;AI-трансформации</h4>
+                          <h4 className="text-xl md:text-2xl font-bold text-white mb-3 leading-tight tracking-tight">Итоги: от ИИ-игрушек к&nbsp;ИИ-трансформации</h4>
                           <p className="text-sm text-white/60 leading-relaxed">
                             Живые подкасты, разборы реальных кейсов внедрения, закрытый нетворкинг и&nbsp;инсайты для C-level.
                           </p>

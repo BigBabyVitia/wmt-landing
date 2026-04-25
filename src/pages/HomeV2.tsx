@@ -153,7 +153,7 @@ const levels = [
     label: "Уровень 1. Управленческий",
     title: "Руководство принимает решение и видит ценность",
     desc: "Три управленческих формата — под разную глубину и задачу. Результат: руководство понимает, зачем ИИ, как внедрять и что запускать первым.",
-    tags: ["Системный ИИ", "ИИ-архитектура бизнеса", "ИИ-марафон для топов"],
+    tags: ["Системный ИИ", "ИИ-архитектура бизнеса", "ИИ-Марафон для топов"],
     link: "/executive",
     linkText: "Выбрать управленческий формат",
   },
@@ -161,7 +161,7 @@ const levels = [
     label: "Уровень 2. Масштабирование",
     title: "Практика расширяется на команды и компанию",
     desc: "Пилоты, команды-чемпионы, корпоративная волна, сборка агентов. ИИ выходит из кабинета руководителя в рабочие процессы.",
-    tags: ["Цифровой каркас", "Мышление 2.0", "ИИ-марафон", "День сборки агентов", "Сборка агентов (n8n + Claude)"],
+    tags: ["Цифровой каркас", "Мышление 2.0", "ИИ-Марафон", "День сборки агентов", "Сборка агентов (n8n + Claude)"],
     link: "/teams",
     linkText: "Подобрать программу для команды",
   },
@@ -169,9 +169,9 @@ const levels = [
     label: "Уровень 3. Личный",
     title: "Личный трек для тех, кто хочет пройти тему глубоко",
     desc: "Двухдневный интенсив — работаем руками с вашей стратегией и конкретными агентами. Часто после этого тема возвращается в компанию на совершенно другом уровне.",
-    tags: ["Личный ИИ"],
+    tags: ["Лидер ИИ"],
     link: "/personal-ai",
-    linkText: "Узнать про личный интенсив",
+    linkText: "Узнать про «Лидер ИИ»",
   },
 ]
 
@@ -220,7 +220,7 @@ function HeroVideo() {
           ИИвизация бизнеса от&nbsp;стратегического решения до&nbsp;масштаба всей компании
         </h1>
         <p className="text-gray-200 text-base sm:text-lg md:text-xl max-w-4xl mt-4 sm:mt-6 md:mt-10 leading-relaxed animate-fade-rise-delay">
-          Инструменты AI-трансформации для первых лиц, руководителей и команд: от стратсессий и обучения до персональной работы и практики внедрения
+          Инструменты ИИ-трансформации для первых лиц, руководителей и команд: от стратсессий и обучения до персональной работы и практики внедрения
         </p>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8 md:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto text-left">
@@ -289,7 +289,7 @@ function HeroWebGL() {
           className="text-gray-200 text-base sm:text-lg md:text-xl max-w-4xl mt-4 sm:mt-6 md:mt-10 leading-relaxed animate-fade-rise-delay"
           style={subShadow ? { textShadow: subShadow } : undefined}
         >
-          Инструменты AI-трансформации для первых лиц, руководителей и команд: от стратсессий и обучения до персональной работы и практики внедрения
+          Инструменты ИИ-трансформации для первых лиц, руководителей и команд: от стратсессий и обучения до персональной работы и практики внедрения
         </p>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto text-left">
@@ -451,7 +451,7 @@ const teaserData = [
     id: "exec-teaser",
     badge: "Для первых лиц и топ-команды",
     title: "Стратегический старт",
-    desc: "На этом шаге AI-трансформация получает управленческий каркас: вместе с руководством мы разбираем лучшие практики, реальные сценарии и задачи компании, чтобы определить оптимальную логику перехода и следующий практический шаг",
+    desc: "На этом шаге ИИ-трансформация получает управленческий каркас: вместе с руководством мы разбираем лучшие практики, реальные сценарии и задачи компании, чтобы определить оптимальную логику перехода и следующий практический шаг",
     mobileDesc: "Управленческий каркас: разбираем лучшие практики и задачи для оптимального перехода.",
     items: [
       {
@@ -461,7 +461,7 @@ const teaserData = [
       },
       {
         title: "Цифровой каркас",
-        desc: "Команда собирает архитектуру AI-перехода и проектирует первые пилоты на своих процессах",
+        desc: "Команда собирает архитектуру ИИ-перехода и проектирует первые пилоты на своих процессах",
         tags: { format: "Офлайн", duration: "3–5 часов", people: "до 30 человек" }
       },
       {
@@ -482,7 +482,7 @@ const teaserData = [
       },
       {
         title: "Корпоративная программа под ваш запрос",
-        desc: "Программа AI-трансформации, собранная под цели, процессы и задачи вашей компании.",
+        desc: "Программа ИИ-трансформации, собранная под цели, процессы и задачи вашей компании.",
         tags: { format: "Онлайн / Офлайн", duration: "По запросу", people: "Под ваш состав" },
         isCorporate: true
       }
@@ -494,32 +494,32 @@ const teaserData = [
     id: "teams-teaser",
     badge: "Для подразделений и команд",
     title: "Практика и масштабирование",
-    desc: "Здесь AI-трансформация переходит в практику: команды учатся на своих задачах, собирают рабочие решения и переводят лучшие из них в процессы, отделы и повседневную работу компании.",
+    desc: "Здесь ИИ-трансформация переходит в практику: команды учатся на своих задачах, собирают рабочие решения и переводят лучшие из них в процессы, отделы и повседневную работу компании.",
     mobileDesc: "Переход к практике: команды учатся на своих задачах и переводят решения в процессы бизнеса.",
     items: [
       {
         title: "Мышление 2.0",
-        desc: "Команда собирает первых агентов на своих задачах и становится ядром AI-трансформации",
-        tags: { format: "Офлайн", duration: "1–1,5 дня / 10 ч", people: "10–30 человек" }
+        desc: "Команда собирает первых агентов на своих задачах и становится ядром ИИ-трансформации",
+        tags: { format: "Офлайн / Онлайн", duration: "1 день / 8 ч", people: "до 20 человек" }
       },
       {
-        title: "ИИ Волна",
-        desc: "Широкий практический формат для компании: от базовых навыков ИИ до первых агентов и рабочих сценариев",
-        tags: { format: "Онлайн", duration: "8 мод / Месяц", people: "Широкая группа" }
+        title: "ИИ-Марафон",
+        desc: "Сквозная задача через 9 модулей: от промптинга и Claude Projects до RAG-агента в n8n и Claude Code",
+        tags: { format: "Онлайн", duration: "9 модулей × 1,5 ч", people: "до 12 человек" }
       },
       {
         title: "Агенты за 1 день",
         desc: "За один день команда собирает рабочего агента и формирует навык сборки",
-        tags: { format: "Офлайн", duration: "1 день / 5 ч", people: "до 50 человек" }
+        tags: { format: "Офлайн", duration: "1 день / 6 ч", people: "до 15 человек" }
       },
       {
-        title: "Мастерская AI-агентов",
-        desc: "Малая группа глубоко разбирает Claude и n8n, собирает агентов под реальные процессы компании",
-        tags: { format: "Онлайн / Офлайн", duration: "4 зан × 1,5 ч", people: "до 6 человек" }
+        title: "Мастерская ИИ-агентов",
+        desc: "Малая группа из одной компании глубоко разбирает n8n, Claude (Code, Cowork, Projects) и OpenClaw, собирает агентов под реальные процессы",
+        tags: { format: "Онлайн", duration: "7 модулей / ~12 ч", people: "до 6 человек" }
       },
       {
         title: "Индивидуальная программа под команду",
-        desc: "Собираем программу AI-трансформации под ваши задачи, команду, процессы и нужный масштаб внедрения.",
+        desc: "Собираем программу ИИ-трансформации под ваши задачи, команду, процессы и нужный масштаб внедрения.",
         tags: { format: "Онлайн / Офлайн", duration: "По запросу", people: "Под ваш состав" },
         isCorporate: true
       }
@@ -544,6 +544,12 @@ const teaserData = [
         tags: { format: "Офлайн / Онлайн", duration: "индивидуально" }
       },
       {
+        title: "Личные ИИ-агенты",
+        desc: "1-на-1 с преподавателем: 7 занятий, ~12 часов практики на ваших задачах. Собираем агентов в n8n, Claude Code и OpenClaw под ваш контекст",
+        tags: { format: "Онлайн / Офлайн", duration: "7 модулей / ~12 ч", people: "1 человек" },
+        isPersonal: true
+      },
+      {
         title: "Персональный трек для руководителя",
         desc: "Полное погружение с собственной стратегией и сборкой агента под ваши задачи. Глубокое изучение проблем и разработка персональной программы внедрения.",
         tags: { format: "Офлайн", duration: "индивидуально" },
@@ -551,7 +557,7 @@ const teaserData = [
       }
     ],
     link: "/personal-ai",
-    linkText: "Узнать про личный ИИ",
+    linkText: "Узнать про «Лидер ИИ»",
   }
 ];
 
@@ -642,15 +648,22 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
 
         {items && items.length > 0 && (
           <div className="w-full">
-            <div className={`grid grid-cols-1 gap-2 md:gap-4 ${personalSteps && items.length === 2 ? "sm:grid-cols-3" : personalSteps ? "sm:grid-cols-2 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
+            <div className={`grid grid-cols-1 gap-2 md:gap-4 ${personalSteps && items.length === 3 ? "sm:grid-cols-2 md:grid-cols-3" : personalSteps && items.length === 2 ? "sm:grid-cols-3" : personalSteps ? "sm:grid-cols-2 lg:grid-cols-2" : "sm:grid-cols-2 lg:grid-cols-3"}`}>
               {items.map((item: any, idx: number) => {
                 const isHighlighted = item.isPersonal || item.isCorporate;
-                
+
+                const isAppleGlow = id === "exec-teaser" && isHighlighted;
+
                 // Custom span logic for the 1/3 + 2/3 layout
                 const isTwoItemPersonal = personalSteps && items.length === 2;
                 const itemSpanClass = isTwoItemPersonal ? (idx === 0 ? "sm:col-span-1" : "sm:col-span-2") : "";
                 
-                const cardClassName = `flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/20 transition-all duration-300 h-full overflow-hidden ${itemSpanClass} ${isHighlighted ? "border-brand/30 bg-white dark:bg-[#181413]" : ""}`;
+                const appleClass = idx === 5 ? "apple-health-glow-card-subtle" : "apple-health-glow-card";
+
+                const cardClassName = isAppleGlow 
+                  ? `flex flex-col ${appleClass} rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card transition-all duration-300 h-full overflow-hidden ${itemSpanClass}`
+                  : `flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/20 transition-all duration-300 h-full overflow-hidden ${itemSpanClass} ${isHighlighted ? "border-brand/30 bg-white dark:bg-[#181413]" : ""}`;
+                
                 const titleClassName = `font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight transition-colors duration-300 ${isHighlighted ? "group-hover/card:text-brand" : ""}`;
 
                 const tagClass = isHighlighted 
@@ -666,7 +679,7 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
 
                 return (
                   <div key={idx} className={cardClassName}>
-                    {isHighlighted && (
+                    {isHighlighted && !isAppleGlow && (
                       <div className="absolute inset-0 z-0 pointer-events-none rounded-[1.5rem] overflow-hidden">
                         {/* 1. Base Background */}
                         <div className="absolute inset-0 bg-white dark:bg-[#0f0e0d]" />
@@ -762,10 +775,10 @@ function CombinedLevelsViewer() {
       <div className="px-4 sm:px-6 md:px-12 w-full max-w-7xl mx-auto flex flex-col items-center">
         <div className={`w-full text-center xl:text-left mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-3xl sm:text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 md:mb-6">
-            Траектория эффективной AI-трансформации компании
+            Траектория эффективной ИИ-трансформации компании
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 max-w-5xl mx-auto xl:mx-0 leading-relaxed">
-            AI-трансформация работает, когда у неё есть правильная архитектура перехода: стратегический слой задаёт каркас, а командный переводит его в практику и масштабирование.
+            ИИ-трансформация работает, когда у неё есть правильная архитектура перехода: стратегический слой задаёт каркас, а командный переводит его в практику и масштабирование.
           </p>
           
         </div>
@@ -799,8 +812,8 @@ function TransformationVectors() {
       color: "text-gray-900 dark:text-white"
     },
     { 
-      num: "03", 
-      title: "Личный ИИ", 
+      num: "03",
+      title: "Лидер ИИ",
       desc: "Индивидуальный трек",
       color: "text-gray-900 dark:text-white"
     }
