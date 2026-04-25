@@ -652,17 +652,11 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
               {items.map((item: any, idx: number) => {
                 const isHighlighted = item.isPersonal || item.isCorporate;
 
-                const isAppleGlow = id === "exec-teaser" && isHighlighted;
-
                 // Custom span logic for the 1/3 + 2/3 layout
                 const isTwoItemPersonal = personalSteps && items.length === 2;
                 const itemSpanClass = isTwoItemPersonal ? (idx === 0 ? "sm:col-span-1" : "sm:col-span-2") : "";
-                
-                const appleClass = idx === 5 ? "apple-health-glow-card-subtle" : "apple-health-glow-card";
 
-                const cardClassName = isAppleGlow 
-                  ? `flex flex-col ${appleClass} rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card transition-all duration-300 h-full overflow-hidden ${itemSpanClass}`
-                  : `flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/20 transition-all duration-300 h-full overflow-hidden ${itemSpanClass} ${isHighlighted ? "border-brand/30 bg-white dark:bg-[#181413]" : ""}`;
+                const cardClassName = `flex flex-col bg-gray-50/80 dark:bg-white/[0.04] border border-gray-100 dark:border-white/[0.06] rounded-[1.5rem] p-5 sm:p-6 md:p-7 content-start relative group/card hover:border-brand/20 transition-all duration-300 h-full overflow-hidden ${itemSpanClass} ${isHighlighted ? "border-brand/30 bg-white dark:bg-[#181413]" : ""}`;
                 
                 const titleClassName = `font-bold text-gray-900 dark:text-white text-base sm:text-lg lg:text-xl leading-tight transition-colors duration-300 ${isHighlighted ? "group-hover/card:text-brand" : ""}`;
 
@@ -679,7 +673,7 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
 
                 return (
                   <div key={idx} className={cardClassName}>
-                    {isHighlighted && !isAppleGlow && (
+                    {isHighlighted && (
                       <div className="absolute inset-0 z-0 pointer-events-none rounded-[1.5rem] overflow-hidden">
                         {/* 1. Base Background */}
                         <div className="absolute inset-0 bg-white dark:bg-[#0f0e0d]" />
