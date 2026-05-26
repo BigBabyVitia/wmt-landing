@@ -224,10 +224,10 @@ function HeroVideo() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-6 sm:mt-8 md:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto text-left">
-          <a href="#directions" className="bg-black text-white border border-white/10 rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-semibold hover:bg-zinc-900 transition-all duration-300 shadow-xl hover:-translate-y-0.5 inline-block">
+          <a href="#directions" className="bg-black text-white border border-white/10 rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-semibold hover:bg-zinc-900 transition-all duration-300 shadow-xl hover:-translate-y-0.5 inline-block btn-optical-hero">
             Выбрать программу
           </a>
-          <a href="#contact" className="bg-white text-black rounded-full text-center px-6 py-3.5 sm:px-10 sm:py-4 text-sm sm:text-base font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
+          <a href="#contact" className="bg-white text-black rounded-full text-center px-6 py-3.5 sm:px-10 sm:py-4 text-sm sm:text-base font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block btn-optical-hero">
             Обсудить задачу
           </a>
         </div>
@@ -293,10 +293,10 @@ function HeroWebGL() {
         </p>
 
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-8 sm:mt-12 animate-fade-rise-delay-2 w-full max-w-xs sm:max-w-none mx-auto text-left">
-          <a href="#directions" className="bg-black text-white border border-white/10 rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-semibold hover:bg-zinc-900 transition-all duration-300 shadow-xl hover:-translate-y-0.5 inline-block">
+          <a href="#directions" className="bg-black text-white border border-white/10 rounded-full text-center px-6 py-3.5 sm:px-12 sm:py-4 text-sm sm:text-base font-semibold hover:bg-zinc-900 transition-all duration-300 shadow-xl hover:-translate-y-0.5 inline-block btn-optical-hero">
             Выбрать программу
           </a>
-          <a href="#contact" className="bg-white text-black rounded-full text-center px-6 py-3.5 sm:px-10 sm:py-4 text-sm sm:text-base font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block">
+          <a href="#contact" className="bg-white text-black rounded-full text-center px-6 py-3.5 sm:px-10 sm:py-4 text-sm sm:text-base font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5 inline-block btn-optical-hero">
             Обсудить задачу
           </a>
         </div>
@@ -751,7 +751,7 @@ function TeaserCard({ id, title, desc, mobileDesc, badge, items, personalSteps, 
         <div className="mt-1 sm:mt-2 text-center xl:text-left w-full sm:w-auto">
           <Link
             to={link}
-            className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-brand text-white hover:bg-[#e64627] rounded-full px-6 py-3 sm:px-8 sm:py-3.5 sm:pt-[14px] sm:pb-[18px] font-medium transition-colors duration-300 text-xs sm:text-base hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center w-full sm:w-auto gap-2 bg-brand text-white hover:bg-[#e64627] rounded-full px-6 py-3 sm:px-8 sm:py-3.5 sm:pt-[14px] sm:pb-[18px] font-medium transition-colors duration-300 text-xs sm:text-base hover:-translate-y-0.5 btn-optical-md"
           >
             {linkText} <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-1 mt-0.5" />
           </Link>
@@ -842,4 +842,3 @@ function TransformationVectors() {
     </div>
   )
 }
-

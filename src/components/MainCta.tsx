@@ -134,7 +134,7 @@ export function MainCta() {
                 </div>
                 <button
                   disabled={status === "loading"}
-                  className="w-full bg-brand text-white font-semibold py-5 mt-8 rounded-full hover:bg-[#e64627] hover:scale-[1.02] transition-all text-xl tracking-wide disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                  className="w-full bg-brand text-white font-semibold py-5 mt-8 rounded-full hover:bg-[#e64627] hover:scale-[1.02] transition-all text-xl tracking-wide disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 btn-optical-xl"
                 >
                   {status === "loading" ? (
                     <>

@@ -67,7 +67,7 @@ export function FreePlatform() {
             href="https://transformation.wmtunnel.ru"
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-brand shadow-lg shadow-brand/50 text-white hover:bg-[#e64627] hover:-translate-y-0.5 transition-all duration-300 rounded-full px-10 py-3.5 sm:px-12 sm:py-4 font-medium text-base sm:text-lg inline-block"
+            className="bg-brand shadow-lg shadow-brand/50 text-white hover:bg-[#e64627] hover:-translate-y-0.5 transition-all duration-300 rounded-full px-10 py-3.5 sm:px-12 sm:py-4 font-medium text-base sm:text-lg inline-block btn-optical-hero"
           >
             Получить доступ
           </a>

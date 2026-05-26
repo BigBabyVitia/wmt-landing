@@ -109,7 +109,7 @@ export function FirstPilots() {
                 <div className="prose prose-lg text-gray-700 dark:text-gray-200 mb-10">
                     <p>Финальная стоимость зависит от количества участников, количества процессов и глубины адаптации под вашу отрасль.</p>
                 </div>
-                <a href="#contact" className="inline-block bg-brand text-white rounded-full px-10 py-4 font-medium hover:bg-[#e64627] transition-colors">
+                <a href="#contact" className="inline-block bg-brand text-white rounded-full px-10 py-4 font-medium hover:bg-[#e64627] transition-colors btn-optical-lg">
                     Обсудить бюджет
                 </a>
             </div>

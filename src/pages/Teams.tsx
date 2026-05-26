@@ -179,11 +179,11 @@ export function Teams() {
         tags={statusTags}
         buttons={
           <>
-            <a href="#programs" className="inline-flex items-center gap-2 bg-white text-gray-900 rounded-full px-8 py-4 font-semibold hover:bg-gray-100 transition-all duration-300 shadow-[0_4px_24px_rgba(255,255,255,0.2)] hover:shadow-[0_4px_32px_rgba(255,255,255,0.4)] hover:-translate-y-0.5">
-              К программам для команд <ArrowRight className="w-5 h-5" />
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.2)] hover:-translate-y-1 transform-gpu text-sm md:text-base btn-optical-hero">
+              Обсудить задачу <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
             </a>
-            <a href="#contact" className="inline-flex items-center gap-2 bg-transparent text-white border border-white/20 rounded-full px-8 py-4 font-semibold hover:bg-white/5 transition-all duration-300">
-              Обсудить задачу
+            <a href="#programs" className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/20 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-white/5 transition-all duration-300 text-sm md:text-base btn-optical-hero">
+              К программам для команд
             </a>
           </>
         }
@@ -220,7 +220,7 @@ function ProgramsOverviewSection() {
   };
 
   return (
-    <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden">
+    <section id="programs" ref={ref} className="scroll-mt-24 py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-10 md:mb-16 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Линейка программ для команд</h2>
@@ -342,7 +342,7 @@ function TeamProgramSection({ program: p, index }: any) {
             </div>
 
             <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 shrink-0 self-start md:self-end">
-              <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 py-3.5 md:py-3 font-bold hover:bg-[#e64627] hover:scale-[1.02] shadow-xl shadow-brand/20 transition-all duration-300 text-sm md:text-base">
+              <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 py-3.5 md:py-3 font-bold hover:bg-[#e64627] hover:scale-[1.02] shadow-xl shadow-brand/20 transition-all duration-300 text-sm md:text-base btn-optical-sm">
                 Обсудить задачу <ArrowRight className="w-4 h-4 ml-1" />
               </a>
             </div>

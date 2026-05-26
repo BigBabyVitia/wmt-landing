@@ -46,9 +46,9 @@ export function AllFormats() {
         description="Здесь собраны все программы WMT AI — от первого хода генерального директора до корпоративной волны на сотни человек. Выберите блок по своей задаче."
         buttons={
           <div className="grid grid-cols-2 sm:flex sm:flex-row gap-3">
-            <a href="#exec" className="inline-flex items-center justify-center gap-2 bg-brand text-white hover:bg-[#e64627] rounded-xl px-6 py-2.5 text-xs font-bold transition-all shadow-lg shadow-brand/20 uppercase tracking-wider">РУКОВОДИТЕЛЯМ</a>
-            <a href="#teams" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-gray-900 dark:text-white rounded-xl px-6 py-2.5 text-xs font-bold transition-all border border-gray-200 dark:border-white/20 uppercase tracking-wider">КОМАНДАМ</a>
-            <a href="#builder" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-gray-900 dark:text-white rounded-xl px-6 py-2.5 text-xs font-bold transition-all border border-gray-200 dark:border-white/20 uppercase tracking-wider">СБОРЩИКАМ</a>
+            <a href="#exec" className="inline-flex items-center justify-center gap-2 bg-brand text-white hover:bg-[#e64627] rounded-xl px-6 py-2.5 text-xs font-bold transition-all shadow-lg shadow-brand/20 uppercase tracking-wider btn-optical-xs">РУКОВОДИТЕЛЯМ</a>
+            <a href="#teams" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-gray-900 dark:text-white rounded-xl px-6 py-2.5 text-xs font-bold transition-all border border-gray-200 dark:border-white/20 uppercase tracking-wider btn-optical-xs">КОМАНДАМ</a>
+            <a href="#builder" className="inline-flex items-center justify-center gap-2 bg-white/10 dark:bg-white/10 hover:bg-white/20 text-gray-900 dark:text-white rounded-xl px-6 py-2.5 text-xs font-bold transition-all border border-gray-200 dark:border-white/20 uppercase tracking-wider btn-optical-xs">СБОРЩИКАМ</a>
           </div>
         }
       />
@@ -247,7 +247,7 @@ function TrustSignal() {
           <p className="text-lg md:text-xl text-gray-500 dark:text-white/60 font-medium mb-10 relative z-10 leading-relaxed">Эта страница работает как карта. Если нужны доказательства экспертизы — они собраны отдельно.</p>
           <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-12 relative z-10">
             <p className="text-gray-600 dark:text-white/50 leading-relaxed text-base md:text-lg font-medium">На странице доказательств: кто ведёт программы, 50+ клиентов, академическое признание от Global Academic Standards, публикации и подкаст. Всё проверяемое.</p>
-            <Link to="/proof" className="inline-flex items-center justify-center md:justify-start gap-3 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-xl shadow-brand/20 hover:-translate-y-0.5">
+            <Link to="/proof" className="inline-flex items-center justify-center md:justify-start gap-3 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-xl shadow-brand/20 hover:-translate-y-0.5 btn-optical-lg">
               Доказательства экспертизы <ArrowRight className="w-5 h-5 ml-1" />
             </Link>
           </div>

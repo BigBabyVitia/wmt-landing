@@ -108,7 +108,7 @@ export function ContactForm({ quoteSlot }: ContactFormProps) {
                 </div>
                 <button
                   disabled={status === "loading"}
-                  className="w-full bg-brand text-white font-semibold py-4 rounded-xl hover:bg-[#e64627] transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+                  className="w-full bg-brand text-white font-semibold py-4 rounded-xl hover:bg-[#e64627] transition-colors disabled:opacity-50 flex items-center justify-center gap-2 btn-optical-lg"
                 >
                   {status === "loading" ? (
                     <>

@@ -108,7 +108,7 @@ export function BuilderDay() {
           </>
         }
         buttons={
-          <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-[0_8px_32px_rgba(255,83,49,0.25)] hover:-translate-y-1 transform-gpu">
+          <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-10 py-4 font-bold hover:bg-[#e64627] transition-all duration-300 shadow-[0_8px_32px_rgba(255,83,49,0.25)] hover:-translate-y-1 transform-gpu btn-optical-lg">
             Обсудить программу <ArrowRight className="w-5 h-5 ml-1" />
           </a>
         }

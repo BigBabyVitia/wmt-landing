@@ -159,11 +159,11 @@ export function PersonalAI() {
         tags={statusTags}
         buttons={
           <>
-            <a href="#programs" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.2)] hover:-translate-y-1 transform-gpu text-sm md:text-base">
-              К форматам <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
+            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.2)] hover:-translate-y-1 transform-gpu text-sm md:text-base btn-optical-hero">
+              Обсудить задачу <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
             </a>
-            <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/20 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-white/5 transition-all duration-300 text-sm md:text-base">
-              Обсудить задачу
+            <a href="#programs" className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/20 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-white/5 transition-all duration-300 text-sm md:text-base btn-optical-hero">
+              К форматам
             </a>
           </>
         }
@@ -203,7 +203,7 @@ function ProgramsOverviewSection() {
   };
 
   return (
-    <section id="programs" ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden">
+    <section id="programs" ref={ref} className="scroll-mt-24 py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className={`mb-10 md:mb-16 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <h2 className="text-2xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4 leading-tight">Три персональных формата</h2>
@@ -315,7 +315,7 @@ function PersonalProgramSection({ program: p, index }: any) {
             </div>
 
             <div className="flex flex-col md:flex-row items-stretch md:items-center gap-3 shrink-0 self-start md:self-end">
-              <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 py-3.5 md:py-3 font-bold hover:bg-[#e64627] hover:scale-[1.02] shadow-xl shadow-brand/20 transition-all duration-300 text-sm md:text-base">
+              <a href="#contact" className="inline-flex items-center justify-center gap-2 bg-brand text-white rounded-full px-8 py-3.5 md:py-3 font-bold hover:bg-[#e64627] hover:scale-[1.02] shadow-xl shadow-brand/20 transition-all duration-300 text-sm md:text-base btn-optical-sm">
                 Обсудить задачу <ArrowRight className="w-4 h-4 ml-1" />
               </a>
             </div>
@@ -481,7 +481,7 @@ function AvailabilitySection() {
                </p>
 
                <div className="flex flex-col sm:flex-row gap-4">
-                  <a href="#contact" className="relative group/btn inline-flex items-center justify-center gap-2 bg-brand text-white rounded-2xl px-10 py-5 font-bold hover:bg-[#fb4119] transition-all duration-300 shadow-xl shadow-brand/20 overflow-hidden whitespace-nowrap">
+                  <a href="#contact" className="relative group/btn inline-flex items-center justify-center gap-2 bg-brand text-white rounded-2xl px-10 py-5 font-bold hover:bg-[#fb4119] transition-all duration-300 shadow-xl shadow-brand/20 overflow-hidden whitespace-nowrap btn-optical-xl">
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover/btn:animate-[shimmer_2s_infinite]" />
                     Обсудить ваш проект
                   </a>
@@ -526,12 +526,12 @@ function BridgeSection() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/executive"
-                className="inline-flex items-center gap-3 bg-brand text-white rounded-full px-8 md:px-10 py-4 font-bold transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-brand/20 text-sm md:text-base justify-center"
+                className="inline-flex items-center gap-3 bg-brand text-white rounded-full px-8 md:px-10 py-4 font-bold transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl shadow-brand/20 text-sm md:text-base justify-center btn-optical-lg"
               >
                 Для руководителей <ArrowRight className="w-5 h-5 ml-1" />
               </Link>
               <Link to="/teams"
-                className="inline-flex items-center gap-3 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white bg-gray-50 dark:bg-white/5 rounded-full px-8 md:px-10 py-4 font-bold hover:border-brand/30 transition-all duration-300 text-sm md:text-base justify-center"
+                className="inline-flex items-center gap-3 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white bg-gray-50 dark:bg-white/5 rounded-full px-8 md:px-10 py-4 font-bold hover:border-brand/30 transition-all duration-300 text-sm md:text-base justify-center btn-optical-lg"
               >
                 Для команд <ArrowRight className="w-5 h-5 ml-1" />
               </Link>

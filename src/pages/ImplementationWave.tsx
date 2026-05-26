@@ -68,7 +68,7 @@ export function ImplementationWave() {
                 <div className="prose prose-lg text-gray-700 dark:text-gray-200 mb-10">
                     <p>Включены 10 недель сопровождения, рейтинги геймификации, проверки заданий, а также адаптация под корпоративные политики безопасности.</p>
                 </div>
-                <a href="#contact" className="inline-block bg-brand text-white rounded-full px-10 py-4 font-medium hover:bg-[#e64627] transition-colors">
+                <a href="#contact" className="inline-block bg-brand text-white rounded-full px-10 py-4 font-medium hover:bg-[#e64627] transition-colors btn-optical-lg">
                     Обсудить запуск марафона
                 </a>
             </div>

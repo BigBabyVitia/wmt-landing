@@ -133,7 +133,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
               href="https://transformation.wmtunnel.ru"
               target="_blank"
               rel="noopener noreferrer"
-              className={`rounded-full px-6 pt-[11px] pb-[9px] text-sm font-medium transition-all duration-300 hover:scale-[1.03] hidden md:inline-flex items-center justify-center ${
+              className={`rounded-full h-10 px-6 text-sm leading-none font-medium transition-all duration-300 hover:scale-[1.03] hidden md:inline-flex items-center justify-center btn-optical-nav ${
                 isDark
                   ? isDarkTheme
                     ? "bg-brand text-white hover:bg-[#e64627]"
@@ -194,7 +194,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
               href="https://transformation.wmtunnel.ru"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-brand text-white rounded-full px-8 pt-[17px] pb-[15px] font-medium text-lg mt-4 inline-flex items-center justify-center"
+              className="bg-brand text-white rounded-full h-14 px-8 leading-none font-medium text-lg mt-4 inline-flex items-center justify-center btn-optical-nav"
               onClick={() => setMobileOpen(false)}
             >
               Начать бесплатно

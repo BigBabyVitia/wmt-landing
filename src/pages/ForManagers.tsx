@@ -72,7 +72,7 @@ export function ForManagers() {
           </div>
           
           <div className="mt-16 text-center">
-            <a href="#contact" className="inline-block bg-brand text-white rounded-full px-10 py-4 font-medium hover:bg-[#e64627] transition-colors text-lg">
+            <a href="#contact" className="inline-block bg-brand text-white rounded-full px-10 py-4 font-medium hover:bg-[#e64627] transition-colors text-lg btn-optical-lg">
               Обсудить задачу и адаптацию кейсов
             </a>
           </div>
@@ -144,7 +144,7 @@ export function ForManagers() {
                     <span className="text-sm font-bold text-gray-900 dark:text-white">от 350 тыс. руб.</span>
                   </div>
                 </div>
-                <a href="#contact" className="inline-flex w-full items-center justify-center bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-2xl px-8 py-4 font-bold hover:bg-gray-200 dark:hover:bg-white/10 transition-all">
+                <a href="#contact" className="inline-flex w-full items-center justify-center bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-2xl px-8 py-4 font-bold hover:bg-gray-200 dark:hover:bg-white/10 transition-all btn-optical-lg">
                   Забронировать дату
                 </a>
               </div>
@@ -174,7 +174,7 @@ export function ForManagers() {
                     <span className="text-sm font-bold text-gray-900 dark:text-white">от 900 тыс. руб.</span>
                   </div>
                 </div>
-                <a href="#contact" className="inline-flex w-full items-center justify-center bg-brand text-white rounded-2xl px-8 py-4 font-bold hover:bg-[#fb4119] transition-all shadow-xl shadow-brand/20">
+                <a href="#contact" className="inline-flex w-full items-center justify-center bg-brand text-white rounded-2xl px-8 py-4 font-bold hover:bg-[#fb4119] transition-all shadow-xl shadow-brand/20 btn-optical-lg">
                   Обсудить архитектуру
                 </a>
               </div>
@@ -332,4 +332,3 @@ function DigitalSkeletonSection() {
     </section>
   )
 }
-

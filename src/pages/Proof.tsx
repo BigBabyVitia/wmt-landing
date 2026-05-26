@@ -78,10 +78,10 @@ export function Proof() {
         tagsTitle="Главные аргументы доверия:"
         buttons={
           <>
-            <a href="#founder" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.2)] hover:-translate-y-1 transform-gpu text-sm md:text-base">
+            <a href="#founder" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.2)] hover:-translate-y-1 transform-gpu text-sm md:text-base btn-optical-hero">
               Основатель и команда <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
             </a>
-            <a href="#media" className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/20 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-white/5 transition-all duration-300 text-sm md:text-base">
+            <a href="#media" className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/20 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-white/5 transition-all duration-300 text-sm md:text-base btn-optical-hero">
               Публикации и СМИ
             </a>
           </>
@@ -274,7 +274,7 @@ function IichnicaSection() {
                 <p className="text-lg md:text-xl text-gray-600 dark:text-white/60 mb-10 leading-relaxed font-medium">
                   Собственное масштабное шоу WMT AI, которое мы проводим дважды в год. Живые подкасты, честные разборы кейсов и закрытый нетворкинг для C-level.
                 </p>
-                <a href="https://wmtaichnica.ru/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-brand text-white rounded-full px-10 py-5 font-bold hover:bg-[#fb4119] transition-all duration-300 shadow-xl shadow-brand/20">
+                <a href="https://wmtaichnica.ru/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-brand text-white rounded-full px-10 py-5 font-bold hover:bg-[#fb4119] transition-all duration-300 shadow-xl shadow-brand/20 btn-optical-xl">
                   Посмотреть как это было <ArrowRight className="w-5 h-5" />
                 </a>
               </div>

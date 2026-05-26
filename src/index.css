@@ -113,6 +113,41 @@
     background-color: #ff5331;
   }
 
+  .btn-optical-nav {
+    padding-top: 1px !important;
+    padding-bottom: 3px !important;
+  }
+  .btn-optical-xs {
+    padding-top: 0.625rem !important;
+    padding-bottom: calc(0.625rem + 2px) !important;
+  }
+  .btn-optical-sm {
+    padding-top: 0.75rem !important;
+    padding-bottom: calc(0.75rem + 2px) !important;
+  }
+  .btn-optical-md {
+    padding-top: 0.875rem !important;
+    padding-bottom: calc(0.875rem + 2px) !important;
+  }
+  .btn-optical-lg {
+    padding-top: 1rem !important;
+    padding-bottom: calc(1rem + 2px) !important;
+  }
+  .btn-optical-xl {
+    padding-top: 1.25rem !important;
+    padding-bottom: calc(1.25rem + 2px) !important;
+  }
+  .btn-optical-hero {
+    padding-top: 0.875rem !important;
+    padding-bottom: calc(0.875rem + 2px) !important;
+  }
+  @media (min-width: 640px) {
+    .btn-optical-hero {
+      padding-top: 1rem !important;
+      padding-bottom: calc(1rem + 2px) !important;
+    }
+  }
+
   @keyframes fade-rise {
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
