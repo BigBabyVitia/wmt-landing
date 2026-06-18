@@ -19,6 +19,9 @@ import { AllFormats } from "./pages/AllFormats"
 import { BuilderDay } from "./pages/BuilderDay"
 import { Proof } from "./pages/Proof"
 
+/* V3 — new 4-directions structure */
+import { DirectionPage } from "./pages/DirectionPage"
+
 /* Shared pages */
 import { Privacy } from "./pages/Privacy"
 import { Cookies } from "./pages/Cookies"
@@ -45,10 +48,16 @@ function App() {
         <main className="min-h-screen text-gray-900 dark:text-gray-100 bg-background selection:bg-brand selection:text-white flex flex-col transition-colors duration-300">
           <div className="flex-1">
             <Routes>
-              {/* Home — version switch */}
+              {/* Home — version switch (new = 4-directions hub) */}
               <Route path="/" element={<HomePage />} />
 
-              {/* V2 format pages */}
+              {/* V3 — 4 direction pages */}
+              <Route path="/start-leaders" element={<DirectionPage slug="start-leaders" />} />
+              <Route path="/team-basics" element={<DirectionPage slug="team-basics" />} />
+              <Route path="/agents-automation" element={<DirectionPage slug="agents-automation" />} />
+              <Route path="/process-projects" element={<DirectionPage slug="process-projects" />} />
+
+              {/* V2 pages — kept reachable for reference during the rebuild */}
               <Route path="/executive" element={<Executive />} />
               <Route path="/teams" element={<Teams />} />
               <Route path="/personal-ai" element={<PersonalAI />} />

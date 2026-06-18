@@ -156,6 +156,15 @@
   .animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
   .animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
 
+  /* Decorative level-icon strokes: drawn in by default (the inline dashoffset
+     hides them otherwise), with a subtle re-draw when the card is hovered. */
+  .format-svg-path { stroke-dashoffset: 0 !important; transition: stroke-dashoffset 0.7s ease; }
+  .format-active .format-svg-path { animation: format-draw 0.8s ease forwards; }
+  @keyframes format-draw {
+    from { stroke-dashoffset: var(--fmt-dash, 360); }
+    to { stroke-dashoffset: 0; }
+  }
+
   @keyframes text-glow {
     0% { background-position: 0% center; }
     50% { background-position: 100% center; }
@@ -180,4 +189,86 @@
     text-fill-color: transparent;
     animation: text-shimmer 8s ease-in-out infinite;
   }
+
+  /* Эффект свечения Apple Watch / Health App */
+  .apple-health-glow-card,
+  .apple-health-glow-card-subtle {
+    border-radius: 1.5rem !important; 
+    overflow: hidden !important; 
+    transition: all 0.5s ease !important;
+  }
+
+  /* --- LIGHT THEME (default) --- */
+  .apple-health-glow-card {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(255, 83, 49, 0.15) !important;
+    background-image: radial-gradient(95% 85% at 50% 35%, 
+      #ffffff 60%, 
+      rgba(255, 83, 49, 0.08) 85%, 
+      rgba(255, 83, 49, 0.18) 100%
+    ) !important;
+    box-shadow: 
+      inset 0 -10px 25px -5px rgba(255, 83, 49, 0.12),  
+      inset 0 -35px 50px -15px rgba(255, 83, 49, 0.06),  
+      inset 0 0 12px 0px rgba(255, 83, 49, 0.15),
+      0 10px 30px rgba(0, 0, 0, 0.03) !important;
+  }
+
+  .apple-health-glow-card-subtle {
+    background-color: #ffffff !important;
+    border: 1px solid rgba(255, 83, 49, 0.1) !important;
+    background-image: radial-gradient(95% 85% at 50% 35%, 
+      #ffffff 70%, 
+      rgba(255, 83, 49, 0.04) 90%, 
+      rgba(255, 83, 49, 0.1) 100%
+    ) !important;
+    box-shadow: 
+      inset 0 -10px 25px -5px rgba(255, 83, 49, 0.06),  
+      inset 0 -35px 50px -15px rgba(255, 83, 49, 0.03),  
+      inset 0 0 12px 0px rgba(255, 83, 49, 0.08),
+      0 10px 20px rgba(0, 0, 0, 0.02) !important;
+  }
+
+  /* Text & Tags for Light Theme */
+  .apple-health-glow-card h5, .apple-health-glow-card-subtle h5 { color: #111827 !important; }
+  .apple-health-glow-card p, .apple-health-glow-card-subtle p { color: #4b5563 !important; }
+  .apple-health-glow-card .text-brand, .apple-health-glow-card-subtle .text-brand { color: #ff5331 !important; }
+  .apple-health-glow-card [class*="border-brand"], .apple-health-glow-card-subtle [class*="border-brand"] { border-color: rgba(255, 83, 49, 0.25) !important; }
+  .apple-health-glow-card svg, .apple-health-glow-card-subtle svg { color: #ff5331 !important; }
+
+  /* --- DARK THEME OVERRIDES --- */
+  .dark .apple-health-glow-card {
+    background-color: #000 !important;
+    border: none !important;
+    background-image: radial-gradient(95% 85% at 50% 35%, 
+      #000000 50%, 
+      rgba(160, 25, 10, 0.8) 85%, 
+      rgba(230, 60, 20, 0.95) 100%
+    ) !important;
+    box-shadow: 
+      inset 0 -10px 25px -5px rgba(250, 100, 40, 0.9),  
+      inset 0 -35px 50px -15px rgba(220, 40, 15, 0.9),  
+      inset 0 0 12px 0px rgba(255, 80, 30, 0.3) !important;
+  }
+
+  .dark .apple-health-glow-card-subtle {
+    background-color: #000 !important;
+    border: none !important;
+    background-image: radial-gradient(95% 85% at 50% 35%, 
+      #000000 55%, 
+      rgba(160, 25, 10, 0.4) 85%, 
+      rgba(230, 60, 20, 0.5) 100%
+    ) !important;
+    box-shadow: 
+      inset 0 -10px 25px -5px rgba(250, 100, 40, 0.4),  
+      inset 0 -35px 50px -15px rgba(220, 40, 15, 0.4),  
+      inset 0 0 12px 0px rgba(255, 80, 30, 0.2) !important;
+  }
+
+  /* Dark Theme Text & Tags */
+  .dark .apple-health-glow-card h5, .dark .apple-health-glow-card-subtle h5 { color: #fff !important; }
+  .dark .apple-health-glow-card p, .dark .apple-health-glow-card-subtle p { color: rgba(255, 255, 255, 0.7) !important; }
+  .dark .apple-health-glow-card .text-brand, .dark .apple-health-glow-card-subtle .text-brand { color: rgba(255, 255, 255, 0.6) !important; }
+  .dark .apple-health-glow-card [class*="border-brand"], .dark .apple-health-glow-card-subtle [class*="border-brand"] { border-color: rgba(255, 255, 255, 0.1) !important; }
+  .dark .apple-health-glow-card svg, .dark .apple-health-glow-card-subtle svg { color: rgba(255, 255, 255, 0.6) !important; }
 }

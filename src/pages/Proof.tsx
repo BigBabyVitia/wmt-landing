@@ -384,11 +384,12 @@ function NavBackSection() {
           <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 tracking-tight text-center">Готовы к следующему шагу?</h2>
           <p className="text-lg md:text-xl text-gray-500 dark:text-white/40 mb-12 max-w-2xl mx-auto font-medium text-center">Выберите формат обучения или трансформации, который подходит под ваши задачи сегодня.</p>
           
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "Для руководителей", to: "/executive", desc: "Стратегия и архитектура" },
-              { title: "Для команд", to: "/teams", desc: "Практика и внедрение" },
-              { title: "Лидер ИИ", to: "/personal-ai", desc: "Глубокая работа 1-на-1" }
+              { title: "Руководителям", to: "/start-leaders", desc: "Где ИИ окупится — приоритеты" },
+              { title: "Команде", to: "/team-basics", desc: "Базовый навык и первые агенты" },
+              { title: "Агенты и автоматизация", to: "/agents-automation", desc: "Сборка агентов под процессы" },
+              { title: "Под процессы", to: "/process-projects", desc: "Пилоты и план перехода" }
             ].map((link, i) => (
               <Link 
                 key={i} 

@@ -9,10 +9,10 @@ interface NavbarV2Props {
 }
 
 const newLinks = [
-  { label: "Главная", to: "/" },
-  { label: "Для руководителей", to: "/executive" },
-  { label: "Для команд", to: "/teams" },
-  { label: "Лидер ИИ", to: "/personal-ai" },
+  { label: "Руководителям", to: "/start-leaders" },
+  { label: "Команде", to: "/team-basics" },
+  { label: "Агенты и автоматизация", to: "/agents-automation" },
+  { label: "Под процессы", to: "/process-projects" },
 ]
 
 const classicLinks = [
@@ -128,11 +128,9 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
               {isDarkTheme ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
             </button>
 
-            {/* Login button */}
+            {/* Primary CTA */}
             <a
-              href="https://transformation.wmtunnel.ru"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className={`rounded-full h-10 px-6 text-sm leading-none font-medium transition-all duration-300 hover:scale-[1.03] hidden md:inline-flex items-center justify-center btn-optical-nav ${
                 isDark
                   ? isDarkTheme
@@ -141,7 +139,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
                   : "liquid-glass text-white"
               }`}
             >
-              Начать бесплатно
+              Обсудить задачу
             </a>
 
             {/* Mobile menu button */}
@@ -191,13 +189,11 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
             </div>
 
             <a
-              href="https://transformation.wmtunnel.ru"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="bg-brand text-white rounded-full h-14 px-8 leading-none font-medium text-lg mt-4 inline-flex items-center justify-center btn-optical-nav"
               onClick={() => setMobileOpen(false)}
             >
-              Начать бесплатно
+              Обсудить задачу
             </a>
           </div>
         </div>
