@@ -241,7 +241,7 @@ function TrustSignal() {
   return (
     <section ref={ref} className="py-16 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
-        <div className={`relative bg-gray-50 dark:bg-white/[0.02] backdrop-blur-xl rounded-[2.5rem] p-10 md:p-20 border border-gray-200 dark:border-white/[0.08] overflow-hidden transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`relative bg-gray-50 dark:bg-white/[0.02] backdrop-blur-xl rounded-[1.5rem] p-10 md:p-20 border border-gray-200 dark:border-white/[0.08] overflow-hidden transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="absolute top-0 right-1/4 -translate-y-1/2 w-64 h-64 bg-brand/5 blur-[80px] pointer-events-none rounded-full" />
           <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white mb-6 relative z-10 leading-tight">Нужно переслать это руководству?</h2>
           <p className="text-lg md:text-xl text-gray-500 dark:text-white/60 font-medium mb-10 relative z-10 leading-relaxed">Эта страница работает как карта. Если нужны доказательства экспертизы — они собраны отдельно.</p>

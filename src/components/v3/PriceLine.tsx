@@ -15,7 +15,7 @@ export function PriceLine({ price }: { price: string }) {
 
   return (
     <div
-      className="group relative flex h-full flex-col overflow-hidden rounded-[2rem]
+      className="group relative flex h-full flex-col overflow-hidden rounded-[1.25rem]
                  border border-[#ff5331]/30
                  bg-[#fff3ee] dark:bg-[#1b120e]
                  p-7 sm:p-9 md:p-10

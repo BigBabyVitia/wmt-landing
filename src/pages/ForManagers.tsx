@@ -121,7 +121,7 @@ export function ForManagers() {
             
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
               {/* Option 1 */}
-              <div className="bg-white dark:bg-[hsl(220,20%,7%)] rounded-[2.5rem] border border-gray-200 dark:border-white/10 p-8 md:p-12 transition-all hover:border-brand/30">
+              <div className="bg-white dark:bg-[hsl(220,20%,7%)] rounded-[1.5rem] border border-gray-200 dark:border-white/10 p-8 md:p-12 transition-all hover:border-brand/30">
                 <div className="flex justify-between items-start mb-10">
                    <div className="p-3 bg-brand/10 border border-brand/20 rounded-2xl">
                     <Target className="w-8 h-8 text-brand" />
@@ -150,7 +150,7 @@ export function ForManagers() {
               </div>
 
               {/* Option 2 */}
-              <div className="bg-white dark:bg-[hsl(220,20%,7%)] rounded-[2.5rem] border border-brand/30 bg-brand/[0.02] p-8 md:p-12 transition-all hover:border-brand/50 relative overflow-hidden shadow-2xl shadow-brand/10">
+              <div className="bg-white dark:bg-[hsl(220,20%,7%)] rounded-[1.5rem] border border-brand/30 bg-brand/[0.02] p-8 md:p-12 transition-all hover:border-brand/50 relative overflow-hidden shadow-2xl shadow-brand/10">
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand/10 blur-3xl pointer-events-none" />
                 <div className="flex justify-between items-start mb-10 relative z-10">
                    <div className="p-3 bg-brand text-white rounded-2xl">
@@ -181,7 +181,7 @@ export function ForManagers() {
             </div>
 
             {/* Спикер — горизонтальная карточка */}
-            <div className="bg-white dark:bg-[hsl(220,20%,7%)] rounded-[2.5rem] border border-gray-200 dark:border-white/10 p-8 md:p-10 flex flex-col lg:flex-row gap-10 items-center lg:items-start max-w-4xl mx-auto">
+            <div className="bg-white dark:bg-[hsl(220,20%,7%)] rounded-[1.5rem] border border-gray-200 dark:border-white/10 p-8 md:p-10 flex flex-col lg:flex-row gap-10 items-center lg:items-start max-w-4xl mx-auto">
                 <div className="relative shrink-0">
                   <img
                     src="/experts/nikitin-large.webp"

@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { sendTelegramMessage } from "@/lib/telegram"
 import LightRays from "./ui/LightRays"
-import { Phone, Send, Mail, Loader2, CheckCircle2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
+import { CallCalling as Phone, Send, Sms as Mail, TickCircle as CheckCircle2 } from "@/components/ui/icons"
 
 export function MainCta() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle")
@@ -60,11 +61,14 @@ export function MainCta() {
 
           {/* Left Column: Text + Manager contacts */}
           <div className="w-full max-w-xl mt-0">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 text-white">
-              Готовы обсудить<br /> вашу задачу?
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight mb-8 text-white">
+              Обсудим программу и формат обучения?
             </h2>
-            <p className="text-gray-300 text-lg lg:text-xl leading-relaxed mb-12">
-              Оставьте заявку — мы свяжемся в течение дня и подготовим расчёт для вашей команды.
+            <p className="text-gray-300 text-lg lg:text-xl leading-relaxed mb-6">
+              Оставьте заявку — бесплатно подготовим индивидуальную поэтапную программу под вашу компанию.
+            </p>
+            <p className="text-gray-400 text-sm lg:text-base leading-relaxed mb-12">
+              Без обязательств. После короткого брифа пришлём разбор и поэтапный план под ваши задачи — не шаблонную презентацию.
             </p>
 
             {/* Manager block */}
@@ -80,21 +84,23 @@ export function MainCta() {
                   <p className="text-sm text-gray-400 mt-1">Координатор программ обучения WMT</p>
                 </div>
               </div>
-              <div className="flex flex-col space-y-3">
-                <a href="tel:+79911369196" className="flex items-center gap-3 text-brand font-semibold text-base hover:text-white transition-colors group">
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 group-hover:bg-brand/20 transition-colors">
-                    <Phone className="w-5 h-5" />
-                  </span>
-                  +7 991 136 91 96
-                </a>
-                <a href="https://t.me/DanilchikWMT" className="flex items-center gap-3 text-brand font-semibold text-base hover:text-white transition-colors group">
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 group-hover:bg-brand/20 transition-colors">
-                    <Send className="w-5 h-5" />
-                  </span>
-                  @DanilchikWMT
-                </a>
-                <a href="mailto:adanilchik@wmtgroup.ru" className="flex items-center gap-3 text-brand font-semibold text-base hover:text-white transition-colors group">
-                  <span className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 group-hover:bg-brand/20 transition-colors">
+              <div className="flex flex-col gap-3">
+                <div className="flex flex-wrap gap-x-6 gap-y-3">
+                  <a href="tel:+79911369196" className="flex items-center gap-2.5 text-brand font-semibold text-sm lg:text-base hover:text-white transition-colors group">
+                    <span className="flex items-center justify-center w-10 h-10 shrink-0 rounded-full bg-white/10 group-hover:bg-brand/20 transition-colors">
+                      <Phone className="w-5 h-5" />
+                    </span>
+                    +7 991 136 91 96
+                  </a>
+                  <a href="https://t.me/DanilchikWMT" className="flex items-center gap-2.5 text-brand font-semibold text-sm lg:text-base hover:text-white transition-colors group">
+                    <span className="flex items-center justify-center w-10 h-10 shrink-0 rounded-full bg-white/10 group-hover:bg-brand/20 transition-colors">
+                      <Send className="w-5 h-5" />
+                    </span>
+                    @DanilchikWMT
+                  </a>
+                </div>
+                <a href="mailto:adanilchik@wmtgroup.ru" className="flex items-center gap-2.5 text-brand font-semibold text-sm lg:text-base hover:text-white transition-colors group">
+                  <span className="flex items-center justify-center w-10 h-10 shrink-0 rounded-full bg-white/10 group-hover:bg-brand/20 transition-colors">
                     <Mail className="w-5 h-5" />
                   </span>
                   adanilchik@wmtgroup.ru

@@ -140,7 +140,7 @@ export function PersonalAI() {
   const statusTags = signalsData.map((s, i) => (
     <div 
       key={i} 
-      className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]"
+      className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[1.25rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]"
     >
       <h3 className="text-white font-medium text-[15px] md:text-xl relative z-10 leading-[1.3] max-w-[90%] md:max-w-[320px]">
         {s.title}
@@ -324,14 +324,14 @@ function PersonalProgramSection({ program: p, index }: any) {
           {layoutVariant === 'classic' && (
             <div className="grid grid-cols-1 md:grid-cols-12 gap-4 auto-rows-min">
               <div className={`col-span-1 md:col-span-5 flex flex-col gap-4`}>
-                <div className="flex-1 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-[2rem] p-5 sm:p-7 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_10px_rgba(0,0,0,0.02)] transition-colors hover:border-gray-200 dark:hover:border-white/20">
+                <div className="flex-1 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-[1.25rem] p-5 sm:p-7 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_10px_rgba(0,0,0,0.02)] transition-colors hover:border-gray-200 dark:hover:border-white/20">
                   <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-3">Ситуация и Задача</h4>
                   <p className="text-gray-900 dark:text-white text-[14px] sm:text-[15px] leading-relaxed font-medium max-w-sm mb-0">
                     {p.when ? p.when.replace(/^Когда /i, "").replace(/^./, (c: string) => c.toUpperCase()) : "Поиск новых точек роста."}
                   </p>
                 </div>
                 
-                <div className="flex-1 bg-gradient-to-b from-brand/5 to-transparent dark:from-brand/[0.08] dark:to-transparent border border-brand/10 dark:border-brand/20 rounded-[2rem] p-5 sm:p-7 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_15px_rgba(255,83,49,0.04)] transition-colors hover:border-brand/30">
+                <div className="flex-1 bg-gradient-to-b from-brand/5 to-transparent dark:from-brand/[0.08] dark:to-transparent border border-brand/10 dark:border-brand/20 rounded-[1.25rem] p-5 sm:p-7 flex flex-col items-center justify-center text-center shadow-[inset_0px_2px_15px_rgba(255,83,49,0.04)] transition-colors hover:border-brand/30">
                   <h4 className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-3">Главный эффект</h4>
                   <p className="text-gray-800 dark:text-gray-200 text-[14px] sm:text-[15px] leading-relaxed font-medium max-w-sm mb-4">
                     {p.result}
@@ -341,7 +341,7 @@ function PersonalProgramSection({ program: p, index }: any) {
 
               <V2Card 
                 visible={visible}
-                className="col-span-1 md:col-span-7 bg-gray-50 dark:!bg-black/90 border border-gray-200 dark:border-white/[0.08] !rounded-[2rem] flex flex-col relative overflow-hidden group shadow-sm dark:shadow-md"
+                className="col-span-1 md:col-span-7 bg-gray-50 dark:!bg-black/90 border border-gray-200 dark:border-white/[0.08] !rounded-[1.25rem] flex flex-col relative overflow-hidden group shadow-sm dark:shadow-md"
                 contentClassName="!p-6 sm:!p-8 flex flex-col h-full w-full relative z-10"
               >
                  <h4 className="text-[10px] font-bold text-gray-500 dark:text-white/50 uppercase tracking-[0.2em] mb-6 relative z-10 w-full">Что вы получите</h4>
@@ -364,7 +364,7 @@ function PersonalProgramSection({ program: p, index }: any) {
             <div className="flex flex-col gap-3">
               <div className="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4">
                  {/* Card 1: Situation & Task */}
-                 <div className="col-span-1 md:col-span-7 bg-white/50 dark:bg-white/[0.03] backdrop-blur-sm border border-gray-100 dark:border-white/10 rounded-[2rem] p-5 md:p-6 transition-all hover:border-brand/30 shadow-sm group/context">
+                 <div className="col-span-1 md:col-span-7 bg-white/50 dark:bg-white/[0.03] backdrop-blur-sm border border-gray-100 dark:border-white/10 rounded-[1.25rem] p-5 md:p-6 transition-all hover:border-brand/30 shadow-sm group/context">
                     <h4 className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="text-brand/60"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg> Ситуация и Задача
                     </h4>
@@ -386,7 +386,7 @@ function PersonalProgramSection({ program: p, index }: any) {
                  </div>
 
                  {/* Card 2: Main Effect */}
-                 <div className="col-span-1 md:col-span-5 bg-gradient-to-br from-brand/10 via-brand/[0.02] to-transparent border border-brand/20 rounded-[2rem] p-5 md:p-6 flex flex-col shadow-sm group/effect">
+                 <div className="col-span-1 md:col-span-5 bg-gradient-to-br from-brand/10 via-brand/[0.02] to-transparent border border-brand/20 rounded-[1.25rem] p-5 md:p-6 flex flex-col shadow-sm group/effect">
                     <h4 className="text-[10px] font-bold text-brand uppercase tracking-[0.2em] mb-4 flex items-center gap-2">
                        <Zap className="w-3.5 h-3.5 text-brand" /> Главный эффект
                     </h4>
@@ -410,7 +410,7 @@ function PersonalProgramSection({ program: p, index }: any) {
               
               <V2Card 
                 visible={visible}
-                className="bg-gray-50 dark:!bg-black/90 border border-gray-200 dark:border-white/[0.08] !rounded-[2rem] flex flex-col relative overflow-hidden group shadow-sm"
+                className="bg-gray-50 dark:!bg-black/90 border border-gray-200 dark:border-white/[0.08] !rounded-[1.25rem] flex flex-col relative overflow-hidden group shadow-sm"
                 contentClassName="!p-5 md:!p-6 flex flex-col h-full w-full relative z-10"
               >
                  <h4 className="text-[10px] font-bold text-gray-500 dark:text-white/50 uppercase tracking-[0.2em] mb-4 relative z-10 w-full">Что вы получите</h4>
@@ -489,7 +489,7 @@ function AvailabilitySection() {
             </div>
 
             <div className="lg:col-span-5">
-               <div className="bg-gray-50/50 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.08] rounded-[2.5rem] p-8 md:p-12 backdrop-blur-xl relative group h-full">
+               <div className="bg-gray-50/50 dark:bg-white/[0.03] border border-gray-200 dark:border-white/[0.08] rounded-[1.5rem] p-8 md:p-12 backdrop-blur-xl relative group h-full">
                   <div className="absolute -top-4 -right-4 w-20 h-20 bg-brand/10 blur-2xl group-hover:bg-brand/20 transition-colors duration-500" />
                   
                   <div className="flex items-center gap-4 mb-6 text-brand">

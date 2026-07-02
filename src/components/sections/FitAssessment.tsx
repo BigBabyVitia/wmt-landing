@@ -61,7 +61,7 @@ function AssessmentCard({ fits, items }: { fits: boolean, items: any[] }) {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className={`group relative rounded-[2rem] p-8 md:p-12 border transition-all duration-500 overflow-hidden ${baseClasses}`}
+      className={`group relative rounded-[1.25rem] p-8 md:p-12 border transition-all duration-500 overflow-hidden ${baseClasses}`}
     >
       {/* Background Grid Pattern */}
       <div 

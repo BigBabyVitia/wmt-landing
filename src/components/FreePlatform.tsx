@@ -50,7 +50,7 @@ export function FreePlatform() {
               className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: visible ? `${200 + idx * 100}ms` : "0ms" }}
             >
-              <div className="bg-white dark:bg-white/[0.03] rounded-[2rem] p-6 sm:p-8 border border-gray-200 dark:border-white/[0.06] shadow-sm hover:shadow-lg hover:shadow-brand/20 hover:-translate-y-1 hover:border-brand/30 transition-all duration-300 group h-full cursor-default transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
+              <div className="bg-white dark:bg-white/[0.03] rounded-[1.25rem] p-6 sm:p-8 border border-gray-200 dark:border-white/[0.06] shadow-sm hover:shadow-lg hover:shadow-brand/20 hover:-translate-y-1 hover:border-brand/30 transition-all duration-300 group h-full cursor-default transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
                 <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-gray-50 dark:bg-white/5 flex items-center justify-center mb-4 sm:mb-6 group-hover:bg-brand/10 transition-colors duration-300">
                   <m.icon className="w-5 h-5 sm:w-6 sm:h-6" />
                 </div>

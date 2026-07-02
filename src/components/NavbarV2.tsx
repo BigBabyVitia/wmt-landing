@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react"
-import { X, Menu, Sun, Moon } from "lucide-react"
+import { CloseCircle as X, Menu, Sun, Moon } from "@/components/ui/icons"
 import { Link, useLocation } from "react-router-dom"
 import { useVersion } from "@/context/VersionContext"
 import { useTheme } from "@/context/ThemeContext"
 
 interface NavbarV2Props {
   variant?: "home" | "inner"
+  /** Force the solid, theme-aware bar (as if scrolled) from the top — for heroes whose
+   *  background isn't uniformly dark (e.g. the split hero with a light content half). */
+  solid?: boolean
 }
 
 const newLinks = [
-  { label: "Руководителям", to: "/start-leaders" },
-  { label: "Команде", to: "/team-basics" },
-  { label: "Агенты и автоматизация", to: "/agents-automation" },
-  { label: "Под процессы", to: "/process-projects" },
+  { label: "Направления", to: "/#directions" },
+  { label: "Почему мы", to: "/#trust" },
+  { label: "Отзывы", to: "/#testimonials" },
+  { label: "Контакты", to: "/#contact" },
 ]
 
 const classicLinks = [
@@ -22,7 +25,7 @@ const classicLinks = [
   { label: "Команда", to: "/#trust" },
 ]
 
-export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
+export function NavbarV2({ variant = "inner", solid = false }: NavbarV2Props) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { version } = useVersion()
@@ -31,7 +34,7 @@ export function NavbarV2({ variant = "inner" }: NavbarV2Props) {
 
   const links = version === "new" ? newLinks : classicLinks
 
-  const isDark = scrolled
+  const isDark = scrolled || solid
 
   useEffect(() => {
     const threshold = variant === "home" ? window.innerHeight - 80 : 80

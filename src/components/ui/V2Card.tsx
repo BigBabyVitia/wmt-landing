@@ -40,24 +40,24 @@ export function V2Card({
 
   return (
     <div
-      className={`relative group w-full rounded-[2rem] md:rounded-[2.5rem] border border-gray-200/60 dark:border-white/[0.06] bg-white dark:bg-white/[0.02] transition-all duration-700 overflow-hidden text-left ${visibilityClass} ${className} ${onClick ? 'cursor-pointer' : ''}`}
+      className={`relative group w-full rounded-[1.25rem] md:rounded-[1.5rem] border border-gray-200/60 dark:border-white/[0.06] bg-white dark:bg-white/[0.02] transition-all duration-700 overflow-hidden text-left ${visibilityClass} ${className} ${onClick ? 'cursor-pointer' : ''}`}
       style={{ transitionDelay: delayStr }}
       onMouseMove={handleMouseMove}
       onClick={onClick}
     >
-      {/* Background Glow Pattern - more pronounced */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.45] md:opacity-[0.65]"
+      {/* Background Glow Pattern - softened */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.2] md:opacity-[0.3]"
         style={{
-          background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255, 83, 49, 0.15) 0%, rgba(255, 83, 49, 0.05) 45%, transparent 100%)"
+          background: "radial-gradient(ellipse 60% 60% at 50% 50%, rgba(255, 83, 49, 0.12) 0%, rgba(255, 83, 49, 0.04) 45%, transparent 100%)"
         }}
       />
 
-      {/* Background Grid Pattern with fade-out mask - strengthened */}
-      <div 
-        className="absolute inset-0 pointer-events-none opacity-[0.8] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_50%,#000_40%,transparent_100%)]" 
+      {/* Background Grid Pattern with fade-out mask - subtle */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-[0.3] [mask-image:radial-gradient(ellipse_55%_55%_at_50%_50%,#000_30%,transparent_100%)]"
         style={{
-          backgroundImage: `linear-gradient(to right, rgba(160,160,160,0.18) 1px, transparent 1px), linear-gradient(to bottom, rgba(160,160,160,0.18) 1px, transparent 1px)`,
+          backgroundImage: `linear-gradient(to right, rgba(160,160,160,0.12) 1px, transparent 1px), linear-gradient(to bottom, rgba(160,160,160,0.12) 1px, transparent 1px)`,
           backgroundSize: '64px 64px',
           backgroundPosition: 'center center'
         }}
@@ -66,7 +66,7 @@ export function V2Card({
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-[inherit] opacity-0 transition duration-500 group-hover:opacity-100"
         style={{
-          background: useMotionTemplate`radial-gradient(650px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.2), transparent 80%)`,
+          background: useMotionTemplate`radial-gradient(650px circle at ${mouseX}px ${mouseY}px, rgba(255, 83, 49, 0.12), transparent 80%)`,
         }}
       />
       

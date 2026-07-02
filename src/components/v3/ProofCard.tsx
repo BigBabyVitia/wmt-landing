@@ -31,7 +31,7 @@ function renderSub(sub: string) {
 export function ProofCard({ quote, sub }: { quote: string; sub: string }) {
   return (
     <div
-      className="group relative flex h-full flex-col overflow-hidden rounded-[2rem]
+      className="group relative flex h-full flex-col overflow-hidden rounded-[1.25rem]
                  border border-gray-200 dark:border-white/[0.06]
                  bg-white dark:bg-white/[0.03]
                  shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-none

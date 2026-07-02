@@ -6,11 +6,12 @@ import { V2Hero } from "@/components/ui/V2Hero"
 import { useScrollVisible } from "@/hooks/useScrollVisible"
 import { MainCta } from "@/components/MainCta"
 
-const publications = [
+// Используется в скрытом разделе «Публичность и СМИ» (см. ниже).
+/* const publications = [
   "Forbes Russia", "РБК", "РБК Trends", "РБК PRO",
   "Коммерсантъ", "Российская газета", "CNews",
   "Sber AI", "Intelligent Enterprise", "Rusbase", "VC.ru"
-]
+] */
 
 const events2025 = [
   "CIPR — Главная сцена, доклад по ИИ-трансформации",
@@ -37,7 +38,7 @@ const podcastGuests = [
 
 export function Proof() {
   const statusTags = [
-    <div key="t1" className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]">
+    <div key="t1" className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[1.25rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]">
       <div className="flex items-center gap-3 mb-2">
         <Users className="w-5 h-5 text-brand" />
         <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest">Масштаб</span>
@@ -46,7 +47,7 @@ export function Proof() {
         Глобальная команда <b>400+ сотрудников</b> и реальный бизнес-опыт.
       </h3>
     </div>,
-    <div key="t2" className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]">
+    <div key="t2" className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[1.25rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]">
       <div className="flex items-center gap-3 mb-2">
         <Award className="w-5 h-5 text-brand" />
         <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest">Признание</span>
@@ -55,7 +56,7 @@ export function Proof() {
         Методология, подтверждённая <b>Global Academic Standards</b>.
       </h3>
     </div>,
-    <div key="t3" className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[2rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]">
+    <div key="t3" className="group relative bg-gray-900/60 dark:bg-black/40 backdrop-blur-xl border border-gray-800/50 dark:border-white/5 rounded-[1.25rem] p-6 md:p-8 transition-all duration-500 hover:border-brand/40 h-full flex flex-col justify-center items-start text-left shadow-md overflow-hidden min-h-[140px]">
       <div className="flex items-center gap-3 mb-2">
         <Newspaper className="w-5 h-5 text-brand" />
         <span className="text-white/40 text-[10px] font-bold uppercase tracking-widest">Публичность</span>
@@ -81,9 +82,11 @@ export function Proof() {
             <a href="#founder" className="inline-flex items-center justify-center gap-2 bg-white text-gray-900 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-gray-100 transition-all duration-300 shadow-[0_8px_32px_rgba(255,255,255,0.2)] hover:-translate-y-1 transform-gpu text-sm md:text-base btn-optical-hero">
               Основатель и команда <ArrowRight className="w-4 h-4 md:w-5 md:h-5 ml-1" />
             </a>
+            {/* Скрыто по запросу: кнопка-якорь к разделу «Публичность и СМИ»
             <a href="#media" className="inline-flex items-center justify-center gap-2 bg-transparent text-white border border-white/20 rounded-full px-8 md:px-10 py-3.5 md:py-4 font-bold hover:bg-white/5 transition-all duration-300 text-sm md:text-base btn-optical-hero">
               Публикации и СМИ
             </a>
+            */}
           </>
         }
       />
@@ -94,8 +97,8 @@ export function Proof() {
       {/* ── ACADEMIC RECOGNITION SECTION ── */}
       <AcademicRecognitionSection />
 
-      {/* ── MEDIA & PUBLICATIONS ── */}
-      <PublicationsSection />
+      {/* ── MEDIA & PUBLICATIONS ── скрыто по запросу */}
+      {/* <PublicationsSection /> */}
 
       {/* ── IICHNICA SHOW ── */}
       <IichnicaSection />
@@ -131,7 +134,7 @@ function FounderSection() {
           {/* Photo Column */}
           <div className="lg:col-span-5 relative group h-full">
             <div className="absolute inset-0 bg-brand/20 blur-[100px] rounded-full opacity-0 group-hover:opacity-40 transition-opacity duration-1000 pointer-events-none" />
-            <div className="relative rounded-[2.5rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-2xl h-full min-h-[400px]">
+            <div className="relative rounded-[1.5rem] overflow-hidden border border-gray-100 dark:border-white/10 shadow-2xl h-full min-h-[400px]">
               <img 
                 src="/experts/nikitin-large.webp" 
                 alt="Игорь Никитин" 
@@ -161,7 +164,7 @@ function FounderSection() {
                 { title: "Глобальная команда", desc: "400+ сотрудников в WMT Group", icon: Users },
                 { title: "Исследование Ipsos", desc: "Международная валидация подходов", icon: Newspaper }
               ].map((item, i) => (
-                <div key={i} className="bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 p-5 rounded-[2rem] transition-all hover:border-brand/30 group">
+                <div key={i} className="bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 p-5 rounded-[1.25rem] transition-all hover:border-brand/30 group">
                   <div className="w-10 h-10 rounded-xl bg-brand/10 flex items-center justify-center mb-3 text-brand transition-transform group-hover:scale-110">
                     <item.icon className="w-5 h-5" />
                   </div>
@@ -224,6 +227,7 @@ function AcademicRecognitionSection() {
   )
 }
 
+/* Скрыто по запросу — раздел «Публичность и СМИ» временно не отображается.
 function PublicationsSection() {
   const { ref, visible } = useScrollVisible()
   return (
@@ -255,6 +259,7 @@ function PublicationsSection() {
     </section>
   )
 }
+*/
 
 function IichnicaSection() {
   const { ref, visible } = useScrollVisible()
@@ -280,7 +285,7 @@ function IichnicaSection() {
               </div>
               
               <div className="flex flex-col gap-4">
-                <div className="bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 p-8 rounded-[2rem] shadow-sm">
+                <div className="bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 p-8 rounded-[1.25rem] shadow-sm">
                   <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2 block">Прошедшее событие</span>
                   <div className="flex justify-between items-end mb-4">
                     <span className="text-2xl font-bold text-gray-900 dark:text-white">31 марта</span>
@@ -319,7 +324,7 @@ function PodcastAndEventsSection() {
             </p>
             <div className="space-y-4">
               {podcastGuests.map((guest, i) => (
-                <div key={i} className="flex gap-4 p-5 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-[2rem] hover:border-brand/40 transition-all group">
+                <div key={i} className="flex gap-4 p-5 bg-gray-50 dark:bg-white/[0.03] border border-gray-100 dark:border-white/10 rounded-[1.25rem] hover:border-brand/40 transition-all group">
                   <div className="flex-1">
                     <div className="flex justify-between items-start mb-1">
                       <h4 className="font-bold text-gray-900 dark:text-white text-lg group-hover:text-brand transition-colors">{guest.name}</h4>
@@ -394,7 +399,7 @@ function NavBackSection() {
               <Link 
                 key={i} 
                 to={link.to} 
-                className="group bg-white dark:bg-white/[0.03] border border-gray-200 dark:border-white/10 p-8 rounded-[2rem] hover:border-brand/40 transition-all shadow-sm hover:shadow-xl hover:shadow-brand/5"
+                className="group bg-white dark:bg-white/[0.03] border border-gray-200 dark:border-white/10 p-8 rounded-[1.25rem] hover:border-brand/40 transition-all shadow-sm hover:shadow-xl hover:shadow-brand/5"
               >
                 <div className="flex justify-between items-start mb-4">
                   <h4 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-brand transition-colors">{link.title}</h4>

@@ -10,7 +10,7 @@ export function RouteCards() {
         <Link
           key={d.slug}
           to={`/${d.slug}`}
-          className="group relative flex flex-col rounded-[2rem] border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-white/[0.02] p-7 sm:p-8 transition-all duration-300 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1"
+          className="group relative flex flex-col rounded-[1.25rem] border border-gray-200 dark:border-white/[0.06] bg-white dark:bg-white/[0.02] p-7 sm:p-8 transition-all duration-300 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1"
         >
           <div className="w-10 h-10 rounded-full bg-gray-900 dark:bg-white/10 text-white flex items-center justify-center font-bold mb-5">
             {d.num}
