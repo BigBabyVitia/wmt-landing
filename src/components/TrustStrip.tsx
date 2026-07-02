@@ -59,7 +59,7 @@ export function TrustStrip() {
                     </span>
                   </div>
                   <h3 className="text-xl md:text-3xl font-semibold tracking-tight text-gray-900 dark:text-white mb-3 leading-[1.15] text-balance max-w-md">
-                    Свои ИИ-продукты в проде
+                    Свои продукты
                   </h3>
                   <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 leading-relaxed max-w-lg">
                     Не пересказываем чужое — строим. Эти продукты работают в&nbsp;реальных компаниях.

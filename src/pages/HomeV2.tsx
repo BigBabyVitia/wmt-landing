@@ -322,10 +322,9 @@ function HeroSplit() {
         {/* ── LEFT: content ── */}
         <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-14 xl:px-20 pt-28 pb-14 lg:py-0 order-2 lg:order-1">
           <div className="w-full max-w-xl lg:ml-auto">
-            <span className="inline-block text-[11px] sm:text-sm font-bold uppercase tracking-[0.2em] text-brand/90 mb-4 sm:mb-5 animate-fade-rise">
-              {hub.hero.eyebrow}
-            </span>
-
+            {/* Эйброу "Корпоративное обучение по ИИ" убран по просьбе заказчика (02.07.2026) —
+                H1 сразу читается как первая строка. `hub.hero.eyebrow` не удалён из данных:
+                его всё ещё рендерят дормантные hero-варианты (HeroVideo/WebGL/Glow/HeroSplitFrame). */}
             <h1 className="text-[34px] sm:text-5xl lg:text-[52px] xl:text-[60px] leading-[1.06] tracking-tight font-semibold text-gray-900 dark:text-white animate-fade-rise">
               <em className="not-italic text-brand font-bold">{h1First}</em> {h1Rest.join(" ")}
             </h1>
@@ -364,31 +363,42 @@ function HeroSplit() {
             The robot keeps the Spline scene's REAL lighting + shadows (no invert). Light theme
             lifts the dark scene into a warm studio range and matches the warm sandy backdrop to the
             lifted floor, so the platform melts seamlessly into the background (low-contrast = premium,
-            the light mirror of the dark stage). */}
-        <div className="relative min-h-[46svh] sm:min-h-[54svh] lg:min-h-0 lg:h-full order-1 lg:order-2 bg-[#e3d3c2] dark:bg-[hsl(222,28%,4%)]">
+            the light mirror of the dark stage).
+            Mobile/tablet clearance (02.07.2026): NavbarV2 is `fixed` (overlays, doesn't push flow),
+            so on short mobile containers the robot's head sat right under the ~64px bar and got
+            visually cropped by it. Fix: outer panel is taller by that clearance; the robot itself
+            renders in an INNER wrapper pinned to the bottom at the ORIGINAL height (46svh/54svh) —
+            same zoom/size as before, just shifted down into the added headroom. Desktop (`lg:`)
+            unaffected — inner wrapper reverts to filling the panel exactly as it always did. */}
+        <div className="relative min-h-[calc(46svh+4.5rem)] sm:min-h-[calc(54svh+4.5rem)] lg:min-h-0 lg:h-full order-1 lg:order-2 bg-[#e3d3c2] dark:bg-[hsl(222,28%,4%)]">
           {/* Vertical divider between the two halves (desktop) */}
           <div className="hidden lg:block absolute left-0 inset-y-0 w-px bg-gradient-to-b from-transparent via-black/10 dark:via-white/15 to-transparent z-20" />
-          {/* Horizontal divider on mobile (stacked) */}
+          {/* Horizontal divider on mobile (stacked) — sits at the robot's bottom edge */}
           <div className="lg:hidden absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/15 to-transparent z-20" />
 
           {/* Backdrop — warm sandy studio stage (light) whose gradient mirrors the sunset-lit floor so
-              the platform blends in; deep warm base (dark). */}
+              the platform blends in; deep warm base (dark). Spans the FULL (taller) panel, so the
+              added mobile headroom above the robot still reads as the same stage, not empty space. */}
           <div className="absolute inset-0 z-0 [background:radial-gradient(78%_74%_at_57%_42%,#f9f3ea_0%,#f1e8da_55%,#e7dac8_100%)] dark:[background:linear-gradient(135deg,hsl(222,28%,6%),hsl(222,30%,3%))]" />
           {/* Warm brand glow — dark theme only (light gets its warmth from the lifted scene) */}
           <div className="absolute inset-0 z-0 pointer-events-none dark:[background:radial-gradient(60%_55%_at_58%_45%,rgba(255,83,49,0.20),transparent_72%)]" />
 
-          {/* Per-theme recolour of the LIVE scene — теперь через runtime (whobeeThemedOnLoad),
-              а не CSS-фильтры: настоящие материалы, мягкая PCFSoft-тень, точные цвета.
-              · light — «закатная» студия: серебристый робот, оранжевая мордочка, кремовый пол
-              · dark  — тёмная сцена с тёплым брендовым светом вместо фиолетового */}
-          <InteractiveRobotSpline
-            scene={ROBOT_SCENE_URL}
-            onLoad={whobeeThemedOnLoad}
-            className="absolute inset-0 z-10 !w-full !h-full"
-          />
+          {/* Robot layer — pinned to the panel's bottom at the original size on mobile/sm (see note
+              above); fills the whole panel again from `lg:` up, exactly like before this fix. */}
+          <div className="absolute inset-x-0 bottom-0 h-[46svh] sm:h-[54svh] lg:inset-0 lg:h-auto">
+            {/* Per-theme recolour of the LIVE scene — через runtime (whobeeThemedOnLoad),
+                а не CSS-фильтры: настоящие материалы, мягкая PCFSoft-тень, точные цвета.
+                · light — «закатная» студия: серебристый робот, оранжевая мордочка, кремовый пол
+                · dark  — тёмная сцена с тёплым брендовым светом вместо фиолетового */}
+            <InteractiveRobotSpline
+              scene={ROBOT_SCENE_URL}
+              onLoad={whobeeThemedOnLoad}
+              className="absolute inset-0 z-10 !w-full !h-full"
+            />
 
-          {/* Mask the baked-in Spline watermark (bottom-right of the canvas) — soft radial fade in the stage colour */}
-          <div className="absolute bottom-0 right-0 w-[280px] h-[120px] z-20 pointer-events-none [background:radial-gradient(135%_135%_at_100%_100%,#e9dfce_52%,rgba(233,223,206,0)_80%)] dark:[background:radial-gradient(135%_135%_at_100%_100%,hsl(222,30%,3%)_52%,rgba(10,12,16,0)_80%)]" />
+            {/* Mask the baked-in Spline watermark (bottom-right of the canvas) — soft radial fade in the stage colour */}
+            <div className="absolute bottom-0 right-0 w-[280px] h-[120px] z-20 pointer-events-none [background:radial-gradient(135%_135%_at_100%_100%,#e9dfce_52%,rgba(233,223,206,0)_80%)] dark:[background:radial-gradient(135%_135%_at_100%_100%,hsl(222,30%,3%)_52%,rgba(10,12,16,0)_80%)]" />
+          </div>
         </div>
       </div>
     </section>

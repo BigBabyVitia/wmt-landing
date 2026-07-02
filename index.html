@@ -1,10 +1,21 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Обучение WMT — AI-трансформация бизнеса</title>
+    <!-- Тема применяется синхронно ДО первой отрисовки, чтобы не мелькал чёрный экран
+         (класс .dark на <html> раньше был захардкожен здесь — открывало сайт тёмным
+         на долю секунды даже для тех, у кого сохранена светлая тема). Дефолт — light;
+         на вернувшихся с сохранённым выбором в localStorage не влияет. Логика зеркалит
+         ThemeContext.tsx — синхронизировать при изменении дефолта там. -->
+    <script>
+      (function () {
+        var t = localStorage.getItem("wmt-theme");
+        if (t === "dark") document.documentElement.classList.add("dark");
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
