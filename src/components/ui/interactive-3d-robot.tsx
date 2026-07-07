@@ -253,23 +253,6 @@ export function createRenderActivityController(
   };
 }
 
-/**
- * Ограничивает разрешение рендера (pixelRatio three-renderer'а внутри Spline) значением
- * `maxRatio`. На HiDPI-экранах рендер в 2× — крупный источник GPU-нагрузки; кэп режет
- * число пикселей на кадр (2.0→1.5 ≈ −44% пикселей). Патчим сам `setPixelRatio`, поэтому
- * кэп держится и после внутренних ресайзов Spline. Идемпотентно.
- */
-function capRenderResolution(app: any, maxRatio: number) {
-  const renderer = app && Object.values(app).find((v: any) => v && v.shadowMap && typeof v.render === 'function');
-  if (!renderer || typeof renderer.setPixelRatio !== 'function') return;
-  if (!renderer.__ratioCapped) {
-    const orig = renderer.setPixelRatio.bind(renderer);
-    renderer.setPixelRatio = (r: number) => orig(Math.min(r, maxRatio));
-    renderer.__ratioCapped = true;
-  }
-  renderer.setPixelRatio(typeof renderer.getPixelRatio === 'function' ? renderer.getPixelRatio() : maxRatio);
-}
-
 interface InteractiveRobotSplineProps {
   scene: string;
   className?: string;
@@ -320,14 +303,13 @@ export function InteractiveRobotSpline({ scene, className, onLoad, posterLight, 
 
   // Снижаем нагрузку робота на GPU: кэп кадров (30 fps) пока он на экране, и полная
   // остановка рендера, когда он ушёл за экран / вкладка скрыта — иначе на слабых GPU
-  // сцена молотит на 100% даже в простое и тормозит скролл. Плюс кэп разрешения на
-  // HiDPI. Всё через штатный рантайм, без перезагрузки сцены. Ключ по экземпляру `app`,
-  // поэтому при его пересоздании (напр. StrictMode-двойной монтаж в dev) управляем живой
-  // сценой. См. createRenderActivityController / capRenderResolution.
+  // сцена молотит на 100% даже в простое и тормозит скролл. Всё через штатный рантайм,
+  // без перезагрузки сцены. Ключ по экземпляру `app`, поэтому при его пересоздании
+  // (напр. StrictMode-двойной монтаж в dev) управляем живой сценой. Разрешение НЕ трогаем
+  // (кэп pixelRatio конфликтовал с внутренним ресайзом Spline). См. createRenderActivityController.
   useEffect(() => {
     const el = wrapRef.current;
     if (!el || !app || typeof app.stop !== 'function') return;
-    capRenderResolution(app, 1.5);
     return createRenderActivityController(el, app, { fps: 30 });
   }, [app]);
 
