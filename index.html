@@ -5,15 +5,28 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Обучение WMT — AI-трансформация бизнеса</title>
+    <!-- Прогреваем соединение к CDN Spline заранее — рукопожатие TLS идёт параллельно
+         с загрузкой страницы, а не после того, как React смонтирует сцену. -->
+    <link rel="preconnect" href="https://prod.spline.design" crossorigin />
+    <link rel="dns-prefetch" href="https://prod.spline.design" />
     <!-- Тема применяется синхронно ДО первой отрисовки, чтобы не мелькал чёрный экран
          (класс .dark на <html> раньше был захардкожен здесь — открывало сайт тёмным
          на долю секунды даже для тех, у кого сохранена светлая тема). Дефолт — light;
          на вернувшихся с сохранённым выбором в localStorage не влияет. Логика зеркалит
-         ThemeContext.tsx — синхронизировать при изменении дефолта там. -->
+         ThemeContext.tsx — синхронизировать при изменении дефолта там.
+         Заодно preload'им poster робота ПОД текущую тему — это LCP-картинка hero,
+         грузим её с высшим приоритетом ещё до старта JS. -->
     <script>
       (function () {
         var t = localStorage.getItem("wmt-theme");
-        if (t === "dark") document.documentElement.classList.add("dark");
+        var dark = t === "dark";
+        if (dark) document.documentElement.classList.add("dark");
+        var l = document.createElement("link");
+        l.rel = "preload";
+        l.as = "image";
+        l.href = dark ? "/hero/robot-dark.webp" : "/hero/robot-light.webp";
+        l.setAttribute("fetchpriority", "high");
+        document.head.appendChild(l);
       })();
     </script>
   </head>

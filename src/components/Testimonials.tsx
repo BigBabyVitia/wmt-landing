@@ -12,9 +12,6 @@ export function Testimonials() {
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 md:mb-16">
-          <span className="inline-block text-xs sm:text-sm font-bold tracking-widest text-brand uppercase mb-3 sm:mb-4">
-            Отзывы участников
-          </span>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
             Что говорят руководители после обучения
           </h2>

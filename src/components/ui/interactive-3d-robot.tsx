@@ -1,6 +1,6 @@
 'use client';
 
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
 /* ── Runtime-перекраска сцены робота (вместо CSS-фильтров) ─────────────────────────
@@ -142,29 +142,104 @@ export function whobeeThemedOnLoad(app: any) {
   g.__whobeeThemeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 }
 
+/* ── Загрузка/деградация тяжёлой 3D-сцены ─────────────────────────────────────────
+   Робот весит: runtime Spline (~6.5 МБ распаковано) + сама сцена с CDN. Чтобы hero
+   рисовался мгновенно и работал на слабых устройствах:
+     1. Poster (WebP-снимок этой же сцены, ~27 КБ, точный по теме) рисуется сразу и
+        служит LCP-картинкой — пользователь видит робота, а не спиннер.
+     2. Интерактивную сцену монтируем ОТЛОЖЕННО (когда hero в зоне видимости + в
+        простое браузера), чтобы её чанк не конкурировал с первой отрисовкой.
+     3. На data-saver / мало-ОЗУ / prefers-reduced-motion сцену НЕ грузим вовсе —
+        остаётся статичный poster, сайт лёгкий и полностью рабочий.
+     4. Когда сцена готова — плавно проявляем canvas поверх poster'а. */
+
+/** Стоит ли вообще грузить интерактивную 3D-сцену на этом устройстве. */
+function shouldLoad3D(): boolean {
+  if (typeof window === 'undefined') return false;
+  const nav = navigator as any;
+  if (nav.connection?.saveData) return false; // режим экономии трафика
+  if (typeof nav.deviceMemory === 'number' && nav.deviceMemory > 0 && nav.deviceMemory < 4) return false; // слабое ОЗУ
+  if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return false; // пользователь просит меньше анимации
+  return true;
+}
+
 interface InteractiveRobotSplineProps {
   scene: string;
   className?: string;
   onLoad?: (app: any) => void;
+  /** Статичные снимки сцены под тему — мгновенная отрисовка + фолбэк без 3D. */
+  posterLight: string;
+  posterDark: string;
 }
 
-export function InteractiveRobotSpline({ scene, className, onLoad }: InteractiveRobotSplineProps) {
+export function InteractiveRobotSpline({ scene, className, onLoad, posterLight, posterDark }: InteractiveRobotSplineProps) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [mount3D, setMount3D] = useState(false); // разрешили создать узел Spline
+  const [ready, setReady] = useState(false); // сцена догрузилась → проявляем canvas
+
+  useEffect(() => {
+    if (!shouldLoad3D()) return; // capability-gated: остаётся только poster
+    const el = wrapRef.current;
+    if (!el) return;
+    let idleId: number | undefined;
+    const ric: (cb: () => void) => number =
+      (window as any).requestIdleCallback || ((cb: () => void) => window.setTimeout(cb, 200));
+    const cancelRic: (id: number) => void =
+      (window as any).cancelIdleCallback || ((id: number) => clearTimeout(id));
+    // Стартуем только когда hero реально виден (выше сгиба — сработает сразу),
+    // и откладываем монтаж до простоя, чтобы не мешать первой отрисовке/LCP.
+    const io = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          io.disconnect();
+          idleId = ric(() => setMount3D(true));
+        }
+      },
+      { rootMargin: '200px' },
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      if (idleId !== undefined) cancelRic(idleId);
+    };
+  }, []);
+
+  const handleLoad = (app: any) => {
+    setReady(true);
+    onLoad?.(app);
+  };
+
   return (
-    <Suspense
-      fallback={
-        <div className={`w-full h-full flex items-center justify-center ${className ?? ''}`}>
-          <svg className="animate-spin h-5 w-5 text-gray-400 dark:text-white mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l2-2.647z"></path>
-          </svg>
-        </div>
-      }
-    >
-      <Spline
-        scene={scene}
-        className={className}
-        onLoad={onLoad}
+    <div ref={wrapRef} className={className}>
+      {/* Poster — мгновенная отрисовка и постоянный визуал на устройствах без 3D.
+          Две картинки под тему переключаются CSS'ом (без JS, без мигания).
+          Как только живая сцена готова (`ready`) — гасим poster: у canvas прозрачный фон,
+          и оставшийся снизу poster просвечивал бы рядом с роботом (двоение головы, особенно
+          на мобильном, где object-cover кадрирует иначе, чем камера сцены). На устройствах
+          без 3D `ready` не наступает — poster остаётся навсегда. */}
+      <img
+        src={posterLight}
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
+        className={`absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none transition-opacity duration-500 dark:hidden ${ready ? 'opacity-0' : 'opacity-100'}`}
       />
-    </Suspense>
+      <img
+        src={posterDark}
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+        className={`absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none transition-opacity duration-500 hidden dark:block ${ready ? 'opacity-0' : 'opacity-100'}`}
+      />
+      {/* Интерактивная сцена проявляется поверх poster'а, когда готова */}
+      {mount3D && (
+        <Suspense fallback={null}>
+          <div className={`absolute inset-0 transition-opacity duration-700 ${ready ? 'opacity-100' : 'opacity-0'}`}>
+            <Spline scene={scene} onLoad={handleLoad} className="!w-full !h-full" />
+          </div>
+        </Suspense>
+      )}
+    </div>
   );
 }

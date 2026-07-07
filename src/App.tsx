@@ -21,6 +21,7 @@ import { Proof } from "./pages/Proof"
 
 /* V3 — new 4-directions structure */
 import { DirectionPage } from "./pages/DirectionPage"
+import { Cases } from "./pages/Cases"
 
 /* Shared pages */
 import { Privacy } from "./pages/Privacy"
@@ -63,6 +64,9 @@ function App() {
               <Route path="/team-basics" element={<DirectionPage slug="team-basics" />} />
               <Route path="/agents-automation" element={<DirectionPage slug="agents-automation" />} />
               <Route path="/process-projects" element={<DirectionPage slug="process-projects" />} />
+
+              {/* Кейсы обучения — все на одной странице */}
+              <Route path="/cases" element={<Cases />} />
 
               {/* V2 pages — kept reachable for reference during the rebuild */}
               <Route path="/executive" element={<Executive />} />

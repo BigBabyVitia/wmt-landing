@@ -1,8 +1,5 @@
 import { useEffect, useRef, useState } from "react"
 import { ArrowRight, CloseCircle as X, TickCircle as CheckCircle2, TickCircle, Cpu, Microphone, People, Buildings, ShieldTick } from "@/components/ui/icons"
-import { Link } from "react-router-dom"
-import { LogoCloud } from "@/components/ui/logo-cloud"
-import { clients } from "@/data/clients"
 import { V2Card } from "@/components/ui/V2Card"
 
 export function TrustStrip() {
@@ -29,13 +26,10 @@ export function TrustStrip() {
       <section ref={ref} id="trust" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
           <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            {/* Eyebrow */}
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand mb-4 text-center md:text-left">
-              Почему WMT
-            </p>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-14 text-center md:text-left text-balance">
               Почему нам доверяют{" "}
-              <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/40 dark:via-white dark:to-white/40 bg-clip-text text-transparent inline-block animate-text-glow">
+              {/* py-2 -my-2 — даёт клип-боксу градиента запас снизу, иначе выносные (р, ф) срезаются */}
+              <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/40 dark:via-white dark:to-white/40 bg-clip-text text-transparent inline-block py-2 -my-2 animate-text-glow">
                 трансформацию
               </span>
             </h2>
@@ -350,26 +344,9 @@ export function TrustStrip() {
             </div>
           </div>
 
-          {/* Clients Marquee */}
-          <div className={`mt-24 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? "300ms" : "0ms" }}>
-            <div className="text-center mb-8">
-              <h3 className="text-[13px] font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 dark:text-gray-400 dark:text-gray-500">Нам доверяют лидеры рынка</h3>
-            </div>
-            <div className="mx-auto max-w-6xl">
-              <div className="my-5 h-px bg-gray-200 dark:bg-white/10 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
-              <LogoCloud logos={clients} />
-              <div className="mt-5 h-px bg-gray-200 dark:bg-white/10 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
-            </div>
-          </div>
-
-          <div className={`mt-12 flex justify-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ transitionDelay: visible ? "500ms" : "0ms" }}>
-            <Link
-              to="/proof"
-              className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-brand/20 transition-all rounded-full px-8 pt-[14px] pb-[16px] font-medium hover:-translate-y-0.5"
-            >
-              Больше фактов и публикаций в СМИ <ArrowRight className="w-4 h-4 ml-1 mt-0.5" />
-            </Link>
-          </div>
+          {/* Маркиза логотипов + статистика обучений переехали в CasesSection («Нам доверяют
+              лидеры рынка» + кейсы = один цельный блок, фидбэк 06.07.2026). Кнопка
+              «Больше фактов и публикаций в СМИ» (/proof) удалена — раздел скрыт по той же правке. */}
         </div>
       </section>
 

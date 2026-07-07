@@ -7,6 +7,7 @@ import { clients } from "@/data/clients"
 
 const UnicornScene = lazy(() => import("unicornstudio-react"))
 import { TrustStrip } from "@/components/TrustStrip"
+import { CasesSection } from "@/components/CasesSection"
 import { V2Card } from "@/components/ui/V2Card"
 import { Testimonials } from "@/components/Testimonials"
 import { MainCta } from "@/components/MainCta"
@@ -75,10 +76,9 @@ export function HomeV2() {
       {/* ── HERO ──
           Зафиксировано на Spline-роботе (`HeroSplit`, 02.07.2026) — финальный выбор после
           A/B-подбора фона hero. Остальные варианты (Glow/WebGL/Видео/Beams/Pixel/Бренд) и
-          дев-переключатель `HeroBgToggle` НЕ удалены — экспортированы ниже как «спящие»,
-          чтобы вернуть A/B-режим: верни `const { heroStyle } = useVersion()` и тернарник
-          из истории git, добавь `<HeroBgToggle />` обратно. Пилюли (`HeroFeatureBand`) в
-          split живут внутри самого hero, полоса под hero не нужна. */}
+          дев-переключатель `HeroBgToggle` НЕ удалены — экспортированы ниже как «спящие».
+          Лого-маркиза зафиксирована на раскладке «полоса» (сплошная полоса логотипов у низа
+          hero, робот приподнят над ней) — выбор заказчика 07.07.2026; A/B-тоггл убран. */}
       <HeroSplit />
 
       {/* ── ВЫЗОВЫ ── */}
@@ -89,6 +89,9 @@ export function HomeV2() {
 
       {/* ── TRUST / ЭКСПЕРТ ── */}
       <TrustStrip />
+
+      {/* ── КЕЙСЫ ОБУЧЕНИЯ ── */}
+      <CasesSection />
 
       {/* ── ОТЗЫВЫ ── */}
       <Testimonials />
@@ -320,7 +323,7 @@ function HeroSplit() {
 
       <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 lg:min-h-0">
         {/* ── LEFT: content ── */}
-        <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-14 xl:px-20 pt-28 pb-14 lg:py-0 order-2 lg:order-1">
+        <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-14 xl:px-20 pt-28 pb-14 lg:pt-0 lg:pb-24 order-2 lg:order-1">
           <div className="w-full max-w-xl lg:ml-auto">
             {/* Эйброу "Корпоративное обучение по ИИ" убран по просьбе заказчика (02.07.2026) —
                 H1 сразу читается как первая строка. `hub.hero.eyebrow` не удалён из данных:
@@ -371,11 +374,6 @@ function HeroSplit() {
             same zoom/size as before, just shifted down into the added headroom. Desktop (`lg:`)
             unaffected — inner wrapper reverts to filling the panel exactly as it always did. */}
         <div className="relative min-h-[calc(46svh+4.5rem)] sm:min-h-[calc(54svh+4.5rem)] lg:min-h-0 lg:h-full order-1 lg:order-2 bg-[#e3d3c2] dark:bg-[hsl(222,28%,4%)]">
-          {/* Vertical divider between the two halves (desktop) */}
-          <div className="hidden lg:block absolute left-0 inset-y-0 w-px bg-gradient-to-b from-transparent via-black/10 dark:via-white/15 to-transparent z-20" />
-          {/* Horizontal divider on mobile (stacked) — sits at the robot's bottom edge */}
-          <div className="lg:hidden absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-black/10 dark:via-white/15 to-transparent z-20" />
-
           {/* Backdrop — warm sandy studio stage (light) whose gradient mirrors the sunset-lit floor so
               the platform blends in; deep warm base (dark). Spans the FULL (taller) panel, so the
               added mobile headroom above the robot still reads as the same stage, not empty space. */}
@@ -384,20 +382,52 @@ function HeroSplit() {
           <div className="absolute inset-0 z-0 pointer-events-none dark:[background:radial-gradient(60%_55%_at_58%_45%,rgba(255,83,49,0.20),transparent_72%)]" />
 
           {/* Robot layer — pinned to the panel's bottom at the original size on mobile/sm (see note
-              above); fills the whole panel again from `lg:` up, exactly like before this fix. */}
-          <div className="absolute inset-x-0 bottom-0 h-[46svh] sm:h-[54svh] lg:inset-0 lg:h-auto">
+              above); fills the whole panel again from `lg:` up, exactly like before this fix.
+              На десктопе робот приподнят (`lg:!bottom-[6.5rem]`), чтобы освободить снизу место
+              под сплошную полосу логотипов. */}
+          <div className="absolute inset-x-0 bottom-0 h-[46svh] sm:h-[54svh] lg:inset-0 lg:h-auto lg:!bottom-[6.5rem]">
             {/* Per-theme recolour of the LIVE scene — через runtime (whobeeThemedOnLoad),
                 а не CSS-фильтры: настоящие материалы, мягкая PCFSoft-тень, точные цвета.
                 · light — «закатная» студия: серебристый робот, оранжевая мордочка, кремовый пол
-                · dark  — тёмная сцена с тёплым брендовым светом вместо фиолетового */}
+                · dark  — тёмная сцена с тёплым брендовым светом вместо фиолетового
+                Poster (WebP-снимок сцены под тему) рисуется мгновенно и остаётся фолбэком
+                на слабых устройствах — см. InteractiveRobotSpline. */}
             <InteractiveRobotSpline
               scene={ROBOT_SCENE_URL}
               onLoad={whobeeThemedOnLoad}
+              posterLight="/hero/robot-light.webp"
+              posterDark="/hero/robot-dark.webp"
               className="absolute inset-0 z-10 !w-full !h-full"
             />
 
             {/* Mask the baked-in Spline watermark (bottom-right of the canvas) — soft radial fade in the stage colour */}
             <div className="absolute bottom-0 right-0 w-[280px] h-[120px] z-20 pointer-events-none [background:radial-gradient(135%_135%_at_100%_100%,#e9dfce_52%,rgba(233,223,206,0)_80%)] dark:[background:radial-gradient(135%_135%_at_100%_100%,hsl(222,30%,3%)_52%,rgba(10,12,16,0)_80%)]" />
+          </div>
+
+          {/* Мягкое затухание низа «пола» сцены в фон, что лежит ниже (=белый/чёрный, как и
+              ChallengesSection). Без него тёплый пол упирается встык — «пол» будто обрезан по
+              линии. Поверх canvas (z-20), поэтому растворяет и сам пол. Нужно на МОБИЛЬНОЙ
+              раскладке (панель робота над контентом); на десктопе робот приподнят и за
+              растворение в полосу отвечает градиент над полосой (см. ниже), а это затухание
+              оказывается за полосой и безвредно. */}
+          <div className="absolute inset-x-0 bottom-0 h-20 lg:h-28 z-20 pointer-events-none [background:linear-gradient(to_bottom,transparent,#ffffff)] dark:[background:linear-gradient(to_bottom,transparent,#000000)]" />
+        </div>
+      </div>
+
+      {/* Лого-маркиза — сплошная полоса во всю ширину у самого низа hero (под обеими колонками),
+          собственный фон = фон страницы. Робот приподнят над ней (см. слой робота выше), поэтому
+          наложения на сцену нет. На <lg скрыта: в стековой раскладке низ занят контентом. */}
+      <div className="hidden lg:block absolute bottom-0 inset-x-0 z-30 bg-background animate-fade-rise-delay-2 pb-[env(safe-area-inset-bottom)]">
+        {/* Растворение «пола» сцены в полосу — привязано к ВЕРХУ полосы (bottom-full), поэтому
+            зазора нет при любой высоте приподнятого робота. Только правая половина (там пол);
+            левая и так фон страницы. Цвет = фон полосы (белый/чёрный). */}
+        <div className="pointer-events-none absolute bottom-full right-0 w-1/2 h-28 bg-gradient-to-t from-white dark:from-black to-transparent" />
+        <div className="w-full max-w-6xl mx-auto px-6 py-3">
+          <div className="text-center mb-1">
+            <span className="text-[10px] xl:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400 dark:text-white/60">{hub.hero.trustLabel}</span>
+          </div>
+          <div className="relative [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+            <LogoCloud logos={clients} className="py-1" />
           </div>
         </div>
       </div>
