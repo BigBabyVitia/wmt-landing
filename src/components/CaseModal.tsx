@@ -148,7 +148,7 @@ export function PdfModal({ onClose }: { onClose: () => void }) {
           <>
             <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">Кейсбук обучения WMT&nbsp;AI</h3>
             <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed mb-6">
-              Оставьте контакт — пришлём PDF со всеми программами: запросы, результаты, фото.
+              Оставьте контакты — пришлём кейсбук в PDF (запросы, результаты, фото) и свяжемся, чтобы ответить на вопросы.
             </p>
             <form onSubmit={handleSubmit} className="space-y-3">
               <input
@@ -158,9 +158,16 @@ export function PdfModal({ onClose }: { onClose: () => void }) {
                 className="w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/35 focus:outline-none focus:border-[#ff5331]/60 transition-colors"
               />
               <input
-                name="Контакт"
+                name="Телефон"
+                type="tel"
                 required
-                placeholder="Почта или Telegram"
+                placeholder="Телефон"
+                className="w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/35 focus:outline-none focus:border-[#ff5331]/60 transition-colors"
+              />
+              <input
+                name="Telegram"
+                required
+                placeholder="Telegram — напр. @username"
                 className="w-full rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-white/[0.04] px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-white/35 focus:outline-none focus:border-[#ff5331]/60 transition-colors"
               />
               <button

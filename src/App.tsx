@@ -20,7 +20,6 @@ import { BuilderDay } from "./pages/BuilderDay"
 import { Proof } from "./pages/Proof"
 
 /* V3 — new 4-directions structure */
-import { DirectionPage } from "./pages/DirectionPage"
 import { Cases } from "./pages/Cases"
 
 /* Shared pages */
@@ -58,12 +57,6 @@ function App() {
             <Routes>
               {/* Home — version switch (new = 4-directions hub) */}
               <Route path="/" element={<HomePage />} />
-
-              {/* V3 — 4 direction pages */}
-              <Route path="/start-leaders" element={<DirectionPage slug="start-leaders" />} />
-              <Route path="/team-basics" element={<DirectionPage slug="team-basics" />} />
-              <Route path="/agents-automation" element={<DirectionPage slug="agents-automation" />} />
-              <Route path="/process-projects" element={<DirectionPage slug="process-projects" />} />
 
               {/* Кейсы обучения — все на одной странице */}
               <Route path="/cases" element={<Cases />} />

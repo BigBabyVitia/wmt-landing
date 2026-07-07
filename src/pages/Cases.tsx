@@ -119,7 +119,6 @@ export function Cases() {
           n={1}
           title="Стартовые форматы для руководителей"
           sub="С этого начинается маршрут: управляющая команда получает общую картину и личный навык — до того, как учить всю компанию."
-          link="/start-leaders"
         />
         <CaseSplit c={byId("strategy-sessions")} photoSide="right" />
         <CaseSplit c={byId("gov-armenia")} photoSide="left" />
@@ -131,7 +130,6 @@ export function Cases() {
           n={2}
           title="Базовые программы для команды"
           sub="Команда осваивает ИИ на своих задачах: не «курс с полки», а программа под процессы, роли и отрасль."
-          link="/team-basics"
         />
         <CaseSplit c={byId("corp-industry")} photoSide="left" />
         <SecurityBand c={byId("fora-bank")} />
@@ -142,7 +140,6 @@ export function Cases() {
           n={3}
           title="ИИ-агенты и автоматизация"
           sub="Идеи доводятся до работающих агентов: команда собирает прототипы под свои процессы своими руками."
-          link="/agents-automation"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-8">
           {(["gronolux", "r1", "liga"] as const).map((id) => (
@@ -168,22 +165,9 @@ export function Cases() {
               <a href="#flagship" className="inline-flex items-center justify-center gap-2 text-sm font-semibold text-gray-700 dark:text-white/80 border border-gray-300 dark:border-white/15 rounded-full px-6 pt-[11px] pb-[13px] hover:border-[#ff5331]/50 hover:text-brand transition-colors">
                 Кейс Wildberries ↑
               </a>
-              <Link to="/process-projects" className="inline-flex items-center justify-center gap-2 text-sm font-bold bg-brand text-white rounded-full px-6 pt-[11px] pb-[13px] hover:bg-[#e64627] shadow-lg shadow-[#ff5331]/20 transition-all hover:-translate-y-0.5">
-                Направление 4 <ArrowRight className="w-4 h-4" />
-              </Link>
             </div>
           </div>
         </section>
-
-        {/* ── Честная концовка ── */}
-        <div className="mt-14 grid gap-3 max-w-3xl mx-auto text-center">
-          <p className="text-[13px] text-gray-400 dark:text-gray-500 leading-relaxed">
-            Ещё несколько корпоративных треков прошли под NDA — расскажем о них на встрече, без названий компаний.
-          </p>
-          <p className="text-[13px] text-gray-400 dark:text-gray-500 leading-relaxed">
-            Результаты зависят от специфики бизнеса и процессов. Все цифры и формулировки — из итоговых материалов программ.
-          </p>
-        </div>
 
         {/* ── Лид-магнит PDF ── */}
         <section className="mt-14 mb-16 md:mb-24">
@@ -226,20 +210,15 @@ export function Cases() {
 }
 
 /* ── Заголовок шага маршрута ── */
-function StepHeader({ id, n, title, sub, link }: { id: string; n: number; title: string; sub: string; link: string }) {
+function StepHeader({ id, n, title, sub }: { id: string; n: number; title: string; sub: string }) {
   return (
     <section id={id} className="mt-16 md:mt-24 scroll-mt-28">
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-        <div>
-          <span className="inline-flex items-center rounded-full px-3.5 pt-[4px] pb-[9px] text-xs font-bold text-brand border-[1.5px] border-[#ff5331]/60 bg-[#ff5331]/[0.06] mb-4">
-            Шаг {n} из 4
-          </span>
-          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{title}</h2>
-          <p className="mt-3 text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">{sub}</p>
-        </div>
-        <Link to={link} className="shrink-0 text-sm font-semibold text-gray-500 dark:text-white/60 hover:text-brand transition-colors whitespace-nowrap">
-          Страница направления →
-        </Link>
+      <div>
+        <span className="inline-flex items-center rounded-full px-3.5 pt-[4px] pb-[9px] text-xs font-bold text-brand border-[1.5px] border-[#ff5331]/60 bg-[#ff5331]/[0.06] mb-4">
+          Шаг {n} из 4
+        </span>
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{title}</h2>
+        <p className="mt-3 text-gray-600 dark:text-gray-400 leading-relaxed max-w-2xl">{sub}</p>
       </div>
     </section>
   )

@@ -4,7 +4,7 @@ import { ArrowRight, ShieldTick } from "@/components/ui/icons"
 import { LogoCloud } from "@/components/ui/logo-cloud"
 import { clients } from "@/data/clients"
 import { trainingCases, caseStats, type CaseItem } from "@/data/cases"
-import { CaseModal, PdfModal } from "@/components/CaseModal"
+import { PdfModal } from "@/components/CaseModal"
 
 /**
  * Блок кейсов на главной — ДВЕ КОНЦЕПЦИИ с дев-переключателем (для выбора с маркетологами):
@@ -17,7 +17,6 @@ import { CaseModal, PdfModal } from "@/components/CaseModal"
 export function CasesSection() {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
-  const [active, setActive] = useState<CaseItem | null>(null)
   const [pdfOpen, setPdfOpen] = useState(false)
   const [variant, setVariant] = useState<"a" | "b">(
     () => (localStorage.getItem("wmt-cases-variant") as "a" | "b") || "a"
@@ -40,9 +39,9 @@ export function CasesSection() {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = active || pdfOpen ? "hidden" : ""
+    document.body.style.overflow = pdfOpen ? "hidden" : ""
     return () => { document.body.style.overflow = "" }
-  }, [active, pdfOpen])
+  }, [pdfOpen])
 
   return (
     <>
@@ -72,12 +71,11 @@ export function CasesSection() {
 
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           {variant === "a"
-            ? <VariantFull onOpenCase={setActive} onOpenPdf={() => setPdfOpen(true)} />
+            ? <VariantFull onOpenPdf={() => setPdfOpen(true)} />
             : <VariantTeaser onOpenPdf={() => setPdfOpen(true)} />}
         </div>
       </section>
 
-      {active && <CaseModal c={active} onClose={() => setActive(null)} />}
       {pdfOpen && <PdfModal onClose={() => setPdfOpen(false)} />}
     </>
   )
@@ -86,11 +84,13 @@ export function CasesSection() {
 /* ════════════════════════════════════════════════════════════════════
    ВАРИАНТ A — полный блок: доверие + лента кейсов
    ════════════════════════════════════════════════════════════════════ */
-function VariantFull({ onOpenCase, onOpenPdf }: { onOpenCase: (c: CaseItem) => void; onOpenPdf: () => void }) {
+function VariantFull({ onOpenPdf }: { onOpenPdf: () => void }) {
   const railRef = useRef<HTMLDivElement>(null)
   const scrollRail = (dir: 1 | -1) => {
     railRef.current?.scrollBy({ left: dir * 340, behavior: "smooth" })
   }
+  const scrollToReviews = () =>
+    document.getElementById("testimonials")?.scrollIntoView({ behavior: "smooth", block: "start" })
 
   return (
     <>
@@ -126,13 +126,13 @@ function VariantFull({ onOpenCase, onOpenPdf }: { onOpenCase: (c: CaseItem) => v
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8 md:mb-10">
           <div>
             <h3 className="text-2xl md:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white text-balance">
-              Как это выглядит{" "}
+              Как обучение от WMT&nbsp;AI выглядит{" "}
               <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/40 dark:via-white dark:to-white/40 bg-clip-text text-transparent inline-block animate-text-glow">
                 вживую
               </span>
             </h3>
             <p className="mt-3 text-base text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
-              С каким запросом приходили команды — и&nbsp;что у&nbsp;них осталось после обучения.
+              С каким запросом приходили команды — и&nbsp;что у&nbsp;них осталось после обучения. То, что не&nbsp;под&nbsp;NDA.
             </p>
             <Link to="/cases" className="md:hidden inline-flex items-center gap-1.5 mt-4 text-sm font-semibold text-brand hover:text-[#e64627] transition-colors">
               Смотреть все кейсы <ArrowRight className="w-4 h-4" />
@@ -168,34 +168,39 @@ function VariantFull({ onOpenCase, onOpenPdf }: { onOpenCase: (c: CaseItem) => v
       >
         {trainingCases.map((c) => (
           c.featured
-            ? <FlagshipCard key={c.id} c={c} onOpen={() => onOpenCase(c)} />
-            : <PhotoCard key={c.id} c={c} onOpen={() => onOpenCase(c)} />
+            ? <FlagshipCard key={c.id} c={c} />
+            : <PhotoCard key={c.id} c={c} />
         ))}
         <PdfCard onOpen={onOpenPdf} />
       </div>
 
-      {/* ── CTA: кейсбук в PDF ── */}
-      <div className="mt-10 md:mt-12 px-4 flex flex-col items-center gap-5">
-        <button
-          onClick={onOpenPdf}
-          className="inline-flex items-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-[#ff5331]/20 transition-all rounded-full px-8 pt-[14px] pb-[16px] font-medium hover:-translate-y-0.5"
+      {/* ── CTA: на страницу всех кейсов + отзывы ──
+          Кейсбук намеренно НЕ здесь: он остаётся точечным (последняя плитка слайдера +
+          блок внизу /cases) — на главной приоритет «рассмотреть сами кейсы». */}
+      <div className="mt-10 md:mt-12 px-4 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <Link
+          to="/cases"
+          className="inline-flex items-center justify-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-[#ff5331]/20 transition-all rounded-full px-8 pt-[14px] pb-[16px] font-medium hover:-translate-y-0.5"
         >
-          Получить полный кейсбук в PDF <ArrowRight className="w-4 h-4 ml-1 mt-0.5" />
+          Смотреть все кейсы <ArrowRight className="w-4 h-4 ml-1 mt-0.5" />
+        </Link>
+        <button
+          onClick={scrollToReviews}
+          className="inline-flex items-center justify-center rounded-full border border-gray-300 dark:border-white/20 text-gray-700 dark:text-white/80 hover:border-[#ff5331]/50 hover:text-brand dark:hover:text-brand transition-all px-8 pt-[13px] pb-[15px] font-medium"
+        >
+          Читать отзывы клиентов
         </button>
-        <p className="text-[12px] text-gray-400 dark:text-gray-500 text-center max-w-md leading-relaxed">
-          Ещё несколько треков прошли под NDA. Результаты зависят от специфики бизнеса и процессов.
-        </p>
       </div>
     </>
   )
 }
 
 /* ── Карточка кейса: фото на всю карточку, текст поверх скрима (стиль живого сайта) ── */
-function PhotoCard({ c, onOpen }: { c: CaseItem; onOpen: () => void }) {
+function PhotoCard({ c }: { c: CaseItem }) {
   return (
-    <button
-      onClick={onOpen}
-      className="group relative snap-start shrink-0 w-[280px] md:w-[320px] h-[400px] md:h-[420px] rounded-[1.5rem] overflow-hidden text-left bg-[hsl(220,20%,10%)] border border-black/5 dark:border-white/10 hover:border-[#ff5331]/45 transition-all duration-500 hover:shadow-xl hover:shadow-[#ff5331]/10"
+    <Link
+      to={`/cases#${c.id}`}
+      className="group relative block snap-start shrink-0 w-[280px] md:w-[320px] h-[400px] md:h-[420px] rounded-[1.5rem] overflow-hidden text-left bg-[hsl(220,20%,10%)] border border-black/5 dark:border-white/10 hover:border-[#ff5331]/45 transition-all duration-500 hover:shadow-xl hover:shadow-[#ff5331]/10"
     >
       {c.photo ? (
         <img
@@ -231,16 +236,16 @@ function PhotoCard({ c, onOpen }: { c: CaseItem; onOpen: () => void }) {
           Подробнее <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </span>
       </div>
-    </button>
+    </Link>
   )
 }
 
 /* ── Флагман Wildberries: «героем» служит цифра, а не фото ── */
-function FlagshipCard({ c, onOpen }: { c: CaseItem; onOpen: () => void }) {
+function FlagshipCard({ c }: { c: CaseItem }) {
   return (
-    <button
-      onClick={onOpen}
-      className="group relative snap-start shrink-0 w-[300px] md:w-[360px] h-[400px] md:h-[420px] rounded-[1.5rem] overflow-hidden text-left bg-[hsl(220,20%,8%)] border border-[#ff5331]/40 hover:border-[#ff5331]/70 transition-all duration-500 hover:shadow-xl hover:shadow-[#ff5331]/15"
+    <Link
+      to={`/cases#${c.id}`}
+      className="group relative block snap-start shrink-0 w-[300px] md:w-[360px] h-[400px] md:h-[420px] rounded-[1.5rem] overflow-hidden text-left bg-[hsl(220,20%,8%)] border border-[#ff5331]/40 hover:border-[#ff5331]/70 transition-all duration-500 hover:shadow-xl hover:shadow-[#ff5331]/15"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_80%_0%,rgba(255,83,49,0.28),transparent_60%),radial-gradient(ellipse_60%_45%_at_10%_100%,rgba(255,83,49,0.12),transparent_60%)]" />
       <div className="relative h-full flex flex-col p-6">
@@ -261,7 +266,7 @@ function FlagshipCard({ c, onOpen }: { c: CaseItem; onOpen: () => void }) {
           Подробнее <ArrowRight className="w-3.5 h-3.5" />
         </span>
       </div>
-    </button>
+    </Link>
   )
 }
 

@@ -8,7 +8,7 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300"
+      className="scroll-mt-20 py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,5%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto">
         <div className="mb-12 md:mb-16">
