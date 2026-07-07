@@ -8,6 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
     "setup:telegram": "python3 tmp/get_chat_id.py && node -e \"const fs = require('fs'); const file = 'tmp/get_chat_id.log'; if(!fs.existsSync(file)) return; const output = fs.readFileSync(file, 'utf8').trim(); if(output.includes('FOUND_CHAT_ID=')) { let env = ''; if(fs.existsSync('.env')) env = fs.readFileSync('.env', 'utf8'); const id = output.match(/FOUND_CHAT_ID=(\\d+)/)[1]; if(env.includes('VITE_TELEGRAM_CHAT_ID=')) { env = env.replace(/VITE_TELEGRAM_CHAT_ID=.*/, 'VITE_TELEGRAM_CHAT_ID=' + id); } else { env += '\\nVITE_TELEGRAM_CHAT_ID=' + id; } fs.writeFileSync('.env', env); console.log('✅ .env updated with CHAT_ID:', id); }\""
   },
   "dependencies": {
@@ -42,10 +44,12 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.5.2",
     "globals": "^17.4.0",
+    "jsdom": "^29.1.1",
     "postcss": "^8.5.8",
     "tailwindcss": "^3.4.19",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.57.0",
-    "vite": "^8.0.1"
+    "vite": "^8.0.1",
+    "vitest": "^4.1.10"
   }
 }

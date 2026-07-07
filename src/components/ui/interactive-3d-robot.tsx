@@ -154,13 +154,120 @@ export function whobeeThemedOnLoad(app: any) {
      4. Когда сцена готова — плавно проявляем canvas поверх poster'а. */
 
 /** Стоит ли вообще грузить интерактивную 3D-сцену на этом устройстве. */
-function shouldLoad3D(): boolean {
+export function shouldLoad3D(): boolean {
   if (typeof window === 'undefined') return false;
   const nav = navigator as any;
   if (nav.connection?.saveData) return false; // режим экономии трафика
   if (typeof nav.deviceMemory === 'number' && nav.deviceMemory > 0 && nav.deviceMemory < 4) return false; // слабое ОЗУ
   if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return false; // пользователь просит меньше анимации
   return true;
+}
+
+/* ── Управление нагрузкой робота на GPU ───────────────────────────────────────────
+   Spline в режиме `auto` рисует сцену КАЖДЫЙ кадр (60 fps), пока она «играет» — у
+   робота непрерывная idle-анимация. На слабых интегрированных GPU это держит 3D-движок
+   у ~100% даже когда на робота просто смотрят, и подтормаживает скролл всей страницы.
+   Два рычага, оба через штатный рантайм Spline (без перезагрузки сцены):
+     1) FPS-кэп: `renderMode='manual'` глушит собственный безлимитный луп Spline, а
+        кадры мы гоним сами throttled-циклом (по умолчанию 30 fps) — и только пока робот
+        НА экране И вкладка видима. Вне экрана/при скрытии/сворачивании не гоним ни кадра
+        → GPU простаивает. Возобновление мгновенное.
+     2) Разрешение: на HiDPI сцена рендерится в 2× (в 4× больше пикселей на кадр) —
+        клампим pixelRatio three-renderer'а (см. capRenderResolution). */
+
+interface Toggleable3D {
+  play?: () => void;
+  stop?: () => void;
+  requestRender?: () => void;
+  renderMode?: 'auto' | 'manual' | 'continuous';
+}
+
+interface RafHost {
+  requestAnimationFrame: (cb: FrameRequestCallback) => number;
+  cancelAnimationFrame: (id: number) => void;
+}
+
+/**
+ * Гонит рендер сцены с ограничением по fps, только пока элемент во вьюпорте И вкладка
+ * видима; иначе не рендерит вовсе → GPU простаивает. Возвращает функцию очистки.
+ * Параметризовано (IO/doc/win/fps), чтобы поведение можно было детерминированно
+ * протестировать без реальной 3D-сцены. Если рантайм не умеет manual-рендер —
+ * откатывается на play()/stop() (пауза без FPS-кэпа).
+ */
+export function createRenderActivityController(
+  el: Element,
+  app: Toggleable3D,
+  { IO = window.IntersectionObserver, doc = document, win = window as unknown as RafHost, fps = 30 }:
+    { IO?: typeof IntersectionObserver; doc?: Document; win?: RafHost; fps?: number } = {},
+): () => void {
+  // Ручной режим: сами решаем, когда и как часто рисовать кадр.
+  const manual = typeof app.requestRender === 'function' && 'renderMode' in app;
+  const prevMode = app.renderMode;
+  if (manual) app.renderMode = 'manual';
+
+  const minDelta = 1000 / fps;
+  let onScreen = true;
+  let rafId: number | null = null;
+  let lastRender = -Infinity;
+
+  const pump = (t: number) => {
+    rafId = win.requestAnimationFrame(pump);
+    if (t - lastRender >= minDelta) {
+      lastRender = t;
+      app.requestRender!();
+    }
+  };
+
+  let running: boolean | null = null; // текущее состояние — guard от лишних переключений
+  const sync = () => {
+    const active = onScreen && doc.visibilityState !== 'hidden';
+    if (active === running) return;
+    running = active;
+    if (active) {
+      if (manual) {
+        lastRender = -Infinity; // первый кадр после возобновления — сразу
+        if (rafId === null) rafId = win.requestAnimationFrame(pump);
+      } else {
+        app.play?.();
+      }
+    } else if (manual) {
+      if (rafId !== null) { win.cancelAnimationFrame(rafId); rafId = null; }
+    } else {
+      app.stop?.();
+    }
+  };
+
+  const io = new IO((entries) => {
+    onScreen = entries.some((e) => e.isIntersecting);
+    sync();
+  });
+  io.observe(el);
+  doc.addEventListener('visibilitychange', sync);
+  sync(); // применить исходное состояние (например, вкладка уже в фоне)
+
+  return () => {
+    io.disconnect();
+    doc.removeEventListener('visibilitychange', sync);
+    if (rafId !== null) { win.cancelAnimationFrame(rafId); rafId = null; }
+    if (manual) app.renderMode = prevMode; // вернуть исходный режим на случай переиспользования сцены
+  };
+}
+
+/**
+ * Ограничивает разрешение рендера (pixelRatio three-renderer'а внутри Spline) значением
+ * `maxRatio`. На HiDPI-экранах рендер в 2× — крупный источник GPU-нагрузки; кэп режет
+ * число пикселей на кадр (2.0→1.5 ≈ −44% пикселей). Патчим сам `setPixelRatio`, поэтому
+ * кэп держится и после внутренних ресайзов Spline. Идемпотентно.
+ */
+function capRenderResolution(app: any, maxRatio: number) {
+  const renderer = app && Object.values(app).find((v: any) => v && v.shadowMap && typeof v.render === 'function');
+  if (!renderer || typeof renderer.setPixelRatio !== 'function') return;
+  if (!renderer.__ratioCapped) {
+    const orig = renderer.setPixelRatio.bind(renderer);
+    renderer.setPixelRatio = (r: number) => orig(Math.min(r, maxRatio));
+    renderer.__ratioCapped = true;
+  }
+  renderer.setPixelRatio(typeof renderer.getPixelRatio === 'function' ? renderer.getPixelRatio() : maxRatio);
 }
 
 interface InteractiveRobotSplineProps {
@@ -176,6 +283,7 @@ export function InteractiveRobotSpline({ scene, className, onLoad, posterLight, 
   const wrapRef = useRef<HTMLDivElement>(null);
   const [mount3D, setMount3D] = useState(false); // разрешили создать узел Spline
   const [ready, setReady] = useState(false); // сцена догрузилась → проявляем canvas
+  const [app, setApp] = useState<any>(null); // экземпляр Spline Application (для pause/resume)
 
   useEffect(() => {
     if (!shouldLoad3D()) return; // capability-gated: остаётся только poster
@@ -204,10 +312,24 @@ export function InteractiveRobotSpline({ scene, className, onLoad, posterLight, 
     };
   }, []);
 
-  const handleLoad = (app: any) => {
+  const handleLoad = (loadedApp: any) => {
+    setApp(loadedApp);
     setReady(true);
-    onLoad?.(app);
+    onLoad?.(loadedApp);
   };
+
+  // Снижаем нагрузку робота на GPU: кэп кадров (30 fps) пока он на экране, и полная
+  // остановка рендера, когда он ушёл за экран / вкладка скрыта — иначе на слабых GPU
+  // сцена молотит на 100% даже в простое и тормозит скролл. Плюс кэп разрешения на
+  // HiDPI. Всё через штатный рантайм, без перезагрузки сцены. Ключ по экземпляру `app`,
+  // поэтому при его пересоздании (напр. StrictMode-двойной монтаж в dev) управляем живой
+  // сценой. См. createRenderActivityController / capRenderResolution.
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el || !app || typeof app.stop !== 'function') return;
+    capRenderResolution(app, 1.5);
+    return createRenderActivityController(el, app, { fps: 30 });
+  }, [app]);
 
   return (
     <div ref={wrapRef} className={className}>
