@@ -42,20 +42,26 @@ function makeDoc(visibility: DocumentVisibilityState = 'visible') {
   }
 }
 
-/* ── Управляемый requestAnimationFrame: сами продвигаем кадры на нужный timestamp ── */
-function makeRaf() {
+/* ── Управляемый rAF-хост + слушатели pointermove: сами продвигаем кадры и события ── */
+function makeWin() {
   let cbs = new Map<number, FrameRequestCallback>()
   let nextId = 1
-  const host = {
+  const listeners = new Map<string, Set<() => void>>()
+  return {
     requestAnimationFrame: (cb: FrameRequestCallback) => { const id = nextId++; cbs.set(id, cb); return id },
     cancelAnimationFrame: (id: number) => { cbs.delete(id) },
+    addEventListener: (type: string, cb: () => void) => {
+      if (!listeners.has(type)) listeners.set(type, new Set())
+      listeners.get(type)!.add(cb)
+    },
+    removeEventListener: (type: string, cb: () => void) => { listeners.get(type)?.delete(cb) },
+    // тестовые хелперы
+    frame: (t = 0) => { const cur = [...cbs.values()]; cbs = new Map(); cur.forEach((cb) => cb(t)) },
+    flush: (n: number) => { for (let i = 0; i < n; i++) { const cur = [...cbs.values()]; cbs = new Map(); cur.forEach((cb) => cb(i)) } },
+    dispatch: (type: string) => { listeners.get(type)?.forEach((cb) => cb()) },
+    listenerCount: (type: string) => listeners.get(type)?.size ?? 0,
+    pending: () => cbs.size,
   }
-  const frame = (t: number) => {
-    const current = [...cbs.values()]
-    cbs = new Map()
-    current.forEach((cb) => cb(t))
-  }
-  return { host, frame, pending: () => cbs.size }
 }
 
 function makeManualApp() {
@@ -67,19 +73,21 @@ function makeManualApp() {
   }
 }
 
-function setup(opts: { visibility?: DocumentVisibilityState; manual?: boolean; fps?: number } = {}) {
-  const { visibility = 'visible', manual = true, fps = 30 } = opts
+const SETTLE = 3 // маленький «досвет» для детерминированных тестов
+
+function setup(opts: { visibility?: DocumentVisibilityState; manual?: boolean } = {}) {
+  const { visibility = 'visible', manual = true } = opts
   FakeIntersectionObserver.instances = []
-  const raf = makeRaf()
+  const win = makeWin()
   const doc = makeDoc(visibility)
   const app = makeManualApp()
   if (!manual) delete (app as Partial<typeof app>).requestRender // → путь-фолбэк play()/stop()
   const el = {} as Element
   const cleanup = createRenderActivityController(el, app, {
-    IO, doc: doc as unknown as Document, win: raf.host, fps,
+    IO, doc: doc as unknown as Document, win, settleFrames: SETTLE,
   })
   const io = FakeIntersectionObserver.instances[0]
-  return { app, doc, io, raf, cleanup }
+  return { app, doc, io, win, cleanup }
 }
 
 describe('shouldLoad3D — гейтинг тяжёлой 3D-сцены', () => {
@@ -107,79 +115,87 @@ describe('shouldLoad3D — гейтинг тяжёлой 3D-сцены', () => {
   })
 })
 
-describe('createRenderActivityController — FPS-кэп по видимости', () => {
+describe('createRenderActivityController — рендер по требованию', () => {
   it('переводит сцену в manual-режим при старте', () => {
     const { app } = setup()
     expect(app.renderMode).toBe('manual')
   })
 
-  it('гонит кадры не чаще заданного fps, пока робот на экране и вкладка видима', () => {
-    const { app, raf } = setup({ fps: 30 }) // интервал ≈33.3 мс
-    raf.frame(0)   // первый кадр — рисуем сразу
-    raf.frame(10)  // <33 мс — пропускаем
-    raf.frame(20)  // <33 мс — пропускаем
-    raf.frame(40)  // ≥33 мс — рисуем
-    expect(app.requestRender).toHaveBeenCalledTimes(2)
+  it('на активации рисует короткий «досвет» и ЗАМИРАЕТ (не крутит рендер постоянно)', () => {
+    const { app, win } = setup()
+    win.flush(SETTLE)               // досвет позы: ровно SETTLE кадров
+    expect(app.requestRender).toHaveBeenCalledTimes(SETTLE)
+    expect(win.pending()).toBe(0)   // цикл остановлен → 0% GPU в покое
+    win.flush(5)                    // время идёт — новых кадров нет
+    expect(app.requestRender).toHaveBeenCalledTimes(SETTLE)
   })
 
-  it('полностью прекращает рендер, когда робот ушёл за экран, и возобновляет при возврате', () => {
-    const { app, io, raf } = setup()
-    raf.frame(0)
-    expect(app.requestRender).toHaveBeenCalledTimes(1)
+  it('движение курсора будит рендер, потом снова замирает', () => {
+    const { app, win } = setup()
+    win.flush(SETTLE)                              // отыграли стартовый досвет
+    app.requestRender.mockClear()
 
-    io.emit(false) // проскроллили мимо hero
-    expect(raf.pending()).toBe(0) // цикл отменён — GPU простаивает
-    raf.frame(100)
-    raf.frame(200)
-    expect(app.requestRender).toHaveBeenCalledTimes(1) // ни одного нового кадра
-
-    io.emit(true) // вернулись к hero
-    raf.frame(300)
-    expect(app.requestRender).toHaveBeenCalledTimes(2) // сразу первый кадр после возврата
+    win.dispatch('pointermove')                    // курсор двинулся
+    expect(win.pending()).toBe(1)                  // рендер проснулся
+    win.flush(SETTLE)
+    expect(app.requestRender).toHaveBeenCalledTimes(SETTLE)
+    expect(win.pending()).toBe(0)                  // снова замер
   })
 
-  it('прекращает рендер, когда вкладка скрыта/свёрнута, и возобновляет при возврате', () => {
-    const { app, doc, raf } = setup()
-    raf.frame(0)
-    expect(app.requestRender).toHaveBeenCalledTimes(1)
+  it('вне экрана — снимает слушатель курсора и НЕ рисует на движение', () => {
+    const { app, win, io } = setup()
+    win.flush(SETTLE)
+    app.requestRender.mockClear()
 
-    doc.visibilityState = 'hidden'
-    doc.fire('visibilitychange')
-    expect(raf.pending()).toBe(0)
-    raf.frame(100)
-    expect(app.requestRender).toHaveBeenCalledTimes(1)
-
-    doc.visibilityState = 'visible'
-    doc.fire('visibilitychange')
-    raf.frame(200)
-    expect(app.requestRender).toHaveBeenCalledTimes(2)
-  })
-
-  it('не рендерит, если сцена догрузилась в фоновой (скрытой) вкладке', () => {
-    const { app, raf } = setup({ visibility: 'hidden' })
-    expect(raf.pending()).toBe(0)
-    raf.frame(0)
+    io.emit(false)                                 // hero уехал за экран
+    expect(win.listenerCount('pointermove')).toBe(0)
+    win.dispatch('pointermove')                    // событие уже некому ловить
+    win.flush(SETTLE)
     expect(app.requestRender).not.toHaveBeenCalled()
   })
 
-  it('cleanup: отменяет цикл, отключает observer, снимает слушатель и возвращает renderMode', () => {
-    const { app, io, doc, raf, cleanup } = setup()
-    raf.frame(0)
+  it('скрытая вкладка — то же (рендер не будится)', () => {
+    const { app, win, doc } = setup()
+    win.flush(SETTLE)
+    app.requestRender.mockClear()
+
+    doc.visibilityState = 'hidden'
+    doc.fire('visibilitychange')
+    expect(win.listenerCount('pointermove')).toBe(0)
+    win.dispatch('pointermove')
+    win.flush(SETTLE)
+    expect(app.requestRender).not.toHaveBeenCalled()
+  })
+
+  it('возврат на экран — снова ловит курсор и рисует', () => {
+    const { app, win, io } = setup()
+    win.flush(SETTLE)
+    io.emit(false)
+    app.requestRender.mockClear()
+
+    io.emit(true)                                  // вернулись к hero
+    expect(win.listenerCount('pointermove')).toBe(1)
+    win.flush(SETTLE)
+    expect(app.requestRender).toHaveBeenCalledTimes(SETTLE) // досвет позы при возврате
+  })
+
+  it('cleanup: снимает слушатели, гасит цикл и возвращает renderMode', () => {
+    const { app, win, doc, io, cleanup } = setup()
     expect(doc.listenerCount('visibilitychange')).toBe(1)
+    expect(win.listenerCount('pointermove')).toBe(1)
 
     cleanup()
     expect(io.disconnected).toBe(true)
     expect(doc.listenerCount('visibilitychange')).toBe(0)
-    expect(raf.pending()).toBe(0)
+    expect(win.listenerCount('pointermove')).toBe(0)
+    expect(win.pending()).toBe(0)
     expect(app.renderMode).toBe('auto') // восстановлен исходный режим
-    raf.frame(100)
-    expect(app.requestRender).toHaveBeenCalledTimes(1) // после cleanup новых кадров нет
   })
 
   it('фолбэк без manual-рендера: play() на экране, stop() вне экрана', () => {
     const { app, io } = setup({ manual: false })
     expect(app.renderMode).toBe('auto') // manual не трогаем
-    expect(app.play).toHaveBeenCalledTimes(1) // исходно на экране → play
+    expect(app.play).toHaveBeenCalledTimes(1)
 
     io.emit(false)
     expect(app.stop).toHaveBeenCalledTimes(1)

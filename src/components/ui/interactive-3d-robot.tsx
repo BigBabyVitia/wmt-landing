@@ -133,12 +133,16 @@ function applyWhobeeTheme(app: any, theme: WhobeeTheme) {
 export function whobeeThemedOnLoad(app: any) {
   const current = (): WhobeeTheme =>
     document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-  applyWhobeeTheme(app, current());
+  // Перекрашиваем и просим кадр: сцена рендерится по требованию (manual), сама по себе
+  // после смены темы не перерисуется. Без requestRender новый цвет не был бы виден,
+  // пока не двинешь мышь.
+  const applyAndRender = () => { applyWhobeeTheme(app, current()); app.requestRender?.(); };
+  applyAndRender();
 
   // Живое переключение темы без перезагрузки сцены
   const g = window as any;
   if (g.__whobeeThemeObserver) g.__whobeeThemeObserver.disconnect();
-  g.__whobeeThemeObserver = new MutationObserver(() => applyWhobeeTheme(app, current()));
+  g.__whobeeThemeObserver = new MutationObserver(applyAndRender);
   g.__whobeeThemeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 }
 
@@ -165,15 +169,15 @@ export function shouldLoad3D(): boolean {
 
 /* ── Управление нагрузкой робота на GPU ───────────────────────────────────────────
    Spline в режиме `auto` рисует сцену КАЖДЫЙ кадр (60 fps), пока она «играет» — у
-   робота непрерывная idle-анимация. На слабых интегрированных GPU это держит 3D-движок
-   у ~100% даже когда на робота просто смотрят, и подтормаживает скролл всей страницы.
-   Два рычага, оба через штатный рантайм Spline (без перезагрузки сцены):
-     1) FPS-кэп: `renderMode='manual'` глушит собственный безлимитный луп Spline, а
-        кадры мы гоним сами throttled-циклом (по умолчанию 30 fps) — и только пока робот
-        НА экране И вкладка видима. Вне экрана/при скрытии/сворачивании не гоним ни кадра
-        → GPU простаивает. Возобновление мгновенное.
-     2) Разрешение: на HiDPI сцена рендерится в 2× (в 4× больше пикселей на кадр) —
-        клампим pixelRatio three-renderer'а (см. capRenderResolution). */
+   робота непрерывная idle-анимация. На слабых GPU это держит 3D-движок у ~100% даже
+   когда на робота просто смотрят; а фиксированный низкий FPS-кэп заметно «дёргается»
+   на плавных (120 Гц) экранах. Поэтому — рендер ПО ТРЕБОВАНИЮ:
+     · `renderMode='manual'` глушит собственный луп Spline;
+     · в покое НЕ рисуем ни кадра → GPU=0% на любой машине, дёргаться нечему;
+     · при движении курсора будим рендер на короткий «досвет» кадров, чтобы робот
+       плавно повернулся к мыши и доводка завершилась, затем снова замираем;
+     · всё это только пока робот НА экране И вкладка видима — иначе не рисуем вовсе.
+   Если рантайм не умеет manual-рендер — откат на play()/stop() (пауза без on-demand). */
 
 interface Toggleable3D {
   play?: () => void;
@@ -185,56 +189,64 @@ interface Toggleable3D {
 interface RafHost {
   requestAnimationFrame: (cb: FrameRequestCallback) => number;
   cancelAnimationFrame: (id: number) => void;
+  addEventListener: (type: string, cb: () => void) => void;
+  removeEventListener: (type: string, cb: () => void) => void;
 }
 
 /**
- * Гонит рендер сцены с ограничением по fps, только пока элемент во вьюпорте И вкладка
- * видима; иначе не рендерит вовсе → GPU простаивает. Возвращает функцию очистки.
- * Параметризовано (IO/doc/win/fps), чтобы поведение можно было детерминированно
- * протестировать без реальной 3D-сцены. Если рантайм не умеет manual-рендер —
- * откатывается на play()/stop() (пауза без FPS-кэпа).
+ * Рендерит сцену ПО ТРЕБОВАНИЮ (в покое — 0 кадров), будит короткий «досвет» кадров на
+ * движение курсора, и всё только пока элемент во вьюпорте И вкладка видима. Возвращает
+ * функцию очистки. Параметризовано (IO/doc/win/settleFrames) для детерминированных тестов.
+ * Если рантайм не умеет manual-рендер — откат на play()/stop().
  */
 export function createRenderActivityController(
   el: Element,
   app: Toggleable3D,
-  { IO = window.IntersectionObserver, doc = document, win = window as unknown as RafHost, fps = 30 }:
-    { IO?: typeof IntersectionObserver; doc?: Document; win?: RafHost; fps?: number } = {},
+  { IO = window.IntersectionObserver, doc = document, win = window as unknown as RafHost, settleFrames = 18 }:
+    { IO?: typeof IntersectionObserver; doc?: Document; win?: RafHost; settleFrames?: number } = {},
 ): () => void {
-  // Ручной режим: сами решаем, когда и как часто рисовать кадр.
   const manual = typeof app.requestRender === 'function' && 'renderMode' in app;
   const prevMode = app.renderMode;
   if (manual) app.renderMode = 'manual';
 
-  const minDelta = 1000 / fps;
   let onScreen = true;
   let rafId: number | null = null;
-  let lastRender = -Infinity;
+  let framesLeft = 0; // сколько ещё кадров дорисовать (для плавной доводки поворота)
 
-  const pump = (t: number) => {
-    rafId = win.requestAnimationFrame(pump);
-    if (t - lastRender >= minDelta) {
-      lastRender = t;
-      app.requestRender!();
-    }
+  const tick = () => {
+    app.requestRender?.();
+    framesLeft -= 1;
+    rafId = framesLeft > 0 ? win.requestAnimationFrame(tick) : null;
+  };
+  // Разбудить рендер на `settleFrames` кадров (курсор двинулся / сцену снова видно).
+  const wake = () => {
+    framesLeft = settleFrames;
+    if (rafId === null) rafId = win.requestAnimationFrame(tick);
+  };
+  const onPointerMove = () => wake();
+
+  let attached = false;
+  const attach = () => {
+    if (attached) return;
+    attached = true;
+    win.addEventListener('pointermove', onPointerMove);
+    wake(); // отрисовать текущую позу при (пере)активации
+  };
+  const detach = () => {
+    if (!attached) return;
+    attached = false;
+    win.removeEventListener('pointermove', onPointerMove);
+    if (rafId !== null) { win.cancelAnimationFrame(rafId); rafId = null; }
   };
 
-  let running: boolean | null = null; // текущее состояние — guard от лишних переключений
+  let activeState: boolean | null = null; // guard от лишних переключений
   const sync = () => {
     const active = onScreen && doc.visibilityState !== 'hidden';
-    if (active === running) return;
-    running = active;
-    if (active) {
-      if (manual) {
-        lastRender = -Infinity; // первый кадр после возобновления — сразу
-        if (rafId === null) rafId = win.requestAnimationFrame(pump);
-      } else {
-        app.play?.();
-      }
-    } else if (manual) {
-      if (rafId !== null) { win.cancelAnimationFrame(rafId); rafId = null; }
-    } else {
-      app.stop?.();
-    }
+    if (active === activeState) return;
+    activeState = active;
+    if (manual) { if (active) attach(); else detach(); }
+    else if (active) app.play?.();
+    else app.stop?.();
   };
 
   const io = new IO((entries) => {
@@ -248,7 +260,7 @@ export function createRenderActivityController(
   return () => {
     io.disconnect();
     doc.removeEventListener('visibilitychange', sync);
-    if (rafId !== null) { win.cancelAnimationFrame(rafId); rafId = null; }
+    detach();
     if (manual) app.renderMode = prevMode; // вернуть исходный режим на случай переиспользования сцены
   };
 }
@@ -301,16 +313,16 @@ export function InteractiveRobotSpline({ scene, className, onLoad, posterLight, 
     onLoad?.(loadedApp);
   };
 
-  // Снижаем нагрузку робота на GPU: кэп кадров (30 fps) пока он на экране, и полная
-  // остановка рендера, когда он ушёл за экран / вкладка скрыта — иначе на слабых GPU
-  // сцена молотит на 100% даже в простое и тормозит скролл. Всё через штатный рантайм,
-  // без перезагрузки сцены. Ключ по экземпляру `app`, поэтому при его пересоздании
-  // (напр. StrictMode-двойной монтаж в dev) управляем живой сценой. Разрешение НЕ трогаем
-  // (кэп pixelRatio конфликтовал с внутренним ресайзом Spline). См. createRenderActivityController.
+  // Снижаем нагрузку робота на GPU: рендер по требованию (в покое 0 кадров, оживает на
+  // движение курсора) + полная остановка, когда он ушёл за экран / вкладка скрыта. Иначе
+  // на слабых GPU сцена молотит на 100% в простое и тормозит скролл, а фикс. FPS-кэп
+  // «дёргается» на плавных экранах. Всё через штатный рантайм, без перезагрузки сцены.
+  // Ключ по экземпляру `app`: при его пересоздании (напр. StrictMode-монтаж в dev)
+  // управляем живой сценой. См. createRenderActivityController.
   useEffect(() => {
     const el = wrapRef.current;
     if (!el || !app || typeof app.stop !== 'function') return;
-    return createRenderActivityController(el, app, { fps: 30 });
+    return createRenderActivityController(el, app);
   }, [app]);
 
   return (
