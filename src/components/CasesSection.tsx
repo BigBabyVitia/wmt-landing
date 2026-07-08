@@ -18,14 +18,6 @@ export function CasesSection() {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
   const [pdfOpen, setPdfOpen] = useState(false)
-  const [variant, setVariant] = useState<"a" | "b">(
-    () => (localStorage.getItem("wmt-cases-variant") as "a" | "b") || "a"
-  )
-
-  const pickVariant = (v: "a" | "b") => {
-    setVariant(v)
-    localStorage.setItem("wmt-cases-variant", v)
-  }
 
   useEffect(() => {
     const el = ref.current
@@ -50,29 +42,11 @@ export function CasesSection() {
         id="cases"
         className="py-16 md:py-24 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden"
       >
-        {/* ── Дев-переключатель концепций (убрать после выбора) ── */}
-        <div className="flex justify-center mb-10">
-          <div className="inline-flex bg-gray-100 dark:bg-white/[0.06] rounded-full p-1 border border-gray-200 dark:border-white/10 gap-0.5">
-            {([["a", "A · Лента"], ["b", "B · Тизер"]] as const).map(([v, label]) => (
-              <button
-                key={v}
-                onClick={() => pickVariant(v)}
-                className={`px-4 pt-[6px] pb-[10px] rounded-full text-xs font-semibold transition-all duration-300 whitespace-nowrap ${
-                  variant === v
-                    ? "bg-white dark:bg-white/15 text-gray-900 dark:text-white shadow-sm"
-                    : "text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        </div>
-
+        {/* Вариант B «Тизер» временно скрыт — оставлен только A «Лента».
+            Дормантная ветка живёт ниже в `VariantTeaser` (export, чтобы TS не считал
+            её мёртвым кодом) — вернуть = снова отрисовать переключатель концепций. */}
         <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          {variant === "a"
-            ? <VariantFull onOpenPdf={() => setPdfOpen(true)} />
-            : <VariantTeaser onOpenPdf={() => setPdfOpen(true)} />}
+          <VariantFull onOpenPdf={() => setPdfOpen(true)} />
         </div>
       </section>
 
@@ -232,8 +206,9 @@ function PhotoCard({ c }: { c: CaseItem }) {
       <div className="absolute inset-x-0 bottom-0 p-5">
         <h4 className="text-xl md:text-[22px] font-bold text-white leading-snug line-clamp-2 [text-shadow:0_1px_16px_rgba(0,0,0,0.5)]">{c.client}</h4>
         <p className="mt-1.5 text-[13px] text-white/75 leading-relaxed line-clamp-2">{c.teaser}</p>
-        <span className="mt-3.5 inline-flex items-center gap-1.5 rounded-full bg-brand text-white px-4 pt-[5px] pb-[10px] text-[13px] font-semibold shadow-lg shadow-[#ff5331]/25 transition-all group-hover:bg-[#e64627] group-hover:-translate-y-0.5">
-          Подробнее <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
+        <span className="mt-3.5 inline-flex items-center gap-1.5 text-[13px] font-semibold text-white/85 group-hover:text-white transition-colors">
+          <span className="underline underline-offset-4 decoration-white/40 group-hover:decoration-white transition-colors">Подробнее</span>
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </span>
       </div>
     </Link>
@@ -262,8 +237,9 @@ function FlagshipCard({ c }: { c: CaseItem }) {
           <div className="mt-2 text-[44px] md:text-[52px] font-bold text-brand leading-none tracking-tight">{c.metrics![0].value}</div>
           <div className="mt-2 text-xs text-white/55">за 6 месяцев · 3 420 сотрудников</div>
         </div>
-        <span className="mt-5 inline-flex items-center gap-1.5 self-start rounded-full bg-brand text-white px-4 pt-[5px] pb-[10px] text-[13px] font-semibold shadow-lg shadow-[#ff5331]/25 transition-all group-hover:bg-[#e64627] group-hover:-translate-y-0.5">
-          Подробнее <ArrowRight className="w-3.5 h-3.5" />
+        <span className="mt-5 inline-flex items-center gap-1.5 self-start text-[13px] font-semibold text-white/85 group-hover:text-white transition-colors">
+          <span className="underline underline-offset-4 decoration-white/40 group-hover:decoration-white transition-colors">Подробнее</span>
+          <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" />
         </span>
       </div>
     </Link>
@@ -318,7 +294,7 @@ const teaserTiles = [
   { photo: "/cases/gronolux.jpg", label: "ИИ-агенты · Гранолюкс", anchor: "gronolux" },
 ]
 
-function VariantTeaser({ onOpenPdf }: { onOpenPdf: () => void }) {
+export function VariantTeaser({ onOpenPdf }: { onOpenPdf: () => void }) {
   const wb = trainingCases.find((c) => c.id === "wildberries")!
 
   return (
