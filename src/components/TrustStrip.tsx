@@ -25,12 +25,12 @@ export function TrustStrip() {
     <>
       <section ref={ref} id="trust" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300">
         <div className="max-w-7xl mx-auto">
-          <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className={`transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-14 text-center md:text-left text-balance">
-              Почему нам доверяют{" "}
-              {/* py-2 -my-2 — даёт клип-боксу градиента запас снизу, иначе выносные (р, ф) срезаются */}
+              Почему нам{" "}
+              {/* py-2 -my-2 — даёт клип-боксу градиента запас снизу, иначе выносные (р, у) срезаются */}
               <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/40 dark:via-white dark:to-white/40 bg-clip-text text-transparent inline-block py-2 -my-2 animate-text-glow">
-                трансформацию
+                доверяют?
               </span>
             </h2>
 
@@ -77,10 +77,14 @@ export function TrustStrip() {
                         <span className="w-6 h-6 rounded-md flex items-center justify-center text-gray-500 dark:text-white/55 bg-gray-100 dark:bg-white/[0.06] shrink-0">
                           <Icon className="w-3.5 h-3.5" />
                         </span>
-                        {label}
-                        {note && (
-                          <span className="text-[11px] font-normal text-gray-400 dark:text-white/40">· {note}</span>
-                        )}
+                        {/* Cygre-глифы сидят оптически низко (~2px) — иконка центрируется паддингом,
+                            а текст поднимаем отдельным translate, чтобы не сдвигать иконку (см. память). */}
+                        <span className="inline-flex items-center gap-2 -translate-y-[2px]">
+                          {label}
+                          {note && (
+                            <span className="text-[11px] font-normal text-gray-400 dark:text-white/40">· {note}</span>
+                          )}
+                        </span>
                       </span>
                     ))}
                   </div>
@@ -94,7 +98,7 @@ export function TrustStrip() {
 
               {/* Two compact proofs inside ONE hairline-divided panel — spans both rows to fill the right column */}
               <div
-                className={`sm:col-span-2 lg:col-span-5 lg:row-span-2 group relative overflow-hidden rounded-[1.25rem] md:rounded-[1.5rem] border border-gray-200/70 dark:border-white/[0.06] bg-gray-50 dark:bg-white/[0.03] divide-y divide-gray-200/70 dark:divide-white/[0.06] flex flex-col transition-all duration-700 hover:border-[#ff5331]/35 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+                className={`sm:col-span-2 lg:col-span-5 lg:row-span-2 group relative overflow-hidden rounded-[1.25rem] md:rounded-[1.5rem] border border-gray-200/70 dark:border-white/[0.06] bg-gray-50 dark:bg-white/[0.03] divide-y divide-gray-200/70 dark:divide-white/[0.06] flex flex-col transition-all duration-700 hover:border-[#ff5331]/35 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
                 style={{ transitionDelay: visible ? "270ms" : "0ms" }}
               >
                 {/* Practitioners — «делаем сами» stamp */}

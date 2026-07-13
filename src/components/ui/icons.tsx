@@ -179,6 +179,13 @@ export const ArrowDown = (props: IconProps) => (
   </Svg>
 );
 
+export const ArrowUp = (props: IconProps) => (
+  <Svg {...props}>
+      <path d="M18.0702 9.57L12.0002 3.5L5.93018 9.57" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M12 20.4999V3.66992" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
+  </Svg>
+);
+
 export const Menu = (props: IconProps) => (
   <Svg {...props}>
       <path d="M3 7H21" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>

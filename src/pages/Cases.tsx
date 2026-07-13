@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { NavbarV2 } from "@/components/NavbarV2"
 import { MainCta } from "@/components/MainCta"
 import { LogoCloud } from "@/components/ui/logo-cloud"
@@ -31,6 +31,26 @@ export function Cases() {
   const [pdfOpen, setPdfOpen] = useState(false)
   const [showUp, setShowUp] = useState(false)
   const revealRef = useRef<HTMLDivElement>(null)
+  const { hash } = useLocation()
+
+  // Пришли с главной по клику на кейс (/cases#<id>) — на секунду подсвечиваем именно
+  // ту карточку, на которую нажали, чтобы был явный сигнал «провалился внутрь этого кейса»
+  // (а не «страница зачем-то прыгнула»). Скролл к якорю делает ScrollToTop в App.tsx.
+  useEffect(() => {
+    if (!hash) return
+    const id = hash.slice(1)
+    let el: HTMLElement | null = null
+    // Ждём, пока ScrollToTop доскроллит и layout устаканится, потом подсвечиваем.
+    const t = window.setTimeout(() => {
+      el = document.getElementById(id)
+      if (!el) return
+      el.classList.add("case-flash")
+    }, 650)
+    return () => {
+      window.clearTimeout(t)
+      el?.classList.remove("case-flash")
+    }
+  }, [hash])
 
   useEffect(() => {
     const prev = document.title

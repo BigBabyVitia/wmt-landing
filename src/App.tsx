@@ -30,10 +30,18 @@ function ScrollToTop() {
   const { pathname, hash } = useLocation()
   useEffect(() => {
     if (hash) {
-      const el = document.getElementById(hash.slice(1))
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "start" })
-        return
+      // На длинных страницах (например /cases) картинки выше цели грузятся лениво и
+      // сдвигают layout уже ПОСЛЕ первого скролла — из-за этого раньше «кидало наверх».
+      // Скроллим мгновенно к якорю и переalign'имся ещё пару раз, пока layout не устаканится.
+      const id = hash.slice(1)
+      const jump = () => {
+        const el = document.getElementById(id)
+        if (el) el.scrollIntoView({ behavior: "auto", block: "start" })
+        return !!el
+      }
+      if (jump()) {
+        const timers = [80, 250, 600].map((ms) => window.setTimeout(jump, ms))
+        return () => timers.forEach(clearTimeout)
       }
     }
     window.scrollTo(0, 0)

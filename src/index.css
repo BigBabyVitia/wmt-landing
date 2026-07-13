@@ -152,9 +152,15 @@
     from { opacity: 0; transform: translateY(24px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .animate-fade-rise { animation: fade-rise 0.8s ease-out both; }
-  .animate-fade-rise-delay { animation: fade-rise 0.8s ease-out 0.2s both; }
-  .animate-fade-rise-delay-2 { animation: fade-rise 0.8s ease-out 0.4s both; }
+  .animate-fade-rise { animation: fade-rise 0.5s ease-out both; }
+  .animate-fade-rise-delay { animation: fade-rise 0.5s ease-out 0.14s both; }
+  .animate-fade-rise-delay-2 { animation: fade-rise 0.5s ease-out 0.28s both; }
+
+  /* Быстрое появление попапа (этапы «Обучение как катализатор») */
+  @keyframes popup-fade { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes popup-pop { from { opacity: 0; transform: translateY(8px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  .animate-popup-fade { animation: popup-fade 0.12s ease-out both; }
+  .animate-popup-pop { animation: popup-pop 0.16s cubic-bezier(0.22, 1, 0.36, 1) both; }
 
   /* Decorative level-icon strokes: drawn in by default (the inline dashoffset
      hides them otherwise), with a subtle re-draw when the card is hovered. */
@@ -165,14 +171,25 @@
     to { stroke-dashoffset: 0; }
   }
 
-  @keyframes text-glow {
-    0% { background-position: 0% center; }
-    50% { background-position: 100% center; }
-    100% { background-position: 0% center; }
-  }
+  /* Статический градиент на заголовках. Раньше был бесконечный shimmer
+     (animation: text-glow ∞), который перерисовывал текст с background-clip:text
+     каждый кадр — постоянная нагрузка на GPU/CPU даже вне экрана (по 3-4 заголовка
+     сразу). Оставлен только статичный градиент — визуально почти то же, стоимость ≈0.
+     Чтобы вернуть «живой» блеск — раскомментировать keyframes+animation ниже
+     и лучше гейтить по видимости (IntersectionObserver), а не крутить всегда. */
   .animate-text-glow {
-    background-size: 200% auto;
-    animation: text-glow 10s ease-in-out infinite;
+    background-size: 100% auto;
+  }
+  /* @keyframes text-glow { 0%,100% { background-position: 0% center; } 50% { background-position: 100% center; } } */
+
+  /* ── Подсветка кейса при переходе с главной (открылись прямо НА нужном кейсе) ── */
+  @keyframes case-flash {
+    0%   { box-shadow: 0 0 0 0 rgba(255, 83, 49, 0); }
+    12%  { box-shadow: 0 0 0 4px rgba(255, 83, 49, 0.65), 0 0 34px 6px rgba(255, 83, 49, 0.30); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 83, 49, 0); }
+  }
+  .case-flash {
+    animation: case-flash 1.9s ease-out;
   }
 
   @keyframes text-shimmer {

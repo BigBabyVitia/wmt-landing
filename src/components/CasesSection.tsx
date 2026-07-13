@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
 import { ArrowRight, ShieldTick } from "@/components/ui/icons"
-import { LogoCloud } from "@/components/ui/logo-cloud"
-import { clients } from "@/data/clients"
 import { trainingCases, caseStats, type CaseItem } from "@/data/cases"
 import { PdfModal } from "@/components/CaseModal"
 
@@ -45,7 +43,7 @@ export function CasesSection() {
         {/* Вариант B «Тизер» временно скрыт — оставлен только A «Лента».
             Дормантная ветка живёт ниже в `VariantTeaser` (export, чтобы TS не считал
             её мёртвым кодом) — вернуть = снова отрисовать переключатель концепций. */}
-        <div className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <VariantFull onOpenPdf={() => setPdfOpen(true)} />
         </div>
       </section>
@@ -68,43 +66,20 @@ function VariantFull({ onOpenPdf }: { onOpenPdf: () => void }) {
 
   return (
     <>
-      {/* ── Заголовок блока ── */}
+      {/* ── Единый заголовок блока: цифры-доверие + кейсы как одно целое ──
+          Раньше это были два разрозненных блока (центрированный «Нам доверяют лидеры
+          рынка» с крупными плашками-цифрами + отдельный левый заголовок кейсов). Свёл в
+          один левый блок: «Нам доверяют…» стало кикером над единственным заголовком,
+          крупные плашки → компактная полоса-пруф прямо над лентой кейсов. */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white text-center text-balance">
-          Нам доверяют лидеры рынка
-        </h2>
-
-        {/* Карточки с цифрами */}
-        <div className="mt-10 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 max-w-4xl mx-auto">
-          {caseStats.map(({ value, label }) => (
-            <div
-              key={label}
-              className="rounded-[1.25rem] border border-gray-200/70 dark:border-white/[0.06] bg-gray-50 dark:bg-white/[0.03] p-6 transition-colors hover:border-[#ff5331]/35"
-            >
-              <div className="text-3xl md:text-4xl font-bold tracking-tight text-gray-900 dark:text-white">{value}</div>
-              <div className="text-sm text-gray-500 dark:text-gray-400 mt-1.5">{label}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Бегущая строка логотипов ── */}
-      <div className="mx-auto max-w-6xl px-4 mt-10 md:mt-12">
-        <div className="my-5 h-px bg-gray-200 dark:bg-white/10 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
-        <LogoCloud logos={clients} />
-        <div className="mt-5 h-px bg-gray-200 dark:bg-white/10 [mask-image:linear-gradient(to_right,transparent,black,transparent)]" />
-      </div>
-
-      {/* ── Подзаголовок кейсов + стрелки ── */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-16 md:mt-20">
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-8 md:mb-10">
-          <div>
-            <h3 className="text-2xl md:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white text-balance">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+          <div className="max-w-2xl">
+            <h2 className="text-2xl md:text-4xl lg:text-[42px] font-semibold tracking-tight text-gray-900 dark:text-white text-balance leading-[1.1]">
               Как обучение от WMT&nbsp;AI выглядит{" "}
               <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/40 dark:via-white dark:to-white/40 bg-clip-text text-transparent inline-block animate-text-glow">
                 вживую
               </span>
-            </h3>
+            </h2>
             <p className="mt-3 text-base text-gray-600 dark:text-gray-400 max-w-xl leading-relaxed">
               С каким запросом приходили команды — и&nbsp;что у&nbsp;них осталось после обучения. То, что не&nbsp;под&nbsp;NDA.
             </p>
@@ -133,7 +108,23 @@ function VariantFull({ onOpenPdf }: { onOpenPdf: () => void }) {
             </button>
           </div>
         </div>
+
+        {/* Компактная полоса-пруф: те же цифры, но не крупными плашками, а слитно с лентой */}
+        <div className="mt-8 md:mt-10 flex flex-wrap items-stretch gap-y-4 border-t border-gray-100 dark:border-white/[0.08] pt-6">
+          {caseStats.map(({ value, label }, i) => (
+            <div
+              key={label}
+              className={`flex-1 min-w-[140px] ${i > 0 ? "sm:border-l border-gray-100 dark:border-white/[0.08] sm:pl-6" : ""}`}
+            >
+              <div className="text-2xl md:text-[32px] font-bold tracking-tight text-gray-900 dark:text-white leading-none">{value}</div>
+              <div className="text-[13px] text-gray-500 dark:text-gray-400 mt-2 leading-snug">{label}</div>
+            </div>
+          ))}
+        </div>
       </div>
+
+      {/* спейсер до ленты */}
+      <div className="h-8 md:h-10" />
 
       {/* ── Лента кейсов ── */}
       <div

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, lazy, Suspense } from "react"
+import React, { useEffect, useLayoutEffect, useRef, useState, lazy, Suspense } from "react"
 import { NavbarV2 } from "@/components/NavbarV2"
 import { useVersion, type HeroStyle } from "@/context/VersionContext"
 import { useTheme } from "@/context/ThemeContext"
@@ -12,7 +12,7 @@ import { V2Card } from "@/components/ui/V2Card"
 import { Testimonials } from "@/components/Testimonials"
 import { MainCta } from "@/components/MainCta"
 import { directions, hub } from "@/data/directions"
-import { Flash, Buildings, Hierarchy, ChartFail, Strategy, People, CpuCharge, Diagram, Code } from "@/components/ui/icons"
+import { Flash, Buildings, Hierarchy, ChartFail, Strategy, People, CpuCharge, Diagram, Code, Cpu, TickCircle, ArrowUp } from "@/components/ui/icons"
 import { InteractiveRobotSpline, whobeeThemedOnLoad } from "@/components/ui/interactive-3d-robot"
 import Beams from "@/components/ui/Beams"
 import PixelBlast from "@/components/ui/PixelBlast"
@@ -53,20 +53,20 @@ const directionIcons = [Strategy, People, CpuCharge, Diagram]
 
 const challenges = [
   {
-    title: "Порог входа уже пройден",
-    desc: "ИИ стал базовым фактором скорости и эффективности, который нельзя игнорировать.",
+    title: "Нейросети уже в работе, но по‑разному",
+    desc: "Каждый пробует свои инструменты и подходы. Часть команды сопротивляется изменениям. Польза остаётся точечной и неуправляемой.",
   },
   {
-    title: "Большой бизнес не перестраивается сам",
-    desc: "Масштаб мешает быстро превратить интерес к ИИ в реальное изменение процессов.",
+    title: "Результаты есть, общих правил нет",
+    desc: "Где‑то ИИ ускоряет работу, где‑то создаёт риски по качеству и данным. Без общих принципов трудно понять, что масштабировать.",
   },
   {
-    title: "Локальная польза не меняет систему",
-    desc: "Точечные тесты не дают эффекта без системного внедрения в структуру бизнеса.",
+    title: "Инициативы сотрудников не складываются в систему",
+    desc: "Удачные практики остаются личными, а не корпоративными. Руководству сложно связать их с целями и показателями компании.",
   },
   {
-    title: "Ошибка в подходе обходится слишком дорого",
-    desc: "Неверная стратегия ведёт к трате ресурсов на улучшения без реального результата.",
+    title: "Обучение запускает настоящую ИИ‑трансформацию",
+    desc: "Команда получает общий язык, базовые навыки и понятные рамки работы с ИИ. Это создаёт основу, на которой можно безопасно автоматизировать процессы и создавать ИИ-агентов без сопротивления и ненужных рисков.",
   },
 ]
 
@@ -84,14 +84,19 @@ export function HomeV2() {
       {/* ── ВЫЗОВЫ ── */}
       <ChallengesSection />
 
+      {/* ── КЕЙСЫ ОБУЧЕНИЯ ──
+          Перемещены сразу после блока проблемы («Готовы ли вы к переходу?») —
+          сначала доказываем результатами, потом раскладываем маршрут и экспертизу. */}
+      <CasesSection />
+
       {/* ── МАРШРУТ ИЗ 4 НАПРАВЛЕНИЙ ── */}
       <LevelsSection />
 
+      {/* ── ОБУЧЕНИЕ КАК КАТАЛИЗАТОР (тёмная секция-последовательность) ── */}
+      <CatalystSection />
+
       {/* ── TRUST / ЭКСПЕРТ ── */}
       <TrustStrip />
-
-      {/* ── КЕЙСЫ ОБУЧЕНИЯ ── */}
-      <CasesSection />
 
       {/* ── ОТЗЫВЫ ── */}
       <Testimonials />
@@ -763,15 +768,15 @@ function ChallengesSection() {
   return (
     <section ref={ref} className="py-20 md:py-32 px-4 sm:px-6 md:px-12 bg-white dark:bg-black transition-colors duration-500 overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 md:mb-24 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`mb-16 md:mb-24 transition-all duration-600 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <h2 className="text-3xl md:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white mb-8 leading-[1.15]">
-            ИИ уже меняет рынок.<br />
+            Корпоративное обучение —<br />
             <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/40 dark:via-white dark:to-white/40 bg-clip-text text-transparent inline-block py-2 -my-2 animate-text-glow">
-              Готовы ли вы к переходу?
+              первый шаг к ИИ‑трансформации
             </span>
           </h2>
           <p className="text-lg md:text-xl text-gray-500 dark:text-gray-400 max-w-3xl leading-relaxed">
-            Мы помогаем крупному бизнесу не просто «попробовать» нейросети, а встроить их в ДНК процессов и решений.
+            Помогаем средним и крупным компаниям перейти от разовых экспериментов и хаотичных инициатив к всеобщей, безопасной и управляемой работе с ИИ.
           </p>
         </div>
 
@@ -779,10 +784,10 @@ function ChallengesSection() {
           {challenges.map((c, idx) => (
             <div
               key={idx}
-              className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
               style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
             >
-              <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full transform-gpu [backface-visibility:hidden] antialiased will-change-transform">
+              <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 cursor-default overflow-hidden hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full">
                 <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand/[0.03] to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100" />
                 <div className="relative z-10 flex gap-4 sm:gap-5 items-start">
                   <div className="flex-shrink-0 mt-1">
@@ -810,7 +815,7 @@ export function LevelsSection() {
   return (
     <section ref={ref} id="directions" className="py-16 md:py-24 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,4%)] border-t border-gray-100 dark:border-white/[0.06]">
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`mb-16 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white">
             Обучение состоит из 4 блоков
           </h2>
@@ -866,8 +871,326 @@ export function LevelsSection() {
           ))}
         </div>
 
+        {/* Bright CTA — ведёт к форме внизу */}
+        <div className={`mt-12 md:mt-14 flex justify-center transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+          <a
+            href="#contact"
+            className="inline-flex items-center justify-center rounded-full bg-[#ff5331] text-white text-center px-8 py-4 sm:px-10 text-sm sm:text-base font-semibold shadow-[0_8px_30px_rgba(255,83,49,0.35)] hover:bg-[#ff6b4d] hover:shadow-[0_10px_38px_rgba(255,83,49,0.45)] hover:-translate-y-0.5 transition-all duration-300 btn-optical"
+          >
+            Получить индивидуальную программу
+          </a>
+        </div>
+
       </div>
     </section>
+  )
+}
+
+/* Обучение как катализатор — секция-аккордеон «от обучения к трансформации».
+   Слева: заголовок + декоративная «орбита» (кольца, точечная сетка, дуга-коннектор).
+   Справа: 4 этапа-карточки (01–04). Клик по карточке раскрывает её вниз: описание +
+   три опоры этапа. Открыт всегда один этап (по умолчанию — первый). Бренд-цвет #ff5331
+   заменяет фиолетовый из референса. Тема-aware (свет/тёмная). */
+const catalystStages = [
+  {
+    t: "Обучение: единое понимание и базовые навыки",
+    d: "Руководители и команда получают общий язык, представление о возможностях и ограничениях ИИ и первые отработанные практики на своих задачах.",
+    features: [
+      { Icon: People, h: "Общий язык", t: "Снимаем страхи и мифы, формируем общее понимание ИИ для всех уровней." },
+      { Icon: Strategy, h: "Практические навыки", t: "Даём рабочие инструменты и отрабатываем их на задачах вашей команды." },
+      { Icon: Flash, h: "Быстрые эффекты", t: "Показываем первые результаты и экономию времени уже в процессе обучения." },
+    ],
+  },
+  {
+    t: "Совместная диагностика и выбор направлений",
+    d: "После обучения вместе с командой формулируются приоритетные процессы и функции, где ИИ даст наибольший эффект и которые стоит брать в работу в первую очередь.",
+    features: [
+      { Icon: Diagram, h: "Карта процессов", t: "Разбираем, где именно в компании ИИ даёт наибольший эффект." },
+      { Icon: TickCircle, h: "Приоритизация", t: "Отбираем направления с максимальной отдачей и понятным результатом." },
+      { Icon: Hierarchy, h: "Фокус", t: "Договариваемся, что берём в работу первым, а что осознанно откладываем." },
+    ],
+  },
+  {
+    t: "Проектирование и запуск пилотных решений",
+    d: "На выбранных направлениях проектируются и запускаются пилоты: конкретные сценарии, автоматизации и ИИ‑решения, по которым можно замерять результат и дорабатывать подход.",
+    features: [
+      { Icon: Code, h: "Сценарии", t: "Проектируем конкретные ИИ‑решения под выбранные процессы." },
+      { Icon: CpuCharge, h: "Пилоты", t: "Запускаем автоматизации и ассистентов на реальных задачах." },
+      { Icon: Strategy, h: "Замер результата", t: "Смотрим на метрики и дорабатываем подход по факту." },
+    ],
+  },
+  {
+    t: "Масштабирование и переход к ИИ‑агентам",
+    d: "Успешные пилоты масштабируются, процессы перестраиваются под новую логику, появляются специализированные ИИ‑агенты и цифровые сотрудники, работающие уже в рамках общей архитектуры.",
+    features: [
+      { Icon: Buildings, h: "Масштаб", t: "Успешные пилоты разворачиваем на всю компанию." },
+      { Icon: Cpu, h: "ИИ‑агенты", t: "Появляются цифровые сотрудники, работающие в общей архитектуре." },
+      { Icon: Hierarchy, h: "Новая логика", t: "Процессы и регламенты перестраиваются под ежедневную работу с ИИ." },
+    ],
+  },
+]
+
+/* Геометрия орбиты. Считается в CatalystSection из РЕАЛЬНЫХ позиций карточек (px
+   относительно грид-обёртки), поэтому узлы дуги и сами карточки лежат на одном круге:
+   · главный круг с сеткой (концентричен дуге узлов, виден целиком) — слева;
+   · пологая, но явно КРУГЛАЯ дуга радиуса CAT_R_DOT с 4 узлами на ней;
+   · карточки сдвинуты вправо (translateX) на ту же кривизну → «встают по кругу», сохраняя
+     равный зазор CAT_GAP от своего узла. */
+const CAT_R_DOT = 300 // радиус дуги с узлами
+const CAT_R_MAIN = 238 // радиус главного круга (концентричен дуге)
+const CAT_GAP = 54 // зазор узел → левый край карточки
+
+interface CatGeo {
+  W: number; H: number
+  cx: number; cy: number // центр круга (px отн. грид-обёртки)
+  dots: { x: number; y: number }[]
+  arcTop: { x: number; y: number }
+  arcBot: { x: number; y: number }
+}
+
+function CatalystOrbit({ geo }: { geo: CatGeo }) {
+  const { W, H, cx, cy, dots, arcTop, arcBot } = geo
+  // Точечная сетка в главном круге, с радиальным затуханием к краям.
+  const cols = 7, rows = 6, step = 22
+  const grid: React.ReactNode[] = []
+  for (let r = 0; r < rows; r++) {
+    for (let c = 0; c < cols; c++) {
+      const x = cx + (c - (cols - 1) / 2) * step
+      const y = cy + (r - (rows - 1) / 2) * step
+      const op = Math.max(0.06, 0.5 - Math.hypot(x - cx, y - cy) / 150)
+      grid.push(<circle key={`${r}-${c}`} cx={x} cy={y} r={2} fill="currentColor" fillOpacity={op} />)
+    }
+  }
+  const decX = (y: number) => cx - Math.sqrt(Math.max(0, CAT_R_MAIN * CAT_R_MAIN - (y - cy) ** 2))
+
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} fill="none" className="w-full h-full" aria-hidden="true" preserveAspectRatio="none">
+      {/* СЕРЫЙ слой — кольца, точечная сетка и декоративные точки (нейтральный, тема-aware) */}
+      <g className="text-gray-400 dark:text-white/25">
+        <g>{grid}</g>
+        <circle cx={cx} cy={cy} r={CAT_R_MAIN} stroke="currentColor" strokeOpacity="0.55" />
+        <circle cx={cx} cy={cy} r={CAT_R_MAIN * 0.6} stroke="currentColor" strokeOpacity="0.4" />
+        <circle cx={decX(cy + 120)} cy={cy + 120} r={4} fill="currentColor" fillOpacity="0.7" />
+        <circle cx={decX(cy + 156)} cy={cy + 156} r={3.5} fill="currentColor" fillOpacity="0.6" />
+      </g>
+      {/* ОРАНЖЕВЫЙ слой — только дуга и её узлы */}
+      <g className="text-[#ff5331]">
+      {/* Круглая дуга с узлами (чуть длиннее блока узлов сверху и снизу) */}
+      <path
+        d={`M ${arcTop.x} ${arcTop.y} A ${CAT_R_DOT} ${CAT_R_DOT} 0 0 1 ${arcBot.x} ${arcBot.y}`}
+        stroke="currentColor" strokeOpacity="0.75" strokeLinecap="round"
+      />
+      {/* Узлы на дуге — точно по центрам карточек */}
+      {dots.map((d, i) => (
+        <g key={i}>
+          <circle cx={d.x} cy={d.y} r={9} fill="currentColor" fillOpacity="0.16" />
+          <circle cx={d.x} cy={d.y} r={5} fill="currentColor" />
+        </g>
+      ))}
+      </g>
+    </svg>
+  )
+}
+
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      className={`w-5 h-5 shrink-0 transition-transform duration-300 ${open ? "rotate-180" : ""}`}
+      viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <polyline points="6 9 12 15 18 9" />
+    </svg>
+  )
+}
+
+function CatalystSection() {
+  const { ref, visible } = useScrollVisible()
+  // Этап раскрывается модалкой-попапом по центру (карточки не двигаются, орбита
+  // всегда выровнена, без скролла страницы). open = индекс открытого этапа или -1.
+  const [open, setOpen] = useState(-1)
+  const gridRef = useRef<HTMLDivElement>(null)
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [geo, setGeo] = useState<CatGeo | null>(null)
+  const [stagger, setStagger] = useState<number[]>([])
+
+  // Считаем орбиту из реальных позиций СВЁРНУТЫХ карточек (десктоп). Узлы дуги и сдвиг
+  // карточек берутся из одного круга → карточки «встают по кругу» с равным зазором.
+  useLayoutEffect(() => {
+    const compute = () => {
+      const grid = gridRef.current
+      if (!grid) return
+      if (!window.matchMedia("(min-width: 1024px)").matches) { setGeo(null); setStagger([]); return }
+      const cards = cardRefs.current.filter(Boolean) as HTMLDivElement[]
+      if (cards.length < 4) return
+      const W = grid.offsetWidth, H = grid.offsetHeight
+      const cY = cards.map((c) => c.offsetTop + c.offsetHeight / 2)
+      const X0 = cards[0].offsetLeft
+      const cy = (cY[0] + cY[cY.length - 1]) / 2
+      const sq = (y: number) => Math.sqrt(Math.max(0, CAT_R_DOT * CAT_R_DOT - (y - cy) ** 2))
+      const s0 = sq(cY[0])
+      const cx = X0 - s0 - CAT_GAP
+      const dots = cY.map((y) => ({ x: cx + sq(y), y }))
+      const stag = cY.map((y) => sq(y) - s0)
+      const arcTopY = cY[0] - 30, arcBotY = cY[cY.length - 1] + 30
+      setGeo({ W, H, cx, cy, dots, arcTop: { x: cx + sq(arcTopY), y: arcTopY }, arcBot: { x: cx + sq(arcBotY), y: arcBotY } })
+      setStagger(stag)
+    }
+    compute()
+    window.addEventListener("resize", compute)
+    return () => window.removeEventListener("resize", compute)
+  }, [visible])
+
+  const maxStagger = stagger.length ? Math.max(...stagger) : 0
+
+  return (
+    <section
+      ref={ref}
+      className="relative py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(222,30%,4%)] border-t border-gray-100 dark:border-white/[0.06] overflow-hidden transition-colors duration-500"
+    >
+      <div ref={gridRef} className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
+        {/* Декоративная орбита — абсолютно, за колонками; узлы дуги совпадают с карточками.
+            Фикс. размер = свёрнутому блоку (geo.W×geo.H): не растягивается при раскрытии
+            карточки, поэтому круг остаётся кругом (без искажения в эллипс). */}
+        {geo && (
+          <div
+            aria-hidden="true"
+            className="hidden lg:block absolute top-0 left-0 z-0 pointer-events-none"
+            style={{ width: geo.W, height: geo.H }}
+          >
+            <CatalystOrbit geo={geo} />
+          </div>
+        )}
+
+        {/* ── ЛЕВО: заголовок ── */}
+        <div className={`z-10 lg:col-span-5 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+          <h2 className="text-3xl sm:text-4xl md:text-[42px] lg:text-[44px] font-semibold tracking-tight text-gray-900 dark:text-white leading-[1.08]">
+            Обучение запускает ИИ‑трансформацию
+          </h2>
+          <p className="text-base md:text-lg text-gray-500 dark:text-white/50 mt-5 leading-relaxed max-w-[470px]">
+            Команда не только освоит ИИ на практике, но и подготовится к следующим шагам, с которыми мы также помогаем.
+          </p>
+        </div>
+
+        {/* ── ПРАВО: аккордеон этапов (сдвинуты по дуге) ── */}
+        <div className="z-10 lg:col-span-7 flex flex-col gap-4" style={maxStagger ? { paddingRight: maxStagger } : undefined}>
+          {catalystStages.map((s, idx) => {
+            const isOpen = open === idx
+            const num = String(idx + 1).padStart(2, "0")
+            return (
+              <div
+                key={idx}
+                ref={(el) => { cardRefs.current[idx] = el }}
+                className={`transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
+                style={{ transitionDelay: visible ? `${idx * 110}ms` : "0ms" }}
+              >
+                {/* внутренний слой — сдвиг по дуге (translateX), не влияет на измерения */}
+                <div style={{ transform: stagger[idx] ? `translateX(${stagger[idx]}px)` : undefined, transition: "transform 500ms ease" }}>
+                  <div
+                    className={`rounded-[2rem] border transition-all duration-300 ${
+                      isOpen
+                        ? "border-[#ff5331]/45 bg-[#ff5331]/[0.03] dark:bg-white/[0.05] shadow-lg shadow-[#ff5331]/[0.07]"
+                        : "border-gray-200/80 dark:border-white/[0.08] bg-white dark:bg-white/[0.03] hover:border-[#ff5331]/35 hover:shadow-md hover:shadow-black/[0.03]"
+                    }`}
+                  >
+                    {/* Шапка-кнопка */}
+                    <button
+                      onClick={() => setOpen(isOpen ? -1 : idx)}
+                      aria-expanded={isOpen}
+                      className="w-full flex items-center gap-5 text-left px-6 sm:px-7 min-h-[112px]"
+                    >
+                      <span
+                        className={`shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-xl font-semibold tracking-tight leading-none transition-colors duration-300 ${
+                          isOpen ? "bg-brand text-white" : "bg-[#ff5331]/10 text-brand"
+                        }`}
+                      >
+                        {/* Cygre: огромный ascent метрики роняет цифры ниже центра во flex —
+                            оптический сдвиг ВВЕРХ (выверено по центр-линии, см. [[wmt-cygre-font-metric-gotcha]]) */}
+                        <span className="block -translate-y-[4px]">{num}</span>
+                      </span>
+                      <h3 className="flex-1 text-base sm:text-lg font-semibold text-gray-900 dark:text-white leading-snug text-balance">
+                        {s.t}
+                      </h3>
+                      <span className={`transition-colors ${isOpen ? "text-brand" : "text-gray-400 dark:text-white/40"}`}>
+                        <Chevron open={isOpen} />
+                      </span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+
+      {/* Неакцентная ссылка (без обводки, в левом углу) — пока ведёт на главную.
+          Стрелка вверх (iconsax) в круглой кнопке. */}
+      <div className={`relative z-10 max-w-7xl mx-auto mt-7 md:mt-9 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        <a
+          href="/"
+          className="group inline-flex items-center gap-3 text-sm sm:text-base font-semibold text-gray-700 dark:text-white/80 hover:text-brand dark:hover:text-brand transition-colors"
+        >
+          Подробнее про ИИ‑трансформацию
+          <span className="w-10 h-10 rounded-full border border-gray-300 dark:border-white/20 flex items-center justify-center text-gray-500 dark:text-white/60 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:border-[#ff5331] group-hover:text-brand group-hover:bg-[#ff5331]/10">
+            {/* диагональная ↗ — ArrowUp повёрнут на 45° */}
+            <ArrowUp className="w-[18px] h-[18px] rotate-45" />
+          </span>
+        </a>
+      </div>
+
+      {/* Модалка этапа по центру экрана */}
+      {open >= 0 && (
+        <CatalystPopup stage={catalystStages[open]} num={String(open + 1).padStart(2, "0")} onClose={() => setOpen(-1)} />
+      )}
+    </section>
+  )
+}
+
+/* Модалка этапа (режим 'popup') — по центру, в рамках экрана, без скролла страницы. */
+function CatalystPopup({ stage, num, onClose }: { stage: (typeof catalystStages)[number]; num: string; onClose: () => void }) {
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
+    window.addEventListener("keydown", onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => { window.removeEventListener("keydown", onKey); document.body.style.overflow = prev }
+  }, [onClose])
+
+  return (
+    <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-popup-fade" />
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-2xl max-h-[88vh] overflow-y-auto rounded-[2rem] border border-gray-200 dark:border-white/10 bg-white dark:bg-[hsl(222,28%,7%)] shadow-2xl shadow-black/20 p-7 sm:p-9 animate-popup-pop"
+      >
+        <button
+          onClick={onClose}
+          aria-label="Закрыть"
+          className="absolute top-5 right-5 w-9 h-9 rounded-full border border-gray-200 dark:border-white/15 flex items-center justify-center text-gray-500 dark:text-white/60 hover:border-[#ff5331]/50 hover:text-brand transition-colors"
+        >
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M6 6l12 12M18 6L6 18" /></svg>
+        </button>
+
+        <div className="flex items-center gap-4 pr-10">
+          <span className="shrink-0 w-16 h-16 rounded-full bg-brand text-white flex items-center justify-center text-xl font-semibold tracking-tight leading-none">
+            <span className="block -translate-y-[4px]">{num}</span>
+          </span>
+          <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white leading-snug">{stage.t}</h3>
+        </div>
+
+        <p className="mt-6 text-sm sm:text-[15px] text-gray-600 dark:text-white/60 leading-relaxed">{stage.d}</p>
+
+        <div className="mt-6 pt-6 border-t border-gray-100 dark:border-white/[0.08] grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-0">
+          {stage.features.map(({ Icon, h, t }, fi) => (
+            <div key={h} className={`sm:px-5 sm:first:pl-0 sm:last:pr-0 ${fi > 0 ? "sm:border-l border-gray-100 dark:border-white/[0.08]" : ""}`}>
+              <Icon className="w-6 h-6 text-brand mb-3" />
+              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1.5">{h}</div>
+              <p className="text-[13px] text-gray-500 dark:text-white/50 leading-relaxed">{t}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
 
@@ -879,7 +1202,7 @@ function StepCards({ title, subtitle, steps, band }: { title: string; subtitle: 
       className={`py-16 md:py-24 px-4 sm:px-6 md:px-12 transition-colors duration-500 ${band ? "bg-gray-50 dark:bg-[hsl(220,18%,10%)] border-t border-gray-100 dark:border-white/[0.06]" : "bg-white dark:bg-black"}`}
     >
       <div className="max-w-7xl mx-auto">
-        <div className={`mb-12 md:mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className={`mb-12 md:mb-16 transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight text-gray-900 dark:text-white mb-4">
             {title}
           </h2>
@@ -890,7 +1213,7 @@ function StepCards({ title, subtitle, steps, band }: { title: string; subtitle: 
           {steps.map((step, idx) => (
             <div
               key={step.n}
-              className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+              className={`transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
               style={{ transitionDelay: visible ? `${idx * 120}ms` : "0ms" }}
             >
               <div className="group relative bg-gray-50 dark:bg-white/[0.03] rounded-2xl p-6 sm:p-8 border border-gray-100 dark:border-white/[0.06] transition-all duration-300 hover:border-brand/30 hover:shadow-md hover:shadow-brand/10 hover:-translate-y-1 h-full">
