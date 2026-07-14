@@ -12,7 +12,7 @@ import { V2Card } from "@/components/ui/V2Card"
 import { Testimonials } from "@/components/Testimonials"
 import { MainCta } from "@/components/MainCta"
 import { directions, hub } from "@/data/directions"
-import { Flash, Buildings, Hierarchy, ChartFail, Strategy, People, CpuCharge, Diagram, Code, Cpu, TickCircle, ArrowUp } from "@/components/ui/icons"
+import { Flash, Buildings, Hierarchy, ChartFail, Strategy, People, CpuCharge, Diagram, Code, Cpu, TickCircle, ArrowUp, Learning, SearchStatus, MagicPen, StatusUp } from "@/components/ui/icons"
 import { InteractiveRobotSpline, whobeeThemedOnLoad } from "@/components/ui/interactive-3d-robot"
 import Beams from "@/components/ui/Beams"
 import PixelBlast from "@/components/ui/PixelBlast"
@@ -70,16 +70,25 @@ const challenges = [
   },
 ]
 
+/** Визуал hero. Публичный вариант — фото-слайд-шоу обучений. Робот (Spline) НЕ удалён из
+ *  проекта — чтобы вернуть его, поменяй значение на "robot" (одна строка). Реализация робота
+ *  живёт в `HeroSplit` (ветка variant==="robot") + `InteractiveRobotSpline`. Дев-тумблер
+ *  переключения (HeroVariantToggle) оставлен в коде, но НЕ рендерится — скрыт везде. */
+const HERO_VARIANT_DEFAULT: HeroVisual = "slideshow"
+
 export function HomeV2() {
+  // Визуал hero зафиксирован на HERO_VARIANT_DEFAULT (slideshow). Тумблер робот↔слайд-шоу убран
+  // из интерфейса; вернуть робота = поменять константу выше на "robot".
+  const heroVariant = HERO_VARIANT_DEFAULT
+
   return (
     <>
       {/* ── HERO ──
-          Зафиксировано на Spline-роботе (`HeroSplit`, 02.07.2026) — финальный выбор после
-          A/B-подбора фона hero. Остальные варианты (Glow/WebGL/Видео/Beams/Pixel/Бренд) и
-          дев-переключатель `HeroBgToggle` НЕ удалены — экспортированы ниже как «спящие».
-          Лого-маркиза зафиксирована на раскладке «полоса» (сплошная полоса логотипов у низа
-          hero, робот приподнят над ней) — выбор заказчика 07.07.2026; A/B-тоггл убран. */}
-      <HeroSplit />
+          Визуал правой половины переключается пропом `variant`: "robot" (Spline-робот) или
+          "slideshow" (фото-слайд-шоу обучений, Ken Burns). Публичный дефолт — slideshow
+          (HERO_VARIANT_DEFAULT, 14.07.2026); робот сохранён, дев-тумблер снизу слева только в dev.
+          Лого-маркиза зафиксирована на раскладке «полоса» (07.07.2026). */}
+      <HeroSplit variant={heroVariant} />
 
       {/* ── ВЫЗОВЫ ── */}
       <ChallengesSection />
@@ -106,6 +115,9 @@ export function HomeV2() {
 
       {/* ── ФИНАЛЬНЫЙ CTA ── */}
       <MainCta />
+
+      {/* Дев-тумблер визуала hero (робот ↔ слайд-шоу) СКРЫТ — визуал зафиксирован в HomeV2.
+          Компонент HeroVariantToggle оставлен ниже в коде на случай возврата к сравнению. */}
     </>
   )
 }
@@ -308,7 +320,79 @@ export function HeroGlow() {
 }
 
 /* Split hero — left: copy + integrated feature points, right: interactive 3D robot (Spline) */
-function HeroSplit() {
+export type HeroVisual = "robot" | "slideshow"
+
+/* Слайды фото-героя — реальные фото обучений/сессий. Все уже опубликованы в блоке кейсов
+   (/cases) и на живом сайте, поэтому по NDA чисто. cap — формат/клиент, sub — доказательство. */
+// HQ-кадры (WebP 1800px из камерных оригиналов 4000–5700px, см. public/hero/slides).
+// Telegram-экспорты (~1200px) и сжатые фото сюда НЕ идут — только резкие.
+const heroSlides = [
+  { src: "/hero/slides/hero-liga.webp",        cap: "Обучение команд в действии", sub: "от идеи до рабочего ИИ-агента", alt: "Спикер и аудитория практикума у экрана",  pos: "50% 38%", origin: "50% 36%" },
+  { src: "/hero/slides/hero-iichnica.webp",    cap: "Дискуссии с практиками ИИ",  sub: "живые разговоры на сцене",     alt: "Спикер с микрофоном на сцене мероприятия WMT AI", pos: "50% 35%", origin: "50% 35%" },
+  { src: "/hero/slides/hero-mgu.webp",         cap: "Интенсив «Личный ИИ»",       sub: "2 дня, 16 часов практики",     alt: "Выступление на интенсиве в МГУ",           pos: "50% 40%", origin: "50% 40%" },
+  { src: "/hero/slides/hero-cba.webp",         cap: "Управляющие команды",        sub: "стратсессии по ИИ для C-level", alt: "Групповое фото команды после стратсессии", pos: "50% 48%", origin: "50% 46%" },
+  { src: "/hero/slides/hero-gov-armenia.webp", cap: "Правительство Армении",      sub: "стратсессия по ИИ",            alt: "Команда правительства Армении",            pos: "50% 46%", origin: "50% 44%" },
+]
+
+/* Фото-слайд-шоу для правой половины hero. Медленный Ken Burns (зум) + кроссфейд; крутятся
+   ТОЛЬКО картинки, подпись-пруф стабильна и читаема через скрим. Пауза на ховере, авто-смена,
+   уважение к prefers-reduced-motion (без зума). Drop-in замена робота в правом слоте. */
+function HeroPhotoStage() {
+  const [i, setI] = useState(0)
+  const paused = useRef(false)
+  const reduce = useRef(typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches)
+  useEffect(() => {
+    const id = setInterval(() => { if (!paused.current) setI((v) => (v + 1) % heroSlides.length) }, 3600)
+    return () => clearInterval(id)
+  }, [])
+  return (
+    <div
+      /* ЭКСПЕРИМЕНТ: на десктопе фото начинается ПОД шапкой (навбар solid ≈68px), а не заходит
+         под неё — кадр становится ниже/«квадратнее». Полоска над фото = bg-background (см. панель),
+         поэтому навбар остаётся однородным. Откатить = убрать `lg:top-[68px]`. Моб. раскладка не тронута. */
+      className="absolute inset-0 lg:top-[68px] z-10 overflow-hidden"
+      onMouseEnter={() => { paused.current = true }}
+      onMouseLeave={() => { paused.current = false }}
+    >
+      {heroSlides.map((sl, idx) => (
+        <div key={sl.src} className={`absolute inset-0 transition-opacity duration-[1900ms] ease-in-out ${idx === i ? "opacity-100 z-10" : "opacity-0 z-0"}`}>
+          <img
+            src={sl.src}
+            alt={sl.alt}
+            loading="eager"
+            decoding="async"
+            draggable={false}
+            className={`w-full h-full object-cover select-none ${!reduce.current ? "animate-hero-kenburns" : ""}`}
+            style={{ transformOrigin: sl.origin, objectPosition: sl.pos }}
+          />
+          {/* Скрим под подпись — НИЗКИЙ (не закрывает саму сцену) + лёгкая верхняя виньетка */}
+          <div className="absolute inset-0 pointer-events-none [background:linear-gradient(to_top,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.2)_11%,transparent_30%)]" />
+          <div className="absolute inset-0 pointer-events-none [background:radial-gradient(120%_120%_at_50%_0%,transparent_62%,rgba(0,0,0,0.2)_100%)]" />
+          {/* Подпись-пруф принадлежит слайду → кроссфейдится синхронно с фото (нет рассинхрона) */}
+          <div className="absolute left-5 sm:left-7 bottom-[3.25rem] lg:bottom-[12.5rem] max-w-[82%]">
+            <div className="text-white font-semibold text-base sm:text-lg leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">{sl.cap}</div>
+            <div className="text-white/70 text-xs sm:text-[13px] mt-0.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">{sl.sub}</div>
+          </div>
+        </div>
+      ))}
+
+      {/* Прогресс-точки — глобальные (стабильны, привязаны к активному i), над лого-полосой */}
+      <div className="absolute left-5 sm:left-7 bottom-6 lg:bottom-[11rem] z-30 flex items-center gap-1.5">
+        {heroSlides.map((_, idx) => (
+          <button
+            key={idx}
+            aria-label={`Слайд ${idx + 1}`}
+            onClick={() => setI(idx)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${idx === i ? "w-6 bg-brand" : "w-1.5 bg-white/45 hover:bg-white/70"}`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
+  // Правый слот: робот (Spline) или фото-слайд-шоу — переключается пропом variant.
   const ROBOT_SCENE_URL = "https://prod.spline.design/PyzDhpQ9E5f1E3MT/scene.splinecode"
   const [h1First, ...h1Rest] = hub.hero.h1.split(" ")
   const points = [
@@ -378,7 +462,11 @@ function HeroSplit() {
             renders in an INNER wrapper pinned to the bottom at the ORIGINAL height (46svh/54svh) —
             same zoom/size as before, just shifted down into the added headroom. Desktop (`lg:`)
             unaffected — inner wrapper reverts to filling the panel exactly as it always did. */}
-        <div className="relative min-h-[calc(46svh+4.5rem)] sm:min-h-[calc(54svh+4.5rem)] lg:min-h-0 lg:h-full order-1 lg:order-2 bg-[#e3d3c2] dark:bg-[hsl(222,28%,4%)]">
+        <div className={`relative min-h-[calc(46svh+4.5rem)] sm:min-h-[calc(54svh+4.5rem)] lg:min-h-0 lg:h-full order-1 lg:order-2 ${variant === "slideshow" ? "bg-background" : "bg-[#e3d3c2] dark:bg-[hsl(222,28%,4%)]"}`}>
+          {variant === "slideshow" ? (
+            <HeroPhotoStage />
+          ) : (
+          <>
           {/* Backdrop — warm sandy studio stage (light) whose gradient mirrors the sunset-lit floor so
               the platform blends in; deep warm base (dark). Spans the FULL (taller) panel, so the
               added mobile headroom above the robot still reads as the same stage, not empty space. */}
@@ -416,17 +504,20 @@ function HeroSplit() {
               растворение в полосу отвечает градиент над полосой (см. ниже), а это затухание
               оказывается за полосой и безвредно. */}
           <div className="absolute inset-x-0 bottom-0 h-20 lg:h-28 z-20 pointer-events-none [background:linear-gradient(to_bottom,transparent,#ffffff)] dark:[background:linear-gradient(to_bottom,transparent,#000000)]" />
+          </>
+          )}
         </div>
       </div>
 
       {/* Лого-маркиза — сплошная полоса во всю ширину у самого низа hero (под обеими колонками),
           собственный фон = фон страницы. Робот приподнят над ней (см. слой робота выше), поэтому
           наложения на сцену нет. На <lg скрыта: в стековой раскладке низ занят контентом. */}
-      <div className="hidden lg:block absolute bottom-0 inset-x-0 z-30 bg-background animate-fade-rise-delay-2 pb-[env(safe-area-inset-bottom)]">
-        {/* Растворение «пола» сцены в полосу — привязано к ВЕРХУ полосы (bottom-full), поэтому
-            зазора нет при любой высоте приподнятого робота. Только правая половина (там пол);
-            левая и так фон страницы. Цвет = фон полосы (белый/чёрный). */}
-        <div className="pointer-events-none absolute bottom-full right-0 w-1/2 h-28 bg-gradient-to-t from-white dark:from-black to-transparent" />
+      <div className="hidden lg:block absolute bottom-0 inset-x-0 z-30 bg-background animate-fade-in pb-[env(safe-area-inset-bottom)]">
+        {/* Растворение «пола»/фото в полосу — белый (в тёмной теме чёрный) градиент у ВЕРХА
+            полосы, правая половина (там визуал). Для робота — высокий (h-28, растворяет «пол»).
+            Для слайд-шоу — КОРОТКИЙ (h-10): тот же белый переход, но маленький радиус, чтобы
+            мягко сгладить стык фото↔полоса и не перекрывать слайдер/подпись (они подняты выше). */}
+        <div className={`pointer-events-none absolute bottom-full right-0 w-1/2 bg-gradient-to-t from-white dark:from-black to-transparent ${variant === "slideshow" ? "h-20" : "h-28"}`} />
         <div className="w-full max-w-6xl mx-auto px-6 py-3">
           <div className="text-center mb-1">
             <span className="text-[10px] xl:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400 dark:text-white/60">{hub.hero.trustLabel}</span>
@@ -699,6 +790,33 @@ export function HeroSplitBrand() {
   )
 }
 
+/* Дев-тумблер визуала hero: робот ↔ фото-слайд-шоу. СЕЙЧАС НЕ РЕНДЕРИТСЯ (скрыт) — оставлен
+   в коде на случай возврата к сравнению вариантов. Экспортирован, чтобы TS не ругался на unused. */
+export function HeroVariantToggle({ value, onChange }: { value: HeroVisual; onChange: (v: HeroVisual) => void }) {
+  const opts: { key: HeroVisual; label: string }[] = [
+    { key: "robot", label: "Робот" },
+    { key: "slideshow", label: "Слайд-шоу" },
+  ]
+  return (
+    <div className="fixed bottom-5 left-5 z-50 flex flex-col items-center gap-1.5">
+      <div className="inline-flex bg-black/45 backdrop-blur-md rounded-full p-1 border border-white/15 shadow-lg shadow-black/30">
+        {opts.map((o) => (
+          <button
+            key={o.key}
+            onClick={() => onChange(o.key)}
+            className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition-all duration-300 ${
+              value === o.key ? "bg-white text-black shadow-sm" : "text-white/70 hover:text-white"
+            }`}
+          >
+            {o.label}
+          </button>
+        ))}
+      </div>
+      <span className="text-[10px] font-medium uppercase tracking-[0.15em] text-white/40">визуал hero</span>
+    </div>
+  )
+}
+
 /* Compact compare-toggle to switch the hero background (temporary — not the final public UI) */
 export function HeroBgToggle() {
   const { heroStyle, setHeroStyle } = useVersion()
@@ -893,6 +1011,7 @@ export function LevelsSection() {
    заменяет фиолетовый из референса. Тема-aware (свет/тёмная). */
 const catalystStages = [
   {
+    Icon: Learning,
     t: "Обучение: единое понимание и базовые навыки",
     d: "Руководители и команда получают общий язык, представление о возможностях и ограничениях ИИ и первые отработанные практики на своих задачах.",
     features: [
@@ -902,6 +1021,7 @@ const catalystStages = [
     ],
   },
   {
+    Icon: SearchStatus,
     t: "Совместная диагностика и выбор направлений",
     d: "После обучения вместе с командой формулируются приоритетные процессы и функции, где ИИ даст наибольший эффект и которые стоит брать в работу в первую очередь.",
     features: [
@@ -911,6 +1031,7 @@ const catalystStages = [
     ],
   },
   {
+    Icon: MagicPen,
     t: "Проектирование и запуск пилотных решений",
     d: "На выбранных направлениях проектируются и запускаются пилоты: конкретные сценарии, автоматизации и ИИ‑решения, по которым можно замерять результат и дорабатывать подход.",
     features: [
@@ -920,6 +1041,7 @@ const catalystStages = [
     ],
   },
   {
+    Icon: StatusUp,
     t: "Масштабирование и переход к ИИ‑агентам",
     d: "Успешные пилоты масштабируются, процессы перестраиваются под новую логику, появляются специализированные ИИ‑агенты и цифровые сотрудники, работающие уже в рамках общей архитектуры.",
     features: [
@@ -962,23 +1084,42 @@ function CatalystOrbit({ geo }: { geo: CatGeo }) {
     }
   }
   const decX = (y: number) => cx - Math.sqrt(Math.max(0, CAT_R_MAIN * CAT_R_MAIN - (y - cy) ** 2))
+  // Горизонтальное затухание орбиты: слева (под заголовком) → в прозрачность,
+  // справа (к дуге/карточкам) → видимо. Так круг «заходит под текст», не перегружая его.
+  const fadeX1 = cx - CAT_R_MAIN
+  const fadeX2 = cx + CAT_R_MAIN
 
   return (
     <svg viewBox={`0 0 ${W} ${H}`} fill="none" className="w-full h-full" aria-hidden="true" preserveAspectRatio="none">
-      {/* СЕРЫЙ слой — кольца, точечная сетка и декоративные точки (нейтральный, тема-aware) */}
-      <g className="text-gray-400 dark:text-white/25">
+      <defs>
+        <linearGradient id="catOrbitFade" gradientUnits="userSpaceOnUse" x1={fadeX1} y1="0" x2={fadeX2} y2="0">
+          <stop offset="0" stopColor="#fff" stopOpacity="0" />
+          <stop offset="0.4" stopColor="#fff" stopOpacity="0.12" />
+          <stop offset="0.7" stopColor="#fff" stopOpacity="0.72" />
+          <stop offset="0.9" stopColor="#fff" stopOpacity="1" />
+          <stop offset="1" stopColor="#fff" stopOpacity="1" />
+        </linearGradient>
+        <mask id="catOrbitMask">
+          <rect x="0" y="0" width={W} height={H} fill="url(#catOrbitFade)" />
+        </mask>
+      </defs>
+
+      {/* Мягкая орбита — акцентная (оранжевая), но приглушённая и затухающая влево под заголовок.
+          НЕ жёсткая: кольца/сетка/декор-точки живут под маской затухания. */}
+      <g className="text-[#ff5331]" mask="url(#catOrbitMask)">
         <g>{grid}</g>
-        <circle cx={cx} cy={cy} r={CAT_R_MAIN} stroke="currentColor" strokeOpacity="0.55" />
-        <circle cx={cx} cy={cy} r={CAT_R_MAIN * 0.6} stroke="currentColor" strokeOpacity="0.4" />
-        <circle cx={decX(cy + 120)} cy={cy + 120} r={4} fill="currentColor" fillOpacity="0.7" />
-        <circle cx={decX(cy + 156)} cy={cy + 156} r={3.5} fill="currentColor" fillOpacity="0.6" />
+        <circle cx={cx} cy={cy} r={CAT_R_MAIN} stroke="currentColor" strokeOpacity="0.35" />
+        <circle cx={cx} cy={cy} r={CAT_R_MAIN * 0.6} stroke="currentColor" strokeOpacity="0.26" />
+        <circle cx={decX(cy + 120)} cy={cy + 120} r={4} fill="currentColor" fillOpacity="0.55" />
+        <circle cx={decX(cy + 156)} cy={cy + 156} r={3.5} fill="currentColor" fillOpacity="0.45" />
       </g>
-      {/* ОРАНЖЕВЫЙ слой — только дуга и её узлы */}
+
+      {/* ЖЁСТКИЙ акцент — только дуга и её узлы (плашки). Без маски: полный, резкий цвет. */}
       <g className="text-[#ff5331]">
       {/* Круглая дуга с узлами (чуть длиннее блока узлов сверху и снизу) */}
       <path
         d={`M ${arcTop.x} ${arcTop.y} A ${CAT_R_DOT} ${CAT_R_DOT} 0 0 1 ${arcBot.x} ${arcBot.y}`}
-        stroke="currentColor" strokeOpacity="0.75" strokeLinecap="round"
+        stroke="currentColor" strokeOpacity="0.9" strokeLinecap="round"
       />
       {/* Узлы на дуге — точно по центрам карточек */}
       {dots.map((d, i) => (
@@ -1046,7 +1187,10 @@ function CatalystSection() {
   return (
     <section
       ref={ref}
-      className="relative py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(222,30%,4%)] border-t border-gray-100 dark:border-white/[0.06] overflow-hidden transition-colors duration-500"
+      // `dark` на самой секции включает все внутренние dark:-стили независимо от темы сайта
+      // → секция всегда тёмная «полоса» на фоне белых блоков. Фон/бордер самой секции
+      // (dark:-варианты на этом же элементе не срабатывают) выставлены явно тёмными.
+      className="dark relative py-20 md:py-28 px-4 sm:px-6 md:px-12 bg-[hsl(222,30%,4%)] border-y border-white/[0.06] overflow-hidden transition-colors duration-500"
     >
       <div ref={gridRef} className="relative z-10 max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
         {/* Декоративная орбита — абсолютно, за колонками; узлы дуги совпадают с карточками.
@@ -1072,11 +1216,12 @@ function CatalystSection() {
           </p>
         </div>
 
-        {/* ── ПРАВО: аккордеон этапов (сдвинуты по дуге) ── */}
-        <div className="z-10 lg:col-span-7 flex flex-col gap-4" style={maxStagger ? { paddingRight: maxStagger } : undefined}>
+        {/* ── ПРАВО: аккордеон этапов (сдвинуты по дуге) ──
+            lg:pt-8 опускает карточки (и привязанный к ним круг) чуть ниже → заголовок
+            и подзаголовок читаются выше плашек и круга (чище композиция, как в референсе). */}
+        <div className="z-10 lg:col-span-7 lg:pt-8 flex flex-col gap-4" style={maxStagger ? { paddingRight: maxStagger } : undefined}>
           {catalystStages.map((s, idx) => {
             const isOpen = open === idx
-            const num = String(idx + 1).padStart(2, "0")
             return (
               <div
                 key={idx}
@@ -1100,13 +1245,11 @@ function CatalystSection() {
                       className="w-full flex items-center gap-5 text-left px-6 sm:px-7 min-h-[112px]"
                     >
                       <span
-                        className={`shrink-0 w-16 h-16 rounded-full flex items-center justify-center text-xl font-semibold tracking-tight leading-none transition-colors duration-300 ${
+                        className={`shrink-0 w-16 h-16 rounded-full flex items-center justify-center transition-colors duration-300 ${
                           isOpen ? "bg-brand text-white" : "bg-[#ff5331]/10 text-brand"
                         }`}
                       >
-                        {/* Cygre: огромный ascent метрики роняет цифры ниже центра во flex —
-                            оптический сдвиг ВВЕРХ (выверено по центр-линии, см. [[wmt-cygre-font-metric-gotcha]]) */}
-                        <span className="block -translate-y-[4px]">{num}</span>
+                        <s.Icon className="w-7 h-7" />
                       </span>
                       <h3 className="flex-1 text-base sm:text-lg font-semibold text-gray-900 dark:text-white leading-snug text-balance">
                         {s.t}
@@ -1140,14 +1283,14 @@ function CatalystSection() {
 
       {/* Модалка этапа по центру экрана */}
       {open >= 0 && (
-        <CatalystPopup stage={catalystStages[open]} num={String(open + 1).padStart(2, "0")} onClose={() => setOpen(-1)} />
+        <CatalystPopup stage={catalystStages[open]} onClose={() => setOpen(-1)} />
       )}
     </section>
   )
 }
 
 /* Модалка этапа (режим 'popup') — по центру, в рамках экрана, без скролла страницы. */
-function CatalystPopup({ stage, num, onClose }: { stage: (typeof catalystStages)[number]; num: string; onClose: () => void }) {
+function CatalystPopup({ stage, onClose }: { stage: (typeof catalystStages)[number]; onClose: () => void }) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") onClose() }
     window.addEventListener("keydown", onKey)
@@ -1172,8 +1315,8 @@ function CatalystPopup({ stage, num, onClose }: { stage: (typeof catalystStages)
         </button>
 
         <div className="flex items-center gap-4 pr-10">
-          <span className="shrink-0 w-16 h-16 rounded-full bg-brand text-white flex items-center justify-center text-xl font-semibold tracking-tight leading-none">
-            <span className="block -translate-y-[4px]">{num}</span>
+          <span className="shrink-0 w-16 h-16 rounded-full bg-brand text-white flex items-center justify-center">
+            <stage.Icon className="w-7 h-7" />
           </span>
           <h3 className="text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white leading-snug">{stage.t}</h3>
         </div>

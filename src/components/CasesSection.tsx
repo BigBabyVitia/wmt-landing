@@ -180,7 +180,15 @@ function PhotoCard({ c }: { c: CaseItem }) {
         <div className="absolute inset-0 bg-[hsl(220,20%,10%)]">
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_75%_15%,rgba(255,83,49,0.35),transparent_60%),radial-gradient(ellipse_70%_50%_at_15%_95%,rgba(255,83,49,0.15),transparent_60%)]" />
           <div className="absolute inset-0 opacity-40 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_70%)]" />
-          {c.security && <ShieldTick className="absolute top-16 right-5 w-20 h-20 text-white/10 group-hover:text-white/[0.15] transition-colors duration-500" />}
+          {c.security && !c.logo && <ShieldTick className="absolute top-16 right-5 w-20 h-20 text-white/10 group-hover:text-white/[0.15] transition-colors duration-500" />}
+          {c.logo && (
+            <img
+              src={c.logo}
+              alt={c.client}
+              loading="lazy"
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[130%] w-[62%] max-w-[210px] opacity-90 group-hover:opacity-100 transition-opacity duration-500 drop-shadow-[0_2px_20px_rgba(0,0,0,0.5)]"
+            />
+          )}
         </div>
       )}
 

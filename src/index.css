@@ -155,6 +155,10 @@
   .animate-fade-rise { animation: fade-rise 0.5s ease-out both; }
   .animate-fade-rise-delay { animation: fade-rise 0.5s ease-out 0.14s both; }
   .animate-fade-rise-delay-2 { animation: fade-rise 0.5s ease-out 0.28s both; }
+  /* Появление БЕЗ вертикального сдвига — для элементов, что лежат ПОВЕРХ фото (лого-полоса):
+     fade-rise «выезжал» снизу и его градиент проезжал тенью по фото. Тут только opacity, на месте. */
+  @keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+  .animate-fade-in { animation: fade-in 0.5s ease-out both; }
 
   /* Быстрое появление попапа (этапы «Обучение как катализатор») */
   @keyframes popup-fade { from { opacity: 0; } to { opacity: 1; } }
@@ -235,6 +239,20 @@
   @media (prefers-reduced-motion: reduce) {
     .hero-aurora-a, .hero-aurora-b, .hero-halo, .hero-ember { animation: none; }
     .hero-ember { opacity: 0; }
+  }
+
+  /* ── Hero photo slideshow (HeroPhotoStage) — медленный Ken Burns (только зум,
+     фокус задаётся transform-origin per-slide). Крутятся картинки, текст стабилен. ── */
+  @keyframes hero-kenburns {
+    from { transform: scale(1.04); }
+    to   { transform: scale(1.11); }
+  }
+  /* Непрерывный «дыхательный» зум: ease-in-out + infinite alternate — движение всегда живое и
+     плавное, не привязано к активному слайду, поэтому при кроссфейде нет схлопывания transform
+     (раньше отсюда был рывок). Длинный период = мягкий, ненавязчивый ход. */
+  .animate-hero-kenburns { animation: hero-kenburns 12s ease-in-out infinite alternate; will-change: transform; }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-hero-kenburns { animation: none; transform: scale(1.01); }
   }
 
   /* Эффект свечения Apple Watch / Health App */

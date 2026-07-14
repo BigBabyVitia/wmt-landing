@@ -236,3 +236,43 @@ export const Sms = (props: IconProps) => (
       <path d="M17 9L13.87 11.5C12.84 12.32 11.15 12.32 10.12 11.5L7 9" stroke="currentColor" strokeWidth="1.5" strokeMiterlimit="10" strokeLinecap="round" strokeLinejoin="round"/>
   </Svg>
 );
+
+// ── Step-badge icons (linear) — used in CatalystSection stage circles ──
+
+export const Learning = (props: IconProps) => (
+  <Svg {...props}>
+      <path d="M10.05 2.5293L4.03002 6.4593C2.10002 7.7193 2.10002 10.5393 4.03002 11.7993L10.05 15.7293C11.13 16.4393 12.91 16.4393 13.99 15.7293L19.98 11.7993C21.9 10.5393 21.9 7.7293 19.98 6.4693L13.99 2.5393C12.91 1.8193 11.13 1.8193 10.05 2.5293Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M5.63 13.0801L5.62 17.7701C5.62 19.0401 6.6 20.4001 7.8 20.8001L10.99 21.8601C11.54 22.0401 12.45 22.0401 13.01 21.8601L16.2 20.8001C17.4 20.4001 18.38 19.0401 18.38 17.7701V13.1301" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M21.4 15V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </Svg>
+);
+
+export const SearchStatus = (props: IconProps) => (
+  <Svg {...props}>
+      <path d="M11.5 21C16.75 21 21 16.75 21 11.5C21 6.25 16.75 2 11.5 2C6.25 2 2 6.25 2 11.5C2 16.75 6.25 21 11.5 21Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M22 22L20 20" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M8.5 10H14.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M8.5 13H11.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </Svg>
+);
+
+export const MagicPen = (props: IconProps) => (
+  <Svg {...props}>
+      <path d="M3.49994 20.4995C4.32994 21.3295 5.66994 21.3295 6.49994 20.4995L19.4999 7.49945C20.3299 6.66945 20.3299 5.32945 19.4999 4.49945C18.6699 3.66945 17.3299 3.66945 16.4999 4.49945L3.49994 17.4995C2.66994 18.3295 2.66994 19.6695 3.49994 20.4995Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M18.01 8.99023L15.01 5.99023" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M8.5 2.44L10 2L9.56 3.5L10 5L8.5 4.56L7 5L7.44 3.5L7 2L8.5 2.44Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M4.5 8.44L6 8L5.56 9.5L6 11L4.5 10.56L3 11L3.44 9.5L3 8L4.5 8.44Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M19.5 13.44L21 13L20.56 14.5L21 16L19.5 15.56L18 16L18.44 14.5L18 13L19.5 13.44Z" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round"/>
+  </Svg>
+);
+
+export const StatusUp = (props: IconProps) => (
+  <Svg {...props}>
+      <path d="M6.88 18.1501V16.0801" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M12 18.1498V14.0098" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M17.12 18.1497V11.9297" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M17.12 5.84961L16.66 6.38961C14.11 9.36961 10.69 11.4796 6.88 12.4296" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+      <path d="M14.1899 5.84961H17.1199V8.76961" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+      <path d="M9 22H15C20 22 22 20 22 15V9C22 4 20 2 15 2H9C4 2 2 4 2 9V15C2 20 4 22 9 22Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </Svg>
+);

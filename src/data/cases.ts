@@ -20,6 +20,8 @@ export type CaseItem = {
   photo?: string
   /** object-position для кропа фото в карточках (групповые фото — лица не по центру) */
   photoPos?: string
+  /** Лого клиента для карточки без фото (напр. ИБ-кейс в защищённом контуре — фото нет). */
+  logo?: string
   teaser: string
   request: string
   result: string[]
@@ -104,6 +106,7 @@ export const trainingCases: CaseItem[] = [
     id: "fora-bank",
     format: "Кастомное обучение · ИБ",
     client: "Фора-Банк",
+    logo: "/cases/forabank-logo.svg",
     meta: "Команда изменений банка, до 30 участников",
     teaser: "Обучение в защищённом контуре: ПДн, банковская тайна, нормативка ЦБ.",
     request:
@@ -182,5 +185,5 @@ export const trainingCases: CaseItem[] = [
 export const caseStats = [
   { value: "35+", label: "программ и сессий за год" },
   { value: "60+", label: "компаний-участников" },
-  { value: "3 420", label: "человек в одной программе" },
+  { value: "до 3 420", label: "человек в одной программе" },
 ]

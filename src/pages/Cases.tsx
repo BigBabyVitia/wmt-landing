@@ -73,37 +73,8 @@ export function Cases() {
     <div className="bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
       <NavbarV2 variant="inner" solid />
 
-      {/* ── HERO ── */}
-      <section className="pt-28 md:pt-32 pb-12 md:pb-16 px-4 sm:px-6 md:px-12 bg-gray-50 dark:bg-[hsl(220,18%,5%)] border-b border-gray-100 dark:border-white/[0.06]">
-        <div className="max-w-7xl mx-auto">
-          <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-white/50 hover:text-brand transition-colors mb-8">
-            <ArrowRight className="w-3.5 h-3.5 rotate-180" /> На главную
-          </Link>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand mb-4">Кейсы обучения</p>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 dark:text-white text-balance max-w-3xl">
-            С каким запросом приходят компании — и что у них{" "}
-            <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/40 dark:via-white dark:to-white/40 bg-clip-text text-transparent inline-block animate-text-glow">
-              остаётся
-            </span>
-          </h1>
-          <p className="mt-5 text-base md:text-lg text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
-            35+ программ за год: стратегические сессии, обучение команд, мастерские ИИ-агентов и одна трансформация на 3&nbsp;420 человек. Ниже — запросы и результаты, без «прошло отлично».
-          </p>
-
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-5 max-w-3xl">
-            {caseStats.map(({ value, label }) => (
-              <div key={label} className="rounded-[1.25rem] border border-gray-200/70 dark:border-white/[0.06] bg-white dark:bg-white/[0.03] p-5">
-                <div className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{value}</div>
-                <div className="text-sm text-gray-500 dark:text-gray-400 mt-1">{label}</div>
-              </div>
-            ))}
-          </div>
-
-          <div className="mt-10 max-w-5xl">
-            <LogoCloud logos={clients} />
-          </div>
-        </div>
-      </section>
+      {/* ── HERO — минимал + фирменный цветок-трилистник в фоне ── */}
+      <CasesHero />
 
       {/* ── STICKY-ЧИПЫ ШАГОВ ── */}
       <div className="sticky top-16 z-30 bg-white/90 dark:bg-[hsl(220,20%,7%)]/90 backdrop-blur-md border-b border-gray-100 dark:border-white/[0.06]">
@@ -226,6 +197,48 @@ export function Cases() {
       {active && <CaseModal c={active} onClose={() => setActive(null)} />}
       {pdfOpen && <PdfModal onClose={() => setPdfOpen(false)} />}
     </div>
+  )
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   HERO — фирменный фон hero-bg.webp (тёплый оранжевый + лепестки логотипа справа),
+   приём со старого build wmt-landing (/executive). Тема-зависимо:
+   • светлая — поверх БЕЛЫЙ градиент слева → слева бело для тёмного текста, справа оранжевый с лого;
+   • тёмная — тёмный градиент #050b14 слева, как на оригинале.
+   ══════════════════════════════════════════════════════════════════════════ */
+function CasesHero() {
+  return (
+    <section className="relative pt-28 md:pt-32 pb-12 md:pb-16 px-4 sm:px-6 md:px-12 bg-white dark:bg-[hsl(220,20%,7%)] overflow-hidden">
+      <div className="relative max-w-7xl mx-auto">
+        <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-white/55 hover:text-brand dark:hover:text-white transition-colors mb-10">
+          <ArrowRight className="w-3.5 h-3.5 rotate-180" /> На главную
+        </Link>
+
+        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand mb-5">Кейсы обучения</p>
+        <h1 className="text-[2.6rem] leading-[1.03] md:text-6xl lg:text-[4.25rem] lg:leading-[1.02] font-semibold tracking-tight text-gray-900 dark:text-white text-balance max-w-4xl">
+          С каким запросом приходят компании — и что у них{" "}
+          <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/50 dark:via-white dark:to-white/50 bg-clip-text text-transparent inline-block animate-text-glow">
+            остаётся
+          </span>
+        </h1>
+        <p className="mt-6 text-base md:text-lg text-gray-600 dark:text-white/65 max-w-xl leading-relaxed">
+          35+ программ за год: стратегические сессии, обучение команд, мастерские ИИ-агентов и одна трансформация на 3&nbsp;420 человек. Ниже — запросы и результаты, без «прошло отлично».
+        </p>
+
+        <div className="mt-10 grid grid-cols-3 gap-3 md:gap-4 max-w-2xl">
+          {caseStats.map(({ value, label }) => (
+            <div key={label} className="rounded-2xl border border-gray-200/70 bg-white/80 backdrop-blur-sm dark:border-white/12 dark:bg-white/[0.05] p-4 md:p-5">
+              <div className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900 dark:text-white">{value}</div>
+              <div className="text-[12px] md:text-sm text-gray-500 dark:text-white/60 mt-1 leading-snug">{label}</div>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-12 md:mt-14">
+          <LogoCloud logos={clients} />
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -366,7 +379,7 @@ function SecurityBand({ c }: { c: CaseItem }) {
     <div id={c.id} className="relative mt-8 rounded-[1.5rem] overflow-hidden bg-[hsl(220,20%,5%)] border border-white/10 scroll-mt-28">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_90%_15%,rgba(255,83,49,0.2),transparent_55%)]" />
       <div className="absolute inset-0 opacity-30 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_65%)]" />
-      <ShieldTick className="absolute top-8 right-8 w-24 h-24 text-white/[0.06]" />
+      {!c.logo && <ShieldTick className="absolute top-8 right-8 w-24 h-24 text-white/[0.06]" />}
 
       <div className="relative p-7 md:p-12 max-w-3xl">
         <div className="flex flex-wrap items-center gap-3">
@@ -377,6 +390,7 @@ function SecurityBand({ c }: { c: CaseItem }) {
             <ShieldTick className="w-3.5 h-3.5" /> Защищённый контур
           </span>
         </div>
+        {c.logo && <img src={c.logo} alt={c.client} className="h-6 md:h-7 mt-5 mb-1 opacity-95" />}
         <h3 className="text-2xl md:text-3xl font-bold text-white mt-4">{c.client}</h3>
         <p className="text-sm text-white/50 mt-1">{c.meta}</p>
 
