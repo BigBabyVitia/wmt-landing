@@ -411,7 +411,7 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
 
       <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 lg:min-h-0 lg:max-w-7xl lg:mx-auto lg:w-full">
         {/* ── LEFT: content ── */}
-        <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-8 pt-28 pb-14 lg:pt-24 lg:pb-24 order-2 lg:order-1">
+        <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-8 pt-10 pb-14 lg:pt-24 lg:pb-24 order-2 lg:order-1">
           <div className="w-full max-w-xl lg:ml-auto">
             {/* Эйброу "Корпоративное обучение по ИИ" убран по просьбе заказчика (02.07.2026) —
                 H1 сразу читается как первая строка. `hub.hero.eyebrow` не удалён из данных:
@@ -443,7 +443,7 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
                   >
                     <Icon className="w-5 h-5" />
                   </span>
-                  <span className="text-[15px] sm:text-base lg:text-lg font-medium text-gray-700 dark:text-gray-300 leading-snug">{label}</span>
+                  <span className="text-[14px] font-medium text-gray-700 dark:text-gray-300 leading-snug">{label}</span>
                 </li>
               ))}
             </ul>
