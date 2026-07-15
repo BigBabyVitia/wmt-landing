@@ -10,6 +10,10 @@
  * ⚠️ Счётчики 35+/60+/3 420 — черновые, пересчитать с маркетологами.
  */
 
+/** Полный кейсбук в PDF — лежит в public/, отдаётся прямым скачиванием (без формы-заявки). */
+export const CASEBOOK_PDF = "/casebook-wmt-ai.pdf"
+export const CASEBOOK_FILENAME = "Кейсбук WMT AI.pdf"
+
 export type CaseMetric = { value: string; label: string }
 
 export type CaseItem = {

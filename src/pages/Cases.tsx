@@ -4,8 +4,8 @@ import { NavbarV2 } from "@/components/NavbarV2"
 import { MainCta } from "@/components/MainCta"
 import { LogoCloud } from "@/components/ui/logo-cloud"
 import { clients } from "@/data/clients"
-import { trainingCases, caseStats, type CaseItem } from "@/data/cases"
-import { CaseModal, PdfModal } from "@/components/CaseModal"
+import { trainingCases, caseStats, CASEBOOK_PDF, CASEBOOK_FILENAME, type CaseItem } from "@/data/cases"
+import { CaseModal } from "@/components/CaseModal"
 import { ArrowRight, ArrowDown, TickCircle, ShieldTick } from "@/components/ui/icons"
 
 /**
@@ -28,7 +28,6 @@ const STEP_CHIPS = [
 
 export function Cases() {
   const [active, setActive] = useState<CaseItem | null>(null)
-  const [pdfOpen, setPdfOpen] = useState(false)
   const [showUp, setShowUp] = useState(false)
   const revealRef = useRef<HTMLDivElement>(null)
   const { hash } = useLocation()
@@ -65,9 +64,9 @@ export function Cases() {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = active || pdfOpen ? "hidden" : ""
+    document.body.style.overflow = active ? "hidden" : ""
     return () => { document.body.style.overflow = "" }
-  }, [active, pdfOpen])
+  }, [active])
 
   return (
     <div className="bg-white dark:bg-[hsl(220,20%,7%)] transition-colors duration-300">
@@ -88,12 +87,13 @@ export function Cases() {
               {label}
             </a>
           ))}
-          <button
-            onClick={() => setPdfOpen(true)}
+          <a
+            href={CASEBOOK_PDF}
+            download={CASEBOOK_FILENAME}
             className="shrink-0 ml-auto text-[13px] font-semibold text-brand hover:text-[#e64627] transition-colors whitespace-nowrap"
           >
             Кейсбук PDF ↓
-          </button>
+          </a>
         </div>
       </div>
 
@@ -142,7 +142,7 @@ export function Cases() {
         <section id="step-4" className="mt-16 md:mt-20 scroll-mt-28">
           <div className="rounded-[1.5rem] border border-gray-200/70 dark:border-white/[0.06] bg-gray-50 dark:bg-white/[0.03] p-8 md:p-10 flex flex-col md:flex-row md:items-center gap-6">
             <div className="flex-1">
-              <span className="inline-flex items-center rounded-full px-3 pt-[4px] pb-[9px] text-xs font-semibold text-brand border border-[#ff5331]/30 bg-[#ff5331]/[0.07] mb-4">
+              <span className="inline-flex items-center rounded-full px-3 pt-[5px] pb-[7px] text-xs font-semibold text-brand border border-[#ff5331]/30 bg-[#ff5331]/[0.07] mb-4">
                 Шаг 4 из 4 · Под процессы и проекты
               </span>
               <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -171,12 +171,13 @@ export function Cases() {
                   Все программы с запросами, результатами и фото одним документом — удобно показать коллегам и совету директоров.
                 </p>
               </div>
-              <button
-                onClick={() => setPdfOpen(true)}
+              <a
+                href={CASEBOOK_PDF}
+                download={CASEBOOK_FILENAME}
                 className="shrink-0 inline-flex items-center justify-center gap-2 bg-brand text-white hover:bg-[#e64627] shadow-lg shadow-[#ff5331]/25 transition-all rounded-full px-8 pt-[13px] pb-[15px] font-bold hover:-translate-y-0.5"
               >
-                Получить кейсбук <ArrowRight className="w-4 h-4" />
-              </button>
+                Скачать кейсбук <ArrowDown className="w-4 h-4" />
+              </a>
             </div>
           </div>
         </section>
@@ -195,7 +196,6 @@ export function Cases() {
       </button>
 
       {active && <CaseModal c={active} onClose={() => setActive(null)} />}
-      {pdfOpen && <PdfModal onClose={() => setPdfOpen(false)} />}
     </div>
   )
 }
@@ -215,13 +215,13 @@ function CasesHero() {
         </Link>
 
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-brand mb-5">Кейсы обучения</p>
-        <h1 className="text-[2.6rem] leading-[1.03] md:text-6xl lg:text-[4.25rem] lg:leading-[1.02] font-semibold tracking-tight text-gray-900 dark:text-white text-balance max-w-4xl">
+        <h1 className="text-[2.6rem] leading-[1.03] md:text-6xl lg:text-[4.25rem] lg:leading-[1.02] font-semibold tracking-tight text-gray-900 dark:text-white text-balance max-w-6xl">
           С каким запросом приходят компании — и что у них{" "}
           <span className="bg-gradient-to-r from-gray-400 via-gray-900 to-gray-400 dark:from-white/50 dark:via-white dark:to-white/50 bg-clip-text text-transparent inline-block animate-text-glow">
             остаётся
           </span>
         </h1>
-        <p className="mt-6 text-base md:text-lg text-gray-600 dark:text-white/65 max-w-xl leading-relaxed">
+        <p className="mt-7 text-base md:text-lg text-gray-600 dark:text-white/65 max-w-2xl leading-relaxed">
           35+ программ за год: стратегические сессии, обучение команд, мастерские ИИ-агентов и одна трансформация на 3&nbsp;420 человек. Ниже — запросы и результаты, без «прошло отлично».
         </p>
 
@@ -247,7 +247,7 @@ function StepHeader({ id, n, title, sub }: { id: string; n: number; title: strin
   return (
     <section id={id} className="mt-16 md:mt-24 scroll-mt-28">
       <div>
-        <span className="inline-flex items-center rounded-full px-3.5 pt-[4px] pb-[9px] text-xs font-bold text-brand border-[1.5px] border-[#ff5331]/60 bg-[#ff5331]/[0.06] mb-4">
+        <span className="inline-flex items-center rounded-full px-3.5 pt-[5px] pb-[7px] text-xs font-bold text-brand border-[1.5px] border-[#ff5331]/60 bg-[#ff5331]/[0.06] mb-4">
           Шаг {n} из 4
         </span>
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-gray-900 dark:text-white">{title}</h2>
@@ -257,47 +257,107 @@ function StepHeader({ id, n, title, sub }: { id: string; n: number; title: strin
   )
 }
 
-/* ── Флагманская полоса Wildberries ── */
+/* ── Орбитальный декор тёмных полос (флагман WB, ИБ-кейс) ──
+   ОДНА большая орбита (центр (817,430), r=503) прижата к правому краю: дуга идёт
+   ЗА контентом (~16px от правого края на середине высоты), макушка и низ спрятаны
+   за края карточки; еле различимая целиком, яркая — только на правой стороне
+   (conic), выше и ниже уходит в тень. Вторая окружность — линия из правого нижнего
+   угла, пересекает основную ровно в нижней точке. Контейнер фиксированного размера
+   1332×734, прибит к правому верхнему углу — геометрия не деформируется; для более
+   низких карточек уменьшается целиком через transform scale. */
+function OrbitDecor({ scale = 1 }: { scale?: number }) {
+  return (
+    <div
+      className="absolute top-0 right-0 w-[1332px] h-[734px] origin-top-right pointer-events-none hidden md:block"
+      style={scale !== 1 ? { transform: `scale(${scale})` } : undefined}
+      aria-hidden
+    >
+      <div className="absolute right-[12px] top-[-73px] w-[1006px] h-[1006px] rounded-full border border-[#ff5331]/[0.09]" />
+      <div
+        className="absolute right-[12px] top-[-73px] w-[1006px] h-[1006px] rounded-full border border-[#ff5331]/45"
+        style={{
+          maskImage: "conic-gradient(from 0deg at 50% 50%, transparent 32deg, black 58deg, black 105deg, transparent 150deg, transparent 360deg)",
+          WebkitMaskImage: "conic-gradient(from 0deg at 50% 50%, transparent 32deg, black 58deg, black 105deg, transparent 150deg, transparent 360deg)",
+        }}
+      />
+      <div className="absolute right-[-489px] top-[518px] w-[600px] h-[600px] rounded-full border border-[#ff5331]/25" />
+      {/* точка на орбите, верх-право */}
+      <span className="absolute right-[66px] top-[204px] translate-x-1/2 -translate-y-1/2 w-[9px] h-[9px] rounded-full bg-[#ffcaa6] shadow-[0_0_10px_2px_rgba(255,130,80,0.9),0_0_32px_12px_rgba(255,83,49,0.4)]" />
+      {/* точка на орбите, низ — в месте пересечения со второй окружностью */}
+      <span className="absolute right-[75px] top-[675px] translate-x-1/2 -translate-y-1/2 w-[9px] h-[9px] rounded-full bg-[#ffcaa6] shadow-[0_0_10px_2px_rgba(255,130,80,0.9),0_0_32px_12px_rgba(255,83,49,0.4)]" />
+    </div>
+  )
+}
+
+/* Тёплое свечение тёмных полос: заметное сверху-справа за дугой, поменьше у правого
+   нижнего угла и у левого края — как в референсе */
+const BAND_GLOW =
+  "absolute inset-0 bg-[radial-gradient(ellipse_42%_50%_at_86%_12%,rgba(255,105,55,0.14),transparent_62%),radial-gradient(ellipse_30%_38%_at_86%_90%,rgba(255,95,50,0.10),transparent_62%),radial-gradient(ellipse_28%_60%_at_0%_48%,rgba(255,83,49,0.11),transparent_62%)]"
+
+/* ── Флагманская полоса Wildberries ──
+   Дизайн по референсу: почти чёрный тёплый фон, eyebrow-строка вместо плашек,
+   крупный заголовок с оранжевым штрихом, Запрос/Результат на вертикальных линиях
+   со светящимися точками, метрики на тонких разделителях (без карточек),
+   справа — орбитальные дуги со светящимися точками. */
 function FlagshipBand({ c }: { c: CaseItem }) {
   return (
-    <div id={c.id} className="relative rounded-[1.5rem] overflow-hidden bg-[hsl(220,20%,8%)] border border-[#ff5331]/40 scroll-mt-28">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_85%_10%,rgba(255,83,49,0.3),transparent_55%),radial-gradient(ellipse_50%_50%_at_5%_95%,rgba(255,83,49,0.14),transparent_60%)]" />
-      <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-8 p-8 md:p-12">
-        <div className="lg:col-span-7">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center rounded-full px-3 pt-[4px] pb-[6px] text-[10px] font-bold uppercase tracking-[0.14em] text-brand border border-[#ff5331]/40 bg-[#ff5331]/10">
-              {c.format}
-            </span>
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/40">Флагманский кейс · весь маршрут целиком</span>
-          </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mt-5">{c.client}</h2>
-          <p className="text-sm text-white/55 mt-2">{c.meta}</p>
+    <div id={c.id} className="relative rounded-[1.5rem] overflow-hidden bg-[#0b0a09] border border-white/[0.07] scroll-mt-28">
+      <div className={BAND_GLOW} />
+      <OrbitDecor />
 
-          <div className="mt-7 space-y-5">
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 mb-2">Запрос</p>
-              <p className="text-[15px] text-white/80 leading-relaxed">{c.request}</p>
-            </div>
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand mb-2">Результат</p>
-              <ul className="space-y-2">
-                {c.result.map((r) => (
-                  <li key={r} className="flex items-start gap-2 text-[15px] text-white/80 leading-relaxed">
-                    <TickCircle className="w-[18px] h-[18px] text-brand shrink-0 mt-0.5" />
-                    {r}
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 p-8 md:p-12 lg:p-14">
+        {/* ── Левая колонка ── */}
+        <div className="lg:col-span-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span className="text-[11px] md:text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              {c.format.replace(" · ", " · ")}
+            </span>
+            <span className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+              Флагманский кейс
+            </span>
+          </div>
+
+          <h2 className="text-5xl md:text-6xl lg:text-[4.25rem] font-semibold tracking-tight text-white mt-8 lg:mt-10">{c.client}</h2>
+          <div className="mt-6 h-[2px] w-10 bg-[#ff5331]" />
+          <p className="mt-6 text-lg md:text-xl text-white/75 leading-relaxed max-w-md">{c.meta}</p>
+
+          <div className="mt-10 relative pl-7 border-l border-white/[0.13]">
+            {/* светящаяся точка на линии — на уровне лейбла, как у «Результата» */}
+            <span className="absolute -left-[4px] top-[2px] w-[7px] h-[7px] rounded-full bg-[#ffb38f] shadow-[0_0_14px_4px_rgba(255,110,60,0.65)]" />
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 mb-3">Запрос</p>
+            <p className="text-[15px] text-white/70 leading-relaxed max-w-xl">{c.request}</p>
+          </div>
+
+          <div className="mt-9 relative pl-7 border-l border-white/[0.13]">
+            <span className="absolute -left-[4px] top-[2px] w-[7px] h-[7px] rounded-full bg-[#ffb38f] shadow-[0_0_14px_4px_rgba(255,110,60,0.65)]" />
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 mb-4">Результат</p>
+            <ul className="space-y-3">
+              {c.result.map((r) => (
+                <li key={r} className="flex items-start gap-3 text-[15px] text-white/80 leading-relaxed max-w-xl">
+                  <TickCircle className="w-[19px] h-[19px] text-brand shrink-0 mt-0.5" />
+                  {r}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="lg:col-span-5 flex items-center">
-          <div className="w-full grid grid-cols-2 gap-4">
-            {c.metrics!.map((m) => (
-              <div key={m.label} className="rounded-2xl border border-white/10 bg-white/[0.04] p-5">
-                <div className="text-2xl md:text-3xl font-bold text-brand leading-none tracking-tight">{m.value}</div>
-                <div className="text-[11px] md:text-xs text-white/50 mt-2 leading-snug">{m.label}</div>
+        {/* ── Правая колонка: метрики на тонких разделителях ── */}
+        <div className="lg:col-span-6 flex items-center lg:pl-8 xl:pl-12">
+          <div className="w-full relative grid grid-cols-2">
+            {/* разделители-«прицел»: горизонталь сплошная, вертикаль с разрывом у пересечения */}
+            <div className="absolute inset-x-0 top-1/2 h-px bg-white/[0.09]" />
+            <div className="absolute left-1/2 top-0 h-[calc(50%-44px)] w-px bg-white/[0.09]" />
+            <div className="absolute left-1/2 bottom-0 h-[calc(50%-44px)] w-px bg-white/[0.09]" />
+            {c.metrics!.map((m, i) => (
+              <div
+                key={m.label}
+                className={`py-8 md:py-10 ${i % 2 === 1 ? "pl-6 md:pl-9" : "pr-6 md:pr-9"}`}
+              >
+                <div className="text-3xl md:text-4xl xl:text-[2.6rem] font-semibold text-brand leading-none tracking-tight whitespace-nowrap">
+                  {m.value}
+                </div>
+                <div className="text-[13px] text-white/60 mt-3.5 leading-snug xl:whitespace-nowrap">{m.label}</div>
               </div>
             ))}
           </div>
@@ -334,7 +394,7 @@ function CaseSplit({ c, photoSide, mosaic }: { c: CaseItem; photoSide: "left" | 
     <div id={c.id} className="mt-8 rounded-[1.5rem] overflow-hidden border border-gray-200/70 dark:border-white/[0.06] bg-gray-50 dark:bg-white/[0.03] scroll-mt-28">
       <div className="grid grid-cols-1 lg:grid-cols-12">
         <div className={`lg:col-span-7 p-7 md:p-10 ${photoSide === "left" ? "lg:order-2" : ""}`}>
-          <span className="inline-flex items-center rounded-full px-3 pt-[4px] pb-[9px] text-xs font-semibold text-brand border border-[#ff5331]/30 bg-[#ff5331]/[0.07]">
+          <span className="inline-flex items-center rounded-full px-3 pt-[5px] pb-[7px] text-xs font-semibold text-brand border border-[#ff5331]/30 bg-[#ff5331]/[0.07]">
             {c.format}
           </span>
           <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-4">{c.client}</h3>
@@ -373,42 +433,65 @@ function CaseSplit({ c, photoSide, mosaic }: { c: CaseItem; photoSide: "left" | 
   )
 }
 
-/* ── «Чёрный разлом»: ИБ-кейс Фора-Банка ── */
+/* ── ИБ-кейс Фора-Банка — в той же форме, что флагман WB:
+   тёмная полоса с орбитами (декор уменьшен под меньшую высоту карточки),
+   eyebrow-строка, крупный заголовок со штрихом, Запрос/Результат на линиях
+   со светящимися точками; справа вместо метрик — логотип и защищённый контур. */
 function SecurityBand({ c }: { c: CaseItem }) {
   return (
-    <div id={c.id} className="relative mt-8 rounded-[1.5rem] overflow-hidden bg-[hsl(220,20%,5%)] border border-white/10 scroll-mt-28">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_70%_at_90%_15%,rgba(255,83,49,0.2),transparent_55%)]" />
-      <div className="absolute inset-0 opacity-30 bg-[linear-gradient(rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:28px_28px] [mask-image:radial-gradient(ellipse_at_top_right,black,transparent_65%)]" />
-      {!c.logo && <ShieldTick className="absolute top-8 right-8 w-24 h-24 text-white/[0.06]" />}
+    <div id={c.id} className="relative mt-8 rounded-[1.5rem] overflow-hidden bg-[#0b0a09] border border-white/[0.07] scroll-mt-28">
+      <div className={BAND_GLOW} />
+      <OrbitDecor scale={0.91} />
 
-      <div className="relative p-7 md:p-12 max-w-3xl">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center rounded-full px-3 pt-[4px] pb-[9px] text-xs font-semibold text-brand border border-[#ff5331]/40 bg-[#ff5331]/10">
-            {c.format}
-          </span>
-          <span className="inline-flex items-center gap-1.5 rounded-full px-3 pt-[4px] pb-[9px] text-xs font-semibold text-white/80 border border-white/15 bg-white/[0.06]">
-            <ShieldTick className="w-3.5 h-3.5" /> Защищённый контур
-          </span>
-        </div>
-        {c.logo && <img src={c.logo} alt={c.client} className="h-6 md:h-7 mt-5 mb-1 opacity-95" />}
-        <h3 className="text-2xl md:text-3xl font-bold text-white mt-4">{c.client}</h3>
-        <p className="text-sm text-white/50 mt-1">{c.meta}</p>
-
-        <div className="mt-6 space-y-5">
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-white/45 mb-2">Запрос</p>
-            <p className="text-[15px] text-white/80 leading-relaxed">{c.request}</p>
+      <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 p-8 md:p-12 lg:p-14">
+        {/* ── Левая колонка ── */}
+        <div className="lg:col-span-6">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span className="text-[11px] md:text-xs font-bold uppercase tracking-[0.18em] text-brand">
+              {c.format}
+            </span>
+            <span className="inline-flex items-center gap-1.5 text-[11px] md:text-xs font-semibold uppercase tracking-[0.18em] text-white/55">
+              <ShieldTick className="w-4 h-4 -mt-px" /> Защищённый контур
+            </span>
           </div>
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-brand mb-2">Результат</p>
-            <ul className="space-y-2">
+
+          <h3 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-white mt-8 lg:mt-10">{c.client}</h3>
+          <div className="mt-6 h-[2px] w-10 bg-[#ff5331]" />
+          <p className="mt-6 text-lg md:text-xl text-white/75 leading-relaxed max-w-md">{c.meta}</p>
+
+          <div className="mt-10 relative pl-7 border-l border-white/[0.13]">
+            <span className="absolute -left-[4px] top-[2px] w-[7px] h-[7px] rounded-full bg-[#ffb38f] shadow-[0_0_14px_4px_rgba(255,110,60,0.65)]" />
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 mb-3">Запрос</p>
+            <p className="text-[15px] text-white/70 leading-relaxed max-w-xl">{c.request}</p>
+          </div>
+
+          <div className="mt-9 relative pl-7 border-l border-white/[0.13]">
+            <span className="absolute -left-[4px] top-[2px] w-[7px] h-[7px] rounded-full bg-[#ffb38f] shadow-[0_0_14px_4px_rgba(255,110,60,0.65)]" />
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-white/90 mb-4">Результат</p>
+            <ul className="space-y-3">
               {c.result.map((r) => (
-                <li key={r} className="flex items-start gap-2 text-[15px] text-white/80 leading-relaxed">
-                  <TickCircle className="w-[18px] h-[18px] text-brand shrink-0 mt-0.5" />
+                <li key={r} className="flex items-start gap-3 text-[15px] text-white/80 leading-relaxed max-w-xl">
+                  <TickCircle className="w-[19px] h-[19px] text-brand shrink-0 mt-0.5" />
                   {r}
                 </li>
               ))}
             </ul>
+          </div>
+        </div>
+
+        {/* ── Правая колонка: логотип + контур (вместо метрик) ── */}
+        <div className="lg:col-span-6 flex items-center justify-center lg:pl-8 xl:pl-12">
+          <div className="w-full max-w-sm flex flex-col items-center text-center">
+            {c.logo && <img src={c.logo} alt={c.client} className="h-10 md:h-12 xl:h-14 w-auto opacity-95" />}
+            <div className="mt-8 h-px w-full bg-white/[0.09]" />
+            <p className="mt-8 text-[15px] text-white/70 leading-relaxed">{c.teaser}</p>
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {["ПДн", "Банковская тайна", "Нормативка ЦБ"].map((t) => (
+                <span key={t} className="inline-flex items-center rounded-full px-3 pt-[5px] pb-[7px] text-xs font-semibold text-white/70 border border-white/10 bg-white/[0.04]">
+                  {t}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </div>

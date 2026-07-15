@@ -347,10 +347,9 @@ function HeroPhotoStage() {
   }, [])
   return (
     <div
-      /* ЭКСПЕРИМЕНТ: на десктопе фото начинается ПОД шапкой (навбар solid ≈68px), а не заходит
-         под неё — кадр становится ниже/«квадратнее». Полоска над фото = bg-background (см. панель),
-         поэтому навбар остаётся однородным. Откатить = убрать `lg:top-[68px]`. Моб. раскладка не тронута. */
-      className="absolute inset-0 lg:top-[68px] z-10 overflow-hidden"
+      /* Фото заполняет карточку-«плашку» целиком (скругление, клиренс навбара сверху и логополосы
+         снизу задаёт родитель-контейнер в HeroSplit); здесь — просто fill + клип под её углы. */
+      className="absolute inset-0 z-10 overflow-hidden rounded-[inherit]"
       onMouseEnter={() => { paused.current = true }}
       onMouseLeave={() => { paused.current = false }}
     >
@@ -369,7 +368,7 @@ function HeroPhotoStage() {
           <div className="absolute inset-0 pointer-events-none [background:linear-gradient(to_top,rgba(0,0,0,0.7)_0%,rgba(0,0,0,0.2)_11%,transparent_30%)]" />
           <div className="absolute inset-0 pointer-events-none [background:radial-gradient(120%_120%_at_50%_0%,transparent_62%,rgba(0,0,0,0.2)_100%)]" />
           {/* Подпись-пруф принадлежит слайду → кроссфейдится синхронно с фото (нет рассинхрона) */}
-          <div className="absolute left-5 sm:left-7 bottom-[3.25rem] lg:bottom-[12.5rem] max-w-[82%]">
+          <div className="absolute left-5 sm:left-6 bottom-11 sm:bottom-12 max-w-[85%]">
             <div className="text-white font-semibold text-base sm:text-lg leading-tight drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">{sl.cap}</div>
             <div className="text-white/70 text-xs sm:text-[13px] mt-0.5 drop-shadow-[0_2px_10px_rgba(0,0,0,0.6)]">{sl.sub}</div>
           </div>
@@ -377,7 +376,7 @@ function HeroPhotoStage() {
       ))}
 
       {/* Прогресс-точки — глобальные (стабильны, привязаны к активному i), над лого-полосой */}
-      <div className="absolute left-5 sm:left-7 bottom-6 lg:bottom-[11rem] z-30 flex items-center gap-1.5">
+      <div className="absolute left-5 sm:left-6 bottom-5 z-30 flex items-center gap-1.5">
         {heroSlides.map((_, idx) => (
           <button
             key={idx}
@@ -410,7 +409,7 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
           unreadable on it, so use the solid, theme-aware bar from the top. */}
       <NavbarV2 variant="home" solid />
 
-      <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 lg:min-h-0">
+      <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 lg:min-h-0 lg:max-w-7xl lg:mx-auto lg:w-full">
         {/* ── LEFT: content ── */}
         <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-14 xl:px-20 pt-28 pb-14 lg:pt-0 lg:pb-24 order-2 lg:order-1">
           <div className="w-full max-w-xl lg:ml-auto">
@@ -435,16 +434,16 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
             </div>
 
             {/* Feature points — former hero pills, now living cleanly inside the hero */}
-            <ul className="mt-10 sm:mt-12 flex flex-col gap-3.5 pt-7 border-t border-gray-200 dark:border-white/10 animate-fade-rise-delay-2">
+            <ul className="mt-10 sm:mt-12 flex flex-col gap-4 pt-7 border-t border-gray-200 dark:border-white/10 animate-fade-rise-delay-2">
               {points.map(({ Icon, label }) => (
                 <li key={label} className="flex items-center gap-3">
                   <span
-                    className="w-9 h-9 rounded-lg border flex items-center justify-center text-brand shrink-0"
+                    className="w-10 h-10 rounded-lg border flex items-center justify-center text-brand shrink-0"
                     style={{ backgroundColor: "rgba(255,83,49,0.10)", borderColor: "rgba(255,83,49,0.22)" }}
                   >
-                    <Icon className="w-[18px] h-[18px]" />
+                    <Icon className="w-5 h-5" />
                   </span>
-                  <span className="text-sm sm:text-[15px] font-medium text-gray-700 dark:text-gray-300 leading-snug">{label}</span>
+                  <span className="text-[15px] sm:text-base lg:text-lg font-medium text-gray-700 dark:text-gray-300 leading-snug">{label}</span>
                 </li>
               ))}
             </ul>
@@ -464,7 +463,18 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
             unaffected — inner wrapper reverts to filling the panel exactly as it always did. */}
         <div className={`relative min-h-[calc(46svh+4.5rem)] sm:min-h-[calc(54svh+4.5rem)] lg:min-h-0 lg:h-full order-1 lg:order-2 ${variant === "slideshow" ? "bg-background" : "bg-[#e3d3c2] dark:bg-[hsl(222,28%,4%)]"}`}>
           {variant === "slideshow" ? (
-            <HeroPhotoStage />
+            /* Фото-«плашка»: НЕ full-bleed, а скруглённая карточка, мягкая тень + ring — «парит»
+               на фоне секции (приём с эталонного hero «ИИ-трансформация»).
+               ВЫСОТА ≈ левому блоку контента: на десктопе карточка фикс-высоты (~540px) и
+               ЦЕНТРИРУЕТСЯ вертикально, зеркаля отступы левой колонки (`lg:pt-0 lg:pb-24`),
+               поэтому центры и верх/низ совпадают с контентом. max-h страхует от захода под
+               навбар на низких окнах. Мобайл/sm — карточка заполняет свою область (клиренс
+               навбара сверху, поля по краям). */
+            <div className="absolute inset-0 px-4 pt-[80px] pb-4 sm:px-6 sm:pt-[88px] sm:pb-6 lg:flex lg:items-center lg:justify-center lg:pl-6 lg:pr-8 lg:pt-0 lg:pb-24">
+              <div className="relative w-full h-full lg:h-[660px] lg:max-h-[calc(100svh-160px)] rounded-[24px] overflow-hidden shadow-[0_28px_70px_-28px_rgba(0,0,0,0.4)] ring-1 ring-black/[0.06] dark:ring-white/10">
+                <HeroPhotoStage />
+              </div>
+            </div>
           ) : (
           <>
           {/* Backdrop — warm sandy studio stage (light) whose gradient mirrors the sunset-lit floor so
@@ -517,7 +527,11 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
             полосы, правая половина (там визуал). Для робота — высокий (h-28, растворяет «пол»).
             Для слайд-шоу — КОРОТКИЙ (h-10): тот же белый переход, но маленький радиус, чтобы
             мягко сгладить стык фото↔полоса и не перекрывать слайдер/подпись (они подняты выше). */}
-        <div className={`pointer-events-none absolute bottom-full right-0 w-1/2 bg-gradient-to-t from-white dark:from-black to-transparent ${variant === "slideshow" ? "h-20" : "h-28"}`} />
+        {/* Растворение визуала в логополосу нужно только роботу (его «пол» упирается в полосу).
+            У фото-«плашки» край карточки чистый и отделён отступом — дисольв выключен. */}
+        {variant !== "slideshow" && (
+          <div className="pointer-events-none absolute bottom-full right-0 w-1/2 h-28 bg-gradient-to-t from-white dark:from-black to-transparent" />
+        )}
         <div className="w-full max-w-6xl mx-auto px-6 py-3">
           <div className="text-center mb-1">
             <span className="text-[10px] xl:text-[11px] font-bold uppercase tracking-[0.2em] text-gray-400 dark:text-white/60">{hub.hero.trustLabel}</span>
@@ -576,16 +590,16 @@ function HeroSplitFrame({ visual, rightBgClass = "bg-[#05070d]" }: { visual: Rea
             </div>
 
             {/* Feature points — former hero pills, living cleanly inside the hero */}
-            <ul className="mt-10 sm:mt-12 flex flex-col gap-3.5 pt-7 border-t border-gray-200 dark:border-white/10 animate-fade-rise-delay-2">
+            <ul className="mt-10 sm:mt-12 flex flex-col gap-4 pt-7 border-t border-gray-200 dark:border-white/10 animate-fade-rise-delay-2">
               {points.map(({ Icon, label }) => (
                 <li key={label} className="flex items-center gap-3">
                   <span
-                    className="w-9 h-9 rounded-lg border flex items-center justify-center text-brand shrink-0"
+                    className="w-10 h-10 rounded-lg border flex items-center justify-center text-brand shrink-0"
                     style={{ backgroundColor: "rgba(255,83,49,0.10)", borderColor: "rgba(255,83,49,0.22)" }}
                   >
-                    <Icon className="w-[18px] h-[18px]" />
+                    <Icon className="w-5 h-5" />
                   </span>
-                  <span className="text-sm sm:text-[15px] font-medium text-gray-700 dark:text-gray-300 leading-snug">{label}</span>
+                  <span className="text-[15px] sm:text-base lg:text-lg font-medium text-gray-700 dark:text-gray-300 leading-snug">{label}</span>
                 </li>
               ))}
             </ul>

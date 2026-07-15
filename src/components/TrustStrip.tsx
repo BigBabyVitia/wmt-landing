@@ -110,7 +110,7 @@ export function TrustStrip() {
                     <p className="text-[13px] text-gray-600 dark:text-gray-400 leading-relaxed mb-3">
                       Ведём ИИ-консалтинг и внедряем решения в&nbsp;средних и крупных компаниях.
                     </p>
-                    <span className="inline-flex items-center gap-1.5 rounded-full px-3 pt-[4px] pb-[9px] text-xs font-semibold text-brand border border-[#ff5331]/30 bg-[#ff5331]/[0.07]">
+                    <span className="inline-flex items-center gap-1.5 rounded-full px-3 pt-[5px] pb-[7px] text-xs font-semibold text-brand border border-[#ff5331]/30 bg-[#ff5331]/[0.07]">
                       <TickCircle className="w-3.5 h-3.5" />
                       Учим тому, что делаем сами
                     </span>
@@ -127,10 +127,10 @@ export function TrustStrip() {
                       Помогаем детям с&nbsp;ранних лет осваивать ИИ и&nbsp;воплощать свои идеи.
                     </p>
                     <div className="flex flex-wrap gap-2">
-                      <span className="inline-flex items-center rounded-full px-3 pt-[4px] pb-[9px] text-xs font-semibold text-brand border border-[#ff5331]/30 bg-[#ff5331]/[0.07]">
+                      <span className="inline-flex items-center rounded-full px-3 pt-[5px] pb-[7px] text-xs font-semibold text-brand border border-[#ff5331]/30 bg-[#ff5331]/[0.07]">
                         WMT Kids
                       </span>
-                      <span className="inline-flex items-center rounded-full px-3 pt-[4px] pb-[9px] text-xs font-semibold text-white bg-brand">
+                      <span className="inline-flex items-center rounded-full px-3 pt-[5px] pb-[7px] text-xs font-semibold text-white bg-brand">
                         бесплатно
                       </span>
                     </div>
@@ -193,8 +193,8 @@ export function TrustStrip() {
                     Наш фреймворк официально получил академическое признание и статус Executive программы.
                   </p>
                   <div className="mt-auto flex flex-wrap justify-center items-center gap-2 text-xs font-semibold">
-                    <span className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-3 pt-[4px] pb-[9px] rounded-full">Ученая валидация</span>
-                    <span className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-3 pt-[4px] pb-[9px] rounded-full">Март 2026</span>
+                    <span className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-3 pt-[5px] pb-[7px] rounded-full">Ученая валидация</span>
+                    <span className="bg-gray-50 dark:bg-white/5 text-gray-600 dark:text-gray-400 px-3 pt-[5px] pb-[7px] rounded-full">Март 2026</span>
                   </div>
                 </div>
               </div>

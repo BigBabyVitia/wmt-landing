@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 import { Link } from "react-router-dom"
-import { ArrowRight, ShieldTick } from "@/components/ui/icons"
-import { trainingCases, caseStats, type CaseItem } from "@/data/cases"
-import { PdfModal } from "@/components/CaseModal"
+import { ArrowRight, ArrowDown, ShieldTick } from "@/components/ui/icons"
+import { trainingCases, caseStats, CASEBOOK_PDF, CASEBOOK_FILENAME, type CaseItem } from "@/data/cases"
 
 /**
  * Блок кейсов на главной — ДВЕ КОНЦЕПЦИИ с дев-переключателем (для выбора с маркетологами):
@@ -15,7 +14,6 @@ import { PdfModal } from "@/components/CaseModal"
 export function CasesSection() {
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
-  const [pdfOpen, setPdfOpen] = useState(false)
 
   useEffect(() => {
     const el = ref.current
@@ -28,35 +26,26 @@ export function CasesSection() {
     return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    document.body.style.overflow = pdfOpen ? "hidden" : ""
-    return () => { document.body.style.overflow = "" }
-  }, [pdfOpen])
-
   return (
-    <>
-      <section
-        ref={ref}
-        id="cases"
-        className="py-16 md:py-24 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden"
-      >
-        {/* Вариант B «Тизер» временно скрыт — оставлен только A «Лента».
-            Дормантная ветка живёт ниже в `VariantTeaser` (export, чтобы TS не считал
-            её мёртвым кодом) — вернуть = снова отрисовать переключатель концепций. */}
-        <div className={`transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
-          <VariantFull onOpenPdf={() => setPdfOpen(true)} />
-        </div>
-      </section>
-
-      {pdfOpen && <PdfModal onClose={() => setPdfOpen(false)} />}
-    </>
+    <section
+      ref={ref}
+      id="cases"
+      className="py-16 md:py-24 bg-white dark:bg-[hsl(220,20%,7%)] border-t border-gray-100 dark:border-white/[0.06] transition-colors duration-300 overflow-hidden"
+    >
+      {/* Вариант B «Тизер» временно скрыт — оставлен только A «Лента».
+          Дормантная ветка живёт ниже в `VariantTeaser` (export, чтобы TS не считал
+          её мёртвым кодом) — вернуть = снова отрисовать переключатель концепций. */}
+      <div className={`transition-all duration-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+        <VariantFull />
+      </div>
+    </section>
   )
 }
 
 /* ════════════════════════════════════════════════════════════════════
    ВАРИАНТ A — полный блок: доверие + лента кейсов
    ════════════════════════════════════════════════════════════════════ */
-function VariantFull({ onOpenPdf }: { onOpenPdf: () => void }) {
+function VariantFull() {
   const railRef = useRef<HTMLDivElement>(null)
   const scrollRail = (dir: 1 | -1) => {
     railRef.current?.scrollBy({ left: dir * 340, behavior: "smooth" })
@@ -136,7 +125,7 @@ function VariantFull({ onOpenPdf }: { onOpenPdf: () => void }) {
             ? <FlagshipCard key={c.id} c={c} />
             : <PhotoCard key={c.id} c={c} />
         ))}
-        <PdfCard onOpen={onOpenPdf} />
+        <PdfCard />
       </div>
 
       {/* ── CTA: на страницу всех кейсов + отзывы ──
@@ -246,10 +235,11 @@ function FlagshipCard({ c }: { c: CaseItem }) {
 }
 
 /* ── Финальная карточка: кейсбук в PDF (веер мини-фото как превью) ── */
-function PdfCard({ onOpen }: { onOpen: () => void }) {
+function PdfCard() {
   return (
-    <button
-      onClick={onOpen}
+    <a
+      href={CASEBOOK_PDF}
+      download={CASEBOOK_FILENAME}
       className="group relative snap-start shrink-0 w-[280px] md:w-[320px] h-[400px] md:h-[420px] rounded-[1.5rem] overflow-hidden text-left bg-[hsl(220,20%,10%)] border border-black/5 dark:border-white/10 hover:border-[#ff5331]/50 transition-all duration-500 hover:shadow-xl hover:shadow-[#ff5331]/10"
     >
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_70%_50%_at_50%_110%,rgba(255,83,49,0.2),transparent_65%)]" />
@@ -275,12 +265,12 @@ function PdfCard({ onOpen }: { onOpen: () => void }) {
         </div>
         <div className="mt-auto">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-brand text-white px-4 pt-[5px] pb-[10px] text-[13px] font-semibold shadow-lg shadow-[#ff5331]/25 transition-all group-hover:bg-[#e64627] group-hover:-translate-y-0.5">
-            Получить кейсбук <ArrowRight className="w-3.5 h-3.5" />
+            Скачать кейсбук <ArrowDown className="w-3.5 h-3.5" />
           </span>
-          <p className="text-[11px] text-white/35 mt-3.5">Пришлём на почту или в Telegram</p>
+          <p className="text-[11px] text-white/35 mt-3.5">PDF · открывается сразу, без заявки</p>
         </div>
       </div>
-    </button>
+    </a>
   )
 }
 
@@ -293,7 +283,7 @@ const teaserTiles = [
   { photo: "/cases/gronolux.jpg", label: "ИИ-агенты · Гранолюкс", anchor: "gronolux" },
 ]
 
-export function VariantTeaser({ onOpenPdf }: { onOpenPdf: () => void }) {
+export function VariantTeaser() {
   const wb = trainingCases.find((c) => c.id === "wildberries")!
 
   return (
@@ -330,12 +320,13 @@ export function VariantTeaser({ onOpenPdf }: { onOpenPdf: () => void }) {
             >
               Смотреть все кейсы <ArrowRight className="w-4 h-4" />
             </Link>
-            <button
-              onClick={onOpenPdf}
+            <a
+              href={CASEBOOK_PDF}
+              download={CASEBOOK_FILENAME}
               className="text-sm font-semibold text-gray-500 dark:text-white/60 hover:text-brand transition-colors text-left"
             >
-              Кейсбук в PDF — пришлём на почту
-            </button>
+              Скачать кейсбук в PDF
+            </a>
           </div>
 
           <p className="mt-6 text-[12px] text-gray-400 dark:text-gray-500 leading-relaxed">
