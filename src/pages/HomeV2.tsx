@@ -401,7 +401,7 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
   ]
 
   return (
-    <section id="home" className="relative w-full overflow-hidden bg-background flex flex-col lg:h-[100svh]">
+    <section id="home" className="relative w-full overflow-hidden bg-background flex flex-col lg:min-h-[100svh]">
       {/* Overscroll-up filler */}
       <div className="absolute -top-[100vh] -inset-x-[20vw] h-[100vh] bg-background z-0" />
 
@@ -411,7 +411,7 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
 
       <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 lg:min-h-0 lg:max-w-7xl lg:mx-auto lg:w-full">
         {/* ── LEFT: content ── */}
-        <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-8 pt-28 pb-14 lg:pt-0 lg:pb-24 order-2 lg:order-1">
+        <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-8 pt-28 pb-14 lg:pt-24 lg:pb-24 order-2 lg:order-1">
           <div className="w-full max-w-xl lg:ml-auto">
             {/* Эйброу "Корпоративное обучение по ИИ" убран по просьбе заказчика (02.07.2026) —
                 H1 сразу читается как первая строка. `hub.hero.eyebrow` не удалён из данных:
@@ -470,8 +470,8 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
                поэтому центры и верх/низ совпадают с контентом. max-h страхует от захода под
                навбар на низких окнах. Мобайл/sm — карточка заполняет свою область (клиренс
                навбара сверху, поля по краям). */
-            <div className="absolute inset-0 px-4 pt-[80px] pb-4 sm:px-6 sm:pt-[88px] sm:pb-6 lg:flex lg:items-center lg:justify-center lg:pl-6 lg:pr-8 lg:pt-[88px] lg:pb-24">
-              <div className="relative w-full h-full lg:h-[660px] lg:max-h-[calc(100svh-200px)] rounded-[24px] overflow-hidden shadow-[0_28px_70px_-28px_rgba(0,0,0,0.4)] ring-1 ring-black/[0.06] dark:ring-white/10">
+            <div className="absolute inset-0 px-4 pt-[80px] pb-4 sm:px-6 sm:pt-[88px] sm:pb-6 lg:flex lg:items-center lg:justify-center lg:pl-6 lg:pr-8 lg:pt-24 lg:pb-24">
+              <div className="relative w-full h-full lg:h-[560px] rounded-[24px] overflow-hidden shadow-[0_28px_70px_-28px_rgba(0,0,0,0.4)] ring-1 ring-black/[0.06] dark:ring-white/10">
                 <HeroPhotoStage />
               </div>
             </div>
