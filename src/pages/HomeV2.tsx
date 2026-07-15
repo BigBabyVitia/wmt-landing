@@ -443,7 +443,7 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
                   >
                     <Icon className="w-5 h-5" />
                   </span>
-                  <span className="text-[14px] font-medium text-gray-700 dark:text-gray-300 leading-snug">{label}</span>
+                  <span className="text-[14px] lg:text-[16px] font-medium text-gray-700 dark:text-gray-300 leading-snug">{label}</span>
                 </li>
               ))}
             </ul>
