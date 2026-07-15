@@ -411,7 +411,7 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
 
       <div className="relative z-10 flex-1 grid grid-cols-1 lg:grid-cols-2 lg:min-h-0 lg:max-w-7xl lg:mx-auto lg:w-full">
         {/* ── LEFT: content ── */}
-        <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-14 xl:px-20 pt-28 pb-14 lg:pt-0 lg:pb-24 order-2 lg:order-1">
+        <div className="relative flex flex-col justify-center px-6 sm:px-10 lg:px-8 pt-28 pb-14 lg:pt-0 lg:pb-24 order-2 lg:order-1">
           <div className="w-full max-w-xl lg:ml-auto">
             {/* Эйброу "Корпоративное обучение по ИИ" убран по просьбе заказчика (02.07.2026) —
                 H1 сразу читается как первая строка. `hub.hero.eyebrow` не удалён из данных:
@@ -424,11 +424,11 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
               {hub.hero.lead}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mt-8 animate-fade-rise-delay-2 w-full max-w-sm sm:max-w-none">
-              <a href="#directions" className="bg-gray-900 dark:bg-white text-white dark:text-black rounded-full text-center px-6 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 hover:-translate-y-0.5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_4px_24px_rgba(255,255,255,0.18)] dark:hover:shadow-[0_4px_32px_rgba(255,255,255,0.32)] inline-block btn-optical-hero">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center gap-3 sm:gap-4 mt-8 animate-fade-rise-delay-2 w-full max-w-sm sm:max-w-none">
+              <a href="#directions" className="bg-gray-900 dark:bg-white text-white dark:text-black rounded-full text-center whitespace-nowrap px-6 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-semibold transition-all duration-300 hover:-translate-y-0.5 shadow-[0_8px_30px_rgba(0,0,0,0.12)] dark:shadow-[0_4px_24px_rgba(255,255,255,0.18)] dark:hover:shadow-[0_4px_32px_rgba(255,255,255,0.32)] inline-block btn-optical-hero">
                 Посмотреть направления
               </a>
-              <a href="#contact" className="text-gray-900 dark:text-white border border-gray-300 dark:border-white/25 bg-white/60 dark:bg-white/5 backdrop-blur-sm rounded-full text-center px-6 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-semibold hover:border-gray-400 dark:hover:border-white/40 hover:bg-white dark:hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 inline-block btn-optical-hero">
+              <a href="#contact" className="text-gray-900 dark:text-white border border-gray-300 dark:border-white/25 bg-white/60 dark:bg-white/5 backdrop-blur-sm rounded-full text-center whitespace-nowrap px-6 py-3.5 sm:px-9 sm:py-4 text-sm sm:text-base font-semibold hover:border-gray-400 dark:hover:border-white/40 hover:bg-white dark:hover:bg-white/10 transition-all duration-300 hover:-translate-y-0.5 inline-block btn-optical-hero">
                 Обсудить задачу
               </a>
             </div>
