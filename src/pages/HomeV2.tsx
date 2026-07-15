@@ -471,7 +471,7 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
                навбар на низких окнах. Мобайл/sm — карточка заполняет свою область (клиренс
                навбара сверху, поля по краям). */
             <div className="absolute inset-0 px-4 pt-[80px] pb-4 sm:px-6 sm:pt-[88px] sm:pb-6 lg:flex lg:items-center lg:justify-center lg:pl-6 lg:pr-8 lg:pt-24 lg:pb-24">
-              <div className="relative w-full h-full lg:h-[560px] rounded-[24px] overflow-hidden shadow-[0_28px_70px_-28px_rgba(0,0,0,0.4)] ring-1 ring-black/[0.06] dark:ring-white/10">
+              <div className="relative w-full h-full lg:h-[560px] rounded-[24px] overflow-hidden shadow-[0_16px_40px_-20px_rgba(0,0,0,0.22)] ring-1 ring-black/[0.06] dark:ring-white/10">
                 <HeroPhotoStage />
               </div>
             </div>
