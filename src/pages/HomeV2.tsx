@@ -329,7 +329,7 @@ export type HeroVisual = "robot" | "slideshow"
 const heroSlides = [
   { src: "/hero/slides/hero-liga.webp",        cap: "Обучение команд в действии", sub: "от идеи до рабочего ИИ-агента", alt: "Спикер и аудитория практикума у экрана",  pos: "50% 38%", origin: "50% 36%" },
   { src: "/hero/slides/hero-iichnica.webp",    cap: "Дискуссии с практиками ИИ",  sub: "живые разговоры на сцене",     alt: "Спикер с микрофоном на сцене мероприятия WMT AI", pos: "50% 35%", origin: "50% 35%" },
-  { src: "/hero/slides/hero-mgu.webp",         cap: "Интенсив «Личный ИИ»",       sub: "2 дня, 16 часов практики",     alt: "Выступление на интенсиве в МГУ",           pos: "50% 40%", origin: "50% 40%" },
+  { src: "/hero/slides/hero-lichnyi-ai.webp",  cap: "Интенсив «Личный ИИ»",       sub: "2 дня, 16 часов практики",     alt: "Группа участников интенсива «Личный ИИ» за рабочей сессией", pos: "50% 45%", origin: "50% 45%" },
   { src: "/hero/slides/hero-cba.webp",         cap: "Управляющие команды",        sub: "стратсессии по ИИ для C-level", alt: "Групповое фото команды после стратсессии", pos: "50% 48%", origin: "50% 46%" },
   { src: "/hero/slides/hero-gov-armenia.webp", cap: "Правительство Армении",      sub: "стратсессия по ИИ",            alt: "Команда правительства Армении",            pos: "50% 46%", origin: "50% 44%" },
 ]
@@ -348,8 +348,11 @@ function HeroPhotoStage() {
   return (
     <div
       /* Фото заполняет карточку-«плашку» целиком (скругление, клиренс навбара сверху и логополосы
-         снизу задаёт родитель-контейнер в HeroSplit); здесь — просто fill + клип под её углы. */
-      className="absolute inset-0 z-10 overflow-hidden rounded-[inherit]"
+         снизу задаёт родитель-контейнер в HeroSplit); здесь — просто fill + клип под её углы.
+         overflow-CLIP, а не hidden: контент слайдов на ~14px выше клиента, поэтому `hidden`
+         (scroll-контейнер) при клике по точке-слайдеру фокус-скроллился на ~13.5px — все скрим-слои
+         и подпись уезжали вверх, снизу вылезала недокрытая полоса. `clip` не скроллится вовсе. */
+      className="absolute inset-0 z-10 overflow-clip rounded-[inherit]"
       onMouseEnter={() => { paused.current = true }}
       onMouseLeave={() => { paused.current = false }}
     >
