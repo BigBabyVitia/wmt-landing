@@ -55,11 +55,11 @@ function VariantFull() {
 
   return (
     <>
-      {/* ── Единый заголовок блока: цифры-доверие + кейсы как одно целое ──
-          Раньше это были два разрозненных блока (центрированный «Нам доверяют лидеры
-          рынка» с крупными плашками-цифрами + отдельный левый заголовок кейсов). Свёл в
-          один левый блок: «Нам доверяют…» стало кикером над единственным заголовком,
-          крупные плашки → компактная полоса-пруф прямо над лентой кейсов. */}
+      {/* ── Заголовок блока ──
+          Лента, стрелки и цифры-пруф теперь живут внутри одного контейнера max-w-7xl:
+          — лента ограничена шириной вёрстки (не «утекает» в край экрана),
+          — стрелки листания вынесены на боковые края ленты (были в шапке справа),
+          — компактная полоса цифр перенесена ВНИЗ, под ленту. */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
           <div className="max-w-2xl">
@@ -77,6 +77,8 @@ function VariantFull() {
             </Link>
           </div>
 
+          {/* Стрелки листания рядом со ссылкой «Все кейсы» (desktop) —
+              в шапке они не перекрывают карточки, а низ теперь свободен под цифры. */}
           <div className="hidden md:flex items-center gap-3 shrink-0">
             <Link to="/cases" className="text-sm font-semibold text-gray-500 dark:text-white/60 hover:text-brand transition-colors mr-2">
               Все кейсы →
@@ -97,35 +99,34 @@ function VariantFull() {
             </button>
           </div>
         </div>
+      </div>
 
-        {/* Компактная полоса-пруф: те же цифры, но не крупными плашками, а слитно с лентой */}
-        <div className="mt-8 md:mt-10 flex flex-wrap items-stretch gap-y-4 border-t border-gray-100 dark:border-white/[0.08] pt-6">
-          {caseStats.map(({ value, label }, i) => (
-            <div
-              key={label}
-              className={`flex-1 min-w-[140px] ${i > 0 ? "sm:border-l border-gray-100 dark:border-white/[0.08] sm:pl-6" : ""}`}
-            >
-              <div className="text-2xl md:text-[32px] font-bold tracking-tight text-gray-900 dark:text-white leading-none">{value}</div>
-              <div className="text-[13px] text-gray-500 dark:text-gray-400 mt-2 leading-snug">{label}</div>
-            </div>
+      {/* ── Лента кейсов ── ограничена контейнером max-w-7xl (не «утекает» в край экрана) ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-8 md:mt-10">
+        <div
+          ref={railRef}
+          className="flex gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory pb-4 [scroll-padding-left:0px] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {trainingCases.map((c) => (
+            c.featured
+              ? <FlagshipCard key={c.id} c={c} />
+              : <PhotoCard key={c.id} c={c} />
           ))}
+          <PdfCard />
         </div>
       </div>
 
-      {/* спейсер до ленты */}
-      <div className="h-8 md:h-10" />
-
-      {/* ── Лента кейсов ── */}
-      <div
-        ref={railRef}
-        className="flex gap-4 md:gap-5 overflow-x-auto snap-x snap-mandatory pb-4 px-4 sm:px-6 md:px-12 xl:px-[max(3rem,calc((100vw-80rem)/2+3rem))] [scroll-padding-left:1rem] sm:[scroll-padding-left:1.5rem] md:[scroll-padding-left:3rem] xl:[scroll-padding-left:max(3rem,calc((100vw-80rem)/2+3rem))] [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-      >
-        {trainingCases.map((c) => (
-          c.featured
-            ? <FlagshipCard key={c.id} c={c} />
-            : <PhotoCard key={c.id} c={c} />
-        ))}
-        <PdfCard />
+      {/* ── Полоса цифр-пруф: перенесена вниз, компактная инлайн-строка вместо крупных плашек ── */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mt-8 md:mt-10">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-8 gap-y-3 border-t border-gray-100 dark:border-white/[0.08] pt-6">
+          {caseStats.map(({ value, label }, i) => (
+            <div key={label} className="inline-flex items-baseline gap-2">
+              {i > 0 && <span className="hidden sm:inline text-gray-200 dark:text-white/15 mr-3 sm:mr-5 select-none">•</span>}
+              <span className="text-lg md:text-xl font-bold tracking-tight text-gray-900 dark:text-white leading-none">{value}</span>
+              <span className="text-[13px] md:text-sm text-gray-500 dark:text-gray-400 leading-snug">{label}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* ── CTA: на страницу всех кейсов + отзывы ──
