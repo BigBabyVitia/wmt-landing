@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react"
-import { CloseCircle as X, Menu, Sun, Moon } from "@/components/ui/icons"
+import { CloseCircle as X, Menu } from "@/components/ui/icons"
 import { Link, useLocation } from "react-router-dom"
 import { useVersion } from "@/context/VersionContext"
-import { useTheme } from "@/context/ThemeContext"
 
 interface NavbarV2Props {
   variant?: "home" | "inner"
@@ -29,12 +28,12 @@ export function NavbarV2({ variant = "inner", solid = false }: NavbarV2Props) {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const { version } = useVersion()
-  const { isDark: isDarkTheme, toggleTheme } = useTheme()
   const location = useLocation()
 
   const links = version === "new" ? newLinks : classicLinks
 
-  const isDark = scrolled || solid
+  /** Плашка «проскроллено»: светлый бар поверх контента вместо прозрачного поверх hero. */
+  const solidBar = scrolled || solid
 
   useEffect(() => {
     const threshold = variant === "home" ? window.innerHeight - 80 : 80
@@ -57,10 +56,8 @@ export function NavbarV2({ variant = "inner", solid = false }: NavbarV2Props) {
     <>
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isDark
-            ? isDarkTheme
-              ? "bg-[hsl(220,20%,7%)]/70 backdrop-blur-xl pt-[calc(env(safe-area-inset-top)+12px)] pb-3"
-              : "bg-white/70 backdrop-blur-xl pt-[calc(env(safe-area-inset-top)+12px)] pb-3"
+          solidBar
+            ? "bg-white/70 backdrop-blur-xl pt-[calc(env(safe-area-inset-top)+12px)] pb-3"
             : "pt-[calc(env(safe-area-inset-top)+20px)] pb-5"
         }`}
       >
@@ -68,7 +65,7 @@ export function NavbarV2({ variant = "inner", solid = false }: NavbarV2Props) {
           <Link
             to="/"
             className={`flex items-center transition-colors duration-300 ${
-              isDark ? (isDarkTheme ? "text-white" : "text-gray-900 dark:text-white") : "text-white"
+              solidBar ? "text-gray-900" : "text-white"
             }`}
             aria-label="WMT AI"
           >
@@ -87,7 +84,7 @@ export function NavbarV2({ variant = "inner", solid = false }: NavbarV2Props) {
           {/* Desktop nav */}
           <div
             className={`hidden lg:flex items-center space-x-6 text-sm transition-colors duration-300 ${
-              isDark ? (isDarkTheme ? "text-gray-400 dark:text-gray-500" : "text-gray-500 dark:text-gray-400 dark:text-gray-500") : "text-gray-300"
+              solidBar ? "text-gray-500" : "text-gray-300"
             }`}
           >
             {links.map((link) => (
@@ -96,15 +93,11 @@ export function NavbarV2({ variant = "inner", solid = false }: NavbarV2Props) {
                 to={link.to}
                 className={`transition-colors whitespace-nowrap ${
                   isActive(link.to)
-                    ? isDark
-                      ? isDarkTheme
-                        ? "text-white font-medium"
-                        : "text-gray-900 dark:text-white font-medium"
+                    ? solidBar
+                      ? "text-gray-900 font-medium"
                       : "text-white font-medium"
-                    : isDark
-                    ? isDarkTheme
-                      ? "hover:text-white"
-                      : "hover:text-gray-900 dark:hover:text-white"
+                    : solidBar
+                    ? "hover:text-gray-900"
                     : "hover:text-white"
                 }`}
               >
@@ -116,30 +109,11 @@ export function NavbarV2({ variant = "inner", solid = false }: NavbarV2Props) {
 
           <div className="flex items-center gap-3">
 
-            {/* Theme toggle */}
-            <button
-              onClick={toggleTheme}
-              className={`hidden md:flex items-center justify-center w-9 h-9 rounded-full border transition-all duration-300 ${
-                isDark
-                  ? isDarkTheme
-                    ? "border-white/10 text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
-                    : "border-gray-200 dark:border-white/10 text-gray-500 dark:text-gray-400 dark:text-gray-500 hover:border-brand hover:text-brand"
-                  : "border-white/20 text-white/60 hover:border-white/40 hover:text-white"
-              }`}
-              title={isDarkTheme ? "Светлая тема" : "Тёмная тема"}
-            >
-              {isDarkTheme ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            </button>
-
             {/* Primary CTA */}
             <a
               href="#contact"
               className={`rounded-full h-10 px-6 text-sm leading-none font-medium transition-all duration-300 hover:scale-[1.03] hidden md:inline-flex items-center justify-center btn-optical-nav ${
-                isDark
-                  ? isDarkTheme
-                    ? "bg-brand text-white hover:bg-[#e64627]"
-                    : "bg-brand text-white hover:bg-[#e64627]"
-                  : "liquid-glass text-white"
+                solidBar ? "bg-brand text-white hover:bg-[#e64627]" : "liquid-glass text-white"
               }`}
             >
               Обсудить задачу
@@ -149,7 +123,7 @@ export function NavbarV2({ variant = "inner", solid = false }: NavbarV2Props) {
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
               className={`lg:hidden p-2 transition-colors ${
-                isDark ? (isDarkTheme ? "text-white" : "text-gray-900 dark:text-white") : "text-white"
+                solidBar ? "text-gray-900" : "text-white"
               }`}
             >
               {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -175,21 +149,7 @@ export function NavbarV2({ variant = "inner", solid = false }: NavbarV2Props) {
               </Link>
             ))}
 
-            <div className="pt-6 border-t border-white/10 space-y-4">
-
-              {/* Theme toggle mobile */}
-              <button
-                onClick={toggleTheme}
-                className="flex items-center gap-3 text-sm text-gray-400 dark:text-gray-500"
-              >
-                <span>Тема:</span>
-                <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                  isDarkTheme ? "bg-brand text-white" : "bg-white/10 text-white"
-                }`}>
-                  {isDarkTheme ? "🌙 Тёмная" : "☀️ Светлая"}
-                </span>
-              </button>
-            </div>
+            <div className="pt-6 border-t border-white/10" />
 
             <a
               href="#contact"

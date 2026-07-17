@@ -7,41 +7,20 @@ const Spline = lazy(() => import('@splinetool/react-spline'));
    Сцена Spline сохранена в тёмной палитре: фиолетовый key-прожектор (#883fe0),
    выключенный чёрный fill и тёмный matcap-«хром» на голове. Красим САМУ сцену через
    three-объекты рантайма — сохраняются настоящие тени и блики, цвета точные:
-     · light — тёплая «закатная» студия: серебристый робот, оранжевая мордочка,
-       кремовый пол, одна мягкая тень вправо;
-     · dark  — тёмная сцена, но фиолетовый свет заменён тёплым брендовым.
-   Тема читается из класса `dark` на <html> и переключается вживую (MutationObserver). */
+   тёплая «закатная» студия — серебристый робот, оранжевая мордочка, кремовый пол,
+   одна мягкая тень вправо. */
 
-type WhobeeTheme = 'light' | 'dark';
-
-const WHOBEE_THEMES: Record<WhobeeTheme, {
-  key: { color: string; intensity: number };
-  fill: { color: string; intensity: number };
-  ambient: { color: string; intensity: number; ground: string };
-  face: string;
-  floor: string;
-  head: { base: string; matcap: number };
-}> = {
-  light: {
-    key: { color: '#ffd8ac', intensity: 1.15 },
-    fill: { color: '#ffb583', intensity: 0.7 },
-    ambient: { color: '#fff2e2', intensity: 1.0, ground: '#f8e2cc' },
-    face: '#ff9012',
-    floor: '#ece5db',
-    head: { base: '#c9c3bb', matcap: 0.25 }, // тёмный matcap красил бока головы в графит
-  },
-  dark: {
-    key: { color: '#ffbe8f', intensity: 0.9 },
-    fill: { color: '#ff7a4d', intensity: 0.55 },
-    ambient: { color: '#ffe4cf', intensity: 0.45, ground: '#241d18' },
-    face: '#ffaa28', // в тусклом свете градиент экрана розовит — тон с запасом по жёлтому
-    floor: '#9f9f9f', // исходный тон — в тёмной студии сам уходит в глубокий
-    head: { base: '#9f9f9f', matcap: 1.0 }, // исходный «хром» хорош в тёмной теме
-  },
+const WHOBEE_THEME = {
+  key: { color: '#ffd8ac', intensity: 1.15 },
+  fill: { color: '#ffb583', intensity: 0.7 },
+  ambient: { color: '#fff2e2', intensity: 1.0, ground: '#f8e2cc' },
+  face: '#ff9012',
+  floor: '#ece5db',
+  head: { base: '#c9c3bb', matcap: 0.25 }, // тёмный matcap красил бока головы в графит
 };
 
-function applyWhobeeTheme(app: any, theme: WhobeeTheme) {
-  const t = WHOBEE_THEMES[theme];
+function applyWhobeeTheme(app: any) {
+  const t = WHOBEE_THEME;
   const scene = app._scene || app.scene;
   if (!scene) return;
 
@@ -129,21 +108,12 @@ function applyWhobeeTheme(app: any, theme: WhobeeTheme) {
   });
 }
 
-/** onLoad для Spline: применяет перекраску по текущей теме и следит за переключением темы. */
+/** onLoad для Spline: применяет перекраску сцены. */
 export function whobeeThemedOnLoad(app: any) {
-  const current = (): WhobeeTheme =>
-    document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-  // Перекрашиваем и просим кадр: сцена рендерится по требованию (manual), сама по себе
-  // после смены темы не перерисуется. Без requestRender новый цвет не был бы виден,
-  // пока не двинешь мышь.
-  const applyAndRender = () => { applyWhobeeTheme(app, current()); app.requestRender?.(); };
-  applyAndRender();
-
-  // Живое переключение темы без перезагрузки сцены
-  const g = window as any;
-  if (g.__whobeeThemeObserver) g.__whobeeThemeObserver.disconnect();
-  g.__whobeeThemeObserver = new MutationObserver(applyAndRender);
-  g.__whobeeThemeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  applyWhobeeTheme(app);
+  // Сцена рендерится по требованию (manual) — без requestRender новые цвета не были бы
+  // видны, пока не двинешь мышь.
+  app.requestRender?.();
 }
 
 /* ── Загрузка/деградация тяжёлой 3D-сцены ─────────────────────────────────────────
@@ -269,12 +239,11 @@ interface InteractiveRobotSplineProps {
   scene: string;
   className?: string;
   onLoad?: (app: any) => void;
-  /** Статичные снимки сцены под тему — мгновенная отрисовка + фолбэк без 3D. */
-  posterLight: string;
-  posterDark: string;
+  /** Статичный снимок сцены — мгновенная отрисовка + фолбэк без 3D. */
+  poster: string;
 }
 
-export function InteractiveRobotSpline({ scene, className, onLoad, posterLight, posterDark }: InteractiveRobotSplineProps) {
+export function InteractiveRobotSpline({ scene, className, onLoad, poster }: InteractiveRobotSplineProps) {
   const wrapRef = useRef<HTMLDivElement>(null);
   const [mount3D, setMount3D] = useState(false); // разрешили создать узел Spline
   const [ready, setReady] = useState(false); // сцена догрузилась → проявляем canvas
@@ -328,25 +297,17 @@ export function InteractiveRobotSpline({ scene, className, onLoad, posterLight, 
   return (
     <div ref={wrapRef} className={className}>
       {/* Poster — мгновенная отрисовка и постоянный визуал на устройствах без 3D.
-          Две картинки под тему переключаются CSS'ом (без JS, без мигания).
           Как только живая сцена готова (`ready`) — гасим poster: у canvas прозрачный фон,
           и оставшийся снизу poster просвечивал бы рядом с роботом (двоение головы, особенно
           на мобильном, где object-cover кадрирует иначе, чем камера сцены). На устройствах
           без 3D `ready` не наступает — poster остаётся навсегда. */}
       <img
-        src={posterLight}
+        src={poster}
         alt=""
         aria-hidden="true"
         fetchPriority="high"
         decoding="async"
-        className={`absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none transition-opacity duration-500 dark:hidden ${ready ? 'opacity-0' : 'opacity-100'}`}
-      />
-      <img
-        src={posterDark}
-        alt=""
-        aria-hidden="true"
-        decoding="async"
-        className={`absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none transition-opacity duration-500 hidden dark:block ${ready ? 'opacity-0' : 'opacity-100'}`}
+        className={`absolute inset-0 w-full h-full object-cover object-center select-none pointer-events-none transition-opacity duration-500 ${ready ? 'opacity-0' : 'opacity-100'}`}
       />
       {/* Интерактивная сцена проявляется поверх poster'а, когда готова */}
       {mount3D && (

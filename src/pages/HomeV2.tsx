@@ -1,7 +1,6 @@
 import React, { useEffect, useLayoutEffect, useRef, useState, lazy, Suspense } from "react"
 import { NavbarV2 } from "@/components/NavbarV2"
 import { useVersion, type HeroStyle } from "@/context/VersionContext"
-import { useTheme } from "@/context/ThemeContext"
 import { LogoCloud } from "@/components/ui/logo-cloud"
 import { clients } from "@/data/clients"
 
@@ -492,17 +491,15 @@ function HeroSplit({ variant = "robot" }: { variant?: HeroVisual }) {
               На десктопе робот приподнят (`lg:!bottom-[6.5rem]`), чтобы освободить снизу место
               под сплошную полосу логотипов. */}
           <div className="absolute inset-x-0 bottom-0 h-[46svh] sm:h-[54svh] lg:inset-0 lg:h-auto lg:!bottom-[6.5rem]">
-            {/* Per-theme recolour of the LIVE scene — через runtime (whobeeThemedOnLoad),
-                а не CSS-фильтры: настоящие материалы, мягкая PCFSoft-тень, точные цвета.
-                · light — «закатная» студия: серебристый робот, оранжевая мордочка, кремовый пол
-                · dark  — тёмная сцена с тёплым брендовым светом вместо фиолетового
-                Poster (WebP-снимок сцены под тему) рисуется мгновенно и остаётся фолбэком
+            {/* Recolour of the LIVE scene — через runtime (whobeeThemedOnLoad), а не CSS-фильтры:
+                настоящие материалы, мягкая PCFSoft-тень, точные цвета — «закатная» студия:
+                серебристый робот, оранжевая мордочка, кремовый пол.
+                Poster (WebP-снимок сцены) рисуется мгновенно и остаётся фолбэком
                 на слабых устройствах — см. InteractiveRobotSpline. */}
             <InteractiveRobotSpline
               scene={ROBOT_SCENE_URL}
               onLoad={whobeeThemedOnLoad}
-              posterLight="/hero/robot-light.webp"
-              posterDark="/hero/robot-dark.webp"
+              poster="/hero/robot-light.webp"
               className="absolute inset-0 z-10 !w-full !h-full"
             />
 
@@ -623,26 +620,24 @@ function HeroSplitFrame({ visual, rightBgClass = "bg-[#05070d]" }: { visual: Rea
 }
 
 /* Split hero — right visual is the animated <Beams /> field (React Bits, three/@react-three)
-   instead of the Spline robot. Theme-aware: deep warm-dark stage in dark, warm cream stage in light
-   (the near-black beams read as warm ribbons over the cream). */
+   instead of the Spline robot. Warm cream stage — the near-black beams read as warm ribbons over it. */
 export function HeroSplitBeams() {
-  const { isDark } = useTheme()
   return (
     <HeroSplitFrame
-      rightBgClass={isDark ? "bg-[#05070d]" : "bg-[#f1ece4]"}
+      rightBgClass="bg-[#f1ece4]"
       visual={
         <>
-          {/* Animated light-beams (full-bleed) — scene background + warmth tuned per theme */}
+          {/* Animated light-beams (full-bleed) */}
           <div className="absolute inset-0 z-10">
             <Beams
               beamWidth={2.4}
               beamHeight={28}
               beamNumber={20}
-              lightColor={isDark ? "#ff8a5c" : "#ff7a45"}
-              background={isDark ? "#05070d" : "#f1ece4"}
-              beamColor={isDark ? "#000000" : "#e8855a"}
+              lightColor="#ff7a45"
+              background="#f1ece4"
+              beamColor="#e8855a"
               speed={1.8}
-              noiseIntensity={isDark ? 1.6 : 1.1}
+              noiseIntensity={1.1}
               scale={0.22}
               rotation={32}
             />
@@ -685,22 +680,21 @@ export function HeroSplitVideo() {
 }
 
 /* Split hero — right visual is the interactive <PixelBlast /> dithered field (React Bits,
-   three/postprocessing). Theme-aware: brand-coral pixels over a deep stage (dark) or a warm cream
-   stage (light); PixelBlast is transparent so the panel background shows through. */
+   three/postprocessing). Brand-coral pixels over a warm cream stage; PixelBlast is transparent
+   so the panel background shows through. */
 export function HeroSplitPixel() {
-  const { isDark } = useTheme()
   return (
     <HeroSplitFrame
-      rightBgClass={isDark ? "bg-[#05070d]" : "bg-[#f1ece4]"}
+      rightBgClass="bg-[#f1ece4]"
       visual={
         <>
-          {/* PixelBlast interactive dithered field (full-bleed) — transparent, so the cream/dark
+          {/* PixelBlast interactive dithered field (full-bleed) — transparent, so the cream
               panel shows between the brand-coloured pixels. */}
           <div className="absolute inset-0 z-10">
             <PixelBlast
               variant="circle"
               pixelSize={12}
-              color={isDark ? "#ff5331" : "#e8420f"}
+              color="#e8420f"
               patternScale={3}
               patternDensity={1.2}
               pixelSizeJitter={0.5}
@@ -724,9 +718,8 @@ export function HeroSplitPixel() {
 /* Split hero — BRAND-NATIVE right visual, built entirely from the site's own decor DNA:
    the CardDecor fading grid + orange radial glow, a warm gradient stage, two drifting warm
    auroras (brand orange + amber), a slow focal pulse-halo and rising brand embers. Pure CSS/SVG
-   (no WebGL, no 3D) — the light mirror of the format-page background language, theme-aware. */
+   (no WebGL, no 3D) — the light mirror of the format-page background language. */
 export function HeroSplitBrand() {
-  const { isDark } = useTheme()
   // Deterministic ember field (fixed positions → stable across renders, no runtime randomness).
   const embers = [
     { left: "18%", size: 5, delay: "0s",   dur: "9s" },
@@ -740,10 +733,10 @@ export function HeroSplitBrand() {
     { left: "24%", size: 3, delay: "5s",   dur: "11.5s" },
     { left: "70%", size: 6, delay: "6s",   dur: "10.5s" },
   ]
-  const emberColor = isDark ? "rgba(255,120,70,0.9)" : "rgba(232,66,15,0.55)"
+  const emberColor = "rgba(232,66,15,0.55)"
   return (
     <HeroSplitFrame
-      rightBgClass={isDark ? "bg-[#05070d]" : "bg-[#ece1d4]"}
+      rightBgClass="bg-[#ece1d4]"
       visual={
         <div className="absolute inset-0 overflow-hidden">
           {/* Warm gradient stage */}
@@ -753,9 +746,8 @@ export function HeroSplitBrand() {
           <div
             className="absolute inset-0 z-0 pointer-events-none opacity-70 dark:opacity-50 [mask-image:radial-gradient(ellipse_72%_70%_at_55%_45%,#000_32%,transparent_86%)]"
             style={{
-              backgroundImage: isDark
-                ? "linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px)"
-                : "linear-gradient(to right, rgba(120,90,70,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(120,90,70,0.14) 1px, transparent 1px)",
+              backgroundImage:
+                "linear-gradient(to right, rgba(120,90,70,0.14) 1px, transparent 1px), linear-gradient(to bottom, rgba(120,90,70,0.14) 1px, transparent 1px)",
               backgroundSize: "56px 56px",
               backgroundPosition: "center center",
             }}
@@ -772,7 +764,7 @@ export function HeroSplitBrand() {
               style={{
                 width: "clamp(180px, 26vw, 320px)",
                 height: "clamp(180px, 26vw, 320px)",
-                border: `1px solid ${isDark ? "rgba(255,83,49,0.40)" : "rgba(255,83,49,0.30)"}`,
+                border: "1px solid rgba(255,83,49,0.30)",
               }}
             />
           </div>
@@ -793,7 +785,7 @@ export function HeroSplitBrand() {
                   animationDelay: e.delay,
                   animationDuration: e.dur,
                   background: emberColor,
-                  boxShadow: isDark ? "0 0 8px rgba(255,120,70,0.7)" : "0 0 6px rgba(232,66,15,0.4)",
+                  boxShadow: "0 0 6px rgba(232,66,15,0.4)",
                 }}
               />
             ))}

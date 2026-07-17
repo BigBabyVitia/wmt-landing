@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
 import { VersionProvider, useVersion } from "@/context/VersionContext"
-import { ThemeProvider } from "@/context/ThemeContext"
 
 /* Classic pages */
 import { Home } from "./pages/Home"
@@ -57,7 +56,6 @@ function HomePage() {
 function App() {
   return (
     <BrowserRouter>
-      <ThemeProvider>
       <VersionProvider>
         <ScrollToTop />
         <main className="min-h-screen text-gray-900 dark:text-gray-100 bg-background selection:bg-brand selection:text-white flex flex-col transition-colors duration-300">
@@ -99,7 +97,6 @@ function App() {
           </footer>
         </main>
       </VersionProvider>
-      </ThemeProvider>
     </BrowserRouter>
   )
 }
